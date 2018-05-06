@@ -60,13 +60,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(473, 590);
+            this.button2.Location = new System.Drawing.Point(470, 655);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(84, 28);
             this.button2.TabIndex = 24;
@@ -75,7 +76,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(22, 590);
+            this.button1.Location = new System.Drawing.Point(22, 655);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 28);
             this.button1.TabIndex = 23;
@@ -381,11 +382,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.checkBox1.Location = new System.Drawing.Point(22, 591);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(106, 24);
+            this.checkBox1.TabIndex = 25;
+            this.checkBox1.Text = "Habilitado";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Modificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(578, 644);
+            this.ClientSize = new System.Drawing.Size(578, 701);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
@@ -397,6 +411,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -434,5 +449,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
