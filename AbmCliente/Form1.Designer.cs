@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -43,9 +45,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -57,7 +58,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -85,10 +85,27 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(563, 308);
+            this.groupBox1.Size = new System.Drawing.Size(554, 308);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Nuevo Cliente";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(171, 268);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(295, 26);
+            this.dateTimePicker1.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(6, 273);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(159, 20);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Fecha de Nacimiento";
             // 
             // textBox3
             // 
@@ -216,23 +233,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(6, 273);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(159, 20);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Fecha de Nacimiento";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(171, 268);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(295, 26);
-            this.dateTimePicker1.TabIndex = 17;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBox7);
@@ -250,10 +250,18 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBox2.Location = new System.Drawing.Point(12, 326);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(563, 242);
+            this.groupBox2.Size = new System.Drawing.Size(554, 242);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dirección del Nuevo Cliente";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(56, 98);
+            this.textBox7.MaxLength = 18;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(153, 26);
+            this.textBox7.TabIndex = 13;
             // 
             // textBox8
             // 
@@ -355,14 +363,6 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "Calle";
             // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(56, 98);
-            this.textBox7.MaxLength = 18;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(153, 26);
-            this.textBox7.TabIndex = 13;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(22, 589);
@@ -374,23 +374,23 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(482, 589);
+            this.button2.Location = new System.Drawing.Point(473, 589);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(84, 28);
             this.button2.TabIndex = 20;
             this.button2.Text = "Guardar";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // Alta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 641);
+            this.ClientSize = new System.Drawing.Size(578, 644);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.Name = "Alta";
             this.Text = "Alta";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
