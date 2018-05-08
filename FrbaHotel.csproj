@@ -62,11 +62,17 @@
     <Compile Include="AbmCliente\Modificacion.Designer.cs">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHabitacion\Form1.cs">
+    <Compile Include="AbmHabitacion\Alta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHabitacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmHabitacion\Alta.Designer.cs">
+      <DependentUpon>Alta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHabitacion\Modificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\Modificacion.Designer.cs">
+      <DependentUpon>Modificacion.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Form1.cs">
       <SubType>Form</SubType>
@@ -131,6 +137,12 @@
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\Modificacion.resx">
+      <DependentUpon>Modificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\Alta.resx">
+      <DependentUpon>Alta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
