@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmRegimen
 {
-    public partial class Form1 : Form
+    public partial class Modificación : Form
     {
-        public Form1()
+        public Modificación()
         {
             InitializeComponent();
         }
