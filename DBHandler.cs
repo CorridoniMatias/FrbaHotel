@@ -151,6 +151,18 @@ namespace FrbaHotel
 
             return ret;       
         }
+        public static DataTable QueryForComboBox(string query, List<SqlParameter> param = null)
+        {
+            var tabla = new DataTable();
+            Command(query, param, (command) =>
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    tabla.Load(reader);
+                }
+            });
+            return tabla;
+        }
 
         private static void GetResultSet(SqlCommand command, ref List<Dictionary<string, object>> set)
         {
