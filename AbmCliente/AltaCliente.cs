@@ -67,6 +67,12 @@ namespace FrbaHotel.AbmCliente
                 MessageBox.Show("Cliente ingresado con éxito");
         }
 
+        private void buttonLimpiar_Click(object sender, EventArgs e)
+        {
+            ResetearForm.limpiar(this.groupBox1);
+            ResetearForm.limpiar(this.groupBox2);
+        }
+
         
         
     }
