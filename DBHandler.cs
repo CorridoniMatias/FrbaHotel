@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace FrbaHotel
 {
-    public class FilterQueryBuilder
+    public class QueryBuilder
     {
+
+        public enum QueryBuilderType
+        {
+            SELECT, INSERT, UPDATE, DELETE
+        }
 
         private readonly string queryBase = "SELECT fields FROM table filter";
 
@@ -21,29 +26,38 @@ namespace FrbaHotel
         /// ej:
         /// string t = new FilterQueryBuilder().Select("1,2,3").Table("user").AddLike("nombre", "ju").AddEquals("id", "32").Build();
         /// </summary>
-        public FilterQueryBuilder()
+        public QueryBuilder(QueryBuilderType type)
         {
+            switch (type)
+            {
+                case QueryBuilderType.SELECT:
+                    queryBase = "SELECT fields FROM table filter";
+                    break;
+                case QueryBuilderType.UPDATE:
+                    queryBase = "UPDATE table SET fields filter";
+                    break;
+            }
         }
 
-        public FilterQueryBuilder Select(string whatToSelect)
+        public QueryBuilder Fields(string whatToSelect)
         {
             fields = whatToSelect;
             return this;
         }
 
-        public FilterQueryBuilder Table(string table)
+        public QueryBuilder Table(string table)
         {
             this.table = table;
             return this;
         }
 
-        public FilterQueryBuilder AddLike(string field, string value)
+        public QueryBuilder AddLike(string field, string value)
         {
             filters.Add(field + " LIKE '%" + value + "%'");
             return this;
         }
 
-        public FilterQueryBuilder AddEquals(string field, string value)
+        public QueryBuilder AddEquals(string field, string value)
         {
             filters.Add(field + " = '" + value + "'");
             return this;
