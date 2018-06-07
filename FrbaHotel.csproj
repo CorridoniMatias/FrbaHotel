@@ -134,6 +134,7 @@
     <Compile Include="CancelarReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBHandler.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRegimen\Modificación.resx">
       <DependentUpon>Modificación.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\Generar reserva.resx">
       <DependentUpon>Generar reserva.cs</DependentUpon>
