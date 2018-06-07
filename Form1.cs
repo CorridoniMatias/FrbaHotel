@@ -27,10 +27,24 @@ namespace FrbaHotel
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs events)
         {
+            try
+            {
 
-            
+                Login.Login.LoggedUserRoleID = DBHandler.SPWithValue("MATOTA.GetGuestRoleID");
+            }
+            catch (InvalidCastException e)
+            {
+                // Este tipo exc solo va a pasar si no se encontro el rol guest en la db
+                MessageBox.Show("Ocurrio un error interno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+
+            MenuPrincipal menu = new MenuPrincipal();
+            this.Hide();
+            menu.ShowDialog(this);
+            this.Close();
         }
     }
 }

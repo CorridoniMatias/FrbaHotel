@@ -96,7 +96,7 @@ namespace FrbaHotel
         /// </summary>
         /// <param name="query"></param>
         /// <param name="param"></param>
-        /// <returns></returns>
+        /// <returns>Dictionary as ResultSet. Cada indice del list es un row traido, cada valor del list es un dictionary con el valor del row entero.</returns>
         public static List<Dictionary<string, object>> Query(string query, List<SqlParameter> param = null)
         {
             List<Dictionary<string, object>> ret = new List<Dictionary<string, object>>();

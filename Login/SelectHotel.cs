@@ -16,5 +16,16 @@ namespace FrbaHotel.Login
         {
             InitializeComponent();
         }
+
+        private void SelectHotel_Load(object sender, EventArgs e)
+        {
+            var hotels = DBHandler.Query("SELECT h.idHotel, nombre, calle, nroCalle, ciudad FROM MATOTA.Hotel h" +
+                                " INNER JOIN MATOTA.HotelesUsuario hu ON hu.idHotel = h.idHotel "+
+                                "WHERE hu.idUsuario = " + Login.LoggedUsedID);
+
+            hotels.ForEach(hotel => {
+                dataGridViewHotels.Rows.Add(new object[] { hotel["idHotel"], hotel["nombre"], hotel["calle"], hotel["nroCalle"], hotel["ciudad"] });
+            });
+        }
     }
 }
