@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace FrbaHotel
 {
-    class ResetearForm
+    class FormHandler
     {
             public static void limpiar(Control form)
             {
@@ -40,6 +40,29 @@ namespace FrbaHotel
                         dateTimePicker.Value = DateTime.Now;
                     }
                 }
+            }
+            public static void listarTipoDoc(ComboBox comboBox)
+            {
+                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.TipoDocumento");
+                comboBox.DisplayMember = "nombre";
+                comboBox.ValueMember = "IdTipoDocumento";
+            }
+            public static void crearBotonesDataGridView(DataGridView dataGridView)
+            {
+                DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
+                boton.Name = "Modificar";
+                boton.HeaderText = "Modificar";
+                boton.Text = "Modificar";
+                boton.UseColumnTextForButtonValue = true;
+
+                DataGridViewButtonColumn boton2 = new DataGridViewButtonColumn();
+                boton2.Name = "Eliminar";
+                boton2.HeaderText = "Eliminar";
+                boton2.Text = "Eliminar";
+                boton2.UseColumnTextForButtonValue = true;
+
+                dataGridView.Columns.Add(boton);
+                dataGridView.Columns.Add(boton2);
             }
     }
 }

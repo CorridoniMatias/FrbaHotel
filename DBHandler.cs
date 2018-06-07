@@ -137,11 +137,10 @@ namespace FrbaHotel
 
             return ret;       
         }
-
-        public static DataTable SPForComboBox(string procedure, List<SqlParameter> param = null)
+        public static DataTable QueryForComboBox(string query, List<SqlParameter> param = null)
         {
             var tabla = new DataTable();
-            Procedure(procedure, param, (command) =>
+            Command(query, param, (command) =>
             {
                 using (SqlDataReader reader = command.ExecuteReader())
                 {

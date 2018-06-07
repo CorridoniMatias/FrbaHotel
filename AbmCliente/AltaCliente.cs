@@ -20,13 +20,7 @@ namespace FrbaHotel.AbmCliente
 
         private void Alta_Load(object sender, EventArgs e)
         {
-            listarTipoDoc();
-        }
-        private void listarTipoDoc()
-        {
-            comboBoxTipoDoc.DataSource = DBHandler.SPForComboBox("MATOTA.listarTipoDoc");
-            comboBoxTipoDoc.DisplayMember = "nombre";
-            comboBoxTipoDoc.ValueMember = "IdTipoDocumento";
+            FormHandler.listarTipoDoc(comboBoxTipoDoc);
         }
 
         private void guardarCliente_Click(object sender, EventArgs e)
@@ -69,8 +63,8 @@ namespace FrbaHotel.AbmCliente
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
-            ResetearForm.limpiar(this.groupBox1);
-            ResetearForm.limpiar(this.groupBox2);
+            FormHandler.limpiar(this.groupBox1);
+            FormHandler.limpiar(this.groupBox2);
         }
 
         
