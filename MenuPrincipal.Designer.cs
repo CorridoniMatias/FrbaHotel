@@ -28,37 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControlFunciones = new System.Windows.Forms.TabControl();
             this.tabPageRoles = new System.Windows.Forms.TabPage();
             this.tabPageHoteles = new System.Windows.Forms.TabPage();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPageUsuarios = new System.Windows.Forms.TabPage();
             this.tabPageHuespedes = new System.Windows.Forms.TabPage();
             this.tabPageReservas = new System.Windows.Forms.TabPage();
             this.tabPageEstadias = new System.Windows.Forms.TabPage();
             this.tabPageEstadistica = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonLaunchHotelManager = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabControlFunciones.SuspendLayout();
+            this.tabPageHoteles.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControlFunciones
             // 
-            this.tabControl1.Controls.Add(this.tabPageRoles);
-            this.tabControl1.Controls.Add(this.tabPageHoteles);
-            this.tabControl1.Controls.Add(this.tabPageUsuarios);
-            this.tabControl1.Controls.Add(this.tabPageHuespedes);
-            this.tabControl1.Controls.Add(this.tabPageReservas);
-            this.tabControl1.Controls.Add(this.tabPageEstadias);
-            this.tabControl1.Controls.Add(this.tabPageEstadistica);
-            this.tabControl1.Location = new System.Drawing.Point(0, 41);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1330, 643);
-            this.tabControl1.TabIndex = 0;
+            this.tabControlFunciones.Controls.Add(this.tabPageRoles);
+            this.tabControlFunciones.Controls.Add(this.tabPageHoteles);
+            this.tabControlFunciones.Controls.Add(this.tabPageUsuarios);
+            this.tabControlFunciones.Controls.Add(this.tabPageHuespedes);
+            this.tabControlFunciones.Controls.Add(this.tabPageReservas);
+            this.tabControlFunciones.Controls.Add(this.tabPageEstadias);
+            this.tabControlFunciones.Controls.Add(this.tabPageEstadistica);
+            this.tabControlFunciones.Location = new System.Drawing.Point(0, 41);
+            this.tabControlFunciones.Name = "tabControlFunciones";
+            this.tabControlFunciones.SelectedIndex = 0;
+            this.tabControlFunciones.Size = new System.Drawing.Size(977, 304);
+            this.tabControlFunciones.TabIndex = 0;
             // 
             // tabPageRoles
             // 
@@ -72,54 +76,16 @@
             // 
             // tabPageHoteles
             // 
+            this.tabPageHoteles.Controls.Add(this.label2);
+            this.tabPageHoteles.Controls.Add(this.label1);
+            this.tabPageHoteles.Controls.Add(this.buttonLaunchHotelManager);
             this.tabPageHoteles.Location = new System.Drawing.Point(4, 31);
             this.tabPageHoteles.Name = "tabPageHoteles";
             this.tabPageHoteles.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHoteles.Size = new System.Drawing.Size(1322, 608);
+            this.tabPageHoteles.Size = new System.Drawing.Size(969, 269);
             this.tabPageHoteles.TabIndex = 1;
             this.tabPageHoteles.Text = "Hoteles";
             this.tabPageHoteles.UseVisualStyleBackColor = true;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem,
-            this.usuarioToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1330, 38);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // archivoToolStripMenuItem
-            // 
-            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salirToolStripMenuItem});
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(95, 34);
-            this.archivoToolStripMenuItem.Text = "Archivo";
-            // 
-            // usuarioToolStripMenuItem
-            // 
-            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cambiarContraseñaToolStripMenuItem});
-            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(95, 34);
-            this.usuarioToolStripMenuItem.Text = "Usuario";
-            // 
-            // cambiarContraseñaToolStripMenuItem
-            // 
-            this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
-            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(274, 34);
-            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar Contraseña";
-            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 34);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // tabPageUsuarios
             // 
@@ -166,12 +132,82 @@
             this.tabPageEstadistica.Text = "Estadistica";
             this.tabPageEstadistica.UseVisualStyleBackColor = true;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archivoToolStripMenuItem,
+            this.usuarioToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(977, 38);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // archivoToolStripMenuItem
+            // 
+            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salirToolStripMenuItem});
+            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(95, 34);
+            this.archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(125, 34);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // usuarioToolStripMenuItem
+            // 
+            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cambiarContraseñaToolStripMenuItem});
+            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(95, 34);
+            this.usuarioToolStripMenuItem.Text = "Usuario";
+            // 
+            // cambiarContraseñaToolStripMenuItem
+            // 
+            this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
+            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(274, 34);
+            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar Contraseña";
+            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
+            // 
+            // buttonLaunchHotelManager
+            // 
+            this.buttonLaunchHotelManager.Location = new System.Drawing.Point(446, 126);
+            this.buttonLaunchHotelManager.Name = "buttonLaunchHotelManager";
+            this.buttonLaunchHotelManager.Size = new System.Drawing.Size(126, 37);
+            this.buttonLaunchHotelManager.TabIndex = 0;
+            this.buttonLaunchHotelManager.Text = "Administrar";
+            this.buttonLaunchHotelManager.UseVisualStyleBackColor = true;
+            this.buttonLaunchHotelManager.Click += new System.EventHandler(this.buttonLaunchHotelManager_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(108, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(752, 39);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Añadir, modificar o eliminar hoteles de la cadena";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 133);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(432, 24);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Para añadir un nuevo hotel a la cadena haga click:";
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1330, 683);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(977, 343);
+            this.Controls.Add(this.tabControlFunciones);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
@@ -180,7 +216,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FRBA Hotel";
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControlFunciones.ResumeLayout(false);
+            this.tabPageHoteles.ResumeLayout(false);
+            this.tabPageHoteles.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -190,7 +228,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControlFunciones;
         private System.Windows.Forms.TabPage tabPageRoles;
         private System.Windows.Forms.TabPage tabPageHoteles;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -203,5 +241,8 @@
         private System.Windows.Forms.TabPage tabPageReservas;
         private System.Windows.Forms.TabPage tabPageEstadias;
         private System.Windows.Forms.TabPage tabPageEstadistica;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonLaunchHotelManager;
     }
 }

@@ -24,6 +24,11 @@ namespace FrbaHotel.Login
         /// </summary>
         public static int LoggedUserRoleID { get; set; }
 
+        /// <summary>
+        /// Lista de permisos del usuario logueado por nombre de permiso.
+        /// </summary>
+        public static List<string> LoggedUserPermissions { get; set; }
+
 
         public Login()
         {
@@ -81,6 +86,7 @@ namespace FrbaHotel.Login
                         }
                     break;
                 }
+
 
                 MenuPrincipal menu = new MenuPrincipal();
                 this.Hide();

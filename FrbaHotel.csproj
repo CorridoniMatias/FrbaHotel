@@ -213,6 +213,9 @@
     <EmbeddedResource Include="AbmHabitacion\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\AltaHotel.en.resx">
+      <DependentUpon>AltaHotel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\AltaHotel.resx">
       <DependentUpon>AltaHotel.cs</DependentUpon>
     </EmbeddedResource>

@@ -30,6 +30,32 @@ namespace FrbaHotel
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
 
+            Login.Login.LoggedUserPermissions = DBHandler.Query("SELECT p.nombre FROM MATOTA.Permiso p INNER JOIN MATOTA.PermisosRol pr ON (p.idPermiso = pr.idPermiso)  WHERE pr.idRol = " + Login.Login.LoggedUserRoleID)
+                                        .Select(p => p["nombre"].ToString()).ToList();
+
+            if (!Login.Login.LoggedUserPermissions.Contains("ABM de Rol"))
+                tabControlFunciones.TabPages.Remove(tabPageRoles);
+
+            if (!Login.Login.LoggedUserPermissions.Contains("ABM Usuarios"))
+                tabControlFunciones.TabPages.Remove(tabPageUsuarios);
+
+            if (!Login.Login.LoggedUserPermissions.Contains("ABM de Cliente"))
+                tabControlFunciones.TabPages.Remove(tabPageHuespedes);
+
+            if (!Login.Login.LoggedUserPermissions.Contains("ABM de Hotel"))
+                tabControlFunciones.TabPages.Remove(tabPageHoteles);
+
+            if (!Login.Login.LoggedUserPermissions.Contains("Generar o Modificar un Reserva") || !Login.Login.LoggedUserPermissions.Contains("Cancelar Reserva"))
+                tabControlFunciones.TabPages.Remove(tabPageReservas);
+
+            if (!Login.Login.LoggedUserPermissions.Contains("Listado Estadístico"))
+                tabControlFunciones.TabPages.Remove(tabPageEstadistica);
+
+        }
+
+        private void buttonLaunchHotelManager_Click(object sender, EventArgs e)
+        {
+            new AbmHotel.AltaHotel().ShowDialog();
         }
     }
 }
