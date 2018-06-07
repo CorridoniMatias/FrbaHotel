@@ -19,8 +19,8 @@ namespace FrbaHotel.AbmCliente
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            var filtro = new FilterQueryBuilder();
-            filtro.Select("nombre,apellido,IdTipoDocumento,numeroDocumento,mail").Table("MATOTA.Cliente");
+            var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
+                            Fields("nombre,apellido,IdTipoDocumento,numeroDocumento,mail").Table("MATOTA.Cliente");
             
             if (!string.IsNullOrWhiteSpace(textBoxNombre.Text))
                 filtro.AddLike("nombre", textBoxNombre.Text);
