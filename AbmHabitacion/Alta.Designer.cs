@@ -44,13 +44,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxHotel = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBoxHotel);
             this.groupBox1.Controls.Add(this.comboBoxTipoHabitacion);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.comboBoxUbicacion);
@@ -212,15 +212,15 @@
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
-            // textBox1
+            // textBoxHotel
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(61, 32);
-            this.textBox1.MaxLength = 64;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(245, 26);
-            this.textBox1.TabIndex = 25;
+            this.textBoxHotel.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxHotel.Enabled = false;
+            this.textBoxHotel.Location = new System.Drawing.Point(61, 32);
+            this.textBoxHotel.MaxLength = 64;
+            this.textBoxHotel.Name = "textBoxHotel";
+            this.textBoxHotel.Size = new System.Drawing.Size(245, 26);
+            this.textBoxHotel.TabIndex = 25;
             // 
             // Alta
             // 
@@ -257,6 +257,6 @@
         private System.Windows.Forms.Button buttonLimpiar;
         private System.Windows.Forms.ComboBox comboBoxTipoHabitacion;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxHotel;
     }
 }
