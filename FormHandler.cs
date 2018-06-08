@@ -22,7 +22,7 @@ namespace FrbaHotel
                     {
                         ComboBox comboBox = (ComboBox)control;
                         if (comboBox.Items.Count > 0)
-                            comboBox.SelectedIndex = 0;
+                            comboBox.SelectedIndex = -1;
                     }
                     if (control is CheckBox)
                     {
@@ -67,6 +67,24 @@ namespace FrbaHotel
             public static void queryFiltradorSegunDoc(QueryBuilder qBuilder, string tipoDoc, string numDoc)
             {
                 qBuilder.AddEquals("IdTipoDocumento", tipoDoc).AddEquals("numeroDocumento", numDoc);
+            }
+            public static void listarTipoHabitacion(ComboBox comboBox)
+            {
+                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idTipoHabitacion,descripcion FROM MATOTA.TipoHabitacion");
+                comboBox.DisplayMember = "descripcion";
+                comboBox.ValueMember = "idTipoHabitacion";
+            }
+            public static void listarTipoUbicacion(ComboBox comboBox)
+            {
+                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.UbicacionHabitacion");
+                comboBox.DisplayMember = "descripcion";
+                comboBox.ValueMember = "idUbicacion";
+            }
+            public static void listarHoteles(ComboBox comboBox)
+            {
+                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idHotel,nombre FROM MATOTA.Hotel");
+                comboBox.DisplayMember = "nombre";
+                comboBox.ValueMember = "idHotel";
             }
     }
 }

@@ -82,7 +82,7 @@ namespace FrbaHotel.AbmCliente
             }
             else if (ret == 1)
             {
-                MessageBox.Show("Actualización realizada con éxito");
+                MessageBox.Show("Actualización realizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
         }

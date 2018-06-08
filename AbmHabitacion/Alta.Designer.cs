@@ -29,126 +29,137 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.comboBoxUbicacion = new System.Windows.Forms.ComboBox();
+            this.textBoxComodidades = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBoxDescripcion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxPiso = new System.Windows.Forms.TextBox();
+            this.textBoxNumHabitacion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonGuardar = new System.Windows.Forms.Button();
+            this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBoxHotel = new System.Windows.Forms.ComboBox();
+            this.comboBoxTipoHabitacion = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.comboBoxTipoHabitacion);
+            this.groupBox1.Controls.Add(this.comboBoxHotel);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.comboBoxUbicacion);
+            this.groupBox1.Controls.Add(this.textBoxComodidades);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.textBoxDescripcion);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBoxPiso);
+            this.groupBox1.Controls.Add(this.textBoxNumHabitacion);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(8, 8);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(554, 241);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(369, 208);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la nueva habitación";
             // 
-            // comboBox1
+            // comboBoxUbicacion
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(91, 98);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(214, 28);
-            this.comboBox1.TabIndex = 13;
+            this.comboBoxUbicacion.FormattingEnabled = true;
+            this.comboBoxUbicacion.Location = new System.Drawing.Point(61, 64);
+            this.comboBoxUbicacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxUbicacion.Name = "comboBoxUbicacion";
+            this.comboBoxUbicacion.Size = new System.Drawing.Size(144, 21);
+            this.comboBoxUbicacion.TabIndex = 13;
             // 
-            // textBox6
+            // textBoxComodidades
             // 
-            this.textBox6.Location = new System.Drawing.Point(119, 200);
-            this.textBox6.MaxLength = 255;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(310, 26);
-            this.textBox6.TabIndex = 12;
+            this.textBoxComodidades.Location = new System.Drawing.Point(78, 170);
+            this.textBoxComodidades.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxComodidades.MaxLength = 255;
+            this.textBoxComodidades.Name = "textBoxComodidades";
+            this.textBoxComodidades.Size = new System.Drawing.Size(208, 20);
+            this.textBoxComodidades.TabIndex = 12;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(6, 203);
+            this.label6.Location = new System.Drawing.Point(3, 172);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 20);
+            this.label6.Size = new System.Drawing.Size(71, 13);
             this.label6.TabIndex = 11;
             this.label6.Text = "Comodidades";
             // 
-            // textBox5
+            // textBoxDescripcion
             // 
-            this.textBox5.Location = new System.Drawing.Point(104, 166);
-            this.textBox5.MaxLength = 255;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(325, 26);
-            this.textBox5.TabIndex = 10;
+            this.textBoxDescripcion.Location = new System.Drawing.Point(68, 146);
+            this.textBoxDescripcion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxDescripcion.MaxLength = 255;
+            this.textBoxDescripcion.Name = "textBoxDescripcion";
+            this.textBoxDescripcion.Size = new System.Drawing.Size(218, 20);
+            this.textBoxDescripcion.TabIndex = 10;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(6, 169);
+            this.label5.Location = new System.Drawing.Point(3, 148);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 20);
+            this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 9;
             this.label5.Text = "Descripción";
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(153, 132);
-            this.textBox4.MaxLength = 18;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(152, 26);
-            this.textBox4.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(6, 135);
+            this.label4.Location = new System.Drawing.Point(3, 93);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 20);
+            this.label4.Size = new System.Drawing.Size(97, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Tipo de Habitación";
             // 
-            // textBox2
+            // textBoxPiso
             // 
-            this.textBox2.Location = new System.Drawing.Point(51, 64);
-            this.textBox2.MaxLength = 18;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(129, 26);
-            this.textBox2.TabIndex = 4;
+            this.textBoxPiso.Location = new System.Drawing.Point(34, 42);
+            this.textBoxPiso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPiso.MaxLength = 18;
+            this.textBoxPiso.Name = "textBoxPiso";
+            this.textBoxPiso.Size = new System.Drawing.Size(87, 20);
+            this.textBoxPiso.TabIndex = 4;
+            // 
+            // textBoxNumHabitacion
+            // 
+            this.textBoxNumHabitacion.Location = new System.Drawing.Point(117, 19);
+            this.textBoxNumHabitacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxNumHabitacion.MaxLength = 18;
+            this.textBoxNumHabitacion.Name = "textBoxNumHabitacion";
+            this.textBoxNumHabitacion.Size = new System.Drawing.Size(87, 20);
+            this.textBoxNumHabitacion.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(6, 101);
+            this.label3.Location = new System.Drawing.Point(4, 66);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 20);
+            this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Ubicación";
             // 
@@ -156,9 +167,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(6, 67);
+            this.label2.Location = new System.Drawing.Point(4, 44);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 20);
+            this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Piso";
             // 
@@ -166,58 +178,73 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(6, 33);
+            this.label1.Location = new System.Drawing.Point(4, 21);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 20);
+            this.label1.Size = new System.Drawing.Size(111, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Número de habitación";
             // 
-            // textBox1
+            // buttonGuardar
             // 
-            this.textBox1.Location = new System.Drawing.Point(176, 30);
-            this.textBox1.MaxLength = 18;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(129, 26);
-            this.textBox1.TabIndex = 3;
+            this.buttonGuardar.Location = new System.Drawing.Point(319, 227);
+            this.buttonGuardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonGuardar.Name = "buttonGuardar";
+            this.buttonGuardar.Size = new System.Drawing.Size(56, 30);
+            this.buttonGuardar.TabIndex = 22;
+            this.buttonGuardar.Text = "Guardar";
+            this.buttonGuardar.UseVisualStyleBackColor = true;
+            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
-            // button2
+            // buttonLimpiar
             // 
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(320, 132);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 28);
-            this.button2.TabIndex = 21;
-            this.button2.Text = "Seleccionar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonLimpiar.Location = new System.Drawing.Point(14, 227);
+            this.buttonLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonLimpiar.Name = "buttonLimpiar";
+            this.buttonLimpiar.Size = new System.Drawing.Size(55, 30);
+            this.buttonLimpiar.TabIndex = 21;
+            this.buttonLimpiar.Text = "Limpiar";
+            this.buttonLimpiar.UseVisualStyleBackColor = true;
+            this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
-            // button1
+            // label7
             // 
-            this.button1.Location = new System.Drawing.Point(473, 277);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 28);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(5, 119);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Hotel";
             // 
-            // button3
+            // comboBoxHotel
             // 
-            this.button3.Location = new System.Drawing.Point(22, 277);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(83, 28);
-            this.button3.TabIndex = 21;
-            this.button3.Text = "Limpiar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.comboBoxHotel.FormattingEnabled = true;
+            this.comboBoxHotel.Location = new System.Drawing.Point(43, 116);
+            this.comboBoxHotel.Name = "comboBoxHotel";
+            this.comboBoxHotel.Size = new System.Drawing.Size(138, 21);
+            this.comboBoxHotel.TabIndex = 23;
+            // 
+            // comboBoxTipoHabitacion
+            // 
+            this.comboBoxTipoHabitacion.FormattingEnabled = true;
+            this.comboBoxTipoHabitacion.Location = new System.Drawing.Point(106, 89);
+            this.comboBoxTipoHabitacion.Name = "comboBoxTipoHabitacion";
+            this.comboBoxTipoHabitacion.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTipoHabitacion.TabIndex = 24;
             // 
             // Alta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(578, 324);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button3);
+            this.ClientSize = new System.Drawing.Size(386, 268);
+            this.Controls.Add(this.buttonGuardar);
+            this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Alta";
             this.Text = "Alta";
+            this.Load += new System.EventHandler(this.Alta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -227,20 +254,21 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ComboBox comboBoxUbicacion;
+        private System.Windows.Forms.TextBox textBoxComodidades;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBoxDescripcion;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxPiso;
+        private System.Windows.Forms.TextBox textBoxNumHabitacion;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonGuardar;
+        private System.Windows.Forms.Button buttonLimpiar;
+        private System.Windows.Forms.ComboBox comboBoxTipoHabitacion;
+        private System.Windows.Forms.ComboBox comboBoxHotel;
+        private System.Windows.Forms.Label label7;
     }
 }

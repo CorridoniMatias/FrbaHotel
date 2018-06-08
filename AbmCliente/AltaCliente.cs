@@ -21,11 +21,15 @@ namespace FrbaHotel.AbmCliente
         private void Alta_Load(object sender, EventArgs e)
         {
             FormHandler.listarTipoDoc(comboBoxTipoDoc);
+            comboBoxTipoDoc.SelectedIndex = -1;
         }
 
         private void guardarCliente_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxNombre.Text) || string.IsNullOrEmpty(textBoxApellido.Text))
+            List<TextBox> textBoxes = new List<TextBox> {textBoxApellido,textBoxCalle,textBoxDepto,textBoxLocalidad,textBoxMail,
+                                                        textBoxNacionalidad,textBoxNombre,textBoxNroCalle,textBoxNumDoc,textBoxPais,textBoxPiso,textBoxTelefono};
+
+            if (textBoxes.Any(tb=>string.IsNullOrEmpty(tb.Text) || comboBoxTipoDoc.SelectedIndex == -1))
             {
                 MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -58,7 +62,7 @@ namespace FrbaHotel.AbmCliente
                 textBoxMail.Text = string.Empty;
             }
             else if (ret == 1)
-                MessageBox.Show("Cliente ingresado con éxito");
+                MessageBox.Show("Cliente ingresado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)

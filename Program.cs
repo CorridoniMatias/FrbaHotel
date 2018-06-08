@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FrbaHotel.AbmCliente;
 
 namespace FrbaHotel
 {
@@ -18,9 +17,6 @@ namespace FrbaHotel
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            
-            //Application.Run(new Alta());
-            //Application.Run(new Listado());
         }
     }
 }
