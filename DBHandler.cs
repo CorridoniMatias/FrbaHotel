@@ -36,6 +36,9 @@ namespace FrbaHotel
                 case QueryBuilderType.UPDATE:
                     queryBase = "UPDATE table SET fields filter";
                     break;
+                case QueryBuilderType.DELETE:
+                    queryBase = "DELETE FROM table filter";
+                    break;
             }
         }
 
