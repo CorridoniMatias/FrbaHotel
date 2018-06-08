@@ -29,11 +29,14 @@ namespace FrbaHotel.Login
         /// </summary>
         public static List<string> LoggedUserPermissions { get; set; }
 
-
+        static Login()
+        {
+            LoggedUsedID = -1;
+        }
+      
         public Login()
         {
             InitializeComponent();
-            LoggedUsedID = -1;
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)

@@ -30,6 +30,9 @@ namespace FrbaHotel
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
 
+            if (Login.Login.LoggedUsedID == -1)
+                usuarioToolStripMenuItem.Visible = false;
+
             Login.Login.LoggedUserPermissions = DBHandler.Query("SELECT p.nombre FROM MATOTA.Permiso p INNER JOIN MATOTA.PermisosRol pr ON (p.idPermiso = pr.idPermiso)  WHERE pr.idRol = " + Login.Login.LoggedUserRoleID)
                                         .Select(p => p["nombre"].ToString()).ToList();
 
