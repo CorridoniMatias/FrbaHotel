@@ -39,6 +39,14 @@ namespace FrbaHotel
                         DateTimePicker dateTimePicker = (DateTimePicker)control;
                         dateTimePicker.Value = DateTime.Now;
                     }
+                    if (control is CheckedListBox) 
+                    {
+                        CheckedListBox checkedListBox = (CheckedListBox)control;
+                        foreach (int i in checkedListBox.CheckedIndices)
+                        {
+                            checkedListBox.SetItemCheckState(i,CheckState.Unchecked);
+                        }
+                    }
                 }
             }
             public static void listarTipoDoc(ComboBox comboBox)
