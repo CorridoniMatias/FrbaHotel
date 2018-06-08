@@ -16,11 +16,12 @@ namespace FrbaHotel
             SELECT, INSERT, UPDATE, DELETE
         }
 
-        private readonly string queryBase = "SELECT fields FROM table filter";
+        private readonly string queryBase = string.Empty;
 
         private string fields = string.Empty, table = string.Empty;
 
         private List<string> filters = new List<string>();
+        private List<string> joins = new List<string>();
 
         /// <summary>
         /// ej:
@@ -31,7 +32,7 @@ namespace FrbaHotel
             switch (type)
             {
                 case QueryBuilderType.SELECT:
-                    queryBase = "SELECT fields FROM table filter";
+                    queryBase = "SELECT fields FROM table join filter";
                     break;
                 case QueryBuilderType.UPDATE:
                     queryBase = "UPDATE table SET fields filter";
@@ -40,6 +41,12 @@ namespace FrbaHotel
                     queryBase = "DELETE FROM table filter";
                     break;
             }
+        }
+
+        public QueryBuilder AddJoin(string joinStatement)
+        {
+            this.joins.Add(joinStatement);
+            return this;
         }
 
         public QueryBuilder Fields(string whatToSelect)
@@ -74,6 +81,11 @@ namespace FrbaHotel
 
             if(filters.Count > 0)
                 final = final.Replace("filter", "WHERE " + String.Join(" AND ", filters.ToArray()));
+
+            if (joins.Count > 0)
+                final = final.Replace("join", String.Join(" ", joins));
+            else
+                final = final.Replace("join", "");
 
             return final;
         }
