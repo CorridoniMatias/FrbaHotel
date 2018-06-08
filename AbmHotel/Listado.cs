@@ -20,7 +20,7 @@ namespace FrbaHotel.AbmHotel
 
         private void Listado_Load(object sender, EventArgs e)
         {
-            poblador = new PobladorHoteles(new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais, textBoxMail, textBoxTelefono }, dataGridView1);
+            poblador = new PobladorHoteles(new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais, textBoxMail, textBoxTelefono }, dataGridView1, new List<string> { "Seleccionar"});
             poblador.Filtro
             .AddJoin("INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel")
             .AddEquals("hu.idUsuario", Login.Login.LoggedUsedID.ToString());

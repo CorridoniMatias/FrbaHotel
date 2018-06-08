@@ -12,14 +12,17 @@ namespace FrbaHotel.AbmHotel
         private List<TextBox> inputs;
         private DataGridView grid;
         public QueryBuilder Filtro { get; private set;}
+        private List<string> extraColumns;
 
-        public PobladorHoteles(List<TextBox> inputs, DataGridView grid)
+        public PobladorHoteles(List<TextBox> inputs, DataGridView grid, List<string> extraColumns)
         {
             this.inputs = inputs;
             this.grid = grid;
             Filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
                 .Fields("h.idHotel, h.nombre, h.cantidadEstrellas,h.telefono,h.mail,h.ciudad,h.pais")
                 .Table("MATOTA.Hotel h");
+
+            this.extraColumns = extraColumns;
         }
 
         public void Poblar()
@@ -33,7 +36,11 @@ namespace FrbaHotel.AbmHotel
             try
             {
                 var newset = DBHandler.Query(Filtro.Build()).Select(row =>
-                    new List<string>() { row["idHotel"].ToString(), row["nombre"].ToString(), row["cantidadEstrellas"].ToString(), row["telefono"].ToString(), row["mail"].ToString(), row["ciudad"].ToString(), row["pais"].ToString(), "Seleccionar" }
+                    {
+                        var orig = new List<string>() { row["idHotel"].ToString(), row["nombre"].ToString(), row["cantidadEstrellas"].ToString(), row["telefono"].ToString(), row["mail"].ToString(), row["ciudad"].ToString(), row["pais"].ToString() };
+                        orig.AddRange(extraColumns);
+                        return orig;
+                    }
                 ).ToList();
 
                 if (newset.Count() == 0)
