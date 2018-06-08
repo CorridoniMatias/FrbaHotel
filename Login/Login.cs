@@ -37,6 +37,9 @@ namespace FrbaHotel.Login
         static Login()
         {
             LoggedUsedID = -1;
+            LoggedUserPermissions = null;
+            LoggedUserRoleID = -1;
+            LoggedUserSessionHotelID = -1;
         }
       
         public Login()
