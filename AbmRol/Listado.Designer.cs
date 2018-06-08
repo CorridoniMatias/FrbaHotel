@@ -28,31 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewRoles = new System.Windows.Forms.DataGridView();
             this.groupBoxFiltros = new System.Windows.Forms.GroupBox();
-            this.buttonLimpiar = new System.Windows.Forms.Button();
-            this.buttonGuardar = new System.Windows.Forms.Button();
-            this.checkBoxEstado = new System.Windows.Forms.CheckBox();
+            this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.labelNombre = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.checkBoxEstado = new System.Windows.Forms.CheckBox();
+            this.buttonBuscar = new System.Windows.Forms.Button();
+            this.buttonLimpiar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoles)).BeginInit();
             this.groupBoxFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewRoles
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 283);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(427, 210);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewRoles.AllowUserToAddRows = false;
+            this.dataGridViewRoles.AllowUserToDeleteRows = false;
+            this.dataGridViewRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRoles.Location = new System.Drawing.Point(12, 283);
+            this.dataGridViewRoles.Name = "dataGridViewRoles";
+            this.dataGridViewRoles.ReadOnly = true;
+            this.dataGridViewRoles.Size = new System.Drawing.Size(427, 210);
+            this.dataGridViewRoles.TabIndex = 0;
+            this.dataGridViewRoles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRoles_CellContentClick);
             // 
             // groupBoxFiltros
             // 
-            this.groupBoxFiltros.Controls.Add(this.textBox1);
+            this.groupBoxFiltros.Controls.Add(this.textBoxNombre);
             this.groupBoxFiltros.Controls.Add(this.labelNombre);
             this.groupBoxFiltros.Controls.Add(this.checkBoxEstado);
-            this.groupBoxFiltros.Controls.Add(this.buttonGuardar);
+            this.groupBoxFiltros.Controls.Add(this.buttonBuscar);
             this.groupBoxFiltros.Controls.Add(this.buttonLimpiar);
             this.groupBoxFiltros.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBoxFiltros.Location = new System.Drawing.Point(12, 12);
@@ -62,26 +66,22 @@
             this.groupBoxFiltros.TabStop = false;
             this.groupBoxFiltros.Text = "Filtros de busqueda";
             // 
-            // buttonLimpiar
+            // textBoxNombre
             // 
-            this.buttonLimpiar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonLimpiar.Location = new System.Drawing.Point(24, 174);
-            this.buttonLimpiar.Name = "buttonLimpiar";
-            this.buttonLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.buttonLimpiar.TabIndex = 0;
-            this.buttonLimpiar.Text = "Limpiar";
-            this.buttonLimpiar.UseVisualStyleBackColor = true;
-            this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
+            this.textBoxNombre.Location = new System.Drawing.Point(105, 43);
+            this.textBoxNombre.Name = "textBoxNombre";
+            this.textBoxNombre.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNombre.TabIndex = 4;
             // 
-            // buttonGuardar
+            // labelNombre
             // 
-            this.buttonGuardar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonGuardar.Location = new System.Drawing.Point(299, 174);
-            this.buttonGuardar.Name = "buttonGuardar";
-            this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
-            this.buttonGuardar.TabIndex = 1;
-            this.buttonGuardar.Text = "Guardar";
-            this.buttonGuardar.UseVisualStyleBackColor = true;
+            this.labelNombre.AutoSize = true;
+            this.labelNombre.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelNombre.Location = new System.Drawing.Point(21, 42);
+            this.labelNombre.Name = "labelNombre";
+            this.labelNombre.Size = new System.Drawing.Size(44, 13);
+            this.labelNombre.TabIndex = 3;
+            this.labelNombre.Text = "Nombre";
             // 
             // checkBoxEstado
             // 
@@ -95,22 +95,27 @@
             this.checkBoxEstado.Text = "Estado Activo";
             this.checkBoxEstado.UseVisualStyleBackColor = true;
             // 
-            // labelNombre
+            // buttonBuscar
             // 
-            this.labelNombre.AutoSize = true;
-            this.labelNombre.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelNombre.Location = new System.Drawing.Point(21, 42);
-            this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(44, 13);
-            this.labelNombre.TabIndex = 3;
-            this.labelNombre.Text = "Nombre";
+            this.buttonBuscar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonBuscar.Location = new System.Drawing.Point(299, 174);
+            this.buttonBuscar.Name = "buttonBuscar";
+            this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuscar.TabIndex = 1;
+            this.buttonBuscar.Text = "Buscar";
+            this.buttonBuscar.UseVisualStyleBackColor = true;
+            this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
-            // textBox1
+            // buttonLimpiar
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 4;
+            this.buttonLimpiar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonLimpiar.Location = new System.Drawing.Point(24, 174);
+            this.buttonLimpiar.Name = "buttonLimpiar";
+            this.buttonLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.buttonLimpiar.TabIndex = 0;
+            this.buttonLimpiar.Text = "Limpiar";
+            this.buttonLimpiar.UseVisualStyleBackColor = true;
+            this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
             // Listado
             // 
@@ -118,10 +123,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(451, 505);
             this.Controls.Add(this.groupBoxFiltros);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewRoles);
             this.Name = "Listado";
             this.Text = "Listado";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoles)).EndInit();
             this.groupBoxFiltros.ResumeLayout(false);
             this.groupBoxFiltros.PerformLayout();
             this.ResumeLayout(false);
@@ -130,12 +135,12 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewRoles;
         private System.Windows.Forms.GroupBox groupBoxFiltros;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxNombre;
         private System.Windows.Forms.Label labelNombre;
         private System.Windows.Forms.CheckBox checkBoxEstado;
-        private System.Windows.Forms.Button buttonGuardar;
+        private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.Button buttonLimpiar;
     }
 }

@@ -12,9 +12,15 @@ namespace FrbaHotel.AbmRol
 {
     public partial class Alta : Form
     {
-        public Alta()
+        public Alta(DataGridViewRow row = null)
         {
             InitializeComponent();
+            if (row != null)
+            {
+                textBoxNombre.Text = row.Cells["nombre"].Value.ToString();
+                checkBoxEstado.Checked = (bool)row.Cells["estado"].Value;
+
+            }
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
