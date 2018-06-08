@@ -16,8 +16,9 @@ namespace FrbaHotel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new AbmHotel.Listado ());
-            Application.Run(new AbmRol.Alta());
+
+            Application.Run(new Form1 ());
+
         }
     }
 }

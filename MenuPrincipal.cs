@@ -60,5 +60,10 @@ namespace FrbaHotel
         {
             new AbmHotel.AltaHotel().ShowDialog();
         }
+
+        private void cambiarHotelActualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           new AbmHotel.Listado().ShowDialog();
+        }
     }
 }

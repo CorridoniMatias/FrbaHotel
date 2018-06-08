@@ -16,5 +16,10 @@ namespace FrbaHotel.AbmHotel
         {
             InitializeComponent();
         }
+
+        private void ListadoModificacionBaja_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

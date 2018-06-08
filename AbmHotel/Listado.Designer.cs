@@ -40,6 +40,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.textBoxMail = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxTelefono = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.idHotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +58,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxTelefono);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.textBoxMail);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.textBoxPais);
             this.groupBox1.Controls.Add(this.textBoxCiudad);
             this.groupBox1.Controls.Add(this.textBoxCantEstrellas);
@@ -199,6 +207,48 @@
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // textBoxMail
+            // 
+            this.textBoxMail.Location = new System.Drawing.Point(579, 50);
+            this.textBoxMail.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxMail.MaxLength = 255;
+            this.textBoxMail.Name = "textBoxMail";
+            this.textBoxMail.Size = new System.Drawing.Size(284, 28);
+            this.textBoxMail.TabIndex = 9;
+            this.textBoxMail.Tag = "mail";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(494, 53);
+            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 24);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Mail";
+            // 
+            // textBoxTelefono
+            // 
+            this.textBoxTelefono.Location = new System.Drawing.Point(579, 133);
+            this.textBoxTelefono.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxTelefono.MaxLength = 255;
+            this.textBoxTelefono.Name = "textBoxTelefono";
+            this.textBoxTelefono.Size = new System.Drawing.Size(284, 28);
+            this.textBoxTelefono.TabIndex = 11;
+            this.textBoxTelefono.Tag = "telefono";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(494, 136);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 24);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Tel.";
+            // 
             // idHotel
             // 
             this.idHotel.HeaderText = "idHotel";
@@ -216,7 +266,7 @@
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Cantidad de estrellas";
+            this.Column2.HeaderText = "Cant. de estrellas";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
@@ -269,7 +319,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Listado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Hoteles";
+            this.Text = "Seleccione el Hotel donde se encuentra trabajando";
             this.Load += new System.EventHandler(this.Listado_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -292,6 +342,10 @@
         private System.Windows.Forms.TextBox textBoxCantEstrellas;
         private System.Windows.Forms.TextBox textBoxNombre;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox textBoxTelefono;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxMail;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn idHotel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
