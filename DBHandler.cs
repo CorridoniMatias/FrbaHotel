@@ -81,6 +81,8 @@ namespace FrbaHotel
 
             if(filters.Count > 0)
                 final = final.Replace("filter", "WHERE " + String.Join(" AND ", filters.ToArray()));
+            else
+                final = final.Replace("filter", "");
 
             if (joins.Count > 0)
                 final = final.Replace("join", String.Join(" ", joins));
