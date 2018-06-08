@@ -13,8 +13,9 @@ namespace FrbaHotel.AbmHotel
         private DataGridView grid;
         public QueryBuilder Filtro { get; private set;}
         private List<string> extraColumns;
+        private DateTimePicker picker = null;
 
-        public PobladorHoteles(List<TextBox> inputs, DataGridView grid, List<string> extraColumns)
+        public PobladorHoteles(List<TextBox> inputs, DataGridView grid, List<string> extraColumns, DateTimePicker picker = null)
         {
             this.inputs = inputs;
             this.grid = grid;
@@ -23,15 +24,20 @@ namespace FrbaHotel.AbmHotel
                 .Table("MATOTA.Hotel h");
 
             this.extraColumns = extraColumns;
+            this.picker = picker;
         }
 
         public void Poblar()
         {
+            Filtro.ClearFilters();
             inputs
                 .FindAll(c => !string.IsNullOrEmpty(c.Text.Trim()))
                 .ForEach(c =>
-                    Filtro.AddEquals(c.Tag.ToString(), c.Text)
+                    Filtro.AddLike(c.Tag.ToString(), c.Text)
                 );
+
+            if (picker!= null &&picker.Checked)
+                Filtro.AddEquals("fechaCreacion", picker.Value.ToString("yyyy-MM-dd"));
 
             try
             {

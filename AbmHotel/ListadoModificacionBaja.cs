@@ -21,7 +21,7 @@ namespace FrbaHotel.AbmHotel
 
         private void ListadoModificacionBaja_Load(object sender, EventArgs e)
         {
-            poblador = new PobladorHoteles(new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais, textBoxMail, textBoxTelefono }, dataGridView1, new List<string> { "Modificar", "Eliminar" });
+            poblador = new PobladorHoteles(new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais, textBoxMail, textBoxTelefono, textBoxCalle, textBoxNroCalle }, dataGridView1, new List<string> { "Modificar", "Eliminar" }, dateTimePickerFilter);
             poblador.Poblar();
         }
 
@@ -61,9 +61,5 @@ namespace FrbaHotel.AbmHotel
             poblador.Poblar();
         }
 
-        private void buttonDatePicker_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

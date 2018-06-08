@@ -29,5 +29,30 @@ namespace FrbaHotel.AbmHotel
             if(!string.IsNullOrEmpty(fechaCreacion))
                 this.dateTimePickerCreado.Value = DateTime.Parse(fechaCreacion);
         }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+
+            var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.Hotel");
+
+
+            var fields = String.Join(",",
+                            new List<TextBox> { textBoxCalle, textBoxCantEstrellas, textBoxCiudad, textBoxMail, textBoxNombre, textBoxNroCalle, textBoxTelefono }
+                                .FindAll(f => !string.IsNullOrEmpty(f.Text.Trim()))
+                                .Select(f => f.Tag + "='" + f.Text.Trim() + "'")
+                                .Union(new List<string> { dateTimePickerCreado.Tag + "='" +dateTimePickerCreado.Value.ToString("yyyy-MM-dd") + "'" }));
+
+            builder.Fields(fields)
+                    .AddEquals("idHotel", idHotel);
+
+            var rows = DBHandler.QueryRowCount(builder.Build());
+
+            if (rows == 0)
+                MessageBox.Show("Error al actualizar hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                MessageBox.Show("Hotel actualizado con éxito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

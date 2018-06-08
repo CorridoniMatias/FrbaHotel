@@ -43,6 +43,12 @@ namespace FrbaHotel
             }
         }
 
+        public QueryBuilder ClearFilters()
+        {
+            filters.Clear();
+            return this;
+        }
+
         public QueryBuilder AddJoin(string joinStatement)
         {
             this.joins.Add(joinStatement);
