@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxTelefono = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxMail = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.textBoxPais = new System.Windows.Forms.TextBox();
             this.textBoxCiudad = new System.Windows.Forms.TextBox();
             this.textBoxCantEstrellas = new System.Windows.Forms.TextBox();
@@ -40,17 +44,16 @@
             this.button1 = new System.Windows.Forms.Button();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBoxMail = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxTelefono = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.idHotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -79,6 +82,48 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
+            // 
+            // textBoxTelefono
+            // 
+            this.textBoxTelefono.Location = new System.Drawing.Point(579, 133);
+            this.textBoxTelefono.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxTelefono.MaxLength = 255;
+            this.textBoxTelefono.Name = "textBoxTelefono";
+            this.textBoxTelefono.Size = new System.Drawing.Size(284, 28);
+            this.textBoxTelefono.TabIndex = 11;
+            this.textBoxTelefono.Tag = "telefono";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(494, 136);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 24);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Tel.";
+            // 
+            // textBoxMail
+            // 
+            this.textBoxMail.Location = new System.Drawing.Point(579, 50);
+            this.textBoxMail.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxMail.MaxLength = 255;
+            this.textBoxMail.Name = "textBoxMail";
+            this.textBoxMail.Size = new System.Drawing.Size(284, 28);
+            this.textBoxMail.TabIndex = 9;
+            this.textBoxMail.Tag = "mail";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(494, 53);
+            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 24);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Mail";
             // 
             // textBoxPais
             // 
@@ -196,8 +241,11 @@
             this.Column2,
             this.Column3,
             this.Column4,
+            this.ColumnCalle,
+            this.Column9,
             this.Column5,
             this.Column6,
+            this.Column7,
             this.ColumnSelect});
             this.dataGridView1.Location = new System.Drawing.Point(38, 340);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(5);
@@ -206,48 +254,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1325, 345);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // textBoxMail
-            // 
-            this.textBoxMail.Location = new System.Drawing.Point(579, 50);
-            this.textBoxMail.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxMail.MaxLength = 255;
-            this.textBoxMail.Name = "textBoxMail";
-            this.textBoxMail.Size = new System.Drawing.Size(284, 28);
-            this.textBoxMail.TabIndex = 9;
-            this.textBoxMail.Tag = "mail";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(494, 53);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 24);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Mail";
-            // 
-            // textBoxTelefono
-            // 
-            this.textBoxTelefono.Location = new System.Drawing.Point(579, 133);
-            this.textBoxTelefono.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxTelefono.MaxLength = 255;
-            this.textBoxTelefono.Name = "textBoxTelefono";
-            this.textBoxTelefono.Size = new System.Drawing.Size(284, 28);
-            this.textBoxTelefono.TabIndex = 11;
-            this.textBoxTelefono.Tag = "telefono";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(494, 136);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 24);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Tel.";
             // 
             // idHotel
             // 
@@ -284,6 +290,20 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
+            // ColumnCalle
+            // 
+            this.ColumnCalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnCalle.HeaderText = "Calle";
+            this.ColumnCalle.Name = "ColumnCalle";
+            this.ColumnCalle.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column9.HeaderText = "Nro.Calle";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -297,6 +317,14 @@
             this.Column6.HeaderText = "País";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
+            this.Column6.Visible = false;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "FECHACREACION";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
             // 
             // ColumnSelect
             // 
@@ -351,8 +379,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnSelect;
     }
 }

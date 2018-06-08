@@ -19,7 +19,7 @@ namespace FrbaHotel.AbmHotel
             this.inputs = inputs;
             this.grid = grid;
             Filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
-                .Fields("h.idHotel, h.nombre, h.cantidadEstrellas,h.telefono,h.mail,h.ciudad,h.pais")
+                .Fields("h.idHotel, h.nombre, h.cantidadEstrellas,h.telefono,h.mail,h.ciudad,h.pais,h.fechaCreacion,h.nroCalle,h.calle")
                 .Table("MATOTA.Hotel h");
 
             this.extraColumns = extraColumns;
@@ -37,7 +37,16 @@ namespace FrbaHotel.AbmHotel
             {
                 var newset = DBHandler.Query(Filtro.Build()).Select(row =>
                     {
-                        var orig = new List<string>() { row["idHotel"].ToString(), row["nombre"].ToString(), row["cantidadEstrellas"].ToString(), row["telefono"].ToString(), row["mail"].ToString(), row["ciudad"].ToString(), row["pais"].ToString() };
+                        var orig = new List<string>() { row["idHotel"].ToString(), 
+                                                        row["nombre"].ToString(), 
+                                                        row["cantidadEstrellas"].ToString(), 
+                                                        row["telefono"].ToString(), 
+                                                        row["mail"].ToString(),
+                                                        row["calle"].ToString(),
+                                                        row["nroCalle"].ToString(),
+                                                        row["ciudad"].ToString(), 
+                                                        row["pais"].ToString(), 
+                                                        row["fechaCreacion"].ToString() };
                         orig.AddRange(extraColumns);
                         return orig;
                     }

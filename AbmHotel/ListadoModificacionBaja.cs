@@ -22,9 +22,6 @@ namespace FrbaHotel.AbmHotel
         private void ListadoModificacionBaja_Load(object sender, EventArgs e)
         {
             poblador = new PobladorHoteles(new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais, textBoxMail, textBoxTelefono }, dataGridView1, new List<string> { "Modificar", "Eliminar" });
-            poblador.Filtro
-            .AddJoin("INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel")
-            .AddEquals("hu.idUsuario", Login.Login.LoggedUsedID.ToString());
             poblador.Poblar();
         }
 
@@ -36,26 +33,25 @@ namespace FrbaHotel.AbmHotel
                 e.RowIndex >= 0)
             {
 
-                if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Modificar"))
+                if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnModificar"))
                 {
+                    new Modificacion(
+                            senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[9].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[5].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[6].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[7].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[8].Value.ToString()
+                        ).ShowDialog(this);
                 }
-                else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Eliminar"))
+                else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnModificar"))
                 {
-                }
 
-                try
-                {
-                    Login.Login.LoggedUserSessionHotelID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
                 }
-                catch (Exception)
-                {
-                    this.DialogResult = System.Windows.Forms.DialogResult.Abort;
-                    MessageBox.Show("Error al seleccionar hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
-                }
-
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
             }
         }
 
@@ -63,6 +59,11 @@ namespace FrbaHotel.AbmHotel
         {
             dataGridView1.Rows.Clear();
             poblador.Poblar();
+        }
+
+        private void buttonDatePicker_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
