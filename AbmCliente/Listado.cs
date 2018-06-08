@@ -32,14 +32,15 @@ namespace FrbaHotel.AbmCliente
                 Fields("nombre,apellido,IdTipoDocumento,numeroDocumento,mail").Table("MATOTA.Cliente");
 
             if (!string.IsNullOrWhiteSpace(textBoxNombre.Text))
-                filtro.AddLike("nombre", textBoxNombre.Text);
+                filtro.AddEquals("nombre", textBoxNombre.Text);
             if (!string.IsNullOrWhiteSpace(textBoxApellido.Text))
-                filtro.AddLike("apellido", textBoxApellido.Text);
+                filtro.AddEquals("apellido", textBoxApellido.Text);
             if (!string.IsNullOrWhiteSpace(textBoxNumDoc.Text))
                 filtro.AddEquals("numeroDocumento", textBoxNumDoc.Text);
             if (!string.IsNullOrWhiteSpace(textBoxMail.Text))
                 filtro.AddLike("mail", textBoxMail.Text);
-            filtro.AddEquals("IdTipoDocumento", comboBoxTipoDoc.SelectedValue.ToString());
+            if (comboBoxTipoDoc.SelectedIndex != -1)
+                filtro.AddEquals("IdTipoDocumento", comboBoxTipoDoc.SelectedValue.ToString());
 
             return DBHandler.QueryForComboBox(filtro.Build());
         }
@@ -47,6 +48,7 @@ namespace FrbaHotel.AbmCliente
         private void Listado_Load(object sender, EventArgs e)
         {
             FormHandler.listarTipoDoc(comboBoxTipoDoc);
+            comboBoxTipoDoc.SelectedIndex = -1;
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -64,7 +66,8 @@ namespace FrbaHotel.AbmCliente
 
                 if (e.ColumnIndex == dataGridView1.Columns["Modificar"].Index)
                 {
-                    MessageBox.Show("MODIFICAR");
+                    var modificar = new Modificacion(row.Cells["IdTipoDocumento"].Value.ToString(), row.Cells["numeroDocumento"].Value.ToString());
+                    modificar.ShowDialog();
                 }
                 else if (e.ColumnIndex == dataGridView1.Columns["Eliminar"].Index)
                 {

@@ -64,5 +64,9 @@ namespace FrbaHotel
                 dataGridView.Columns.Add(boton);
                 dataGridView.Columns.Add(boton2);
             }
+            public static void queryFiltradorSegunDoc(QueryBuilder qBuilder, string tipoDoc, string numDoc)
+            {
+                qBuilder.AddEquals("IdTipoDocumento", tipoDoc).AddEquals("numeroDocumento", numDoc);
+            }
     }
 }
