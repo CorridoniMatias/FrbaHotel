@@ -58,12 +58,17 @@ namespace FrbaHotel
 
         private void buttonLaunchHotelManager_Click(object sender, EventArgs e)
         {
-            new AbmHotel.AltaHotel().ShowDialog();
+            new AbmHotel.AltaHotel().ShowDialog(this);
         }
 
         private void cambiarHotelActualToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           new AbmHotel.Listado().ShowDialog();
+           new AbmHotel.Listado().ShowDialog(this);
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            new AbmHotel.ListadoModificacionBaja().ShowDialog(this) ;
         }
     }
 }

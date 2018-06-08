@@ -45,6 +45,8 @@
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarHotelActualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonEdit = new System.Windows.Forms.Button();
             this.tabControlFunciones.SuspendLayout();
             this.tabPageHoteles.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -77,6 +79,8 @@
             // 
             // tabPageHoteles
             // 
+            this.tabPageHoteles.Controls.Add(this.label3);
+            this.tabPageHoteles.Controls.Add(this.buttonEdit);
             this.tabPageHoteles.Controls.Add(this.label2);
             this.tabPageHoteles.Controls.Add(this.label1);
             this.tabPageHoteles.Controls.Add(this.buttonLaunchHotelManager);
@@ -211,6 +215,25 @@
             this.cambiarHotelActualToolStripMenuItem.Text = "Cambiar Hotel Actual";
             this.cambiarHotelActualToolStripMenuItem.Click += new System.EventHandler(this.cambiarHotelActualToolStripMenuItem_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 206);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(484, 24);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Para modificar / eliminar hoteles de la cadena haga click:";
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Location = new System.Drawing.Point(498, 199);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(126, 37);
+            this.buttonEdit.TabIndex = 3;
+            this.buttonEdit.Text = "Administrar";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -254,5 +277,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonLaunchHotelManager;
         private System.Windows.Forms.ToolStripMenuItem cambiarHotelActualToolStripMenuItem;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonEdit;
     }
 }
