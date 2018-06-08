@@ -122,6 +122,34 @@ namespace FrbaHotel
             return ret;
         }
 
+        /// <summary>
+        /// Hace query y devuelve el row affected count.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static int QueryRowCount(string query, List<SqlParameter> param = null)
+        {
+            int ret = -1;
+            Command(query, param, (command) =>
+            {
+                ret = command.ExecuteNonQuery();
+            });
+
+            return ret;
+        }
+
+        public static int QueryScalar(string query, List<SqlParameter> param = null)
+        {
+            int ret = -1;
+            Command(query, param, (command) =>
+            {
+                ret = Convert.ToInt32(command.ExecuteScalar());
+            });
+
+            return ret;
+        }
+
         public static int SPWithValue(string procedure, List<SqlParameter> param = null)
         {
             int retval = 0;

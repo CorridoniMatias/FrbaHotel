@@ -32,14 +32,14 @@ namespace FrbaHotel.AbmHotel
         {
             List<TextBox> fields = new List<TextBox>()
                 {
-                    textBoxCalle,
-                    textBoxCantEstrellas,
-                    textBoxCiudad,
-                    textBoxMail,
                     textBoxNombre,
+                    textBoxMail,
                     textBoxTel,
+                    textBoxCalle,
                     textBoxNroCalle,
-                    textBoxPais
+                    textBoxCiudad,
+                    textBoxPais,
+                    textBoxCantEstrellas
                 };
 
             List<int> rgs = new List<int>();
@@ -52,7 +52,45 @@ namespace FrbaHotel.AbmHotel
                 return;
             }
 
+            try
+            {
+                Int32.Parse(textBoxCantEstrellas.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cantidad de estrellas debe ser un numero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            string query = "INSERT INTO MATOTA.Hotel (nombre,mail,telefono,calle,nroCalle,ciudad,pais,cantidadEstrellas,fechaCreacion)" +
+                            "VALUES (";
+
+            query += String.Join(",", fields.Select(f => "'"+f.Text+"'").ToArray());
+            query += ",'" + dateTimePickerFechaCreacion.Value.ToString("yyyy-MM-dd");
+
+            query += "');SELECT scope_identity()";
+
+
+            int idhotel = DBHandler.QueryScalar(query);
+            if (idhotel < 1)
+            {
+                MessageBox.Show("Error al agregar hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            query = "INSERT INTO MATOTA.RegimenHotel VALUES ";
+            query += String.Join(",", rgs.Select(r => "(" + idhotel + ", " + r + ")").ToArray());
+            int count = DBHandler.QueryRowCount(query);
+
+            if (count != rgs.Count)
+            {
+                MessageBox.Show("Error al agregar hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show("Hotel agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
         }
     }
 }
