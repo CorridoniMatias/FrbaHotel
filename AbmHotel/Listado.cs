@@ -27,17 +27,15 @@ namespace FrbaHotel.AbmHotel
             var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
                 Fields("idHotel, nombre, cantidadEstrellas,telefono,mail,ciudad,pais").Table("MATOTA.Hotel");
 
-            new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais }
-                .FindAll(c => !string.IsNullOrEmpty(c.Text))
+            new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais, textBoxMail, textBoxTelefono }
+                .FindAll(c => !string.IsNullOrEmpty(c.Text.Trim()))
                 .ForEach(c =>
                     filtro.AddEquals(c.Tag.ToString(), c.Text)
                 );
 
             try
             {
-                var set = DBHandler.Query(filtro.Build());
-
-                var newset = set.Select(row =>
+                var newset = DBHandler.Query(filtro.Build()).Select(row =>
                     new List<string>() { row["idHotel"].ToString(), row["nombre"].ToString(), row["cantidadEstrellas"].ToString(), row["telefono"].ToString(), row["mail"].ToString(), row["ciudad"].ToString(), row["pais"].ToString(), "Seleccionar" }
                 ).ToList();
 
