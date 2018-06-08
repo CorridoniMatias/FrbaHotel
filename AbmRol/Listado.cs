@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmRol
 {
-    public partial class Form1 : Form
+    public partial class Listado : Form
     {
-        public Form1()
+        public Listado()
         {
             InitializeComponent();
+        }
+
+        private void buttonLimpiar_Click(object sender, EventArgs e)
+        {
+            FormHandler.limpiar(groupBoxFiltros);
         }
     }
 }
