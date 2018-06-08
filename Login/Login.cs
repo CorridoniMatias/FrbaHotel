@@ -29,6 +29,11 @@ namespace FrbaHotel.Login
         /// </summary>
         public static List<string> LoggedUserPermissions { get; set; }
 
+        /// <summary>
+        /// ID del hotel que eligio el usuario para su sesion actual.
+        /// </summary>
+        public static int LoggedUserSessionHotelID { get; set; }
+
         static Login()
         {
             LoggedUsedID = -1;
