@@ -101,6 +101,12 @@
     <Compile Include="AbmHotel\PobladorHoteles.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AbmHotel\Suspender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\Suspender.Designer.cs">
+      <DependentUpon>Suspender.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRegimen\AltaRegimen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\Suspender.resx">
+      <DependentUpon>Suspender.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRegimen\AltaRegimen.resx">
       <DependentUpon>AltaRegimen.cs</DependentUpon>

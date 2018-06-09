@@ -31,6 +31,7 @@
             this.buttonSearch = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerFilter = new System.Windows.Forms.DateTimePicker();
             this.textBoxCalle = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxNroCalle = new System.Windows.Forms.TextBox();
@@ -60,8 +61,7 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnModificar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dateTimePickerFilter = new System.Windows.Forms.DateTimePicker();
+            this.ColumnSuspender = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -116,6 +116,16 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
+            // 
+            // dateTimePickerFilter
+            // 
+            this.dateTimePickerFilter.Checked = false;
+            this.dateTimePickerFilter.Location = new System.Drawing.Point(100, 221);
+            this.dateTimePickerFilter.Name = "dateTimePickerFilter";
+            this.dateTimePickerFilter.ShowCheckBox = true;
+            this.dateTimePickerFilter.Size = new System.Drawing.Size(312, 28);
+            this.dateTimePickerFilter.TabIndex = 18;
+            this.dateTimePickerFilter.Tag = "fechaCreacion";
             // 
             // textBoxCalle
             // 
@@ -313,7 +323,7 @@
             this.Column6,
             this.ColumnCreacion,
             this.ColumnModificar,
-            this.ColumnEliminar});
+            this.ColumnSuspender});
             this.dataGridView1.Location = new System.Drawing.Point(35, 490);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridView1.Name = "dataGridView1";
@@ -400,24 +410,14 @@
             this.ColumnModificar.ReadOnly = true;
             this.ColumnModificar.Text = "Modificar";
             // 
-            // ColumnEliminar
+            // ColumnSuspender
             // 
-            this.ColumnEliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnEliminar.HeaderText = "Eliminar";
-            this.ColumnEliminar.Name = "ColumnEliminar";
-            this.ColumnEliminar.ReadOnly = true;
-            this.ColumnEliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnEliminar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // dateTimePickerFilter
-            // 
-            this.dateTimePickerFilter.Checked = false;
-            this.dateTimePickerFilter.Location = new System.Drawing.Point(100, 221);
-            this.dateTimePickerFilter.Name = "dateTimePickerFilter";
-            this.dateTimePickerFilter.ShowCheckBox = true;
-            this.dateTimePickerFilter.Size = new System.Drawing.Size(312, 28);
-            this.dateTimePickerFilter.TabIndex = 18;
-            this.dateTimePickerFilter.Tag = "fechaCreacion";
+            this.ColumnSuspender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnSuspender.HeaderText = "Suspender";
+            this.ColumnSuspender.Name = "ColumnSuspender";
+            this.ColumnSuspender.ReadOnly = true;
+            this.ColumnSuspender.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnSuspender.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // ListadoModificacionBaja
             // 
@@ -459,6 +459,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox textBoxCalle;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxNroCalle;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idHotel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -470,13 +476,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCreacion;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnModificar;
-        private System.Windows.Forms.DataGridViewButtonColumn ColumnEliminar;
-        private System.Windows.Forms.TextBox textBoxCalle;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxNroCalle;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dateTimePickerFilter;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnSuspender;
 
     }
 }
