@@ -35,7 +35,7 @@ namespace FrbaHotel.AbmHotel
 
                 if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnModificar"))
                 {
-                    new Modificacion(
+                    if (new Modificacion(
                             senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString(),
@@ -46,7 +46,8 @@ namespace FrbaHotel.AbmHotel
                             senderGrid.Rows[e.RowIndex].Cells[6].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[7].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[8].Value.ToString()
-                        ).ShowDialog(this);
+                        ).ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                        Reload();
                 }
                 else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnModificar"))
                 {
@@ -55,10 +56,15 @@ namespace FrbaHotel.AbmHotel
             }
         }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
+        private void Reload()
         {
             dataGridView1.Rows.Clear();
             poblador.Poblar();
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            Reload();
         }
 
     }

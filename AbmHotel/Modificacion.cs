@@ -48,10 +48,100 @@ namespace FrbaHotel.AbmHotel
             var rows = DBHandler.QueryRowCount(builder.Build());
 
             if (rows == 0)
-                MessageBox.Show("Error al actualizar hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error al actualizar datos base hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
-                MessageBox.Show("Hotel actualizado con éxito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ActualizarRegimenes();
+            }
+        }
+
+        private void ActualizarRegimenes()
+        {
+            var altas = new List<RegimenesHoteles>();
+            var bajas = new List<RegimenesHoteles>();
+            var elegidas = checkedListBoxRegimenes.CheckedIndices;
+
+            for (int i = 0; i < checkedListBoxRegimenes.Items.Count; i++)
+            {
+                if (((RegimenesHoteles)checkedListBoxRegimenes.Items[i]).seleccionado && !elegidas.Contains(i))
+                    bajas.Add((RegimenesHoteles)checkedListBoxRegimenes.Items[i]);
+                else if (!((RegimenesHoteles)checkedListBoxRegimenes.Items[i]).seleccionado && elegidas.Contains(i))
+                    altas.Add(((RegimenesHoteles)checkedListBoxRegimenes.Items[i]));
+            }
+
+            if (altas.Count > 0)
+            {
+                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.INSERT).Table("MATOTA.RegimenHotel")
+                                                                                    .Fields("idHotel, idRegimen");
+
+                altas.ForEach(alta => builder.AddValues(idHotel, alta.idRegimen));
+
+
+                var rows = DBHandler.QueryRowCount(builder.Build());
+
+                if (rows != altas.Count)
+                    MessageBox.Show("Error al agregar los regímenes seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
+            if (bajas.Count > 0)
+            {
+
+                //var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Table("MATOTA.Reserva")
+
+                // builder = new QueryBuilder(QueryBuilder.QueryBuilderType.INSERT).Table("MATOTA.RegimenHotel")
+                //                                                                    .Fields("idHotel, idRegimen");
+
+                //altas.ForEach(alta => builder.AddValues(idHotel, alta.idRegimen));
+
+
+                //var rows = DBHandler.QueryRowCount(builder.Build());
+
+                //if (rows != altas.Count)
+                //    MessageBox.Show("Error al agregar los regímenes seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
+
+
+            MessageBox.Show("Hotel actualizado con éxito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
+        }
+
+        private void Modificacion_Load(object sender, EventArgs e)
+        {
+            var regimenes = DBHandler.Query("SELECT r.idRegimen, nombre, rh.idHotel FROM MATOTA.Regimen r LEFT JOIN MATOTA.RegimenHotel rh ON rh.idRegimen = r.idRegimen AND rh.idHotel=" + idHotel)
+                            .Select(reg => 
+                                
+                                new RegimenesHoteles(reg["idRegimen"].ToString(), reg["nombre"].ToString(), ((string.IsNullOrEmpty(reg["idHotel"].ToString())) ? false : true) )
+                                
+
+                             ).ToList();
+
+            ((ListBox)checkedListBoxRegimenes).DataSource = new BindingSource(regimenes, null);
+            ((ListBox)checkedListBoxRegimenes).DisplayMember = "nombre";
+            ((ListBox)checkedListBoxRegimenes).ValueMember = "idRegimen";
+
+
+            for (int i = 0 ; i < checkedListBoxRegimenes.Items.Count ; i++)
+            {
+                if ( ((RegimenesHoteles)checkedListBoxRegimenes.Items[i]).seleccionado )
+                    checkedListBoxRegimenes.SetItemChecked(i, true);
+            }
+        }
+
+        public class RegimenesHoteles
+        {
+            public string idRegimen { get; set; }
+            public string nombre { get; set; }
+            public bool seleccionado { get; set; }
+
+            public RegimenesHoteles(string id, string nombre, bool sel)
+            {
+                this.idRegimen = id;
+                this.nombre = nombre;
+                this.seleccionado = sel;
             }
         }
     }

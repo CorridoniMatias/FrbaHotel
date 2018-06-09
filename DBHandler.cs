@@ -22,6 +22,7 @@ namespace FrbaHotel
 
         private List<string> filters = new List<string>();
         private List<string> joins = new List<string>();
+        private List<string> values = new List<string>();
 
         /// <summary>
         /// ej:
@@ -40,7 +41,20 @@ namespace FrbaHotel
                 case QueryBuilderType.DELETE:
                     queryBase = "DELETE FROM table filter";
                     break;
+                case QueryBuilderType.INSERT:
+                    queryBase = "INSERT INTO table (fields) VALUES news";
+                    break;
+
             }
+        }
+
+        public QueryBuilder AddValues(params string[] fields)
+        {
+            values.Add(
+                        "(" + string.Join(",",
+                                        fields.ToList().Select(f => "'" + f + "'")
+                                        ) + ")");
+            return this;
         }
 
         public QueryBuilder ClearFilters()
@@ -94,6 +108,11 @@ namespace FrbaHotel
                 final = final.Replace("join", String.Join(" ", joins));
             else
                 final = final.Replace("join", "");
+
+            if (values.Count > 0)
+                final = final.Replace("news", String.Join(",", values));
+            else
+                final = final.Replace("news", "");
 
             return final;
         }

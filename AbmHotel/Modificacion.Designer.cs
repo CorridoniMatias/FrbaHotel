@@ -50,13 +50,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkedListBoxRegimenes = new System.Windows.Forms.CheckedListBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(493, 717);
+            this.buttonSave.Location = new System.Drawing.Point(493, 644);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(5);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(125, 39);
@@ -67,7 +71,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(20, 717);
+            this.button1.Location = new System.Drawing.Point(20, 644);
             this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 39);
@@ -86,7 +90,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox2.Location = new System.Drawing.Point(20, 421);
+            this.groupBox2.Location = new System.Drawing.Point(668, 32);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
@@ -305,11 +309,45 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.checkedListBoxRegimenes);
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.groupBox3.Location = new System.Drawing.Point(20, 364);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox3.Size = new System.Drawing.Size(598, 270);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Regímenes";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(10, 43);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(107, 24);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Regímenes";
+            // 
+            // checkedListBoxRegimenes
+            // 
+            this.checkedListBoxRegimenes.FormattingEnabled = true;
+            this.checkedListBoxRegimenes.Location = new System.Drawing.Point(200, 43);
+            this.checkedListBoxRegimenes.Name = "checkedListBoxRegimenes";
+            this.checkedListBoxRegimenes.Size = new System.Drawing.Size(388, 211);
+            this.checkedListBoxRegimenes.TabIndex = 15;
+            // 
             // Modificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 791);
+            this.ClientSize = new System.Drawing.Size(1319, 709);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
@@ -319,10 +357,13 @@
             this.Name = "Modificacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar Hotel";
+            this.Load += new System.EventHandler(this.Modificacion_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -351,5 +392,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckedListBox checkedListBoxRegimenes;
     }
 }
