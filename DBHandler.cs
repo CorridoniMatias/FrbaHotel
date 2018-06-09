@@ -18,7 +18,7 @@ namespace FrbaHotel
 
         private readonly string queryBase = string.Empty;
 
-        private string fields = string.Empty, table = string.Empty;
+        private string fields = string.Empty, table = string.Empty, filterConnector = " AND ";
 
         private List<string> filters = new List<string>();
         private List<string> joins = new List<string>();
@@ -40,6 +40,7 @@ namespace FrbaHotel
                     break;
                 case QueryBuilderType.DELETE:
                     queryBase = "DELETE FROM table filter";
+                    filterConnector = " OR ";
                     break;
                 case QueryBuilderType.INSERT:
                     queryBase = "INSERT INTO table (fields) VALUES news";
@@ -48,6 +49,26 @@ namespace FrbaHotel
             }
         }
 
+        /// <summary>
+        /// Ejemplo builder.AddAndFilter("idHotel=" + idHotel, "idRegimen=" + regimen.idRegimen); => (idHotel=? AND idRegimen=?)
+        /// </summary>
+        /// <param name="fields"></param>
+        /// <returns></returns>
+        public QueryBuilder AddAndFilter(params string[] fields)
+        {
+            filters.Add(
+                        "(" + string.Join(" AND ",
+                                        fields
+                                        ) + ")");
+            return this;
+        }
+
+
+        /// <summary>
+        /// Agrega y formatea valores para un insert => (v1,v2,...,vn)
+        /// </summary>
+        /// <param name="fields">Los values sepados por coma</param>
+        /// <returns>El mismo query builder</returns>
         public QueryBuilder AddValues(params string[] fields)
         {
             values.Add(
@@ -100,7 +121,7 @@ namespace FrbaHotel
             final = final.Replace("table", table);
 
             if(filters.Count > 0)
-                final = final.Replace("filter", "WHERE " + String.Join(" AND ", filters.ToArray()));
+                final = final.Replace("filter", "WHERE " + String.Join(filterConnector, filters.ToArray()));
             else
                 final = final.Replace("filter", "");
 

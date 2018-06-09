@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,8 @@ namespace FrbaHotel.AbmHotel
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
+            ActualizarRegimenes();
+
             var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.Hotel");
 
 
@@ -51,7 +54,9 @@ namespace FrbaHotel.AbmHotel
                 MessageBox.Show("Error al actualizar datos base hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
-                ActualizarRegimenes();
+                MessageBox.Show("Datos basicos del Hotel actualizados con éxito.", "Ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
             }
         }
 
@@ -86,27 +91,46 @@ namespace FrbaHotel.AbmHotel
 
             if (bajas.Count > 0)
             {
+                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.RegimenHotel");
+                int borradas = 0;
 
-                //var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Table("MATOTA.Reserva")
+                foreach(var regimen in bajas)
+                {
+                    var cantReservasP = new SqlParameter("@reservas", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    var cantEstadiasP = new SqlParameter("@estadias", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    int ret = DBHandler.SPWithValue("MATOTA.CheckRegimenHotelConstraint",
+                        new List<SqlParameter> { 
+                            new SqlParameter("@fechaActual", ConfigManager.FechaSistema.ToString("yyyy-MM-dd") ) { Direction = ParameterDirection.Input },
+                            new SqlParameter("@idHotel", idHotel) { Direction = ParameterDirection.Input },
+                            new SqlParameter("@idRegimen", regimen.idRegimen) { Direction = ParameterDirection.Input },
+                            cantEstadiasP,
+                            cantReservasP
+                        }
+                    );
 
-                // builder = new QueryBuilder(QueryBuilder.QueryBuilderType.INSERT).Table("MATOTA.RegimenHotel")
-                //                                                                    .Fields("idHotel, idRegimen");
+                    if (Convert.ToInt32(cantReservasP.Value) > 0)
+                    {
+                        MessageBox.Show("Imposible quitar el regimen " + regimen.nombre + " pues tiene reservas pendientes de ejecucion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                //altas.ForEach(alta => builder.AddValues(idHotel, alta.idRegimen));
+                        continue;
+                    }
 
+                    if (Convert.ToInt32(cantEstadiasP.Value) > 0)
+                    {
+                        MessageBox.Show("Imposible quitar el regimen " + regimen.nombre + " pues hay huespedes hospedandose actualmente en dicho regimen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
 
-                //var rows = DBHandler.QueryRowCount(builder.Build());
+                    builder.AddAndFilter("idHotel=" + idHotel, "idRegimen=" + regimen.idRegimen);
+                    borradas++;
+                }
 
-                //if (rows != altas.Count)
-                //    MessageBox.Show("Error al agregar los regímenes seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                var count = DBHandler.QueryRowCount(builder.Build());
 
+                if (count != borradas)
+                    MessageBox.Show("Error al desvincular alguno de los regimenes deseleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
-
-
-
-            MessageBox.Show("Hotel actualizado con éxito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Close();
         }
 
         private void Modificacion_Load(object sender, EventArgs e)
