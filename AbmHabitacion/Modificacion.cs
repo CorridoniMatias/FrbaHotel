@@ -12,8 +12,12 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class Modificacion : Form
     {
-        public Modificacion()
+        private string idHotel;
+        private string numHabitacion;
+        public Modificacion(string idHotel, string numHabitacion)
         {
+            this.idHotel = idHotel;
+            this.numHabitacion = numHabitacion;
             InitializeComponent();
         }
     }

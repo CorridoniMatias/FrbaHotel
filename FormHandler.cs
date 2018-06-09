@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,17 +65,19 @@ namespace FrbaHotel
                 boton.UseColumnTextForButtonValue = true;
 
                 DataGridViewButtonColumn boton2 = new DataGridViewButtonColumn();
-                boton2.Name = "Eliminar";
-                boton2.HeaderText = "Eliminar";
-                boton2.Text = "Eliminar";
+                boton2.Name = "Inhabilitar";
+                boton2.HeaderText = "Inhabilitar";
+                boton2.Text = "Inhabilitar";
                 boton2.UseColumnTextForButtonValue = true;
 
                 dataGridView.Columns.Add(boton);
                 dataGridView.Columns.Add(boton2);
             }
-            public static void queryFiltradorSegunDoc(QueryBuilder qBuilder, string tipoDoc, string numDoc)
+            public static string queryFiltradorSegunDoc(QueryBuilder qBuilder, string tipoDoc, string numDoc)
             {
-                qBuilder.AddEquals("IdTipoDocumento", tipoDoc).AddEquals("numeroDocumento", numDoc);
+                var idTipoDoc = DBHandler.SPWithResultSet("MATOTA.getTipoDoc", new List<SqlParameter> { new SqlParameter("@tipoDoc", tipoDoc) }).First().Values.First();
+                qBuilder.AddEquals("IdTipoDocumento", idTipoDoc.ToString()).AddEquals("numeroDocumento", numDoc);
+                return idTipoDoc.ToString();
             }
             public static void listarTipoHabitacion(ComboBox comboBox)
             {
