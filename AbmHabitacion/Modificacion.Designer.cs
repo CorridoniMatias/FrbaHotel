@@ -164,6 +164,7 @@
             this.textBoxPiso.Name = "textBoxPiso";
             this.textBoxPiso.Size = new System.Drawing.Size(129, 26);
             this.textBoxPiso.TabIndex = 4;
+            this.textBoxPiso.Tag = "piso";
             // 
             // textBoxNumHabitacion
             // 
@@ -172,6 +173,7 @@
             this.textBoxNumHabitacion.Name = "textBoxNumHabitacion";
             this.textBoxNumHabitacion.Size = new System.Drawing.Size(129, 26);
             this.textBoxNumHabitacion.TabIndex = 3;
+            this.textBoxNumHabitacion.Tag = "nroHabitacion";
             // 
             // label3
             // 
@@ -223,6 +225,7 @@
             this.buttonGuardar.TabIndex = 28;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
+            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
             // buttonLimpiar
             // 
@@ -232,6 +235,7 @@
             this.buttonLimpiar.TabIndex = 27;
             this.buttonLimpiar.Text = "Limpiar";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
+            this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
             // Modificacion
             // 

@@ -55,7 +55,10 @@ namespace FrbaHotel.AbmHabitacion
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            List<TextBox> textBoxes = new List<TextBox> {textBoxComodidades,textBoxDescripcion,textBoxNumHabitacion,textBoxPiso,textBoxNumHabitacion, textBoxHotel};
+            //textBoxHotel no se ve aqui ya que es solo para que vean el nombre del hotel, sin embargo
+            //el id del hotel no se modifica y se encuentra en el Login.Login.LoggedUserSessionHotelID,
+            //que es el que realmente se tiene que guardar
+            List<TextBox> textBoxes = new List<TextBox> {textBoxComodidades,textBoxDescripcion,textBoxNumHabitacion,textBoxPiso,textBoxNumHabitacion};
             List<ComboBox> comboBoxes = new List<ComboBox> {comboBoxTipoHabitacion,comboBoxUbicacion};
             
             if (textBoxes.Any(tb => string.IsNullOrEmpty(tb.Text)) || comboBoxes.Any(cb => cb.SelectedIndex == -1))
@@ -64,14 +67,13 @@ namespace FrbaHotel.AbmHabitacion
                 return;
             }
 
-
             var ret = DBHandler.SPWithValue("MATOTA.altaHabitacion",
                     new List<SqlParameter>{
-                        new SqlParameter("@nroHabitacion",textBoxNumHabitacion.Text),
-                        new SqlParameter("@piso",textBoxPiso.Text),
+                        new SqlParameter("@nroHabitacion",textBoxNumHabitacion.Text.Trim()),
+                        new SqlParameter("@piso",textBoxPiso.Text.Trim()),
                         new SqlParameter("@idUbicacion",comboBoxUbicacion.SelectedValue),
                         new SqlParameter("@idTipoHabitacion",comboBoxTipoHabitacion.SelectedValue),
-                        new SqlParameter("@idHotel",textBoxHotel.Text),
+                        new SqlParameter("@idHotel",Login.Login.LoggedUserSessionHotelID),
                         new SqlParameter("@descripcion",textBoxDescripcion.Text),
                         new SqlParameter("@comodidades",textBoxComodidades.Text),
                     });
