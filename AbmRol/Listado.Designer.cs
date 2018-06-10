@@ -35,6 +35,11 @@
             this.checkBoxEstado = new System.Windows.Forms.CheckBox();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.idRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoles)).BeginInit();
             this.groupBoxFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -43,7 +48,14 @@
             // 
             this.dataGridViewRoles.AllowUserToAddRows = false;
             this.dataGridViewRoles.AllowUserToDeleteRows = false;
+            this.dataGridViewRoles.AllowUserToOrderColumns = true;
             this.dataGridViewRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idRol,
+            this.Nombre,
+            this.Estado,
+            this.Modificar,
+            this.Eliminar});
             this.dataGridViewRoles.Location = new System.Drawing.Point(12, 283);
             this.dataGridViewRoles.Name = "dataGridViewRoles";
             this.dataGridViewRoles.ReadOnly = true;
@@ -117,6 +129,39 @@
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
+            // idRol
+            // 
+            this.idRol.HeaderText = "idRol";
+            this.idRol.Name = "idRol";
+            this.idRol.ReadOnly = true;
+            this.idRol.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "Modificar";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Text = "Modificar";
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Text = "Eliminar";
+            // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,6 +171,7 @@
             this.Controls.Add(this.dataGridViewRoles);
             this.Name = "Listado";
             this.Text = "Listado";
+            this.Load += new System.EventHandler(this.Listado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoles)).EndInit();
             this.groupBoxFiltros.ResumeLayout(false);
             this.groupBoxFiltros.PerformLayout();
@@ -142,5 +188,10 @@
         private System.Windows.Forms.CheckBox checkBoxEstado;
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.Button buttonLimpiar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idRol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
+        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
     }
 }

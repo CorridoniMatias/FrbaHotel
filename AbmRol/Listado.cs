@@ -12,9 +12,16 @@ namespace FrbaHotel.AbmRol
 {
     public partial class Listado : Form
     {
+        private PobladorRoles poblador;
+
         public Listado()
         {
             InitializeComponent();
+        }
+
+        private void Listado_Load(object sender, EventArgs e)
+        {
+            poblador = new PobladorRoles(textBoxNombre, checkBoxEstado, dataGridViewRoles, new List<string> { "Modificar", "Eliminar" });
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -24,42 +31,32 @@ namespace FrbaHotel.AbmRol
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            dataGridViewRoles.DataSource = this.dataSourceRol();
-            FormHandler.crearBotonesDataGridView(dataGridViewRoles);
-        }
-
-        private DataTable dataSourceRol()
-        {
-            var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("NOMBRE, estado").Table("MATOTA.Rol");
-
-            if(!string.IsNullOrWhiteSpace(textBoxNombre.Text))
-                filtro.AddLike("NOMBRE", textBoxNombre.Text);
-            filtro.AddEquals("estado", Convert.ToInt32(checkBoxEstado.Checked).ToString());
-            return DBHandler.QueryForComboBox(filtro.Build());
+            dataGridViewRoles.Rows.Clear();
+            poblador.Poblar();
         }
 
         private void dataGridViewRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
 
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
             {
-                DataGridViewRow row = dataGridViewRoles.Rows[e.RowIndex];
 
-                if (e.ColumnIndex == dataGridViewRoles.Columns["Modificar"].Index)
+                if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Modificar"))
                 {
-                    AbmRol.Alta(row);
+                    new Alta(
+                            senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[2].Value.ToString()).ShowDialog(this);
                 }
-                else if (e.ColumnIndex == dataGridViewRoles.Columns["Eliminar"].Index)
+                else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Eliminar"))
                 {
-                    var query = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.Cliente").
-                    AddEquals("IdTipoDocumento", row.Cells["IdTipoDocumento"].Value.ToString()).
-                    AddEquals("numeroDocumento", row.Cells["numeroDocumento"].Value.ToString()).Build();
-                    DBHandler.Query(query);
+                    MessageBox.Show(DBHandler.QueryScalar("UPDATE MATOTA.Rol SET estado=0 WHERE idRol =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + ";SELECT idRol FROM MATOTA.Rol WHERE NOMBRE = '" + senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString() + "'").ToString());
                 }
-                dataGridViewRoles.DataSource = this.dataSourceRol();
-                dataGridViewRoles.Refresh();
             }
         }
+
+     
     }
 }

@@ -137,6 +137,12 @@
     <Compile Include="AbmRol\Listado.Designer.cs">
       <DependentUpon>Listado.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRol\PobladorRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\PobladorRoles.Designer.cs">
+      <DependentUpon>PobladorRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="CancelarReserva\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
