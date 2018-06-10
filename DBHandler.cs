@@ -114,7 +114,7 @@ namespace FrbaHotel
             return this;
         }
 
-        public string Build()
+        public string Build(bool addSelectScopeIdentity = false)
         {
             string final = queryBase.Replace("fields", fields);
 
@@ -134,6 +134,9 @@ namespace FrbaHotel
                 final = final.Replace("news", String.Join(",", values));
             else
                 final = final.Replace("news", "");
+
+            if (addSelectScopeIdentity)
+                final += ";SELECT scope_identity()";
 
             return final;
         }

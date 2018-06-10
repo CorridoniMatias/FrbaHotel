@@ -92,6 +92,34 @@ namespace FrbaHotel.RegistrarEstadia
             }
         }
 
+
+        private void RollBack(int idEstadia)
+        {
+            QueryBuilder builder = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.ClientesEstadia");
+
+            huespedes.ToList().ForEach(h => builder.AddAndFilter("idEstadia=" + idEstadia.ToString(), "idCliente=" + h.idCliente));
+
+            try
+            {
+                DBHandler.Query(builder.Build());
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error al remover clientes de la estadia!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            builder = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.Estadia").AddEquals("idEstadia", idEstadia.ToString());
+
+            try
+            {
+                DBHandler.Query(builder.Build());
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error al remover estadia!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void buttonCheckin_Click(object sender, EventArgs e)
         {
             if (huespedes.Count == 0)
@@ -106,6 +134,54 @@ namespace FrbaHotel.RegistrarEstadia
                 return;
             }
 
+
+            var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.INSERT)
+                                .Table("MATOTA.Estadia")
+                                .Fields("idReserva,fechaIngreso,idUsuario")
+                                .AddValues(idReserva, ConfigManager.FechaSistema.ToString("yyyy-MM-dd"), Login.Login.LoggedUsedID.ToString());
+
+            int idEstadia = -1;
+            try{
+                idEstadia = DBHandler.QueryScalar(builder.Build(true));
+            } catch(Exception ex)
+            {
+                MessageBox.Show("Error al agregar Estadia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //Clientes para la estadia
+            builder = new QueryBuilder(QueryBuilder.QueryBuilderType.INSERT)
+                                .Table("MATOTA.ClientesEstadia")
+                                .Fields("idEstadia,idCliente");
+
+            huespedes.ToList().ForEach(h => builder.AddValues(idEstadia.ToString(), h.idCliente));
+
+            var count = 0;
+
+            try
+            {
+                count = DBHandler.QueryRowCount(builder.Build());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al registrar los clientes en la estadia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                RollBack(idEstadia);
+
+                return;
+            }
+
+            if (count != huespedes.Count)
+            {
+                MessageBox.Show("Error al registrar los clientes en la estadia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                RollBack(idEstadia);
+
+                return;
+            }
+            
+            // Actualizar la reserva como efectivizada!
+            
 
         }
     }
