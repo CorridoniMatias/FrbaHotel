@@ -13,8 +13,10 @@ namespace FrbaHotel.AbmCliente
 {
     public partial class Alta : Form
     {
+        public Cliente InsertedClient { get; private set; }
         public Alta()
         {
+            InsertedClient = null;
             InitializeComponent();
         }
 
@@ -37,19 +39,19 @@ namespace FrbaHotel.AbmCliente
 
             int ret = DBHandler.SPWithValue("MATOTA.altaCliente",
                 new List<SqlParameter> { 
-                    new SqlParameter("@nombre", textBoxNombre.Text),
-                    new SqlParameter("@apellido", textBoxApellido.Text),
+                    new SqlParameter("@nombre", textBoxNombre.Text.Trim()),
+                    new SqlParameter("@apellido", textBoxApellido.Text.Trim()),
                     new SqlParameter("@tipoDoc", comboBoxTipoDoc.SelectedValue),
-                    new SqlParameter("@numeroDocumento", textBoxNumDoc.Text),
-                    new SqlParameter("@mail", textBoxMail.Text),
-                    new SqlParameter("@telefono", textBoxTelefono.Text),
-                    new SqlParameter("@calle", textBoxCalle.Text),
-                    new SqlParameter("@nroCalle", textBoxNroCalle.Text),
-                    new SqlParameter("@piso", textBoxPiso.Text),
-                    new SqlParameter("@departamento", textBoxDepto.Text),
-                    new SqlParameter("@localidad", textBoxLocalidad.Text),
-                    new SqlParameter("@pais", textBoxPais.Text),
-                    new SqlParameter("@nacionalidad", textBoxNacionalidad.Text),
+                    new SqlParameter("@numeroDocumento", textBoxNumDoc.Text.Trim()),
+                    new SqlParameter("@mail", textBoxMail.Text.Trim()),
+                    new SqlParameter("@telefono", textBoxTelefono.Text.Trim()),
+                    new SqlParameter("@calle", textBoxCalle.Text.Trim()),
+                    new SqlParameter("@nroCalle", textBoxNroCalle.Text.Trim()),
+                    new SqlParameter("@piso", textBoxPiso.Text.Trim()),
+                    new SqlParameter("@departamento", textBoxDepto.Text.Trim()),
+                    new SqlParameter("@localidad", textBoxLocalidad.Text.Trim()),
+                    new SqlParameter("@pais", textBoxPais.Text.Trim()),
+                    new SqlParameter("@nacionalidad", textBoxNacionalidad.Text.Trim()),
                     new SqlParameter("@fechaNacimiento", dateTimePickerFechaNacimiento.Value),
                 }
                 );
@@ -61,8 +63,13 @@ namespace FrbaHotel.AbmCliente
                 MessageBox.Show("El mail ingresado ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBoxMail.Text = string.Empty;
             }
-            else if (ret == 1)
+            else if (ret >= 1)
+            {
+                InsertedClient = new Cliente() { nombre = textBoxNombre.Text.Trim(), apellido = textBoxApellido.Text.Trim(), idCliente = ret.ToString()};
                 MessageBox.Show("Cliente ingresado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+            }
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
