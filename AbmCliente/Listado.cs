@@ -22,7 +22,7 @@ namespace FrbaHotel.AbmCliente
             dataGridView1.DataSource = this.dataSourceCliente();
             if (!dataGridView1.Columns.Contains("Modificar")) 
             { 
-                FormHandler.crearBotonesDataGridView(dataGridView1);
+                FormHandler.crearBotonesDataGridViewCliente(dataGridView1);
             }
         }
 

@@ -47,6 +47,8 @@
             this.textBoxCantNoches = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.buttonSeleccionarHab = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -180,6 +182,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonSeleccionarHab);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupBox1.Location = new System.Drawing.Point(15, 12);
             this.groupBox1.Name = "groupBox1";
@@ -220,6 +223,17 @@
             this.label8.TabIndex = 20;
             this.label8.Text = "Cantidad noches";
             // 
+            // buttonSeleccionarHab
+            // 
+            this.buttonSeleccionarHab.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonSeleccionarHab.Location = new System.Drawing.Point(104, 207);
+            this.buttonSeleccionarHab.Name = "buttonSeleccionarHab";
+            this.buttonSeleccionarHab.Size = new System.Drawing.Size(175, 23);
+            this.buttonSeleccionarHab.TabIndex = 0;
+            this.buttonSeleccionarHab.Text = "Seleccionar habitaciones";
+            this.buttonSeleccionarHab.UseVisualStyleBackColor = true;
+            this.buttonSeleccionarHab.Click += new System.EventHandler(this.buttonSeleccionarHab_Click);
+            // 
             // GenerarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,6 +257,7 @@
             this.Name = "GenerarReserva";
             this.Text = "Generar reserva";
             this.Load += new System.EventHandler(this.GenerarReserva_Load);
+            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -271,5 +286,6 @@
         private System.Windows.Forms.TextBox textBoxCantNoches;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonSeleccionarHab;
     }
 }

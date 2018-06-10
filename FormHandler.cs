@@ -56,7 +56,7 @@ namespace FrbaHotel
                 comboBox.DisplayMember = "nombre";
                 comboBox.ValueMember = "IdTipoDocumento";
             }
-            public static void crearBotonesDataGridView(DataGridView dataGridView)
+            public static void crearBotonesDataGridViewCliente(DataGridView dataGridView)
             {
                 DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
                 boton.Name = "Modificar";
@@ -84,18 +84,37 @@ namespace FrbaHotel
                 comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idTipoHabitacion,descripcion FROM MATOTA.TipoHabitacion");
                 comboBox.DisplayMember = "descripcion";
                 comboBox.ValueMember = "idTipoHabitacion";
+                comboBox.SelectedIndex = -1;
             }
             public static void listarTipoUbicacion(ComboBox comboBox)
             {
                 comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.UbicacionHabitacion");
                 comboBox.DisplayMember = "descripcion";
                 comboBox.ValueMember = "idUbicacion";
+                comboBox.SelectedIndex = -1;
             }
             public static void listarHoteles(ComboBox comboBox)
             {
                 comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idHotel,nombre FROM MATOTA.Hotel");
                 comboBox.DisplayMember = "nombre";
                 comboBox.ValueMember = "idHotel";
+            }
+            public static void crearBotonesParaHabitacionesReserva(DataGridView dataGridView)
+            {
+                DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
+                boton.Name = "Agregar";
+                boton.HeaderText = "Agregar";
+                boton.Text = "Agregar";
+                boton.UseColumnTextForButtonValue = true;
+
+                DataGridViewButtonColumn boton2 = new DataGridViewButtonColumn();
+                boton2.Name = "Quitar";
+                boton2.HeaderText = "Quitar";
+                boton2.Text = "Quitar";
+                boton2.UseColumnTextForButtonValue = true;
+
+                dataGridView.Columns.Add(boton);
+                dataGridView.Columns.Add(boton2);
             }
     }
 }
