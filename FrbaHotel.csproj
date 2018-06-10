@@ -50,17 +50,30 @@
     <Compile Include="AbmCliente\AltaCliente.Designer.cs">
       <DependentUpon>AltaCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\Cliente.cs" />
     <Compile Include="AbmCliente\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmCliente\Listado.Designer.cs">
       <DependentUpon>Listado.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\ListadoSeleccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\ListadoSeleccion.Designer.cs">
+      <DependentUpon>ListadoSeleccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmCliente\Modificacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmCliente\Modificacion.Designer.cs">
       <DependentUpon>Modificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCliente\PobladorCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\PobladorCliente.Designer.cs">
+      <DependentUpon>PobladorCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHabitacion\Alta.cs">
       <SubType>Form</SubType>
@@ -231,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\ListadoSeleccion.resx">
+      <DependentUpon>ListadoSeleccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>

@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxReserva = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.listBoxHuespedes = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBoxHuespuedes = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.listBoxHuespedes = new System.Windows.Forms.ListBox();
+            this.textBoxReserva = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonCheckin = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,49 +61,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos para check-in";
             // 
-            // textBoxReserva
+            // button2
             // 
-            this.textBoxReserva.Enabled = false;
-            this.textBoxReserva.Location = new System.Drawing.Point(202, 81);
-            this.textBoxReserva.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxReserva.MaxLength = 82;
-            this.textBoxReserva.Name = "textBoxReserva";
-            this.textBoxReserva.ReadOnly = true;
-            this.textBoxReserva.Size = new System.Drawing.Size(319, 28);
-            this.textBoxReserva.TabIndex = 6;
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Location = new System.Drawing.Point(381, 563);
+            this.button2.Margin = new System.Windows.Forms.Padding(5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(140, 39);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Nuevo Cliente";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(12, 81);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(180, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Numero de Reserva";
-            // 
-            // listBoxHuespedes
-            // 
-            this.listBoxHuespedes.FormattingEnabled = true;
-            this.listBoxHuespedes.ItemHeight = 22;
-            this.listBoxHuespedes.Location = new System.Drawing.Point(202, 189);
-            this.listBoxHuespedes.Name = "listBoxHuespedes";
-            this.listBoxHuespedes.Size = new System.Drawing.Size(319, 356);
-            this.listBoxHuespedes.TabIndex = 7;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(10, 189);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 24);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Huespedes";
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Location = new System.Drawing.Point(202, 563);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 39);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Buscar Cliente";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBoxHuespuedes
             // 
@@ -128,6 +108,50 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Cantidad de Huespedes";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(10, 189);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 24);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Huespedes";
+            // 
+            // listBoxHuespedes
+            // 
+            this.listBoxHuespedes.FormattingEnabled = true;
+            this.listBoxHuespedes.ItemHeight = 22;
+            this.listBoxHuespedes.Location = new System.Drawing.Point(202, 189);
+            this.listBoxHuespedes.Name = "listBoxHuespedes";
+            this.listBoxHuespedes.Size = new System.Drawing.Size(319, 356);
+            this.listBoxHuespedes.TabIndex = 7;
+            // 
+            // textBoxReserva
+            // 
+            this.textBoxReserva.Enabled = false;
+            this.textBoxReserva.Location = new System.Drawing.Point(202, 81);
+            this.textBoxReserva.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxReserva.MaxLength = 82;
+            this.textBoxReserva.Name = "textBoxReserva";
+            this.textBoxReserva.ReadOnly = true;
+            this.textBoxReserva.Size = new System.Drawing.Size(319, 28);
+            this.textBoxReserva.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(12, 81);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(180, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Numero de Reserva";
+            // 
             // buttonCheckin
             // 
             this.buttonCheckin.Location = new System.Drawing.Point(433, 664);
@@ -137,28 +161,7 @@
             this.buttonCheckin.TabIndex = 7;
             this.buttonCheckin.Text = "Check-In";
             this.buttonCheckin.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(202, 563);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 39);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Buscar Cliente";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(381, 563);
-            this.button2.Margin = new System.Windows.Forms.Padding(5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(140, 39);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Nuevo Cliente";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonCheckin.Click += new System.EventHandler(this.buttonCheckin_Click);
             // 
             // AltaEstadia
             // 
