@@ -70,11 +70,13 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             FormHandler.limpiar(this);
             FormHandler.limpiar(groupBox2);
+            FormHandler.limpiar(groupBox1);
         }
 
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
             DBHandler.SPWithValue("MATOTA.ActualizarReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
+            DBHandler.SPWithValue("MATOTA.habilitarHabitacionesDeReservasVencidas");
             var nroHabitacion = DBHandler.SPWithResultSet("MATOTA.habitacionParaReserva", 
                 new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@cantPersonasReserva", textBoxCantPersonas.Text) }).First().Values.First();
             habitaciones.Add(Convert.ToInt32(nroHabitacion.ToString()));
@@ -92,6 +94,15 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             return DBHandler.SPWithValue("MATOTA.CantNoches", 
                 new List<SqlParameter> { new SqlParameter("@fechaInicio", dateTimePickerFechaInicio.Value), new SqlParameter("@fechaFin", dateTimePickerFechaFin.Value) });
+        }
+
+        private void buttonSeleccionarHab_Click(object sender, EventArgs e)
+        {
+            if (comboBoxHotel.SelectedIndex == -1)
+                MessageBox.Show("Seleccione un hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
+            else 
+                new AbmHabitacion.Listado(idHotel).ShowDialog();
         }
     }
 }

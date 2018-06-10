@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBoxRol = new System.Windows.Forms.GroupBox();
-            this.labelNombre = new System.Windows.Forms.Label();
-            this.textBoxNombre = new System.Windows.Forms.TextBox();
-            this.labelFuncionalidades = new System.Windows.Forms.Label();
-            this.checkedListBoxFuncionalidades = new System.Windows.Forms.CheckedListBox();
             this.checkBoxEstado = new System.Windows.Forms.CheckBox();
+            this.checkedListBoxFuncionalidades = new System.Windows.Forms.CheckedListBox();
+            this.labelFuncionalidades = new System.Windows.Forms.Label();
+            this.textBoxNombre = new System.Windows.Forms.TextBox();
+            this.labelNombre = new System.Windows.Forms.Label();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.groupBoxRol.SuspendLayout();
@@ -54,41 +54,6 @@
             this.groupBoxRol.TabStop = false;
             this.groupBoxRol.Text = "Datos del rol";
             // 
-            // labelNombre
-            // 
-            this.labelNombre.AutoSize = true;
-            this.labelNombre.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelNombre.Location = new System.Drawing.Point(6, 34);
-            this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(44, 13);
-            this.labelNombre.TabIndex = 0;
-            this.labelNombre.Text = "Nombre";
-            // 
-            // textBoxNombre
-            // 
-            this.textBoxNombre.Location = new System.Drawing.Point(81, 31);
-            this.textBoxNombre.Name = "textBoxNombre";
-            this.textBoxNombre.Size = new System.Drawing.Size(100, 20);
-            this.textBoxNombre.TabIndex = 1;
-            // 
-            // labelFuncionalidades
-            // 
-            this.labelFuncionalidades.AutoSize = true;
-            this.labelFuncionalidades.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelFuncionalidades.Location = new System.Drawing.Point(9, 77);
-            this.labelFuncionalidades.Name = "labelFuncionalidades";
-            this.labelFuncionalidades.Size = new System.Drawing.Size(84, 13);
-            this.labelFuncionalidades.TabIndex = 2;
-            this.labelFuncionalidades.Text = "Funcionalidades";
-            // 
-            // checkedListBoxFuncionalidades
-            // 
-            this.checkedListBoxFuncionalidades.FormattingEnabled = true;
-            this.checkedListBoxFuncionalidades.Location = new System.Drawing.Point(100, 77);
-            this.checkedListBoxFuncionalidades.Name = "checkedListBoxFuncionalidades";
-            this.checkedListBoxFuncionalidades.Size = new System.Drawing.Size(214, 244);
-            this.checkedListBoxFuncionalidades.TabIndex = 3;
-            // 
             // checkBoxEstado
             // 
             this.checkBoxEstado.AutoSize = true;
@@ -101,6 +66,41 @@
             this.checkBoxEstado.Text = "Estado Activo";
             this.checkBoxEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxEstado.UseVisualStyleBackColor = true;
+            // 
+            // checkedListBoxFuncionalidades
+            // 
+            this.checkedListBoxFuncionalidades.FormattingEnabled = true;
+            this.checkedListBoxFuncionalidades.Location = new System.Drawing.Point(100, 77);
+            this.checkedListBoxFuncionalidades.Name = "checkedListBoxFuncionalidades";
+            this.checkedListBoxFuncionalidades.Size = new System.Drawing.Size(214, 244);
+            this.checkedListBoxFuncionalidades.TabIndex = 3;
+            // 
+            // labelFuncionalidades
+            // 
+            this.labelFuncionalidades.AutoSize = true;
+            this.labelFuncionalidades.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelFuncionalidades.Location = new System.Drawing.Point(9, 77);
+            this.labelFuncionalidades.Name = "labelFuncionalidades";
+            this.labelFuncionalidades.Size = new System.Drawing.Size(84, 13);
+            this.labelFuncionalidades.TabIndex = 2;
+            this.labelFuncionalidades.Text = "Funcionalidades";
+            // 
+            // textBoxNombre
+            // 
+            this.textBoxNombre.Location = new System.Drawing.Point(81, 31);
+            this.textBoxNombre.Name = "textBoxNombre";
+            this.textBoxNombre.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNombre.TabIndex = 1;
+            // 
+            // labelNombre
+            // 
+            this.labelNombre.AutoSize = true;
+            this.labelNombre.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelNombre.Location = new System.Drawing.Point(6, 34);
+            this.labelNombre.Name = "labelNombre";
+            this.labelNombre.Size = new System.Drawing.Size(44, 13);
+            this.labelNombre.TabIndex = 0;
+            this.labelNombre.Text = "Nombre";
             // 
             // buttonLimpiar
             // 
