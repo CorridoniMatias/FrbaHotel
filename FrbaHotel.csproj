@@ -244,6 +244,9 @@
     <EmbeddedResource Include="AbmHotel\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\PobladorHoteles.resx">
+      <DependentUpon>PobladorHoteles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\Suspender.resx">
       <DependentUpon>Suspender.cs</DependentUpon>
     </EmbeddedResource>
