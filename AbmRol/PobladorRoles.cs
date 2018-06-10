@@ -33,6 +33,7 @@ namespace FrbaHotel.AbmRol
 
         public void Poblar()
         {
+            Filtro.ClearFilters();
             if (!string.IsNullOrEmpty(input.Text.Trim()))
             {
                 Filtro.AddLike("NOMBRE", input.Text.Trim());

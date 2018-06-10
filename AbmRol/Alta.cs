@@ -20,19 +20,18 @@ namespace FrbaHotel.AbmRol
         {
             this.modificando = modificando;
             this.idRol = idRol;
-
             InitializeComponent();
+            var funcionalidades = DBHandler.Query("SELECT idPermiso, nombre FROM MATOTA.Permiso")
+                .Select(fun => new KeyValuePair<int, string>(Int32.Parse(fun["idPermiso"].ToString()), fun["nombre"].ToString()))
+                .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            ((ListBox)checkedListBoxFuncionalidades).DataSource = new BindingSource(funcionalidades, null);
+            ((ListBox)checkedListBoxFuncionalidades).DisplayMember = "Value";
+            ((ListBox)checkedListBoxFuncionalidades).ValueMember = "Key";
             if (idRol != null)
             {
                 textBoxNombre.Text = nombre;
                 checkBoxEstado.Checked = Convert.ToBoolean(estado);
-                var funcionalidades = DBHandler.Query("SELECT idPermiso, nombre FROM MATOTA.Permiso")
-                    .Select(fun => new KeyValuePair<int, string>(Int32.Parse(fun["idPermiso"].ToString()), fun["nombre"].ToString()))
-                    .ToDictionary(pair => pair.Key, pair => pair.Value);
-                ((ListBox)checkedListBoxFuncionalidades).DataSource = new BindingSource(funcionalidades, null);
-                ((ListBox)checkedListBoxFuncionalidades).DisplayMember = "Value";
-                ((ListBox)checkedListBoxFuncionalidades).ValueMember = "Key";
-
                 var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("p.idPermiso, p.nombre").Table("MATOTA.Permiso p");
                 query.AddJoin("INNER JOIN MATOTA.PermisosRol pr ON p.idPermiso = pr.idPermiso");
                 query.AddEquals("pr.idRol",idRol);
@@ -186,13 +185,6 @@ namespace FrbaHotel.AbmRol
 
                 foreach (var func in bajas)
                 {
-
-                    int ret = DBHandler.SPWithValue(new List<SqlParameter> { 
-                            new SqlParameter("@idRol", idRol) { Direction = ParameterDirection.Input },
-                            new SqlParameter("@idPermiso", func.idFuncionalidad) { Direction = ParameterDirection.Input },
-                        }
-                    );
-
                     builder.AddAndFilter("idRol=" + idRol, "idPermiso=" + func.idFuncionalidad);
                     borradas++;
                 }
