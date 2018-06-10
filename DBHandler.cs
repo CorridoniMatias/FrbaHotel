@@ -213,9 +213,9 @@ namespace FrbaHotel
             return ret;
         }
 
-        public static int SPWithValue(string procedure, List<SqlParameter> param = null)
+        private static object SPWithValueObject(string procedure, List<SqlParameter> param = null)
         {
-            int retval = 0;
+            object retval = null;
 
             Procedure(procedure, param, (command) =>
             {
@@ -224,11 +224,22 @@ namespace FrbaHotel
                 returnParameter.Direction = ParameterDirection.ReturnValue;
 
                 command.ExecuteNonQuery();
-                retval = (int)returnParameter.Value;
+                retval = returnParameter.Value;
             
             });
 
             return retval;
+        }
+
+
+        public static int SPWithValue(string procedure, List<SqlParameter> param = null)
+        {
+            return (int)SPWithValueObject(procedure, param);
+        }
+
+        public static bool SPWithBool(string procedure, List<SqlParameter> param = null)
+        {
+            return (bool)SPWithValueObject(procedure, param);
         }
 
         public static List<Dictionary<string, object>> SPWithResultSet(string procedure, List<SqlParameter> param = null)

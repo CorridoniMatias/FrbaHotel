@@ -31,6 +31,8 @@
             this.tabControlFunciones = new System.Windows.Forms.TabControl();
             this.tabPageRoles = new System.Windows.Forms.TabPage();
             this.tabPageHoteles = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonEdit = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonLaunchHotelManager = new System.Windows.Forms.Button();
@@ -45,10 +47,12 @@
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarHotelActualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label3 = new System.Windows.Forms.Label();
-            this.buttonEdit = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.buttonCheckIn = new System.Windows.Forms.Button();
             this.tabControlFunciones.SuspendLayout();
             this.tabPageHoteles.SuspendLayout();
+            this.tabPageEstadias.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +95,25 @@
             this.tabPageHoteles.TabIndex = 1;
             this.tabPageHoteles.Text = "Hoteles";
             this.tabPageHoteles.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 206);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(484, 24);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Para modificar / eliminar hoteles de la cadena haga click:";
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Location = new System.Drawing.Point(498, 199);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(126, 37);
+            this.buttonEdit.TabIndex = 3;
+            this.buttonEdit.Text = "Administrar";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // label2
             // 
@@ -150,6 +173,9 @@
             // 
             // tabPageEstadias
             // 
+            this.tabPageEstadias.Controls.Add(this.label5);
+            this.tabPageEstadias.Controls.Add(this.buttonCheckIn);
+            this.tabPageEstadias.Controls.Add(this.label4);
             this.tabPageEstadias.Location = new System.Drawing.Point(4, 31);
             this.tabPageEstadias.Name = "tabPageEstadias";
             this.tabPageEstadias.Size = new System.Drawing.Size(969, 269);
@@ -215,24 +241,34 @@
             this.cambiarHotelActualToolStripMenuItem.Text = "Cambiar Hotel Actual";
             this.cambiarHotelActualToolStripMenuItem.Click += new System.EventHandler(this.cambiarHotelActualToolStripMenuItem_Click);
             // 
-            // label3
+            // label4
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 206);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(484, 24);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Para modificar / eliminar hoteles de la cadena haga click:";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(237, 42);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(495, 39);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Realizar check-ins y check-outs";
             // 
-            // buttonEdit
+            // label5
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(498, 199);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(126, 37);
-            this.buttonEdit.TabIndex = 3;
-            this.buttonEdit.Text = "Administrar";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 121);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(299, 24);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Para hacer un check-in haga click:";
+            // 
+            // buttonCheckIn
+            // 
+            this.buttonCheckIn.Location = new System.Drawing.Point(313, 114);
+            this.buttonCheckIn.Name = "buttonCheckIn";
+            this.buttonCheckIn.Size = new System.Drawing.Size(126, 37);
+            this.buttonCheckIn.TabIndex = 3;
+            this.buttonCheckIn.Text = "Check-In";
+            this.buttonCheckIn.UseVisualStyleBackColor = true;
+            this.buttonCheckIn.Click += new System.EventHandler(this.buttonCheckIn_Click);
             // 
             // MenuPrincipal
             // 
@@ -251,6 +287,8 @@
             this.tabControlFunciones.ResumeLayout(false);
             this.tabPageHoteles.ResumeLayout(false);
             this.tabPageHoteles.PerformLayout();
+            this.tabPageEstadias.ResumeLayout(false);
+            this.tabPageEstadias.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -279,5 +317,8 @@
         private System.Windows.Forms.ToolStripMenuItem cambiarHotelActualToolStripMenuItem;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonCheckIn;
+        private System.Windows.Forms.Label label4;
     }
 }

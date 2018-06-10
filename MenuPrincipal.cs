@@ -70,5 +70,10 @@ namespace FrbaHotel
         {
             new AbmHotel.ListadoModificacionBaja().ShowDialog(this) ;
         }
+
+        private void buttonCheckIn_Click(object sender, EventArgs e)
+        {
+            new RegistrarEstadia.ComprobadorReserva().ShowDialog(this);
+        }
     }
 }

@@ -10,11 +10,20 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.RegistrarEstadia
 {
-    public partial class Form1 : Form
+    public partial class AltaEstadia : Form
     {
-        public Form1()
+        private string idReserva;
+
+        public AltaEstadia(string idReserva)
         {
             InitializeComponent();
+            this.idReserva = idReserva;
+            this.textBoxReserva.Text = idReserva;
+        }
+
+        private void AltaEstadia_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
