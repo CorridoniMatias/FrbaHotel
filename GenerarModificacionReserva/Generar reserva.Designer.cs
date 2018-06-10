@@ -44,7 +44,7 @@
             this.textBoxHotel = new System.Windows.Forms.TextBox();
             this.comboBoxRegimen = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxCantNoches = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
@@ -161,6 +161,7 @@
             this.buttonGenerar.TabIndex = 14;
             this.buttonGenerar.Text = "Generar";
             this.buttonGenerar.UseVisualStyleBackColor = true;
+            this.buttonGenerar.Click += new System.EventHandler(this.buttonGenerar_Click);
             // 
             // textBoxHotel
             // 
@@ -182,23 +183,23 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupBox1.Location = new System.Drawing.Point(15, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(321, 219);
+            this.groupBox1.Size = new System.Drawing.Size(321, 240);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese aquí los datos";
             // 
-            // textBox4
+            // textBoxCantNoches
             // 
-            this.textBox4.Location = new System.Drawing.Point(125, 76);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 19;
+            this.textBoxCantNoches.Location = new System.Drawing.Point(125, 76);
+            this.textBoxCantNoches.Name = "textBoxCantNoches";
+            this.textBoxCantNoches.ReadOnly = true;
+            this.textBoxCantNoches.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCantNoches.TabIndex = 19;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.textBoxCantNoches);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.textBoxPrecioPorNoche);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Highlight;
@@ -267,7 +268,7 @@
         private System.Windows.Forms.TextBox textBoxHotel;
         private System.Windows.Forms.ComboBox comboBoxRegimen;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxCantNoches;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label8;
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace FrbaHotel.GenerarModificacionReserva
     public partial class GenerarReserva : Form
     {
         private string idHotel;
+        List<int> habitaciones = new List<int>();
         public GenerarReserva()
         {
             InitializeComponent();
@@ -68,6 +70,28 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             FormHandler.limpiar(this);
             FormHandler.limpiar(groupBox2);
-        }            
+        }
+
+        private void buttonGenerar_Click(object sender, EventArgs e)
+        {
+            DBHandler.SPWithValue("MATOTA.ActualizarReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
+            var nroHabitacion = DBHandler.SPWithResultSet("MATOTA.habitacionParaReserva", 
+                new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@cantPersonasReserva", textBoxCantPersonas.Text) }).First().Values.First();
+            habitaciones.Add(Convert.ToInt32(nroHabitacion.ToString()));
+            var precio = this.precioPorNoche();
+            textBoxPrecioPorNoche.Text = precio.ToString();
+            var cantNoches = this.cantNoches();
+            textBoxCantNoches.Text = cantNoches.ToString();
+        }
+        private float precioPorNoche()
+        {
+            return habitaciones.Sum(habitacion => DBHandler.SPWithValue("MATOTA.PrecioHabitacion",
+                new List<SqlParameter>{new SqlParameter("@idHotel",idHotel),new SqlParameter("@nroHabitacion",habitacion),new SqlParameter("@cantPersonas",textBoxCantPersonas.Text)}));
+        }
+        private int cantNoches()
+        {
+            return DBHandler.SPWithValue("MATOTA.CantNoches", 
+                new List<SqlParameter> { new SqlParameter("@fechaInicio", dateTimePickerFechaInicio.Value), new SqlParameter("@fechaFin", dateTimePickerFechaFin.Value) });
+        }
     }
 }

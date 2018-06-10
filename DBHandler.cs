@@ -234,7 +234,7 @@ namespace FrbaHotel
 
         public static int SPWithValue(string procedure, List<SqlParameter> param = null)
         {
-            return (int)SPWithValueObject(procedure, param);
+            return Convert.ToInt32(SPWithValueObject(procedure, param));
         }
 
         public static bool SPWithBool(string procedure, List<SqlParameter> param = null)
