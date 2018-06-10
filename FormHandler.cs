@@ -17,7 +17,10 @@ namespace FrbaHotel
                     if (control is TextBox)
                     {
                         TextBox textBox = (TextBox)control;
-                        textBox.Text = null;
+                        if (textBox.Enabled)
+                        {
+                            textBox.Text = null;
+                        }
                     }
                     if (control is ComboBox)
                     {
