@@ -29,8 +29,8 @@ namespace FrbaHotel.AbmCliente
             FormHandler.queryFiltradorSegunDoc(query, tipoDoc, numDoc);
             textBoxNombre.Text = DBHandler.Query(query.Fields("nombre").Build()).First().Values.First().ToString();
             textBoxApellido.Text = DBHandler.Query(query.Fields("apellido").Build()).First().Values.First().ToString();
-            comboBoxTipoDoc.Text = DBHandler.SPWithResultSet("MATOTA.getTipoDoc", new List<SqlParameter> { new SqlParameter("@idTipoDoc", tipoDoc), }).First().Values.First().ToString();
-            textBoxNumDoc.Text = DBHandler.Query(query.Fields("numeroDocumento").Build()).First().Values.First().ToString();
+            comboBoxTipoDoc.Text = tipoDoc;
+            textBoxNumDoc.Text = numDoc;
             textBoxMail.Text = DBHandler.Query(query.Fields("mail").Build()).First().Values.First().ToString();
             textBoxTelefono.Text = DBHandler.Query(query.Fields("telefono").Build()).First().Values.First().ToString();
             textBoxNacionalidad.Text = DBHandler.Query(query.Fields("nacionalidad").Build()).First().Values.First().ToString();
@@ -52,6 +52,14 @@ namespace FrbaHotel.AbmCliente
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
+            List<TextBox> textBoxes = new List<TextBox> {textBoxApellido,textBoxCalle,textBoxDepto,textBoxLocalidad,textBoxMail,
+                                                        textBoxNacionalidad,textBoxNombre,textBoxNroCalle,textBoxNumDoc,textBoxPais,textBoxPiso,textBoxTelefono};
+            var idTipoDoc = FormHandler.queryFiltradorSegunDoc(new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT), tipoDoc, numDoc);
+            if (textBoxes.Any(tb => string.IsNullOrEmpty(tb.Text) || comboBoxTipoDoc.SelectedIndex == -1))
+            {
+                MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             var ret = DBHandler.SPWithValue("MATOTA.UpdateCliente",
                  new List<SqlParameter> { 
                     new SqlParameter("@nombre", textBoxNombre.Text),
@@ -69,7 +77,7 @@ namespace FrbaHotel.AbmCliente
                     new SqlParameter("@nacionalidad", textBoxNacionalidad.Text),
                     new SqlParameter("@fechaNacimiento", dateTimePickerFechaNacimiento.Value),
                     new SqlParameter("@habilitado", checkBoxHabilitado.Checked),
-                    new SqlParameter("@tipoDocOriginal", tipoDoc),
+                    new SqlParameter("@tipoDocOriginal", idTipoDoc),
                     new SqlParameter("@numDoc", numDoc),
                 }
                  );

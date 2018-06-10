@@ -31,6 +31,12 @@
             this.buttonSearch = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerFilter = new System.Windows.Forms.DateTimePicker();
+            this.textBoxCalle = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxNroCalle = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.textBoxTelefono = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxMail = new System.Windows.Forms.TextBox();
@@ -55,14 +61,7 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnModificar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.textBoxCalle = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxNroCalle = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.buttonDatePicker = new System.Windows.Forms.Button();
+            this.ColumnSuspender = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -90,12 +89,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.buttonDatePicker);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.dateTimePickerFilter);
+            this.groupBox1.Controls.Add(this.textBoxCalle);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.textBoxNroCalle);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBoxCalle);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.textBoxTelefono);
             this.groupBox1.Controls.Add(this.label6);
@@ -118,6 +116,69 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
+            // 
+            // dateTimePickerFilter
+            // 
+            this.dateTimePickerFilter.Checked = false;
+            this.dateTimePickerFilter.Location = new System.Drawing.Point(100, 221);
+            this.dateTimePickerFilter.Name = "dateTimePickerFilter";
+            this.dateTimePickerFilter.ShowCheckBox = true;
+            this.dateTimePickerFilter.Size = new System.Drawing.Size(312, 28);
+            this.dateTimePickerFilter.TabIndex = 18;
+            this.dateTimePickerFilter.Tag = "fechaCreacion";
+            // 
+            // textBoxCalle
+            // 
+            this.textBoxCalle.Location = new System.Drawing.Point(1031, 218);
+            this.textBoxCalle.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxCalle.MaxLength = 255;
+            this.textBoxCalle.Name = "textBoxCalle";
+            this.textBoxCalle.Size = new System.Drawing.Size(284, 28);
+            this.textBoxCalle.TabIndex = 17;
+            this.textBoxCalle.Tag = "calle";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(946, 221);
+            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 24);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Calle";
+            // 
+            // textBoxNroCalle
+            // 
+            this.textBoxNroCalle.Location = new System.Drawing.Point(597, 218);
+            this.textBoxNroCalle.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxNroCalle.MaxLength = 255;
+            this.textBoxNroCalle.Name = "textBoxNroCalle";
+            this.textBoxNroCalle.Size = new System.Drawing.Size(266, 28);
+            this.textBoxNroCalle.TabIndex = 15;
+            this.textBoxNroCalle.Tag = "nroCalle";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(494, 221);
+            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 24);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Nro. Calle";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(16, 222);
+            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 24);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Creado";
             // 
             // textBoxTelefono
             // 
@@ -262,7 +323,7 @@
             this.Column6,
             this.ColumnCreacion,
             this.ColumnModificar,
-            this.ColumnEliminar});
+            this.ColumnSuspender});
             this.dataGridView1.Location = new System.Drawing.Point(35, 490);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridView1.Name = "dataGridView1";
@@ -349,90 +410,14 @@
             this.ColumnModificar.ReadOnly = true;
             this.ColumnModificar.Text = "Modificar";
             // 
-            // ColumnEliminar
+            // ColumnSuspender
             // 
-            this.ColumnEliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnEliminar.HeaderText = "Eliminar";
-            this.ColumnEliminar.Name = "ColumnEliminar";
-            this.ColumnEliminar.ReadOnly = true;
-            this.ColumnEliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnEliminar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // textBoxCalle
-            // 
-            this.textBoxCalle.Location = new System.Drawing.Point(100, 219);
-            this.textBoxCalle.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxCalle.MaxLength = 18;
-            this.textBoxCalle.Name = "textBoxCalle";
-            this.textBoxCalle.ReadOnly = true;
-            this.textBoxCalle.Size = new System.Drawing.Size(178, 28);
-            this.textBoxCalle.TabIndex = 13;
-            this.textBoxCalle.Tag = "calle";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(16, 222);
-            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 24);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Creado";
-            // 
-            // textBoxNroCalle
-            // 
-            this.textBoxNroCalle.Location = new System.Drawing.Point(597, 218);
-            this.textBoxNroCalle.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxNroCalle.MaxLength = 255;
-            this.textBoxNroCalle.Name = "textBoxNroCalle";
-            this.textBoxNroCalle.Size = new System.Drawing.Size(266, 28);
-            this.textBoxNroCalle.TabIndex = 15;
-            this.textBoxNroCalle.Tag = "nroCalle";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(494, 221);
-            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 24);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Nro. Calle";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(1031, 218);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.textBox1.MaxLength = 255;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(284, 28);
-            this.textBox1.TabIndex = 17;
-            this.textBox1.Tag = "calle";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(946, 221);
-            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 24);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Calle";
-            // 
-            // buttonDatePicker
-            // 
-            this.buttonDatePicker.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonDatePicker.Location = new System.Drawing.Point(288, 214);
-            this.buttonDatePicker.Margin = new System.Windows.Forms.Padding(5);
-            this.buttonDatePicker.Name = "buttonDatePicker";
-            this.buttonDatePicker.Size = new System.Drawing.Size(125, 39);
-            this.buttonDatePicker.TabIndex = 13;
-            this.buttonDatePicker.Text = "Seleccionar";
-            this.buttonDatePicker.UseVisualStyleBackColor = true;
-            this.buttonDatePicker.Click += new System.EventHandler(this.buttonDatePicker_Click);
+            this.ColumnSuspender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnSuspender.HeaderText = "Suspender";
+            this.ColumnSuspender.Name = "ColumnSuspender";
+            this.ColumnSuspender.ReadOnly = true;
+            this.ColumnSuspender.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnSuspender.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // ListadoModificacionBaja
             // 
@@ -474,6 +459,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox textBoxCalle;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxNroCalle;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idHotel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -485,14 +476,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCreacion;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnModificar;
-        private System.Windows.Forms.DataGridViewButtonColumn ColumnEliminar;
-        private System.Windows.Forms.Button buttonDatePicker;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxNroCalle;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBoxCalle;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnSuspender;
 
     }
 }

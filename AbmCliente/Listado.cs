@@ -22,14 +22,15 @@ namespace FrbaHotel.AbmCliente
             dataGridView1.DataSource = this.dataSourceCliente();
             if (!dataGridView1.Columns.Contains("Modificar")) 
             { 
-                FormHandler.crearBotonesDataGridView(dataGridView1);
+                FormHandler.crearBotonesDataGridViewCliente(dataGridView1);
             }
         }
 
         private DataTable dataSourceCliente()
         {
             var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
-                Fields("nombre,apellido,IdTipoDocumento,numeroDocumento,mail").Table("MATOTA.Cliente");
+                Fields("c.nombre,c.apellido,td.nombre tipoDocumento,c.numeroDocumento,c.mail,c.telefono").Table("MATOTA.Cliente c").
+                AddJoin("JOIN MATOTA.TipoDocumento td ON (c.IdTipoDocumento = td.IdTipoDocumento)");
 
             if (!string.IsNullOrWhiteSpace(textBoxNombre.Text))
                 filtro.AddEquals("nombre", textBoxNombre.Text);
@@ -66,15 +67,16 @@ namespace FrbaHotel.AbmCliente
 
                 if (e.ColumnIndex == dataGridView1.Columns["Modificar"].Index)
                 {
-                    var modificar = new Modificacion(row.Cells["IdTipoDocumento"].Value.ToString(), row.Cells["numeroDocumento"].Value.ToString());
+                    var modificar = new Modificacion(row.Cells["tipoDocumento"].Value.ToString(), row.Cells["numeroDocumento"].Value.ToString());
                     modificar.ShowDialog();
                 }
-                else if (e.ColumnIndex == dataGridView1.Columns["Eliminar"].Index)
+                else if (e.ColumnIndex == dataGridView1.Columns["Inhabilitar"].Index)
                 {
-                    var query = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.Cliente").
-                    AddEquals("IdTipoDocumento", row.Cells["IdTipoDocumento"].Value.ToString()).
-                    AddEquals("numeroDocumento", row.Cells["numeroDocumento"].Value.ToString()).Build();
+                    var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.Cliente");
+                    FormHandler.queryFiltradorSegunDoc(filtro, row.Cells["tipoDocumento"].Value.ToString(), row.Cells["numeroDocumento"].Value.ToString());
+                    var query = filtro.Fields("habilitado = 0").Build();
                     DBHandler.Query(query);
+                    MessageBox.Show("Cliente inhabiliatdo");
                 }
                 dataGridView1.DataSource = this.dataSourceCliente();
                 dataGridView1.Refresh();

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -50,24 +50,29 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkedListBoxRegimenes = new System.Windows.Forms.CheckedListBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button2
+            // buttonSave
             // 
-            this.button2.Location = new System.Drawing.Point(493, 717);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 39);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Guardar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonSave.Location = new System.Drawing.Point(493, 644);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(5);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(125, 39);
+            this.buttonSave.TabIndex = 7;
+            this.buttonSave.Text = "Guardar";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(20, 717);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button1.Location = new System.Drawing.Point(20, 644);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 39);
             this.button1.TabIndex = 6;
@@ -85,10 +90,10 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox2.Location = new System.Drawing.Point(20, 421);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox2.Location = new System.Drawing.Point(668, 32);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
             this.groupBox2.Size = new System.Drawing.Size(598, 270);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
@@ -108,7 +113,7 @@
             // textBoxPais
             // 
             this.textBoxPais.Location = new System.Drawing.Point(200, 213);
-            this.textBoxPais.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxPais.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxPais.MaxLength = 60;
             this.textBoxPais.Name = "textBoxPais";
             this.textBoxPais.Size = new System.Drawing.Size(388, 28);
@@ -118,7 +123,7 @@
             // textBoxCiudad
             // 
             this.textBoxCiudad.Location = new System.Drawing.Point(200, 158);
-            this.textBoxCiudad.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxCiudad.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxCiudad.MaxLength = 255;
             this.textBoxCiudad.Name = "textBoxCiudad";
             this.textBoxCiudad.Size = new System.Drawing.Size(388, 28);
@@ -128,7 +133,7 @@
             // textBoxNroCalle
             // 
             this.textBoxNroCalle.Location = new System.Drawing.Point(200, 98);
-            this.textBoxNroCalle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxNroCalle.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxNroCalle.MaxLength = 18;
             this.textBoxNroCalle.Name = "textBoxNroCalle";
             this.textBoxNroCalle.Size = new System.Drawing.Size(388, 28);
@@ -138,7 +143,7 @@
             // textBoxCalle
             // 
             this.textBoxCalle.Location = new System.Drawing.Point(200, 42);
-            this.textBoxCalle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxCalle.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxCalle.MaxLength = 255;
             this.textBoxCalle.Name = "textBoxCalle";
             this.textBoxCalle.Size = new System.Drawing.Size(388, 28);
@@ -192,9 +197,9 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBox1.Location = new System.Drawing.Point(20, 20);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
             this.groupBox1.Size = new System.Drawing.Size(598, 334);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
@@ -203,7 +208,7 @@
             // dateTimePickerCreado
             // 
             this.dateTimePickerCreado.Location = new System.Drawing.Point(200, 275);
-            this.dateTimePickerCreado.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dateTimePickerCreado.Margin = new System.Windows.Forms.Padding(5);
             this.dateTimePickerCreado.Name = "dateTimePickerCreado";
             this.dateTimePickerCreado.Size = new System.Drawing.Size(388, 28);
             this.dateTimePickerCreado.TabIndex = 12;
@@ -212,7 +217,7 @@
             // textBoxCantEstrellas
             // 
             this.textBoxCantEstrellas.Location = new System.Drawing.Point(200, 215);
-            this.textBoxCantEstrellas.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxCantEstrellas.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxCantEstrellas.MaxLength = 18;
             this.textBoxCantEstrellas.Name = "textBoxCantEstrellas";
             this.textBoxCantEstrellas.Size = new System.Drawing.Size(388, 28);
@@ -222,7 +227,7 @@
             // textBoxTelefono
             // 
             this.textBoxTelefono.Location = new System.Drawing.Point(200, 157);
-            this.textBoxTelefono.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxTelefono.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxTelefono.MaxLength = 80;
             this.textBoxTelefono.Name = "textBoxTelefono";
             this.textBoxTelefono.Size = new System.Drawing.Size(388, 28);
@@ -232,7 +237,7 @@
             // textBoxMail
             // 
             this.textBoxMail.Location = new System.Drawing.Point(200, 96);
-            this.textBoxMail.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxMail.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxMail.MaxLength = 255;
             this.textBoxMail.Name = "textBoxMail";
             this.textBoxMail.Size = new System.Drawing.Size(388, 28);
@@ -242,7 +247,7 @@
             // textBoxNombre
             // 
             this.textBoxNombre.Location = new System.Drawing.Point(200, 40);
-            this.textBoxNombre.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxNombre.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxNombre.MaxLength = 82;
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(388, 28);
@@ -304,31 +309,68 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.checkedListBoxRegimenes);
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.groupBox3.Location = new System.Drawing.Point(20, 364);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox3.Size = new System.Drawing.Size(598, 270);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Regímenes";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(10, 43);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(107, 24);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Regímenes";
+            // 
+            // checkedListBoxRegimenes
+            // 
+            this.checkedListBoxRegimenes.FormattingEnabled = true;
+            this.checkedListBoxRegimenes.Location = new System.Drawing.Point(200, 43);
+            this.checkedListBoxRegimenes.Name = "checkedListBoxRegimenes";
+            this.checkedListBoxRegimenes.Size = new System.Drawing.Size(388, 211);
+            this.checkedListBoxRegimenes.TabIndex = 15;
+            // 
             // Modificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 791);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(1319, 709);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Modificacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar Hotel";
+            this.Load += new System.EventHandler(this.Modificacion_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label10;
@@ -350,5 +392,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckedListBox checkedListBoxRegimenes;
     }
 }

@@ -35,11 +35,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxPais = new System.Windows.Forms.TextBox();
             this.textBoxCiudad = new System.Windows.Forms.TextBox();
-            this.textBoxCantEstrellas = new System.Windows.Forms.TextBox();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonBuscar = new System.Windows.Forms.Button();
@@ -55,23 +53,25 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.textBoxCantEstrellas = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.textBoxCantEstrellas);
             this.groupBox1.Controls.Add(this.textBoxTelefono);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBoxMail);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.textBoxPais);
             this.groupBox1.Controls.Add(this.textBoxCiudad);
-            this.groupBox1.Controls.Add(this.textBoxCantEstrellas);
             this.groupBox1.Controls.Add(this.textBoxNombre);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBox1.Location = new System.Drawing.Point(38, 20);
@@ -85,11 +85,11 @@
             // 
             // textBoxTelefono
             // 
-            this.textBoxTelefono.Location = new System.Drawing.Point(579, 133);
+            this.textBoxTelefono.Location = new System.Drawing.Point(100, 133);
             this.textBoxTelefono.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxTelefono.MaxLength = 255;
             this.textBoxTelefono.Name = "textBoxTelefono";
-            this.textBoxTelefono.Size = new System.Drawing.Size(284, 28);
+            this.textBoxTelefono.Size = new System.Drawing.Size(312, 28);
             this.textBoxTelefono.TabIndex = 11;
             this.textBoxTelefono.Tag = "telefono";
             // 
@@ -97,7 +97,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(494, 136);
+            this.label6.Location = new System.Drawing.Point(17, 136);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 24);
@@ -133,7 +133,7 @@
             this.textBoxPais.Name = "textBoxPais";
             this.textBoxPais.Size = new System.Drawing.Size(282, 28);
             this.textBoxPais.TabIndex = 7;
-            this.textBoxPais.Tag = "pais";
+            this.textBoxPais.Tag = "calle";
             // 
             // textBoxCiudad
             // 
@@ -144,16 +144,6 @@
             this.textBoxCiudad.Size = new System.Drawing.Size(284, 28);
             this.textBoxCiudad.TabIndex = 6;
             this.textBoxCiudad.Tag = "ciudad";
-            // 
-            // textBoxCantEstrellas
-            // 
-            this.textBoxCantEstrellas.Location = new System.Drawing.Point(177, 134);
-            this.textBoxCantEstrellas.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxCantEstrellas.MaxLength = 18;
-            this.textBoxCantEstrellas.Name = "textBoxCantEstrellas";
-            this.textBoxCantEstrellas.Size = new System.Drawing.Size(236, 28);
-            this.textBoxCantEstrellas.TabIndex = 5;
-            this.textBoxCantEstrellas.Tag = "cantidadEstrellas";
             // 
             // textBoxNombre
             // 
@@ -172,9 +162,9 @@
             this.label4.Location = new System.Drawing.Point(946, 137);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 24);
+            this.label4.Size = new System.Drawing.Size(52, 24);
             this.label4.TabIndex = 3;
-            this.label4.Text = "País";
+            this.label4.Text = "Calle";
             // 
             // label3
             // 
@@ -186,17 +176,6 @@
             this.label3.Size = new System.Drawing.Size(70, 24);
             this.label3.TabIndex = 2;
             this.label3.Text = "Ciudad";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(17, 137);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(157, 24);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Cantidad estrellas";
             // 
             // label1
             // 
@@ -334,6 +313,27 @@
             this.ColumnSelect.ReadOnly = true;
             this.ColumnSelect.Text = "Seleccionar";
             // 
+            // textBoxCantEstrellas
+            // 
+            this.textBoxCantEstrellas.Location = new System.Drawing.Point(597, 137);
+            this.textBoxCantEstrellas.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxCantEstrellas.MaxLength = 18;
+            this.textBoxCantEstrellas.Name = "textBoxCantEstrellas";
+            this.textBoxCantEstrellas.Size = new System.Drawing.Size(266, 28);
+            this.textBoxCantEstrellas.TabIndex = 7;
+            this.textBoxCantEstrellas.Tag = "nroCalle";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(494, 141);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 24);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Nro. Calle";
+            // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -361,13 +361,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.TextBox textBoxPais;
         private System.Windows.Forms.TextBox textBoxCiudad;
-        private System.Windows.Forms.TextBox textBoxCantEstrellas;
         private System.Windows.Forms.TextBox textBoxNombre;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBoxTelefono;
@@ -385,5 +383,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnSelect;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxCantEstrellas;
     }
 }

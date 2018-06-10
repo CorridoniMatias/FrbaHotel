@@ -50,11 +50,18 @@
     <Compile Include="AbmCliente\AltaCliente.Designer.cs">
       <DependentUpon>AltaCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\Cliente.cs" />
     <Compile Include="AbmCliente\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmCliente\Listado.Designer.cs">
       <DependentUpon>Listado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCliente\ListadoSeleccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\ListadoSeleccion.Designer.cs">
+      <DependentUpon>ListadoSeleccion.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmCliente\Modificacion.cs">
       <SubType>Form</SubType>
@@ -62,11 +69,23 @@
     <Compile Include="AbmCliente\Modificacion.Designer.cs">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\PobladorCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\PobladorCliente.Designer.cs">
+      <DependentUpon>PobladorCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHabitacion\Alta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmHabitacion\Alta.Designer.cs">
       <DependentUpon>Alta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHabitacion\Listado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\Listado.Designer.cs">
+      <DependentUpon>Listado.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHabitacion\Modificacion.cs">
       <SubType>Form</SubType>
@@ -100,6 +119,12 @@
     </Compile>
     <Compile Include="AbmHotel\PobladorHoteles.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\Suspender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\Suspender.Designer.cs">
+      <DependentUpon>Suspender.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\AltaRegimen.cs">
       <SubType>Form</SubType>
@@ -149,6 +174,7 @@
     <Compile Include="CancelarReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigManager.cs" />
     <Compile Include="DBHandler.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -206,11 +232,17 @@
     <Compile Include="RegistrarConsumible\Registrar.Designer.cs">
       <DependentUpon>Registrar.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\Form1.cs">
+    <Compile Include="RegistrarEstadia\AltaEstadia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrarEstadia\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistrarEstadia\AltaEstadia.Designer.cs">
+      <DependentUpon>AltaEstadia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEstadia\ComprobadorReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\ComprobadorReserva.Designer.cs">
+      <DependentUpon>ComprobadorReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="FormHandler.cs" />
     <EmbeddedResource Include="AbmCliente\AltaCliente.resx">
@@ -219,11 +251,17 @@
     <EmbeddedResource Include="AbmCliente\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\ListadoSeleccion.resx">
+      <DependentUpon>ListadoSeleccion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\Alta.resx">
       <DependentUpon>Alta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\Listado.resx">
+      <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
@@ -242,6 +280,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\PobladorHoteles.resx">
+      <DependentUpon>PobladorHoteles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\Suspender.resx">
+      <DependentUpon>Suspender.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRegimen\AltaRegimen.resx">
       <DependentUpon>AltaRegimen.cs</DependentUpon>
@@ -294,8 +338,11 @@
     <EmbeddedResource Include="RegistrarConsumible\Registrar.resx">
       <DependentUpon>Registrar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegistrarEstadia\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="RegistrarEstadia\AltaEstadia.resx">
+      <DependentUpon>AltaEstadia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\ComprobadorReserva.resx">
+      <DependentUpon>ComprobadorReserva.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using FrbaHotel.AbmCliente;
 namespace FrbaHotel
 {
     static class Program
@@ -19,7 +19,6 @@ namespace FrbaHotel
 
             Application.Run(new Form1());
             //Application.Run(new AbmCliente.Listado());
-
         }
     }
 }
