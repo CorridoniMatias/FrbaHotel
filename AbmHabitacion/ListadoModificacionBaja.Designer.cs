@@ -45,7 +45,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.idHotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNombreHotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNroHabitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUbicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTipoHabitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComodidades = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnModificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnSuspender = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -238,11 +250,108 @@
             this.buttonLimpiar.Text = "Limpiar";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idHotel,
+            this.ColumnNombreHotel,
+            this.ColumnNroHabitacion,
+            this.ColumnPiso,
+            this.ColumnUbicacion,
+            this.ColumnTipoHabitacion,
+            this.ColumnComodidades,
+            this.ColumnDescripcion,
+            this.ColumnModificar,
+            this.ColumnSuspender});
+            this.dataGridView1.Location = new System.Drawing.Point(13, 327);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(1152, 403);
+            this.dataGridView1.TabIndex = 13;
+            // 
+            // idHotel
+            // 
+            this.idHotel.HeaderText = "idHotel";
+            this.idHotel.Name = "idHotel";
+            this.idHotel.ReadOnly = true;
+            this.idHotel.Visible = false;
+            // 
+            // ColumnNombreHotel
+            // 
+            this.ColumnNombreHotel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnNombreHotel.HeaderText = "Hotel";
+            this.ColumnNombreHotel.Name = "ColumnNombreHotel";
+            this.ColumnNombreHotel.ReadOnly = true;
+            // 
+            // ColumnNroHabitacion
+            // 
+            this.ColumnNroHabitacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnNroHabitacion.HeaderText = "Nro. Habitación";
+            this.ColumnNroHabitacion.Name = "ColumnNroHabitacion";
+            this.ColumnNroHabitacion.ReadOnly = true;
+            // 
+            // ColumnPiso
+            // 
+            this.ColumnPiso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnPiso.HeaderText = "Piso";
+            this.ColumnPiso.Name = "ColumnPiso";
+            this.ColumnPiso.ReadOnly = true;
+            // 
+            // ColumnUbicacion
+            // 
+            this.ColumnUbicacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnUbicacion.HeaderText = "Ubicación";
+            this.ColumnUbicacion.Name = "ColumnUbicacion";
+            this.ColumnUbicacion.ReadOnly = true;
+            // 
+            // ColumnTipoHabitacion
+            // 
+            this.ColumnTipoHabitacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnTipoHabitacion.HeaderText = "Tipo Habitación";
+            this.ColumnTipoHabitacion.Name = "ColumnTipoHabitacion";
+            this.ColumnTipoHabitacion.ReadOnly = true;
+            // 
+            // ColumnComodidades
+            // 
+            this.ColumnComodidades.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnComodidades.HeaderText = "Comodidades";
+            this.ColumnComodidades.Name = "ColumnComodidades";
+            this.ColumnComodidades.ReadOnly = true;
+            // 
+            // ColumnDescripcion
+            // 
+            this.ColumnDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnDescripcion.HeaderText = "Descripción";
+            this.ColumnDescripcion.Name = "ColumnDescripcion";
+            this.ColumnDescripcion.ReadOnly = true;
+            // 
+            // ColumnModificar
+            // 
+            this.ColumnModificar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnModificar.HeaderText = "Modificar";
+            this.ColumnModificar.Name = "ColumnModificar";
+            this.ColumnModificar.ReadOnly = true;
+            this.ColumnModificar.Text = "Modificar";
+            // 
+            // ColumnSuspender
+            // 
+            this.ColumnSuspender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnSuspender.HeaderText = "Suspender";
+            this.ColumnSuspender.Name = "ColumnSuspender";
+            this.ColumnSuspender.ReadOnly = true;
+            this.ColumnSuspender.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnSuspender.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // ListadoModificacionBaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1178, 844);
+            this.ClientSize = new System.Drawing.Size(1178, 744);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.groupBox1);
@@ -250,6 +359,7 @@
             this.Text = "ListadoModificacionBaja";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,5 +383,16 @@
         private System.Windows.Forms.ComboBox comboBoxHabitacion;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonLimpiar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idHotel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNombreHotel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNroHabitacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPiso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUbicacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTipoHabitacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnComodidades;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescripcion;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnModificar;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnSuspender;
     }
 }
