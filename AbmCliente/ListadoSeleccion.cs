@@ -54,5 +54,10 @@ namespace FrbaHotel.AbmCliente
             comboBoxTipoDoc.SelectedIndex = -1;
             poblador = new PobladorCliente(new List<TextBox>() { textBoxNombre, textBoxMail, textBoxApellido, textBoxNumDoc }, comboBoxTipoDoc,dataGridView1, new List<string> { "Seleccionar" });
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormHandler.limpiar(groupBox1);
+        }
     }
 }

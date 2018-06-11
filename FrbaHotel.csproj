@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -81,17 +82,30 @@
     <Compile Include="AbmHabitacion\Alta.Designer.cs">
       <DependentUpon>Alta.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHabitacion\Habitacion.cs" />
     <Compile Include="AbmHabitacion\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmHabitacion\Listado.Designer.cs">
       <DependentUpon>Listado.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHabitacion\ListadoSeleccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\ListadoSeleccion.Designer.cs">
+      <DependentUpon>ListadoSeleccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHabitacion\Modificacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmHabitacion\Modificacion.Designer.cs">
       <DependentUpon>Modificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHabitacion\PobladorHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\PobladorHabitacion.Designer.cs">
+      <DependentUpon>PobladorHabitacion.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHotel\AltaHotel.cs">
       <SubType>Form</SubType>
@@ -232,11 +246,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrarConsumible\Consumible.cs" />
+    <Compile Include="RegistrarConsumible\PobladorConsumibles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarConsumible\PobladorConsumibles.Designer.cs">
+      <DependentUpon>PobladorConsumibles.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarConsumible\Registrar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RegistrarConsumible\Registrar.Designer.cs">
       <DependentUpon>Registrar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarConsumible\SeleccionadorConsumible.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarConsumible\SeleccionadorConsumible.Designer.cs">
+      <DependentUpon>SeleccionadorConsumible.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistrarEstadia\AltaEstadia.cs">
       <SubType>Form</SubType>
@@ -268,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\ListadoSeleccion.resx">
+      <DependentUpon>ListadoSeleccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
@@ -346,6 +376,9 @@
     </Compile>
     <EmbeddedResource Include="RegistrarConsumible\Registrar.resx">
       <DependentUpon>Registrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarConsumible\SeleccionadorConsumible.resx">
+      <DependentUpon>SeleccionadorConsumible.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\AltaEstadia.resx">
       <DependentUpon>AltaEstadia.cs</DependentUpon>
