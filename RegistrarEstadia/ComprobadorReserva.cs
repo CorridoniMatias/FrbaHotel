@@ -31,7 +31,7 @@ namespace FrbaHotel.RegistrarEstadia
                 new List<SqlParameter> { 
                     new SqlParameter("@idReserva", textBoxReserva.Text.Trim()),
                     new SqlParameter("@idHotel", Login.Login.LoggedUserSessionHotelID),
-                    new SqlParameter("@fechaSistema", "2017-01-01") //ConfigManager.FechaSistema.ToString("yyyy-MM-dd")
+                    new SqlParameter("@fechaSistema", ConfigManager.FechaSistema.ToString("yyyy-MM-dd")) //ConfigManager.FechaSistema.ToString("yyyy-MM-dd")
                 }
                 );
 
