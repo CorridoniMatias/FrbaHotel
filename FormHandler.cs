@@ -28,6 +28,8 @@ namespace FrbaHotel
                     if (control is CheckBox)
                     {
                         CheckBox checkBox = (CheckBox)control;
+                        if (checkBox.ThreeState)
+                            checkBox.CheckState = CheckState.Indeterminate;
                         checkBox.Checked = false;
                     }
                     if (control is ListBox)

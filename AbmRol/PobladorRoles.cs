@@ -39,7 +39,7 @@ namespace FrbaHotel.AbmRol
                 Filtro.AddLike("NOMBRE", input.Text.Trim());
                 
             }
-
+            if(estado.CheckState != CheckState.Indeterminate)
             Filtro.AddEquals("estado", Convert.ToInt32(estado.Checked).ToString());
 
             try
