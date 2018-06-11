@@ -158,6 +158,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SeleccionadorConsumible";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscador de Consumibles";
             this.Load += new System.EventHandler(this.SeleccionadorConsumible_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
