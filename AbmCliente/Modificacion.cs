@@ -15,6 +15,7 @@ namespace FrbaHotel.AbmCliente
     {
         private string tipoDoc;
         private string numDoc;
+        private string idTipoDoc;
         public Modificacion(string tipoDoc, string numDoc)
         {
             this.tipoDoc = tipoDoc;
@@ -25,8 +26,8 @@ namespace FrbaHotel.AbmCliente
         private void Modificacion_Load(object sender, EventArgs e)
         {
             FormHandler.listarTipoDoc(comboBoxTipoDoc);
-            var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Table("MATOTA.Cliente");
-            FormHandler.queryFiltradorSegunDoc(query, tipoDoc, numDoc);
+            idTipoDoc = FormHandler.getIdTipoDoc(tipoDoc);
+            var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Table("MATOTA.Cliente").AddEquals("idTipoDocumento",idTipoDoc).AddEquals("numeroDocumento",numDoc);
             textBoxNombre.Text = DBHandler.Query(query.Fields("nombre").Build()).First().Values.First().ToString();
             textBoxApellido.Text = DBHandler.Query(query.Fields("apellido").Build()).First().Values.First().ToString();
             comboBoxTipoDoc.Text = tipoDoc;
@@ -54,7 +55,6 @@ namespace FrbaHotel.AbmCliente
         {
             List<TextBox> textBoxes = new List<TextBox> {textBoxApellido,textBoxCalle,textBoxDepto,textBoxLocalidad,textBoxMail,
                                                         textBoxNacionalidad,textBoxNombre,textBoxNroCalle,textBoxNumDoc,textBoxPais,textBoxPiso,textBoxTelefono};
-            var idTipoDoc = FormHandler.queryFiltradorSegunDoc(new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT), tipoDoc, numDoc);
             if (textBoxes.Any(tb => string.IsNullOrEmpty(tb.Text) || comboBoxTipoDoc.SelectedIndex == -1))
             {
                 MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);

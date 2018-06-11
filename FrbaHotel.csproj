@@ -208,6 +208,12 @@
     <Compile Include="GenerarModificacionReserva\Generar reserva.Designer.cs">
       <DependentUpon>Generar reserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarModificacionReserva\ListadoRegimenHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\ListadoRegimenHotel.Designer.cs">
+      <DependentUpon>ListadoRegimenHotel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListadoEstadistico\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -349,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\Generar reserva.resx">
       <DependentUpon>Generar reserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\ListadoRegimenHotel.resx">
+      <DependentUpon>ListadoRegimenHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

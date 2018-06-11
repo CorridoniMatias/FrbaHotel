@@ -78,11 +78,10 @@ namespace FrbaHotel
                 dataGridView.Columns.Add(boton);
                 dataGridView.Columns.Add(boton2);
             }
-            public static string queryFiltradorSegunDoc(QueryBuilder qBuilder, string tipoDoc, string numDoc)
+            public static string getIdTipoDoc(string tipoDoc)
             {
-                var idTipoDoc = DBHandler.SPWithResultSet("MATOTA.getTipoDoc", new List<SqlParameter> { new SqlParameter("@tipoDoc", tipoDoc) }).First().Values.First();
-                qBuilder.AddEquals("IdTipoDocumento", idTipoDoc.ToString()).AddEquals("numeroDocumento", numDoc);
-                return idTipoDoc.ToString();
+                var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("td.idTipoDocumento").Table("MATOTA.TipoDocumento td").AddEquals("td.nombre", tipoDoc).Build();
+                return DBHandler.Query(query).First().Values.First().ToString();
             }
             public static void listarTipoHabitacion(ComboBox comboBox)
             {

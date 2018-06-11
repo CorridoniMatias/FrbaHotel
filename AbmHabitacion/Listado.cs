@@ -13,9 +13,11 @@ namespace FrbaHotel.AbmHabitacion
     public partial class Listado : Form
     {
         private string idHotel;
-        public Listado(string idHotel)
+        private GenerarModificacionReserva.GenerarReserva reserva;
+        public Listado(string idHotel,GenerarModificacionReserva.GenerarReserva reserva)
         {
             this.idHotel = idHotel;
+            this.reserva = reserva;
             InitializeComponent();
         }
 
@@ -45,10 +47,29 @@ namespace FrbaHotel.AbmHabitacion
                 AddJoin("JOIN MATOTA.UbicacionHabitacion u on (ha.idUbicacion = u.idUbicacion)").AddEquals("h.idHotel", idHotel);
             if (comboBoxTipoHab.SelectedIndex != -1)
                 query.AddEquals("th.idTipoHabitacion", comboBoxTipoHab.SelectedValue.ToString());
-            else if (comboBoxUbicacion.SelectedIndex != -1)
+            if (comboBoxUbicacion.SelectedIndex != -1)
                 query.AddEquals("u.idUbicacion", comboBoxUbicacion.SelectedValue.ToString());
             
             dataGridView1.DataSource = DBHandler.QueryForComboBox(query.Build());
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+             var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                var nroHab = row.Cells["Habitación"].Value.ToString();
+                if (e.ColumnIndex == dataGridView1.Columns["Agregar"].Index)
+                {
+                    reserva.agregarHabitacion(nroHab);
+                }
+                else if (e.ColumnIndex == dataGridView1.Columns["Quitar"].Index)
+                {
+                    reserva.quitarHabitacion(nroHab);
+                }
+        }
     }
+}
 }

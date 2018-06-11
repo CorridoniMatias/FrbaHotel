@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrbaHotel.AbmHabitacion
 {
-    class Habitacion
+    public class Habitacion
     {
         public string idHotel { get; set; }
         public string nroHabitacion { get; set; }

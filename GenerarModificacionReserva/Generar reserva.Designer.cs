@@ -34,8 +34,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePickerFechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFechaDesde = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.comboBoxHotel = new System.Windows.Forms.ComboBox();
             this.textBoxCantPersonas = new System.Windows.Forms.TextBox();
             this.textBoxPrecioPorNoche = new System.Windows.Forms.TextBox();
@@ -44,10 +44,11 @@
             this.textBoxHotel = new System.Windows.Forms.TextBox();
             this.comboBoxRegimen = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonSeleccionarHab = new System.Windows.Forms.Button();
             this.textBoxCantNoches = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonConsultar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.buttonSeleccionarHab = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -66,18 +67,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(32, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Fecha inicio";
+            this.label2.Text = "Fecha desde";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(32, 118);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Fecha fin";
+            this.label3.Text = "Fecha hasta";
             // 
             // label4
             // 
@@ -101,25 +102,25 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(17, 39);
+            this.label7.Location = new System.Drawing.Point(17, 78);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 13);
             this.label7.TabIndex = 6;
             this.label7.Text = "Precio por noche";
             // 
-            // dateTimePickerFechaInicio
+            // dateTimePickerFechaDesde
             // 
-            this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(119, 74);
-            this.dateTimePickerFechaInicio.Name = "dateTimePickerFechaInicio";
-            this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerFechaInicio.TabIndex = 7;
+            this.dateTimePickerFechaDesde.Location = new System.Drawing.Point(119, 74);
+            this.dateTimePickerFechaDesde.Name = "dateTimePickerFechaDesde";
+            this.dateTimePickerFechaDesde.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerFechaDesde.TabIndex = 7;
             // 
-            // dateTimePickerFechaFin
+            // dateTimePickerFechaHasta
             // 
-            this.dateTimePickerFechaFin.Location = new System.Drawing.Point(119, 116);
-            this.dateTimePickerFechaFin.Name = "dateTimePickerFechaFin";
-            this.dateTimePickerFechaFin.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerFechaFin.TabIndex = 8;
+            this.dateTimePickerFechaHasta.Location = new System.Drawing.Point(119, 116);
+            this.dateTimePickerFechaHasta.Name = "dateTimePickerFechaHasta";
+            this.dateTimePickerFechaHasta.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerFechaHasta.TabIndex = 8;
             // 
             // comboBoxHotel
             // 
@@ -139,7 +140,7 @@
             // 
             // textBoxPrecioPorNoche
             // 
-            this.textBoxPrecioPorNoche.Location = new System.Drawing.Point(125, 36);
+            this.textBoxPrecioPorNoche.Location = new System.Drawing.Point(125, 75);
             this.textBoxPrecioPorNoche.Name = "textBoxPrecioPorNoche";
             this.textBoxPrecioPorNoche.ReadOnly = true;
             this.textBoxPrecioPorNoche.Size = new System.Drawing.Size(100, 20);
@@ -191,9 +192,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese aquí los datos";
             // 
+            // buttonSeleccionarHab
+            // 
+            this.buttonSeleccionarHab.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonSeleccionarHab.Location = new System.Drawing.Point(104, 207);
+            this.buttonSeleccionarHab.Name = "buttonSeleccionarHab";
+            this.buttonSeleccionarHab.Size = new System.Drawing.Size(175, 23);
+            this.buttonSeleccionarHab.TabIndex = 0;
+            this.buttonSeleccionarHab.Text = "Seleccionar habitaciones";
+            this.buttonSeleccionarHab.UseVisualStyleBackColor = true;
+            this.buttonSeleccionarHab.Click += new System.EventHandler(this.buttonSeleccionarHab_Click);
+            // 
             // textBoxCantNoches
             // 
-            this.textBoxCantNoches.Location = new System.Drawing.Point(125, 76);
+            this.textBoxCantNoches.Location = new System.Drawing.Point(125, 115);
             this.textBoxCantNoches.Name = "textBoxCantNoches";
             this.textBoxCantNoches.ReadOnly = true;
             this.textBoxCantNoches.Size = new System.Drawing.Size(100, 20);
@@ -201,6 +213,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.buttonConsultar);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.textBoxCantNoches);
             this.groupBox2.Controls.Add(this.label7);
@@ -213,26 +226,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de su reserva";
             // 
+            // buttonConsultar
+            // 
+            this.buttonConsultar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonConsultar.Location = new System.Drawing.Point(73, 30);
+            this.buttonConsultar.Name = "buttonConsultar";
+            this.buttonConsultar.Size = new System.Drawing.Size(139, 23);
+            this.buttonConsultar.TabIndex = 21;
+            this.buttonConsultar.Text = "Consultar";
+            this.buttonConsultar.UseVisualStyleBackColor = true;
+            this.buttonConsultar.Click += new System.EventHandler(this.buttonConsultar_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(20, 82);
+            this.label8.Location = new System.Drawing.Point(20, 121);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(87, 13);
             this.label8.TabIndex = 20;
             this.label8.Text = "Cantidad noches";
-            // 
-            // buttonSeleccionarHab
-            // 
-            this.buttonSeleccionarHab.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonSeleccionarHab.Location = new System.Drawing.Point(104, 207);
-            this.buttonSeleccionarHab.Name = "buttonSeleccionarHab";
-            this.buttonSeleccionarHab.Size = new System.Drawing.Size(175, 23);
-            this.buttonSeleccionarHab.TabIndex = 0;
-            this.buttonSeleccionarHab.Text = "Seleccionar habitaciones";
-            this.buttonSeleccionarHab.UseVisualStyleBackColor = true;
-            this.buttonSeleccionarHab.Click += new System.EventHandler(this.buttonSeleccionarHab_Click);
             // 
             // GenerarReserva
             // 
@@ -245,8 +258,8 @@
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.textBoxCantPersonas);
             this.Controls.Add(this.comboBoxHotel);
-            this.Controls.Add(this.dateTimePickerFechaFin);
-            this.Controls.Add(this.dateTimePickerFechaInicio);
+            this.Controls.Add(this.dateTimePickerFechaHasta);
+            this.Controls.Add(this.dateTimePickerFechaDesde);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -273,8 +286,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dateTimePickerFechaInicio;
-        private System.Windows.Forms.DateTimePicker dateTimePickerFechaFin;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFechaDesde;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFechaHasta;
         private System.Windows.Forms.ComboBox comboBoxHotel;
         private System.Windows.Forms.TextBox textBoxCantPersonas;
         private System.Windows.Forms.TextBox textBoxPrecioPorNoche;
@@ -287,5 +300,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonSeleccionarHab;
+        private System.Windows.Forms.Button buttonConsultar;
     }
 }

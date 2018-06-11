@@ -69,7 +69,7 @@ namespace FrbaHotel.AbmCliente
 
                 if (newset.Count() == 0)
                 {
-                    MessageBox.Show("No se encontró ningún Cliente. Intente cambiar el criterio de búsqueda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se encontró ningún Cliente. Intente cambiar el criterio de búsqueda o agregué al nuevo cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 

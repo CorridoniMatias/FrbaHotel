@@ -27,8 +27,9 @@ namespace FrbaHotel
                 MessageBox.Show("Hubo un error al leer el archivo de configuracion.\n" + e.Message + "\nImposible ejecutar el sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
             //Application.Run(new AbmRol.Listado());
+            Application.Run(new AbmCliente.Listado());
         }
     }
 }

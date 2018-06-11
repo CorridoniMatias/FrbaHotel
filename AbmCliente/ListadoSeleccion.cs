@@ -14,7 +14,7 @@ namespace FrbaHotel.AbmCliente
     {
 
         public Cliente SelectedClient { get; private set; }
-
+        public bool existeCliente { get; private set; }
         public ListadoSeleccion()
         {
             InitializeComponent();
@@ -52,12 +52,19 @@ namespace FrbaHotel.AbmCliente
         {
             FormHandler.listarTipoDoc(comboBoxTipoDoc);
             comboBoxTipoDoc.SelectedIndex = -1;
+            existeCliente = true;
             poblador = new PobladorCliente(new List<TextBox>() { textBoxNombre, textBoxMail, textBoxApellido, textBoxNumDoc }, comboBoxTipoDoc,dataGridView1, new List<string> { "Seleccionar" });
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             FormHandler.limpiar(groupBox1);
+        }
+
+        private void buttonAgregarCliente_Click(object sender, EventArgs e)
+        {
+            existeCliente = false;
+            this.Close();
         }
     }
 }

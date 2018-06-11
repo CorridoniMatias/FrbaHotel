@@ -14,16 +14,17 @@ namespace FrbaHotel.GenerarModificacionReserva
     public partial class GenerarReserva : Form
     {
         private string idHotel;
-        List<int> habitaciones = new List<int>();
+        public List<string> habitaciones { get; private set; }
         public GenerarReserva()
         {
+            habitaciones = new List<string>();
             InitializeComponent();
             if (Login.Login.LoggedUsedID == -1)
             {
                 textBoxHotel.Hide();
                 this.setHotelesHabilitados();
             }
-            else 
+            else
             {
                 comboBoxHotel.Hide();
                 idHotel = Login.Login.LoggedUserSessionHotelID.ToString();
@@ -32,7 +33,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                 textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
             }
         }
-
         private void setHotelesHabilitados()
         {
             var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("h.idHotel,h.nombre").Table("MATOTA.Hotel h").
@@ -55,6 +55,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void GenerarReserva_Load(object sender, EventArgs e)
         {
             comboBoxHotel.SelectedIndex = -1;
+            comboBoxRegimen.SelectedIndex = -1;
         }
 
         private void comboBoxHotel_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,6 +63,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             if (comboBoxHotel.SelectedIndex != -1)
             {
                 idHotel = comboBoxHotel.SelectedValue.ToString();
+                this.habitaciones.Clear();
                 this.setRegimenes();
             }
         }
@@ -75,34 +77,118 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
-            DBHandler.SPWithValue("MATOTA.ActualizarReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
-            DBHandler.SPWithValue("MATOTA.habilitarHabitacionesDeReservasVencidas");
-            var nroHabitacion = DBHandler.SPWithResultSet("MATOTA.habitacionParaReserva", 
-                new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@cantPersonasReserva", textBoxCantPersonas.Text) }).First().Values.First();
-            habitaciones.Add(Convert.ToInt32(nroHabitacion.ToString()));
-            var precio = this.precioPorNoche();
-            textBoxPrecioPorNoche.Text = precio.ToString();
-            var cantNoches = this.cantNoches();
-            textBoxCantNoches.Text = cantNoches.ToString();
+            if (this.cantNoches() == 0)
+            {
+                MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DBHandler.SPWithValue("MATOTA.ActualizarReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
+                DBHandler.SPWithValue("MATOTA.habilitarHabitacionesDeReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
+                MessageBox.Show("El precio total de la reserva es de U$S " + this.precioPorNoche() * this.cantNoches(), "Precio Total", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var idCliente = this.getIdCliente();
+                var idReserva = DBHandler.SPWithValue("MATOTA.AltaReserva",
+                    new List<SqlParameter>{ new SqlParameter("@idHotel",idHotel),
+                                        new SqlParameter("@fechaReserva",ConfigManager.FechaSistema),
+                                        new SqlParameter("@fechaDesde",dateTimePickerFechaDesde.Value),
+                                        new SqlParameter("@fechaHasta",dateTimePickerFechaHasta.Value),
+                                        new SqlParameter("@cantidadNoches",this.cantNoches()),
+                                        new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue),
+                                        new SqlParameter("@idCliente",idCliente),
+                                        new SqlParameter("@precioBase",this.precioPorNoche()*this.cantNoches()),
+                                        new SqlParameter("@cantidadPersonas",textBoxCantPersonas.Text),});
+                habitaciones.ForEach(hab => DBHandler.SPWithValue("MATOTA.agregarHabitacionesReservadas",
+                    new List<SqlParameter> { new SqlParameter("@nroHabitacion", hab), new SqlParameter("@idReserva", idReserva), new SqlParameter("@idHotel", idHotel) }));
+                MessageBox.Show("Reserva realizada con éxito, el código de su reserva es: " + idReserva, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
         }
         private float precioPorNoche()
         {
-            return habitaciones.Sum(habitacion => DBHandler.SPWithValue("MATOTA.PrecioHabitacion",
-                new List<SqlParameter>{new SqlParameter("@idHotel",idHotel),new SqlParameter("@nroHabitacion",habitacion),new SqlParameter("@cantPersonas",textBoxCantPersonas.Text)}));
+            var precio = habitaciones.Sum(habitacion => DBHandler.SPWithValue("MATOTA.PrecioHabitacion",
+                new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", habitacion), 
+                    new SqlParameter("@cantPersonas", this.cantidadPersonasReserva(habitacion)), new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue)}));
+            return precio;
+        }
+        private int cantidadPersonasReserva(string habitacion)
+        {
+            var cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
+            if (habitacion == habitaciones.First())
+            {
+                return cantPersonasReserva;
+            }
+            else
+            {
+                cantPersonasReserva = Math.Max(1, cantPersonasReserva - DBHandler.SPWithValue("MATOTA.personasHabitacion",
+                    new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", habitacion) }));
+            }
+            return cantPersonasReserva;
         }
         private int cantNoches()
         {
-            return DBHandler.SPWithValue("MATOTA.CantNoches", 
-                new List<SqlParameter> { new SqlParameter("@fechaInicio", dateTimePickerFechaInicio.Value), new SqlParameter("@fechaFin", dateTimePickerFechaFin.Value) });
+            return DBHandler.SPWithValue("MATOTA.CantNoches",
+                new List<SqlParameter> { new SqlParameter("@fechaInicio", dateTimePickerFechaDesde.Value), new SqlParameter("@fechaFin", dateTimePickerFechaHasta.Value) });
         }
 
         private void buttonSeleccionarHab_Click(object sender, EventArgs e)
         {
             if (comboBoxHotel.SelectedIndex == -1)
                 MessageBox.Show("Seleccione un hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               
-            else 
-                new AbmHabitacion.Listado(idHotel).ShowDialog();
+
+            else
+                new AbmHabitacion.Listado(idHotel, this).ShowDialog();
+
         }
+        private string getIdCliente()
+        {
+            var seleccion = new AbmCliente.ListadoSeleccion();
+            seleccion.ShowDialog();
+            if (seleccion.existeCliente)
+                return seleccion.SelectedClient.idCliente;
+            else
+            {
+                var alta = new AbmCliente.Alta();
+                alta.ShowDialog();
+                return alta.InsertedClient.idCliente;
+            }
+
+        }
+        public void agregarHabitacion(string nroHab)
+        {
+            if (habitaciones.Contains(nroHab))
+                MessageBox.Show("Ya seleccionó esta habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                habitaciones.Add(nroHab);
+            }
+
+        }
+        public void quitarHabitacion(string nroHab)
+        {
+            habitaciones.Remove(nroHab);
+        }
+
+        private void buttonConsultar_Click(object sender, EventArgs e)
+        {
+            {
+                if (comboBoxRegimen.SelectedIndex == -1)
+                    new ListadoRegimenHotel(idHotel, comboBoxRegimen).ShowDialog();
+                if (habitaciones.Count == 0)
+                {
+                    MessageBox.Show("No ingresó ninguna habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    this.precioPorNoche();
+                    var precio = this.precioPorNoche();
+                    textBoxPrecioPorNoche.Text = "U$S " + precio.ToString();
+                    var cantNoches = this.cantNoches();
+                    textBoxCantNoches.Text = cantNoches.ToString();
+                }
+            }
+        }
+
+        
+        
     }
 }

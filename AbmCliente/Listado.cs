@@ -33,15 +33,15 @@ namespace FrbaHotel.AbmCliente
                 AddJoin("JOIN MATOTA.TipoDocumento td ON (c.IdTipoDocumento = td.IdTipoDocumento)");
 
             if (!string.IsNullOrWhiteSpace(textBoxNombre.Text))
-                filtro.AddEquals("nombre", textBoxNombre.Text);
+                filtro.AddEquals("c.nombre", textBoxNombre.Text);
             if (!string.IsNullOrWhiteSpace(textBoxApellido.Text))
-                filtro.AddEquals("apellido", textBoxApellido.Text);
+                filtro.AddEquals("c.apellido", textBoxApellido.Text);
             if (!string.IsNullOrWhiteSpace(textBoxNumDoc.Text))
-                filtro.AddEquals("numeroDocumento", textBoxNumDoc.Text);
+                filtro.AddEquals("c.numeroDocumento", textBoxNumDoc.Text);
             if (!string.IsNullOrWhiteSpace(textBoxMail.Text))
-                filtro.AddLike("mail", textBoxMail.Text);
+                filtro.AddEquals("c.mail", textBoxMail.Text);
             if (comboBoxTipoDoc.SelectedIndex != -1)
-                filtro.AddEquals("IdTipoDocumento", comboBoxTipoDoc.SelectedValue.ToString());
+                filtro.AddEquals("c.IdTipoDocumento", comboBoxTipoDoc.SelectedValue.ToString());
 
             return DBHandler.QueryForComboBox(filtro.Build());
         }
@@ -64,16 +64,16 @@ namespace FrbaHotel.AbmCliente
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
+                var idTipoDoc = FormHandler.getIdTipoDoc(row.Cells["tipoDocumento"].Value.ToString());
+                var nroDoc = row.Cells["numeroDocumento"].Value.ToString();
                 if (e.ColumnIndex == dataGridView1.Columns["Modificar"].Index)
                 {
-                    var modificar = new Modificacion(row.Cells["tipoDocumento"].Value.ToString(), row.Cells["numeroDocumento"].Value.ToString());
+                    var modificar = new Modificacion(row.Cells["tipoDocumento"].Value.ToString(), nroDoc);
                     modificar.ShowDialog();
                 }
                 else if (e.ColumnIndex == dataGridView1.Columns["Inhabilitar"].Index)
                 {
-                    var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.Cliente");
-                    FormHandler.queryFiltradorSegunDoc(filtro, row.Cells["tipoDocumento"].Value.ToString(), row.Cells["numeroDocumento"].Value.ToString());
+                    var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.Cliente").AddEquals("idTipoDocumento",idTipoDoc).AddEquals("numeroDocumento",nroDoc);
                     var query = filtro.Fields("habilitado = 0").Build();
                     DBHandler.Query(query);
                     MessageBox.Show("Cliente inhabiliatdo");
