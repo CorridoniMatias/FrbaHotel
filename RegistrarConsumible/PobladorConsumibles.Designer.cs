@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.RegistrarConsumible
 {
-    partial class Registrar
+    partial class PobladorConsumibles
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Registrar
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 530);
-            this.Name = "Registrar";
-            this.Text = "Registrar Consumibles";
-            this.ResumeLayout(false);
-
+            this.Text = "PobladorConsumibles";
         }
 
         #endregion

@@ -144,7 +144,6 @@ namespace FrbaHotel
 
     public static class DBHandler
     {
-
         private static void Command(string commandText, List<SqlParameter> param, Action<SqlCommand> runner, CommandType type = CommandType.Text)
         {
             using (SqlConnection connection = new SqlConnection("Database=" + ConfigManager.SQLDatabase + ";Server=" + ConfigManager.SQLServer + ";User id=" + ConfigManager.SQLUsername + ";Password=" + ConfigManager.SQLPassword + ";connect timeout = 30"))
