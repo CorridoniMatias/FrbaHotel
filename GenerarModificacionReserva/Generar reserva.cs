@@ -15,9 +15,11 @@ namespace FrbaHotel.GenerarModificacionReserva
     {
         private string idHotel;
         public List<string> habitaciones { get; private set; }
+        private int cantPersonasReserva;
         public GenerarReserva()
         {
             habitaciones = new List<string>();
+            
             InitializeComponent();
             if (Login.Login.LoggedUsedID == -1)
             {
@@ -107,22 +109,24 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             var precio = habitaciones.Sum(habitacion => DBHandler.SPWithValue("MATOTA.PrecioHabitacion",
                 new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", habitacion), 
-                    new SqlParameter("@cantPersonas", this.cantidadPersonasReserva(habitacion)), new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue)}));
+                    new SqlParameter("@cantPersonas", this.cantidadPersonasHabitacion(habitacion)), new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue)}));
             return precio;
         }
-        private int cantidadPersonasReserva(string habitacion)
+        private int cantidadPersonasHabitacion(string habitacion)
         {
-            var cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
-            if (habitacion == habitaciones.First())
-            {
-                return cantPersonasReserva;
-            }
-            else
-            {
-                cantPersonasReserva = Math.Max(1, cantPersonasReserva - DBHandler.SPWithValue("MATOTA.personasHabitacion",
-                    new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", habitacion) }));
-            }
-            return cantPersonasReserva;
+            var cantMaxPersonasHabitacion = this.getPersonasMaxHabitacion(habitacion);
+            int aux;
+                if (cantPersonasReserva - cantMaxPersonasHabitacion > 0)
+                {
+                    cantPersonasReserva -= cantMaxPersonasHabitacion;
+                    return cantMaxPersonasHabitacion;
+                }
+                else
+                {
+                    aux = cantPersonasReserva;
+                    cantPersonasReserva = Math.Max(0, cantPersonasReserva - cantMaxPersonasHabitacion);
+                    return aux;
+                }
         }
         private int cantNoches()
         {
@@ -136,8 +140,11 @@ namespace FrbaHotel.GenerarModificacionReserva
                 MessageBox.Show("Seleccione un hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             else
+            {
                 new AbmHabitacion.Listado(idHotel, this).ShowDialog();
-
+                if(!string.IsNullOrEmpty(textBoxCantPersonas.Text))
+                    cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
+            }
         }
         private string getIdCliente()
         {
@@ -168,6 +175,12 @@ namespace FrbaHotel.GenerarModificacionReserva
             habitaciones.Remove(nroHab);
         }
 
+        private int getPersonasMaxHabitacion(string nroHab)
+        {
+           return DBHandler.SPWithValue("MATOTA.personasHabitacion", new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", nroHab) });
+       
+        }
+
         private void buttonConsultar_Click(object sender, EventArgs e)
         {
             {
@@ -176,10 +189,10 @@ namespace FrbaHotel.GenerarModificacionReserva
                 if (habitaciones.Count == 0)
                 {
                     MessageBox.Show("No ingresó ninguna habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    FormHandler.limpiar(groupBox2);
                 }
                 else
                 {
-                    this.precioPorNoche();
                     var precio = this.precioPorNoche();
                     textBoxPrecioPorNoche.Text = "U$S " + precio.ToString();
                     var cantNoches = this.cantNoches();
@@ -188,7 +201,12 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
         }
 
-        
-        
+        private void textBoxCantPersonas_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxCantPersonas.Text))
+                cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
+            FormHandler.limpiar(groupBox2);
+
+        } 
     }
 }

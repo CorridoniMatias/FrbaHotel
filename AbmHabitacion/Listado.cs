@@ -60,14 +60,14 @@ namespace FrbaHotel.AbmHabitacion
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                var nroHab = row.Cells["Habitación"].Value.ToString();
+                //var nroHab = row.Cells["Habitación"].Value.ToString();
                 if (e.ColumnIndex == dataGridView1.Columns["Agregar"].Index)
                 {
-                    reserva.agregarHabitacion(nroHab);
+                    reserva.agregarHabitacion(row.Cells["Habitación"].Value.ToString());
                 }
                 else if (e.ColumnIndex == dataGridView1.Columns["Quitar"].Index)
                 {
-                    reserva.quitarHabitacion(nroHab);
+                    reserva.quitarHabitacion(row.Cells["Habitación"].Value.ToString());
                 }
         }
     }

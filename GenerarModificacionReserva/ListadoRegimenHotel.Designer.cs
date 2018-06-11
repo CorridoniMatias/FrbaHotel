@@ -38,16 +38,16 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 38);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(432, 166);
+            this.dataGridView1.Size = new System.Drawing.Size(556, 166);
             this.dataGridView1.TabIndex = 0;
             // 
             // buttonVolver
             // 
             this.buttonVolver.ForeColor = System.Drawing.Color.Black;
             this.buttonVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonVolver.Location = new System.Drawing.Point(180, 226);
+            this.buttonVolver.Location = new System.Drawing.Point(251, 226);
             this.buttonVolver.Name = "buttonVolver";
-            this.buttonVolver.Size = new System.Drawing.Size(75, 23);
+            this.buttonVolver.Size = new System.Drawing.Size(100, 23);
             this.buttonVolver.TabIndex = 1;
             this.buttonVolver.Text = "Volver";
             this.buttonVolver.UseVisualStyleBackColor = true;
@@ -56,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 261);
+            this.ClientSize = new System.Drawing.Size(590, 261);
             this.Controls.Add(this.buttonVolver);
             this.Controls.Add(this.dataGridView1);
             this.Name = "ListadoRegimenHotel";

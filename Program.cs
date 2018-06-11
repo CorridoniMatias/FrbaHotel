@@ -28,8 +28,8 @@ namespace FrbaHotel
                 return;
             }
 
-            Application.Run(new RegistrarConsumible.SelectCantidad(new RegistrarConsumible.Consumible { descripcion = "1", precio = "2" }));
-            //Application.Run(new Form1());
+            //Application.Run(new RegistrarConsumible.SelectCantidad(new RegistrarConsumible.Consumible { descripcion = "1", precio = "2" }));
+            Application.Run(new Form1());
             //Application.Run(new AbmRol.Listado());
             //Application.Run(new AbmCliente.Listado());
         }
