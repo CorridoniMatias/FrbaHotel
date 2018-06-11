@@ -181,8 +181,24 @@ namespace FrbaHotel.RegistrarEstadia
             }
             
             // Actualizar la reserva como efectivizada!
-            
+            int ret = DBHandler.SPWithValue("MATOTA.EfectivizarReserva",
+                new List<SqlParameter> { 
+                    new SqlParameter("@idReserva", idReserva)
+                }
+                );
 
+            if (ret == 0)
+            {
+                MessageBox.Show("Error al efectivizar la reserva!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                RollBack(idEstadia);
+
+                return;
+            }
+
+            MessageBox.Show("Check-in registrado con exito.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
         }
     }
 }
