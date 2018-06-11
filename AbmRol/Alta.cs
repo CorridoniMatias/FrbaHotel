@@ -67,19 +67,22 @@ namespace FrbaHotel.AbmRol
                 hayError = true;
             }
 
-            string queryValidar = "SELECT COUNT(*) FROM MATOTA.Rol WHERE NOMBRE = '" + textBoxNombre.Text + "'";
-
-            if (idRol != "null")
+            if (!string.IsNullOrEmpty(field.Text.Trim()))
             {
-                queryValidar += "AND idRol <>" + idRol;
-            }
+                string queryValidar = "SELECT COUNT(*) FROM MATOTA.Rol WHERE NOMBRE = '" + textBoxNombre.Text + "'";
 
-            int cant = DBHandler.QueryScalar(queryValidar);
+                if (idRol != "null")
+                {
+                    queryValidar += "AND idRol <>" + idRol;
+                }
 
-            if (cant > 0)
-            {
-                MessageBox.Show("Ya existe un rol con ese nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                hayError = true;
+                int cant = DBHandler.QueryScalar(queryValidar);
+
+                if (cant > 0)
+                {
+                    MessageBox.Show("Ya existe un rol con ese nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
             }
 
             if (hayError)

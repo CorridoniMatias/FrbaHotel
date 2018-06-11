@@ -121,5 +121,14 @@ namespace FrbaHotel
                 dataGridView.Columns.Add(boton);
                 dataGridView.Columns.Add(boton2);
             }
+
+            public static void listarRoles(ComboBox comboBox)
+            {
+                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.Rol WHERE NOMBRE <> 'Guest'");
+                comboBox.DisplayMember = "NOMBRE";
+                comboBox.ValueMember = "idRol";
+
+            }   
     }
+
 }
