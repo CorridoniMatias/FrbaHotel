@@ -49,6 +49,7 @@
             this.dataGridViewRoles.AllowUserToAddRows = false;
             this.dataGridViewRoles.AllowUserToDeleteRows = false;
             this.dataGridViewRoles.AllowUserToOrderColumns = true;
+            this.dataGridViewRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idRol,
@@ -65,6 +66,7 @@
             // 
             // groupBoxFiltros
             // 
+            this.groupBoxFiltros.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBoxFiltros.Controls.Add(this.textBoxNombre);
             this.groupBoxFiltros.Controls.Add(this.labelNombre);
             this.groupBoxFiltros.Controls.Add(this.checkBoxEstado);
@@ -81,6 +83,7 @@
             // textBoxNombre
             // 
             this.textBoxNombre.Location = new System.Drawing.Point(105, 43);
+            this.textBoxNombre.MaxLength = 20;
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(100, 20);
             this.textBoxNombre.TabIndex = 4;
@@ -99,12 +102,15 @@
             // 
             this.checkBoxEstado.AutoSize = true;
             this.checkBoxEstado.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxEstado.Checked = true;
+            this.checkBoxEstado.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.checkBoxEstado.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkBoxEstado.Location = new System.Drawing.Point(294, 45);
             this.checkBoxEstado.Name = "checkBoxEstado";
             this.checkBoxEstado.Size = new System.Drawing.Size(92, 17);
             this.checkBoxEstado.TabIndex = 2;
             this.checkBoxEstado.Text = "Estado Activo";
+            this.checkBoxEstado.ThreeState = true;
             this.checkBoxEstado.UseVisualStyleBackColor = true;
             // 
             // buttonBuscar
@@ -131,41 +137,54 @@
             // 
             // idRol
             // 
+            this.idRol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.idRol.HeaderText = "idRol";
             this.idRol.Name = "idRol";
             this.idRol.ReadOnly = true;
             this.idRol.Visible = false;
+            this.idRol.Width = 56;
             // 
             // Nombre
             // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
             // 
             // Estado
             // 
-            this.Estado.HeaderText = "Estado";
+            this.Estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Estado.FillWeight = 95F;
+            this.Estado.HeaderText = "Estado Activo";
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
+            this.Estado.Width = 79;
             // 
             // Modificar
             // 
+            this.Modificar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Modificar.FillWeight = 95F;
             this.Modificar.HeaderText = "Modificar";
             this.Modificar.Name = "Modificar";
             this.Modificar.ReadOnly = true;
             this.Modificar.Text = "Modificar";
+            this.Modificar.Width = 56;
             // 
             // Eliminar
             // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.FillWeight = 95F;
             this.Eliminar.HeaderText = "Eliminar";
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.ReadOnly = true;
             this.Eliminar.Text = "Eliminar";
+            this.Eliminar.Width = 49;
             // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(451, 505);
             this.Controls.Add(this.groupBoxFiltros);
             this.Controls.Add(this.dataGridViewRoles);

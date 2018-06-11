@@ -22,6 +22,7 @@ namespace FrbaHotel.AbmRol
         private void Listado_Load(object sender, EventArgs e)
         {
             poblador = new PobladorRoles(textBoxNombre, checkBoxEstado, dataGridViewRoles, new List<string> { "Modificar", "Eliminar" });
+            poblador.Poblar();
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -48,12 +49,15 @@ namespace FrbaHotel.AbmRol
                     new Alta(
                             senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                            senderGrid.Rows[e.RowIndex].Cells[2].Value.ToString()).ShowDialog(this);
+                            senderGrid.Rows[e.RowIndex].Cells[2].Value.ToString(),true).ShowDialog(this);
                 }
                 else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Eliminar"))
                 {
-                    MessageBox.Show(DBHandler.QueryScalar("UPDATE MATOTA.Rol SET estado=0 WHERE idRol =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + ";SELECT idRol FROM MATOTA.Rol WHERE NOMBRE = '" + senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString() + "'").ToString());
+                    DBHandler.QueryScalar("UPDATE MATOTA.Rol SET estado=0 WHERE idRol =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + ";SELECT idRol FROM MATOTA.Rol WHERE NOMBRE = '" + senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString() + "'");
+
                 }
+                dataGridViewRoles.Rows.Clear();
+                poblador.Poblar();
             }
         }
 

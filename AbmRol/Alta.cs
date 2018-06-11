@@ -14,39 +14,32 @@ namespace FrbaHotel.AbmRol
     public partial class Alta : Form
     {
         bool modificando;
+        bool hayError;
         string idRol;
 
-        public Alta(string idRol = null, string nombre = null, string estado = "false", bool modificando = false)
+        public Alta(string idRol = "null", string nombre = null, string estado = "false", bool modificando = false)
         {
             this.modificando = modificando;
             this.idRol = idRol;
+            hayError = false;
             InitializeComponent();
-            var funcionalidades = DBHandler.Query("SELECT idPermiso, nombre FROM MATOTA.Permiso")
-                .Select(fun => new KeyValuePair<int, string>(Int32.Parse(fun["idPermiso"].ToString()), fun["nombre"].ToString()))
-                .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            var funcionalidades = DBHandler.Query("SELECT p.idPermiso, nombre, pr.idRol FROM MATOTA.Permiso p LEFT JOIN MATOTA.PermisosRol pr ON p.idPermiso = pr.idPermiso AND pr.IdRol =" + idRol)
+               .Select(fun => new Funcionalidad(fun["idPermiso"].ToString(), fun["nombre"].ToString(), (string.IsNullOrEmpty(fun["idRol"].ToString())) ? false : true));
 
             ((ListBox)checkedListBoxFuncionalidades).DataSource = new BindingSource(funcionalidades, null);
-            ((ListBox)checkedListBoxFuncionalidades).DisplayMember = "Value";
-            ((ListBox)checkedListBoxFuncionalidades).ValueMember = "Key";
-            if (idRol != null)
+            ((ListBox)checkedListBoxFuncionalidades).DisplayMember = "nombre";
+            ((ListBox)checkedListBoxFuncionalidades).ValueMember = "idFuncionalidad";
+
+            for (int i = 0; i < checkedListBoxFuncionalidades.Items.Count; i++)
             {
-                textBoxNombre.Text = nombre;
-                checkBoxEstado.Checked = Convert.ToBoolean(estado);
-                var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("p.idPermiso, p.nombre").Table("MATOTA.Permiso p");
-                query.AddJoin("INNER JOIN MATOTA.PermisosRol pr ON p.idPermiso = pr.idPermiso");
-                query.AddEquals("pr.idRol",idRol);
-
-                var funcionalidadesSeleccionadas = DBHandler.Query(query.Build())
-                    .Select(fun => new KeyValuePair<int, string>(Int32.Parse(fun["idPermiso"].ToString()), fun["nombre"].ToString()))
-                    .ToDictionary(pair => pair.Key, pair => pair.Value);
-
-                foreach (KeyValuePair<int, string> func in funcionalidadesSeleccionadas)
-                {
-                    checkedListBoxFuncionalidades.SetItemChecked(checkedListBoxFuncionalidades.Items.IndexOf(func), true);
-                }
-
-
+                if (((Funcionalidad)checkedListBoxFuncionalidades.Items[i]).seleccionado)
+                    checkedListBoxFuncionalidades.SetItemChecked(i, true);
             }
+
+            textBoxNombre.Text = nombre;
+            checkBoxEstado.Checked = Convert.ToBoolean(estado);
+
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -62,19 +55,39 @@ namespace FrbaHotel.AbmRol
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
 
-            ActualizarFuncionalidades();
-
             TextBox field = textBoxNombre;
 
             List<int> funcionalidades = new List<int>();
             foreach (var item in checkedListBoxFuncionalidades.CheckedItems)
-                funcionalidades.Add(((KeyValuePair<int, string>)item).Key);
+                funcionalidades.Add(Int32.Parse(((Funcionalidad)item).idFuncionalidad));
 
             if (string.IsNullOrEmpty(field.Text.Trim()) || funcionalidades.Count == 0)
             {
                 MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                hayError = true;
+            }
+
+            string queryValidar = "SELECT COUNT(*) FROM MATOTA.Rol WHERE NOMBRE = '" + textBoxNombre.Text + "'";
+
+            if (idRol != "null")
+            {
+                queryValidar += "AND idRol <>" + idRol;
+            }
+
+            int cant = DBHandler.QueryScalar(queryValidar);
+
+            if (cant > 0)
+            {
+                MessageBox.Show("Ya existe un rol con ese nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                hayError = true;
+            }
+
+            if (hayError)
+            {
+                hayError = false;
                 return;
             }
+
             if (!modificando)
             {
                 string query = "INSERT INTO MATOTA.Rol (NOMBRE,estado)" +
@@ -88,16 +101,17 @@ namespace FrbaHotel.AbmRol
 
 
 
-                int idRol = DBHandler.QueryScalar(query);
+                int idRolInsertado = DBHandler.QueryScalar(query);
 
-                if (idRol < 1)
+                if (idRolInsertado < 1)
                 {
                     MessageBox.Show("Error al agregar Rol", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 query = "INSERT INTO MATOTA.PermisosRol VALUES ";
-                query += String.Join(",", funcionalidades.Select(fun => "(" + idRol + ", " + fun + ")").ToArray());
+                query += String.Join(",", funcionalidades.Select(fun => "(" + idRolInsertado + ", " + fun + ")").ToArray());
+
                 int count = DBHandler.QueryRowCount(query);
 
                 if (count != funcionalidades.Count)
@@ -113,9 +127,11 @@ namespace FrbaHotel.AbmRol
 
             else
             {
+                ActualizarFuncionalidades();
+
                 string query = "UPDATE MATOTA.ROL SET nombre = '";
 
-                query += textBoxNombre.Text.ToString() + "' ";
+                query += textBoxNombre.Text.ToString() + "',";
 
                 query += "estado = " + Convert.ToInt32(checkBoxEstado.Checked);
 
@@ -130,18 +146,9 @@ namespace FrbaHotel.AbmRol
                     return;
                 }
 
-                query = "INSERT INTO MATOTA.PermisosRol VALUES ";
-
-                query += String.Join(",", funcionalidades.Select(fun => "(" + idRol + ", " + fun + ")").ToArray());
-                int count = DBHandler.QueryRowCount(query);
-
-                if (count != funcionalidades.Count)
-                {
-                    MessageBox.Show("Error al agregar Rol", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
                 else
                 {
-                    MessageBox.Show("Rol agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Rol modificado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
 
@@ -151,16 +158,16 @@ namespace FrbaHotel.AbmRol
         }
         private void ActualizarFuncionalidades()
         {
-            var altas = new List<Funcionalidades>();
-            var bajas = new List<Funcionalidades>();
+            var altas = new List<Funcionalidad>();
+            var bajas = new List<Funcionalidad>();
             var elegidas = checkedListBoxFuncionalidades.CheckedIndices;
 
             for (int i = 0; i < checkedListBoxFuncionalidades.Items.Count; i++)
             {
-                if (((Funcionalidades)checkedListBoxFuncionalidades.Items[i]).seleccionado && !elegidas.Contains(i))
-                    bajas.Add((Funcionalidades)checkedListBoxFuncionalidades.Items[i]);
-                else if (!((Funcionalidades)checkedListBoxFuncionalidades.Items[i]).seleccionado && elegidas.Contains(i))
-                    altas.Add(((Funcionalidades)checkedListBoxFuncionalidades.Items[i]));
+                if (((Funcionalidad)checkedListBoxFuncionalidades.Items[i]).seleccionado && !elegidas.Contains(i))
+                    bajas.Add((Funcionalidad)checkedListBoxFuncionalidades.Items[i]);
+                else if (!((Funcionalidad)checkedListBoxFuncionalidades.Items[i]).seleccionado && elegidas.Contains(i))
+                    altas.Add(((Funcionalidad)checkedListBoxFuncionalidades.Items[i]));
             }
 
             if (altas.Count > 0)
@@ -180,7 +187,7 @@ namespace FrbaHotel.AbmRol
 
             if (bajas.Count > 0)
             {
-                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.RegimenHotel");
+                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.PermisosRol");
                 int borradas = 0;
 
                 foreach (var func in bajas)
@@ -192,17 +199,17 @@ namespace FrbaHotel.AbmRol
                 var count = DBHandler.QueryRowCount(builder.Build());
 
                 if (count != borradas)
-                    MessageBox.Show("Error al desvincular alguno de las funcionalidades deseleccionadas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al desvincular alguna de las funcionalidades deseleccionadas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
-        public class Funcionalidades
+        public class Funcionalidad
         {
             public string idFuncionalidad { get; set; }
             public string nombre { get; set; }
             public bool seleccionado { get; set; }
 
-            public Funcionalidades(string id, string nombre, bool sel)
+            public Funcionalidad(string id, string nombre, bool sel)
             {
                 this.idFuncionalidad = id;
                 this.nombre = nombre;

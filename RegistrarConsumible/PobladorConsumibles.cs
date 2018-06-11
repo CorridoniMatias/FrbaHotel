@@ -8,25 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.AbmRol
+namespace FrbaHotel.RegistrarConsumible
 {
-    public partial class PobladorRoles : Form
+    public partial class PobladorConsumibles : Form
     {
-        private TextBox input;
-        private CheckBox estado;
+
+        private List<TextBox> inputs;
         private DataGridView grid;
         public QueryBuilder Filtro { get; private set; }
         private List<string> extraColumns;
 
-        public PobladorRoles(TextBox input, CheckBox estado, DataGridView grid, List<string> extraColumns)
+        public PobladorConsumibles(List<TextBox> inputs, DataGridView grid, List<string> extraColumns)
         {
             InitializeComponent();
-            this.input = input;
-            this.estado = estado;
+            this.inputs = inputs;
             this.grid = grid;
             Filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
-                .Fields("idRol, NOMBRE, estado")
-                .Table("MATOTA.Rol");
+                .Fields("c.codigoConsumible, c.descripcion, c.precio")
+                .Table("MATOTA.Consumible c");
 
             this.extraColumns = extraColumns;
         }
@@ -34,21 +33,19 @@ namespace FrbaHotel.AbmRol
         public void Poblar()
         {
             Filtro.ClearFilters();
-            if (!string.IsNullOrEmpty(input.Text.Trim()))
-            {
-                Filtro.AddLike("NOMBRE", input.Text.Trim());
-                
-            }
-            if(estado.CheckState != CheckState.Indeterminate)
-            Filtro.AddEquals("estado", Convert.ToInt32(estado.Checked).ToString());
+            inputs
+                .FindAll(c => !string.IsNullOrEmpty(c.Text.Trim()))
+                .ForEach(c =>
+                    Filtro.AddLike(c.Tag.ToString(), c.Text)
+                );
 
             try
             {
                 var newset = DBHandler.Query(Filtro.Build()).Select(row =>
                     {
-                        var orig = new List<string>() { row["idRol"].ToString(), 
-                                                        row["NOMBRE"].ToString(), 
-                                                        row["estado"].ToString()};
+                        var orig = new List<string>() { row["codigoConsumible"].ToString(), 
+                                                        row["descripcion"].ToString(), 
+                                                        row["precio"].ToString() };
                         orig.AddRange(extraColumns);
                         return orig;
                     }
@@ -56,9 +53,10 @@ namespace FrbaHotel.AbmRol
 
                 if (newset.Count() == 0)
                 {
-                    MessageBox.Show("No se encontró ningún rol. Intente cambiar el criterio de búsqueda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se encontraron consumibles. Intente cambiar el criterio de búsqueda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
+
 
                 newset.ForEach(row =>
                         grid.Rows.Add(row.ToArray())
@@ -67,10 +65,9 @@ namespace FrbaHotel.AbmRol
             catch (Exception e)
             {
                 this.DialogResult = System.Windows.Forms.DialogResult.Abort;
-                MessageBox.Show("Error al buscar roles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al buscar consumibles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
         }
-       
     }
 }
