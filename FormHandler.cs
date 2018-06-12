@@ -33,7 +33,8 @@ namespace FrbaHotel
                         CheckBox checkBox = (CheckBox)control;
                         if (checkBox.ThreeState)
                             checkBox.CheckState = CheckState.Indeterminate;
-                        checkBox.Checked = false;
+                        else
+                            checkBox.Checked = false;
                     }
                     if (control is ListBox)
                     {
@@ -126,6 +127,7 @@ namespace FrbaHotel
                 comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.Rol WHERE NOMBRE <> 'Guest'");
                 comboBox.DisplayMember = "NOMBRE";
                 comboBox.ValueMember = "idRol";
+                comboBox.SelectedIndex = -1;
 
             }   
     }
