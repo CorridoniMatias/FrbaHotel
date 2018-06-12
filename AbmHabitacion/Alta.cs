@@ -64,16 +64,16 @@ namespace FrbaHotel.AbmHabitacion
             //textBoxHotel no se ve aqui ya que es solo para que vean el nombre del hotel, sin embargo
             //el id del hotel no se modifica y se encuentra en el Login.Login.LoggedUserSessionHotelID,
             //que es el que realmente se tiene que guardar
-            List<TextBox> textBoxes = new List<TextBox> {textBoxComodidades,textBoxDescripcion,textBoxNumHabitacion,textBoxPiso,textBoxNumHabitacion};
-            List<ComboBox> comboBoxes = new List<ComboBox> {comboBoxTipoHabitacion,comboBoxUbicacion};
-            
+            List<TextBox> textBoxes = new List<TextBox> { textBoxComodidades, textBoxDescripcion, textBoxNumHabitacion, textBoxPiso, textBoxNumHabitacion };
+            List<ComboBox> comboBoxes = new List<ComboBox> { comboBoxTipoHabitacion, comboBoxUbicacion };
+
             if (textBoxes.Any(tb => string.IsNullOrEmpty(tb.Text)) || comboBoxes.Any(cb => cb.SelectedIndex == -1))
             {
-                MessageBox.Show("Debe completar todos los campos para dar de alta la habitación","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Debe completar todos los campos para dar de alta la habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            try 
+            try
             {
                 var ret = DBHandler.SPWithValue("MATOTA.altaHabitacion",
                     new List<SqlParameter>{
@@ -93,9 +93,11 @@ namespace FrbaHotel.AbmHabitacion
                 else if (ret == 1)
                     MessageBox.Show("Habitación ingresada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 MessageBox.Show("Error al intentar registrar la nueva habitación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+        }
     }
 }
