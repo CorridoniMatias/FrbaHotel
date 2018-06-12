@@ -87,6 +87,7 @@
             this.buttonCargar.TabIndex = 29;
             this.buttonCargar.Text = "Cargar";
             this.buttonCargar.UseVisualStyleBackColor = true;
+            this.buttonCargar.Click += new System.EventHandler(this.buttonCargar_Click);
             // 
             // FacturarEstadia
             // 
@@ -100,6 +101,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FacturarEstadia";
             this.Text = "FacturarEstadia";
+            this.Load += new System.EventHandler(this.FacturarEstadia_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

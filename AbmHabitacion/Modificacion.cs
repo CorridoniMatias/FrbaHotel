@@ -24,8 +24,16 @@ namespace FrbaHotel.AbmHabitacion
             this.idHotel = idHotel;
             var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
                 Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", this.idHotel);
-            this.textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
-            
+
+            try
+            {
+                this.textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió al intentar agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             this.textBoxNumHabitacion.Text = numHabitacion;
             this.textBoxPiso.Text = piso;
             this.comboBoxUbicacion.Text = ubicacion;
