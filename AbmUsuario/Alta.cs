@@ -171,11 +171,17 @@ namespace FrbaHotel.AbmUsuario
 
             string query = "INSERT INTO MATOTA.RolesUsuario VALUES ("+idUsuario.ToString()+","+comboBoxRol.SelectedValue.ToString()+")";
 
-            DBHandler.Query(query);
-
-            MessageBox.Show("Usuario agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
-
+            try
+            {
+                DBHandler.Query(query);
+                MessageBox.Show("Usuario agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         private void textBoxUsername_TextChanged(object sender, EventArgs e)

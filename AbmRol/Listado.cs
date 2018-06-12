@@ -52,7 +52,16 @@ namespace FrbaHotel.AbmRol
                 }
                 else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Eliminar"))
                 {
-                    DBHandler.Query("UPDATE MATOTA.Rol SET estado=0 WHERE idRol =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+                    try
+                    {
+                        DBHandler.Query("UPDATE MATOTA.Rol SET estado=0 WHERE idRol =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un error al eliminar el rol.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    } 
 
                 }
                 dataGridViewRoles.Rows.Clear();

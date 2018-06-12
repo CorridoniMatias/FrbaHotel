@@ -115,17 +115,28 @@ namespace FrbaHotel.AbmRol
                 query = "INSERT INTO MATOTA.PermisosRol VALUES ";
                 query += String.Join(",", funcionalidades.Select(fun => "(" + idRolInsertado + ", " + fun + ")").ToArray());
 
-                int count = DBHandler.QueryRowCount(query);
 
-                if (count != funcionalidades.Count)
+                try
                 {
-                    MessageBox.Show("Error al agregar Rol", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    int count = DBHandler.QueryRowCount(query);
+
+                    if (count != funcionalidades.Count)
+                    {
+                        MessageBox.Show("Error al agregar Rol", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Rol agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+
                 }
-                else
+                catch (Exception)
                 {
-                    MessageBox.Show("Rol agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    MessageBox.Show("Ocurrió un error al agregar el rol.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+                
             }
 
             else
@@ -140,20 +151,29 @@ namespace FrbaHotel.AbmRol
 
                 query += "WHERE idRol = " + idRol;
 
-
-                int filasModificadas = DBHandler.QueryRowCount(query);
-
-                if (filasModificadas != 1)
+                try
                 {
-                    MessageBox.Show("Error al guardar Rol", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    int filasModificadas = DBHandler.QueryRowCount(query);
+
+                    if (filasModificadas != 1)
+                    {
+                        MessageBox.Show("Error al guardar Rol", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Rol modificado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un error al guardar el rol.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                else
-                {
-                    MessageBox.Show("Rol modificado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
 
             }
 
