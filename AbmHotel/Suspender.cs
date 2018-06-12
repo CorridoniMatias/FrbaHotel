@@ -48,8 +48,11 @@ namespace FrbaHotel.AbmHotel
             var cantReservasP = new SqlParameter("@reservas", SqlDbType.Int) { Direction = ParameterDirection.Output };
             var cantEstadiasP = new SqlParameter("@estadias", SqlDbType.Int) { Direction = ParameterDirection.Output };
             var cantInactividadesP = new SqlParameter("@inactividades", SqlDbType.Int) { Direction = ParameterDirection.Output };
-            int ret = DBHandler.SPWithValue("MATOTA.ReservasEstadiasEnPeriodo",
-                new List<SqlParameter> { 
+            int ret = 0;
+            try
+            {
+                ret = DBHandler.SPWithValue("MATOTA.ReservasEstadiasEnPeriodo",
+                   new List<SqlParameter> { 
                             new SqlParameter("@fechaDesde", dateTimePickerDesde.Value.ToString("yyyy-MM-dd") ) { Direction = ParameterDirection.Input },
                             new SqlParameter("@fechaHasta", dateTimePickerHasta.Value.ToString("yyyy-MM-dd") ) { Direction = ParameterDirection.Input },
                             new SqlParameter("@idHotel", idHotel) { Direction = ParameterDirection.Input },
@@ -57,7 +60,13 @@ namespace FrbaHotel.AbmHotel
                             cantReservasP,
                             cantInactividadesP
                         }
-            );
+               );
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Imposible suspender el hotel en el periodo seleccionado, ocurrió un error inesperado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (Convert.ToInt32(cantReservasP.Value) > 0)
             {
@@ -83,7 +92,17 @@ namespace FrbaHotel.AbmHotel
                                 .AddValues(textBoxMotivo.Text.Trim(), dateTimePickerDesde.Value.ToString("yyyy-MM-dd"), dateTimePickerHasta.Value.ToString("yyyy-MM-dd"), idHotel)
                                 .Build();
 
-            var rows = DBHandler.QueryRowCount(query);
+            int rows = 0;
+
+            try
+            {
+                rows = DBHandler.QueryRowCount(query);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Imposible suspender el hotel en el periodo seleccionado, ocurrio un error inesperado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (rows < 1)
             {

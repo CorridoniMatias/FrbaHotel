@@ -56,12 +56,21 @@ namespace FrbaHotel.Login
                 return;
             }
 
-            int ret = DBHandler.SPWithValue("MATOTA.loginUsuario",
-                new List<SqlParameter> { 
+            int ret = 0;
+            try
+            {
+                ret = DBHandler.SPWithValue("MATOTA.loginUsuario",
+                    new List<SqlParameter> { 
                     new SqlParameter("@username", textBoxUsername.Text),
                     new SqlParameter("@password", textBoxPassword.Text)
                 }
-                );
+                    );
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al iniciar sesión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (ret == 0)
             {
@@ -72,30 +81,39 @@ namespace FrbaHotel.Login
                 MessageBox.Show("Su usuario se encuentra inhabilitado por haber ingresado incorrectamente su contraseña multiples veces.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (ret > 0)
             {
-                LoggedUsedID = ret; // login correcto: llevar a proxima vista o algo
-                var roles = DBHandler.Query("SELECT r.idRol, r.nombre FROM MATOTA.Rol r INNER JOIN MATOTA.RolesUsuario ru ON ru.idRol = r.idRol WHERE r.estado = 1 AND ru.idUsuario = " + LoggedUsedID);
-
-                switch (roles.Count)
+                LoggedUsedID = ret;
+                try
                 {
-                    case 0:
-                        MessageBox.Show("Usted no dispone de roles. No puede operar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.Close();
-                        break;
-                    case 1:
-                        LoggedUserRoleID = (int)roles.First()["idRol"];
-                        //Entrar directamente al sistema.
-                        break;
-                    default:
-                        SelectRol rolselector = new SelectRol(roles);
-                        DialogResult re = rolselector.ShowDialog();
-                        if (re == System.Windows.Forms.DialogResult.OK)
-                            LoggedUserRoleID = rolselector.SelectedRole;
-                        else
-                        {
+
+                    var roles = DBHandler.Query("SELECT r.idRol, r.nombre FROM MATOTA.Rol r INNER JOIN MATOTA.RolesUsuario ru ON ru.idRol = r.idRol WHERE r.estado = 1 AND ru.idUsuario = " + LoggedUsedID);
+
+                    switch (roles.Count)
+                    {
+                        case 0:
+                            MessageBox.Show("Usted no dispone de roles. No puede operar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             this.Close();
-                            return;
-                        }
-                    break;
+                            break;
+                        case 1:
+                            LoggedUserRoleID = (int)roles.First()["idRol"];
+                            //Entrar directamente al sistema.
+                            break;
+                        default:
+                            SelectRol rolselector = new SelectRol(roles);
+                            DialogResult re = rolselector.ShowDialog();
+                            if (re == System.Windows.Forms.DialogResult.OK)
+                                LoggedUserRoleID = rolselector.SelectedRole;
+                            else
+                            {
+                                this.Close();
+                                return;
+                            }
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un error al intentar obtener sus roles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
 

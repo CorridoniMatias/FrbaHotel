@@ -62,6 +62,30 @@ namespace FrbaHotel.AbmHotel
                 return;
             }
 
+            var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
+                                .Table("MATOTA.Hotel")
+                                .Fields("idHotel")
+                                .AddEquals("calle", textBoxCalle.Text.Trim())
+                                .AddEquals("nroCalle", textBoxNroCalle.Text.Trim())
+                                .AddEquals("ciudad", textBoxCiudad.Text.Trim())
+                                .AddEquals("pais", textBoxPais.Text.Trim());
+
+            try
+            {
+                var res = DBHandler.Query(builder.Build());
+
+                if (res.Count > 0)
+                {
+                    MessageBox.Show("Ya existe un hotel en la misma ubicacion que especificó.\nPor favor, revise los datos ingresados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al comprobar si ya existe el hotel que desea registrar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string query = "INSERT INTO MATOTA.Hotel (nombre,mail,telefono,calle,nroCalle,ciudad,pais,cantidadEstrellas,fechaCreacion)" +
                             "VALUES (";
 
@@ -70,8 +94,17 @@ namespace FrbaHotel.AbmHotel
 
             query += "');SELECT scope_identity()";
 
+            int idhotel = -1;
+            try
+            {
+                idhotel = DBHandler.QueryScalar(query);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al agregar el hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            int idhotel = DBHandler.QueryScalar(query);
             if (idhotel < 1)
             {
                 MessageBox.Show("Error al agregar hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -80,17 +113,28 @@ namespace FrbaHotel.AbmHotel
 
             query = "INSERT INTO MATOTA.RegimenHotel VALUES ";
             query += String.Join(",", rgs.Select(r => "(" + idhotel + ", " + r + ")").ToArray());
-            int count = DBHandler.QueryRowCount(query);
+
+            int count = -1;
+
+            try
+            {
+                count = DBHandler.QueryRowCount(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al agregar los regímenes seleccionados, sin embargo, el hotel fue registrado con éxito\n Intente agregar los regímenes a través de la interfaz de modificación del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             if (count != rgs.Count)
             {
-                MessageBox.Show("Error al agregar hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ocurrió un error al agregar los regímenes seleccionados, sin embargo, el hotel fue registrado con éxito\n Intente agregar los regímenes a través de la interfaz de modificación del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 MessageBox.Show("Hotel agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
             }
+
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)

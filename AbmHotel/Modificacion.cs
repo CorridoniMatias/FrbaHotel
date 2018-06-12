@@ -48,7 +48,15 @@ namespace FrbaHotel.AbmHotel
             builder.Fields(fields)
                     .AddEquals("idHotel", idHotel);
 
-            var rows = DBHandler.QueryRowCount(builder.Build());
+            int rows = 0;
+            try
+            {
+                rows = DBHandler.QueryRowCount(builder.Build());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al actualizar datos base hotel!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             if (rows == 0)
                 MessageBox.Show("Error al actualizar datos base hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -81,8 +89,16 @@ namespace FrbaHotel.AbmHotel
 
                 altas.ForEach(alta => builder.AddValues(idHotel, alta.idRegimen));
 
+                int rows = 0;
 
-                var rows = DBHandler.QueryRowCount(builder.Build());
+                try
+                {
+                    rows = DBHandler.QueryRowCount(builder.Build());
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al agregar los regímenes seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
                 if (rows != altas.Count)
                     MessageBox.Show("Error al agregar los regímenes seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -98,15 +114,24 @@ namespace FrbaHotel.AbmHotel
                 {
                     var cantReservasP = new SqlParameter("@reservas", SqlDbType.Int) { Direction = ParameterDirection.Output };
                     var cantEstadiasP = new SqlParameter("@estadias", SqlDbType.Int) { Direction = ParameterDirection.Output };
-                    int ret = DBHandler.SPWithValue("MATOTA.CheckRegimenHotelConstraint",
-                        new List<SqlParameter> { 
+                    int ret = 0;
+                    try
+                    {
+                        ret = DBHandler.SPWithValue("MATOTA.CheckRegimenHotelConstraint",
+                            new List<SqlParameter> { 
                             new SqlParameter("@fechaActual", ConfigManager.FechaSistema.ToString("yyyy-MM-dd") ) { Direction = ParameterDirection.Input },
                             new SqlParameter("@idHotel", idHotel) { Direction = ParameterDirection.Input },
                             new SqlParameter("@idRegimen", regimen.idRegimen) { Direction = ParameterDirection.Input },
                             cantEstadiasP,
                             cantReservasP
                         }
-                    );
+                        );
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Imposible quitar el regimen " + regimen.nombre + ". Ocurrió un error inesperado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
 
                     if (Convert.ToInt32(cantReservasP.Value) > 0)
                     {
@@ -125,7 +150,16 @@ namespace FrbaHotel.AbmHotel
                     borradas++;
                 }
 
-                var count = DBHandler.QueryRowCount(builder.Build());
+                int count = 0;
+                try
+                {
+                     count = DBHandler.QueryRowCount(builder.Build());
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un error inesperado al intentar remover los regímenes seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (count != borradas)
                     MessageBox.Show("Error al desvincular alguno de los regimenes deseleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -135,23 +169,32 @@ namespace FrbaHotel.AbmHotel
 
         private void Modificacion_Load(object sender, EventArgs e)
         {
-            var regimenes = DBHandler.Query("SELECT r.idRegimen, nombre, rh.idHotel FROM MATOTA.Regimen r LEFT JOIN MATOTA.RegimenHotel rh ON rh.idRegimen = r.idRegimen AND rh.idHotel=" + idHotel)
-                            .Select(reg => 
-                                
-                                new RegimenesHoteles(reg["idRegimen"].ToString(), reg["nombre"].ToString(), ((string.IsNullOrEmpty(reg["idHotel"].ToString())) ? false : true) )
-                                
-
-                             ).ToList();
-
-            ((ListBox)checkedListBoxRegimenes).DataSource = new BindingSource(regimenes, null);
-            ((ListBox)checkedListBoxRegimenes).DisplayMember = "nombre";
-            ((ListBox)checkedListBoxRegimenes).ValueMember = "idRegimen";
-
-
-            for (int i = 0 ; i < checkedListBoxRegimenes.Items.Count ; i++)
+            try
             {
-                if ( ((RegimenesHoteles)checkedListBoxRegimenes.Items[i]).seleccionado )
-                    checkedListBoxRegimenes.SetItemChecked(i, true);
+                var regimenes = DBHandler.Query("SELECT r.idRegimen, nombre, rh.idHotel FROM MATOTA.Regimen r LEFT JOIN MATOTA.RegimenHotel rh ON rh.idRegimen = r.idRegimen AND rh.idHotel=" + idHotel)
+                                .Select(reg =>
+
+                                    new RegimenesHoteles(reg["idRegimen"].ToString(), reg["nombre"].ToString(), ((string.IsNullOrEmpty(reg["idHotel"].ToString())) ? false : true))
+
+
+                                 ).ToList();
+
+                ((ListBox)checkedListBoxRegimenes).DataSource = new BindingSource(regimenes, null);
+                ((ListBox)checkedListBoxRegimenes).DisplayMember = "nombre";
+                ((ListBox)checkedListBoxRegimenes).ValueMember = "idRegimen";
+
+
+                for (int i = 0; i < checkedListBoxRegimenes.Items.Count; i++)
+                {
+                    if (((RegimenesHoteles)checkedListBoxRegimenes.Items[i]).seleccionado)
+                        checkedListBoxRegimenes.SetItemChecked(i, true);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al intentar cargar los datos del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                this.Close();
             }
         }
 

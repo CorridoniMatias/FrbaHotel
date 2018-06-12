@@ -27,13 +27,22 @@ namespace FrbaHotel.RegistrarEstadia
                 return;
             }
 
-            bool ret = DBHandler.SPWithBool("MATOTA.ReservaEsValida",
+            bool ret = false;
+            try
+            {
+                ret = DBHandler.SPWithBool("MATOTA.ReservaEsValida",
                 new List<SqlParameter> { 
                     new SqlParameter("@idReserva", textBoxReserva.Text.Trim()),
                     new SqlParameter("@idHotel", Login.Login.LoggedUserSessionHotelID),
                     new SqlParameter("@fechaSistema", ConfigManager.FechaSistema.ToString("yyyy-MM-dd")) //ConfigManager.FechaSistema.ToString("yyyy-MM-dd")
                 }
                 );
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al intentar verificar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (!ret)
             {
