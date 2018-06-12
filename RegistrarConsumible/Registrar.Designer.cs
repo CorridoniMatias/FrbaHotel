@@ -40,7 +40,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnModificar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnModificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ColumnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -76,6 +76,7 @@
             this.buttonRegister.TabIndex = 10;
             this.buttonRegister.Text = "Registrar consumibles";
             this.buttonRegister.UseVisualStyleBackColor = true;
+            this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
             // 
             // buttonContinue
             // 
@@ -86,6 +87,7 @@
             this.buttonContinue.TabIndex = 9;
             this.buttonContinue.Text = "Continuar sin consumibles";
             this.buttonContinue.UseVisualStyleBackColor = true;
+            this.buttonContinue.Click += new System.EventHandler(this.buttonContinue_Click);
             // 
             // groupBox1
             // 
@@ -180,9 +182,13 @@
             // 
             // ColumnModificar
             // 
+            this.ColumnModificar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.ColumnModificar.HeaderText = "Modificar";
             this.ColumnModificar.Name = "ColumnModificar";
             this.ColumnModificar.ReadOnly = true;
+            this.ColumnModificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnModificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnModificar.Width = 111;
             // 
             // ColumnRemove
             // 
@@ -204,6 +210,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Registrar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar Consumibles";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -227,7 +234,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnModificar;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnModificar;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnRemove;
     }
 }

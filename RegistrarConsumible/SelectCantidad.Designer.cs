@@ -31,10 +31,10 @@
             this.textBoxConsumible = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDownCantidad = new System.Windows.Forms.NumericUpDown();
             this.textBoxPrecio = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDownCantidad = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -81,7 +81,42 @@
             this.groupBox1.Size = new System.Drawing.Size(478, 255);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Agregar consumible a estadía";
+            this.groupBox1.Text = "Ingrese la cantidad consumida";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(17, 185);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 24);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Cantidad";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // numericUpDownCantidad
+            // 
+            this.numericUpDownCantidad.Location = new System.Drawing.Point(138, 183);
+            this.numericUpDownCantidad.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDownCantidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownCantidad.Name = "numericUpDownCantidad";
+            this.numericUpDownCantidad.Size = new System.Drawing.Size(312, 28);
+            this.numericUpDownCantidad.TabIndex = 7;
+            this.numericUpDownCantidad.Tag = "cantidad";
+            this.numericUpDownCantidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // textBoxPrecio
             // 
@@ -107,36 +142,6 @@
             this.label2.Text = "Precio Unit.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // numericUpDownCantidad
-            // 
-            this.numericUpDownCantidad.Location = new System.Drawing.Point(138, 183);
-            this.numericUpDownCantidad.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownCantidad.Name = "numericUpDownCantidad";
-            this.numericUpDownCantidad.Size = new System.Drawing.Size(312, 28);
-            this.numericUpDownCantidad.TabIndex = 7;
-            this.numericUpDownCantidad.Tag = "cantidad";
-            this.numericUpDownCantidad.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(17, 185);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 24);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Cantidad";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // buttonAdd
             // 
             this.buttonAdd.Location = new System.Drawing.Point(367, 293);
@@ -144,7 +149,7 @@
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(125, 39);
             this.buttonAdd.TabIndex = 7;
-            this.buttonAdd.Text = "Agregar";
+            this.buttonAdd.Text = "Listo";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
@@ -169,6 +174,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SelectCantidad";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seleccione la cantidad";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
