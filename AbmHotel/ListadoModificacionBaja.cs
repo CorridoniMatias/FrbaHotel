@@ -70,5 +70,10 @@ namespace FrbaHotel.AbmHotel
             Reload();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormHandler.limpiar(this.groupBox1);
+        }
+
     }
 }

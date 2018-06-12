@@ -92,5 +92,11 @@ namespace FrbaHotel.AbmHotel
                 this.Close();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormHandler.limpiar(this.groupBox1);
+            FormHandler.limpiar(this.groupBox2);
+        }
     }
 }

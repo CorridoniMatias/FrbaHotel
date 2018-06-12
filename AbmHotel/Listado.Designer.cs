@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxCantEstrellas = new System.Windows.Forms.TextBox();
             this.textBoxTelefono = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxMail = new System.Windows.Forms.TextBox();
@@ -53,8 +55,6 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.textBoxCantEstrellas = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -82,6 +82,27 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(494, 141);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 24);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Nro. Calle";
+            // 
+            // textBoxCantEstrellas
+            // 
+            this.textBoxCantEstrellas.Location = new System.Drawing.Point(597, 137);
+            this.textBoxCantEstrellas.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxCantEstrellas.MaxLength = 18;
+            this.textBoxCantEstrellas.Name = "textBoxCantEstrellas";
+            this.textBoxCantEstrellas.Size = new System.Drawing.Size(266, 28);
+            this.textBoxCantEstrellas.TabIndex = 7;
+            this.textBoxCantEstrellas.Tag = "nroCalle";
             // 
             // textBoxTelefono
             // 
@@ -197,6 +218,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Limpiar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonBuscar
             // 
@@ -312,27 +334,6 @@
             this.ColumnSelect.Name = "ColumnSelect";
             this.ColumnSelect.ReadOnly = true;
             this.ColumnSelect.Text = "Seleccionar";
-            // 
-            // textBoxCantEstrellas
-            // 
-            this.textBoxCantEstrellas.Location = new System.Drawing.Point(597, 137);
-            this.textBoxCantEstrellas.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxCantEstrellas.MaxLength = 18;
-            this.textBoxCantEstrellas.Name = "textBoxCantEstrellas";
-            this.textBoxCantEstrellas.Size = new System.Drawing.Size(266, 28);
-            this.textBoxCantEstrellas.TabIndex = 7;
-            this.textBoxCantEstrellas.Tag = "nroCalle";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(494, 141);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 24);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Nro. Calle";
             // 
             // Listado
             // 

@@ -46,6 +46,9 @@ namespace FrbaHotel
                     {
                         DateTimePicker dateTimePicker = (DateTimePicker)control;
                         dateTimePicker.Value = DateTime.Now;
+
+                        if(control.Name.Equals("dateTimePickerFilter"))
+                            dateTimePicker.Checked = false;
                     }
                     if (control is CheckedListBox) 
                     {

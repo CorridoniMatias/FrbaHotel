@@ -168,5 +168,11 @@ namespace FrbaHotel.AbmHotel
                 this.seleccionado = sel;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

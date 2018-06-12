@@ -117,16 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 373</value>
+  </data>
   <data name="&gt;&gt;textBoxNombre.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 24</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="&gt;&gt;textBoxTel.Name" xml:space="preserve">
     <value>textBoxTel</value>
@@ -146,6 +145,7 @@
   <data name="&gt;&gt;buttonSave.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="textBoxTel.MaxLength" type="System.Int32, mscorlib">
     <value>80</value>
   </data>
@@ -198,8 +198,8 @@
   <data name="dateTimePickerFechaCreacion.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="&gt;&gt;textBoxMail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>493, 883</value>
@@ -213,9 +213,6 @@
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 223</value>
   </data>
-  <data name="textBoxPais.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 223</value>
-  </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
@@ -224,9 +221,6 @@
   </data>
   <data name="label7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>647, 945</value>
   </data>
   <data name="textBoxCiudad.MaxLength" type="System.Int32, mscorlib">
     <value>255</value>
@@ -243,14 +237,8 @@
   <data name="&gt;&gt;label10.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="button2.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="textBoxNombre.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 81</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Mail</value>
+  <data name="textBoxNroCalle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Nuevo Hotel</value>
@@ -261,8 +249,8 @@
   <data name="button1.Text" xml:space="preserve">
     <value>Limpiar</value>
   </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="textBoxNombre.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="&gt;&gt;dateTimePickerFechaCreacion.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -294,6 +282,12 @@
   <data name="textBoxMail.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 52</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;textBoxCalle.Name" xml:space="preserve">
     <value>textBoxCalle</value>
   </data>
@@ -309,14 +303,17 @@
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 24</value>
   </data>
+  <data name="buttonSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>493, 883</value>
+  </data>
   <data name="&gt;&gt;textBoxNroCalle.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;textBoxTel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="textBoxNroCalle.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
+  </data>
+  <data name="&gt;&gt;textBoxNroCalle.Name" xml:space="preserve">
+    <value>textBoxNroCalle</value>
   </data>
   <data name="textBoxCantEstrellas.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 28</value>
@@ -332,9 +329,6 @@
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Fecha creación</value>
-  </data>
-  <data name="&gt;&gt;textBoxPais.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -372,8 +366,8 @@
   <data name="textBoxMail.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 28</value>
   </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
   </data>
   <data name="&gt;&gt;buttonSave.Name" xml:space="preserve">
     <value>buttonSave</value>
@@ -390,9 +384,6 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Nro de calle</value>
   </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
   <data name="&gt;&gt;textBoxCantEstrellas.Name" xml:space="preserve">
     <value>textBoxCantEstrellas</value>
   </data>
@@ -404,6 +395,9 @@
   </data>
   <data name="&gt;&gt;button1.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Cantidad estrellas</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 256</value>
@@ -435,6 +429,9 @@
   <data name="dateTimePickerFechaCreacion.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 316</value>
   </data>
+  <data name="&gt;&gt;textBoxNroCalle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;dateTimePickerFechaCreacion.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
@@ -453,17 +450,26 @@
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="groupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
   <data name="&gt;&gt;textBoxMail.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;textBoxCiudad.Name" xml:space="preserve">
     <value>textBoxCiudad</value>
   </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 24</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Dirección</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 113</value>
@@ -477,6 +483,9 @@
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 316</value>
   </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
@@ -486,20 +495,14 @@
   <data name="label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
   <data name="&gt;&gt;textBoxTel.Parent" xml:space="preserve">
     <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>9</value>
   </data>
   <data name="textBoxNombre.MaxLength" type="System.Int32, mscorlib">
     <value>82</value>
   </data>
-  <data name="textBoxCalle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 28</value>
+  <data name="&gt;&gt;textBoxMail.Name" xml:space="preserve">
+    <value>textBoxMail</value>
   </data>
   <data name="&gt;&gt;textBoxNroCalle.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -519,14 +522,14 @@
   <data name="label10.Text" xml:space="preserve">
     <value>País</value>
   </data>
-  <data name="textBoxCantEstrellas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 24</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
+  </data>
+  <data name="textBoxCantEstrellas.MaxLength" type="System.Int32, mscorlib">
+    <value>18</value>
   </data>
   <data name="textBoxCiudad.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 168</value>
@@ -534,11 +537,11 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
-  </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Calle</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Ciudad</value>
@@ -558,8 +561,8 @@
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 198</value>
   </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="textBoxCalle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 28</value>
   </data>
   <data name="buttonSave.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -567,14 +570,17 @@
   <data name="dateTimePickerFechaCreacion.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 28</value>
   </data>
+  <data name="&gt;&gt;checkedListBoxRegimenes.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="textBoxPais.MaxLength" type="System.Int32, mscorlib">
     <value>60</value>
   </data>
   <data name="textBoxNroCalle.MaxLength" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="buttonSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>493, 883</value>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -600,14 +606,14 @@
   <data name="textBoxMail.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 137</value>
   </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;checkedListBoxRegimenes.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="textBoxCiudad.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 28</value>
@@ -621,20 +627,20 @@
   <data name="textBoxCalle.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="groupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
   </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 24</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Mail</value>
   </data>
   <data name="dateTimePickerFechaCreacion.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;textBoxNroCalle.Name" xml:space="preserve">
-    <value>textBoxNroCalle</value>
+  <data name="&gt;&gt;textBoxTel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groupBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -648,20 +654,17 @@
   <data name="&gt;&gt;button1.Name" xml:space="preserve">
     <value>button1</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 52</value>
+  <data name="textBoxCantEstrellas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>598, 509</value>
-  </data>
   <data name="&gt;&gt;textBoxCiudad.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="textBoxTel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 198</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 24</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -674,6 +677,9 @@
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="textBoxTel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 198</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>10, 22</value>
@@ -696,8 +702,8 @@
   <data name="textBoxNombre.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;checkedListBoxRegimenes.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="textBoxNombre.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 81</value>
   </data>
   <data name="&gt;&gt;button2.Name" xml:space="preserve">
     <value>button2</value>
@@ -735,11 +741,8 @@
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 137</value>
   </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Datos nuevo hotel</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>647, 945</value>
   </data>
   <data name="textBoxCalle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -747,17 +750,17 @@
   <data name="&gt;&gt;label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="textBoxCalle.MaxLength" type="System.Int32, mscorlib">
     <value>255</value>
   </data>
-  <data name="textBoxCantEstrellas.MaxLength" type="System.Int32, mscorlib">
-    <value>18</value>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>598, 509</value>
   </data>
-  <data name="&gt;&gt;checkedListBoxRegimenes.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
     <value>Guardar</value>
@@ -765,32 +768,29 @@
   <data name="textBoxTel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="&gt;&gt;textBoxNroCalle.Type" xml:space="preserve">
+  <data name="&gt;&gt;textBoxMail.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 883</value>
   </data>
-  <data name="textBoxNombre.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="&gt;&gt;button2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Dirección</value>
-  </data>
-  <data name="&gt;&gt;textBoxMail.Name" xml:space="preserve">
-    <value>textBoxMail</value>
-  </data>
-  <data name="label10.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
-  </data>
   <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="&gt;&gt;textBoxPais.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="checkedListBoxRegimenes.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -804,8 +804,8 @@
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>598, 301</value>
   </data>
-  <data name="textBoxNroCalle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 24</value>
   </data>
   <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
@@ -813,20 +813,20 @@
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Datos nuevo hotel</value>
   </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label10.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
   </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 373</value>
+  <data name="textBoxPais.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 223</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Cantidad estrellas</value>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
   </data>
   <data name="&gt;&gt;textBoxNombre.ZOrder" xml:space="preserve">
     <value>6</value>

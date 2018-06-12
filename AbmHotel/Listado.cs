@@ -56,5 +56,10 @@ namespace FrbaHotel.AbmHotel
             dataGridView1.Rows.Clear();
             poblador.Poblar();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormHandler.limpiar(this.groupBox1);
+        }
     }
 }
