@@ -42,9 +42,15 @@ namespace FrbaHotel.AbmHabitacion
             }
             else
             {
-                var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
-                Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
-                textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
+                try 
+                {
+                    var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
+                    Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
+                    textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
+                }
+                catch (Exception) {
+                    MessageBox.Show("Ocurrió un error al agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -67,7 +73,9 @@ namespace FrbaHotel.AbmHabitacion
                 return;
             }
 
-            var ret = DBHandler.SPWithValue("MATOTA.altaHabitacion",
+            try 
+            {
+                var ret = DBHandler.SPWithValue("MATOTA.altaHabitacion",
                     new List<SqlParameter>{
                         new SqlParameter("@nroHabitacion",textBoxNumHabitacion.Text.Trim()),
                         new SqlParameter("@piso",textBoxPiso.Text.Trim()),
@@ -77,13 +85,17 @@ namespace FrbaHotel.AbmHabitacion
                         new SqlParameter("@descripcion",textBoxDescripcion.Text),
                         new SqlParameter("@comodidades",textBoxComodidades.Text),
                     });
-            if (ret == 0)
-            {
-                MessageBox.Show("El número de habitacion ingresado ya existe en el hotel " + textBoxHotel.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxNumHabitacion.Text = string.Empty;
+                if (ret == 0)
+                {
+                    MessageBox.Show("El número de habitacion ingresado ya existe en el hotel " + textBoxHotel.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBoxNumHabitacion.Text = string.Empty;
+                }
+                else if (ret == 1)
+                    MessageBox.Show("Habitación ingresada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if (ret == 1)
-                MessageBox.Show("Habitación ingresada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            catch (Exception) {
+                MessageBox.Show("Error al intentar registrar la nueva habitación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
     }
 }

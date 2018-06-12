@@ -55,24 +55,32 @@ namespace FrbaHotel.AbmHabitacion
                 return;
             }
 
-            var result = DBHandler.SPWithValue("MATOTA.UpdateHabitacion",
-                 new List<SqlParameter> { 
-                    new SqlParameter("@idHotel", this.idHotel),
-                    new SqlParameter("@nroHabitacion", textBoxNumHabitacion.Text.Trim()),
-                    new SqlParameter("@piso", textBoxPiso.Text.Trim()),
-                    new SqlParameter("@idUbicacion", comboBoxUbicacion.SelectedValue),
-                    new SqlParameter("@idTipoHabitacion", this.idTipoHabitacion),
-                    new SqlParameter("@descripcion", textBoxDescripcion.Text),
-                    new SqlParameter("@comodidades", textBoxComodidades.Text),
-                    new SqlParameter("@habilitado", checkBoxHabilitado.Checked),
-                }
-                 );
-            if (result == 0)
-                MessageBox.Show("El número de habitación ingresado en este Hotel ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (result == 1)
+            try
             {
-                MessageBox.Show("Actualización realizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                var result = DBHandler.SPWithValue("MATOTA.UpdateHabitacion",
+                     new List<SqlParameter> { 
+                        new SqlParameter("@idHotel", this.idHotel),
+                        new SqlParameter("@nroHabitacion", textBoxNumHabitacion.Text.Trim()),
+                        new SqlParameter("@piso", textBoxPiso.Text.Trim()),
+                        new SqlParameter("@idUbicacion", comboBoxUbicacion.SelectedValue),
+                        new SqlParameter("@idTipoHabitacion", this.idTipoHabitacion),
+                        new SqlParameter("@descripcion", textBoxDescripcion.Text),
+                        new SqlParameter("@comodidades", textBoxComodidades.Text),
+                        new SqlParameter("@habilitado", checkBoxHabilitado.Checked),
+                    }
+                     );
+                if (result == 0)
+                    MessageBox.Show("El número de habitación ingresado en este Hotel ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (result == 1)
+                {
+                    MessageBox.Show("Actualización realizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al intentar modificar la habitación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
         }
     }

@@ -51,8 +51,16 @@ namespace FrbaHotel.AbmHabitacion
                 query.AddEquals("th.idTipoHabitacion", comboBoxTipoHab.SelectedValue.ToString());
             if (comboBoxUbicacion.SelectedIndex != -1)
                 query.AddEquals("u.idUbicacion", comboBoxUbicacion.SelectedValue.ToString());
-            
-            dataGridView1.DataSource = DBHandler.QueryForComboBox(query.Build());
+
+            try
+            {
+                dataGridView1.DataSource = DBHandler.QueryForComboBox(query.Build());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al listar las habitaciones.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
