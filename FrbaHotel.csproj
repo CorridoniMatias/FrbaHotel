@@ -220,11 +220,29 @@
     <Compile Include="GenerarModificacionReserva\Generar reserva.Designer.cs">
       <DependentUpon>Generar reserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarModificacionReserva\Listado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\Listado.Designer.cs">
+      <DependentUpon>Listado.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerarModificacionReserva\ListadoRegimenHotel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GenerarModificacionReserva\ListadoRegimenHotel.Designer.cs">
       <DependentUpon>ListadoRegimenHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\Modificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\Modificacion.Designer.cs">
+      <DependentUpon>Modificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\PobladorReservas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\PobladorReservas.Designer.cs">
+      <DependentUpon>PobladorReservas.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\Form1.cs">
       <SubType>Form</SubType>
@@ -380,8 +398,14 @@
     <EmbeddedResource Include="GenerarModificacionReserva\Generar reserva.resx">
       <DependentUpon>Generar reserva.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\Listado.resx">
+      <DependentUpon>Listado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\ListadoRegimenHotel.resx">
       <DependentUpon>ListadoRegimenHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\Modificacion.resx">
+      <DependentUpon>Modificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

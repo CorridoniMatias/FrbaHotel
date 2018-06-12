@@ -13,11 +13,13 @@ namespace FrbaHotel.AbmHabitacion
     public partial class Listado : Form
     {
         private string idHotel;
-        private GenerarModificacionReserva.GenerarReserva reserva;
-        public Listado(string idHotel,GenerarModificacionReserva.GenerarReserva reserva)
+        private List<string> habitaciones;
+        //private List<string> habitacionesRemovidas;
+        public Listado(string idHotel,List<string> habitaciones)
         {
             this.idHotel = idHotel;
-            this.reserva = reserva;
+            this.habitaciones = habitaciones;
+            //this.habitacionesRemovidas = habitacionesRemovidas;
             InitializeComponent();
         }
 
@@ -60,14 +62,24 @@ namespace FrbaHotel.AbmHabitacion
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                //var nroHab = row.Cells["Habitación"].Value.ToString();
+                var nroHab = row.Cells["Habitación"].Value.ToString();
                 if (e.ColumnIndex == dataGridView1.Columns["Agregar"].Index)
                 {
-                    reserva.agregarHabitacion(row.Cells["Habitación"].Value.ToString());
+                    if (habitaciones.Contains(nroHab))
+                        MessageBox.Show("Ya seleccionó esta habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                    {
+                        habitaciones.Add(nroHab);
+                        MessageBox.Show("Habitacion " + nroHab.ToString() + " agregada", "Habitación agregada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //FormHandler.listarHabitacionesReserva(dataGridView1, habitaciones);
+                    }
                 }
                 else if (e.ColumnIndex == dataGridView1.Columns["Quitar"].Index)
                 {
-                    reserva.quitarHabitacion(row.Cells["Habitación"].Value.ToString());
+                    habitaciones.Remove(nroHab);
+                    //habitacionesRemovidas.Add(nroHab);
+                    MessageBox.Show("Habitacion " + nroHab.ToString() + " quitada", "Habitación quitada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //FormHandler.listarHabitacionesReserva(dataGridView1, habitaciones);
                 }
         }
     }

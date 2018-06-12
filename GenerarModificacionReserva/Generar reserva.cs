@@ -16,6 +16,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private string idHotel;
         public List<string> habitaciones { get; private set; }
         private int cantPersonasReserva;
+        private float precioNoche;
         public GenerarReserva()
         {
             habitaciones = new List<string>();
@@ -79,7 +80,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
-            if (this.cantNoches() == 0)
+            if (this.cantNoches() <= 0)
             {
                 MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -87,7 +88,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             {
                 DBHandler.SPWithValue("MATOTA.ActualizarReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
                 DBHandler.SPWithValue("MATOTA.habilitarHabitacionesDeReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
-                MessageBox.Show("El precio total de la reserva es de U$S " + this.precioPorNoche() * this.cantNoches(), "Precio Total", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El precio total de la reserva es de U$S " + precioNoche * this.cantNoches(), "Precio Total", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 var idCliente = this.getIdCliente();
                 var idReserva = DBHandler.SPWithValue("MATOTA.AltaReserva",
                     new List<SqlParameter>{ new SqlParameter("@idHotel",idHotel),
@@ -97,7 +98,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                         new SqlParameter("@cantidadNoches",this.cantNoches()),
                                         new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue),
                                         new SqlParameter("@idCliente",idCliente),
-                                        new SqlParameter("@precioBase",this.precioPorNoche()*this.cantNoches()),
+                                        new SqlParameter("@precioBase",precioNoche*this.cantNoches()),
                                         new SqlParameter("@cantidadPersonas",textBoxCantPersonas.Text),});
                 habitaciones.ForEach(hab => DBHandler.SPWithValue("MATOTA.agregarHabitacionesReservadas",
                     new List<SqlParameter> { new SqlParameter("@nroHabitacion", hab), new SqlParameter("@idReserva", idReserva), new SqlParameter("@idHotel", idHotel) }));
@@ -141,7 +142,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             else
             {
-                new AbmHabitacion.Listado(idHotel, this).ShowDialog();
+                new AbmHabitacion.Listado(idHotel, habitaciones).ShowDialog();
                 if(!string.IsNullOrEmpty(textBoxCantPersonas.Text))
                     cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
             }
@@ -159,20 +160,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                 return alta.InsertedClient.idCliente;
             }
 
-        }
-        public void agregarHabitacion(string nroHab)
-        {
-            if (habitaciones.Contains(nroHab))
-                MessageBox.Show("Ya seleccionó esta habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
-            {
-                habitaciones.Add(nroHab);
-            }
-
-        }
-        public void quitarHabitacion(string nroHab)
-        {
-            habitaciones.Remove(nroHab);
         }
 
         private int getPersonasMaxHabitacion(string nroHab)
@@ -193,8 +180,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
-                    var precio = this.precioPorNoche();
-                    textBoxPrecioPorNoche.Text = "U$S " + precio.ToString();
+                    precioNoche = this.precioPorNoche();
+                    textBoxPrecioPorNoche.Text = "U$S " + precioNoche.ToString();
                     var cantNoches = this.cantNoches();
                     textBoxCantNoches.Text = cantNoches.ToString();
                 }

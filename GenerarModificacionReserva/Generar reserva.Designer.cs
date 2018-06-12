@@ -49,8 +49,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonConsultar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -184,11 +187,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.buttonSeleccionarHab);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupBox1.Location = new System.Drawing.Point(15, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(321, 240);
+            this.groupBox1.Size = new System.Drawing.Size(321, 241);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese aquí los datos";
@@ -196,7 +198,7 @@
             // buttonSeleccionarHab
             // 
             this.buttonSeleccionarHab.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonSeleccionarHab.Location = new System.Drawing.Point(104, 207);
+            this.buttonSeleccionarHab.Location = new System.Drawing.Point(126, 22);
             this.buttonSeleccionarHab.Name = "buttonSeleccionarHab";
             this.buttonSeleccionarHab.Size = new System.Drawing.Size(175, 23);
             this.buttonSeleccionarHab.TabIndex = 0;
@@ -248,11 +250,32 @@
             this.label8.TabIndex = 20;
             this.label8.Text = "Cantidad noches";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.buttonSeleccionarHab);
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox3.Location = new System.Drawing.Point(351, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(411, 241);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Habitaciones";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 64);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(399, 150);
+            this.dataGridView1.TabIndex = 1;
+            // 
             // GenerarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 475);
+            this.ClientSize = new System.Drawing.Size(774, 475);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.comboBoxRegimen);
             this.Controls.Add(this.buttonGenerar);
@@ -271,9 +294,10 @@
             this.Name = "GenerarReserva";
             this.Text = "Generar reserva";
             this.Load += new System.EventHandler(this.GenerarReserva_Load);
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,5 +326,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonSeleccionarHab;
         private System.Windows.Forms.Button buttonConsultar;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

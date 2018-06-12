@@ -82,5 +82,10 @@ namespace FrbaHotel
             new GenerarModificacionReserva.GenerarReserva().ShowDialog(this);
         }
 
+        private void buttonModificar_Click(object sender, EventArgs e)
+        {
+            new GenerarModificacionReserva.Listado().ShowDialog(this);
+        }
+
     }
 }
