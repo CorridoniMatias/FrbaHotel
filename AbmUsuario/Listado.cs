@@ -56,7 +56,15 @@ namespace FrbaHotel.AbmUsuario
                 }
                 else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Eliminar"))
                 {
-                    DBHandler.Query("UPDATE MATOTA.Usuario SET habilitado=0 WHERE idUsuario =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    try
+                    {
+                        DBHandler.Query("UPDATE MATOTA.Usuario SET habilitado=0 WHERE idUsuario =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un error al eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    } 
 
                 }
                 dataGridViewUsuarios.Rows.Clear();

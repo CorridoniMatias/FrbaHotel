@@ -156,13 +156,24 @@ namespace FrbaHotel.AbmUsuario
             {
                 string queryValidar = "SELECT COUNT(*) FROM MATOTA.Usuario WHERE username = '" + textBoxUsername.Text + "' AND idUsuario <>"+idUsuario;
 
-                int cant = DBHandler.QueryScalar(queryValidar);
 
-                if (cant > 0)
+                try
                 {
-                    MessageBox.Show("Ya existe un usuario con ese nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    hayError = true;
+                    int cant = DBHandler.QueryScalar(queryValidar);
+
+                    if (cant > 0)
+                    {
+                        MessageBox.Show("Ya existe un usuario con ese nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        hayError = true;
+                    }
+
                 }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
             }
 
             if (hayError)
@@ -192,11 +203,29 @@ namespace FrbaHotel.AbmUsuario
 
             query += " WHERE idUsuario=" + idUsuario;
 
-            DBHandler.Query(query);
+            try
+            {
+                DBHandler.Query(query);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             query = "UPDATE MATOTA.RolesUsuario SET idRol="  + comboBoxRol.SelectedValue.ToString() + "WHERE idUsuario ="+idUsuario;
 
-            DBHandler.Query(query);
+            try
+            {
+                DBHandler.Query(query);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             MessageBox.Show("Usuario guardado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
