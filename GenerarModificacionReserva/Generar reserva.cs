@@ -180,6 +180,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
+                    cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
                     precioNoche = this.precioPorNoche();
                     textBoxPrecioPorNoche.Text = "U$S " + precioNoche.ToString();
                     var cantNoches = this.cantNoches();

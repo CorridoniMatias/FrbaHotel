@@ -108,6 +108,11 @@ namespace FrbaHotel
                 comboBox.DisplayMember = "nombre";
                 comboBox.ValueMember = "idHotel";
             }
+            public static string getIdHotel(string nombre)
+            {
+                var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("idHotel").Table("MATOTA.Hotel").AddLike("nombre", nombre).Build();
+                return DBHandler.Query(query).First().Values.First().ToString();
+            }
             public static void crearBotonesParaHabitacionesReserva(DataGridView dataGridView)
             {
                 DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
