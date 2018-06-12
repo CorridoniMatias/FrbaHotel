@@ -150,7 +150,7 @@
             // 
             this.textBoxNroHabitacion.Location = new System.Drawing.Point(492, 48);
             this.textBoxNroHabitacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxNroHabitacion.MaxLength = 255;
+            this.textBoxNroHabitacion.MaxLength = 18;
             this.textBoxNroHabitacion.Name = "textBoxNroHabitacion";
             this.textBoxNroHabitacion.Size = new System.Drawing.Size(255, 26);
             this.textBoxNroHabitacion.TabIndex = 9;
@@ -171,7 +171,7 @@
             // 
             this.textBoxDescripcion.Location = new System.Drawing.Point(705, 160);
             this.textBoxDescripcion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxDescripcion.MaxLength = 60;
+            this.textBoxDescripcion.MaxLength = 255;
             this.textBoxDescripcion.Name = "textBoxDescripcion";
             this.textBoxDescripcion.Size = new System.Drawing.Size(307, 26);
             this.textBoxDescripcion.TabIndex = 7;
@@ -181,7 +181,7 @@
             // 
             this.textBoxPiso.Location = new System.Drawing.Point(848, 48);
             this.textBoxPiso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxPiso.MaxLength = 255;
+            this.textBoxPiso.MaxLength = 18;
             this.textBoxPiso.Name = "textBoxPiso";
             this.textBoxPiso.Size = new System.Drawing.Size(256, 26);
             this.textBoxPiso.TabIndex = 6;
