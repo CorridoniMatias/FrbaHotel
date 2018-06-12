@@ -55,6 +55,8 @@
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarHotelActualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonCancelar = new System.Windows.Forms.Button();
             this.tabControlFunciones.SuspendLayout();
             this.tabPageHoteles.SuspendLayout();
             this.tabPageReservas.SuspendLayout();
@@ -72,7 +74,7 @@
             this.tabControlFunciones.Controls.Add(this.tabPageEstadias);
             this.tabControlFunciones.Controls.Add(this.tabPageEstadistica);
             this.tabControlFunciones.Location = new System.Drawing.Point(0, 24);
-            this.tabControlFunciones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControlFunciones.Margin = new System.Windows.Forms.Padding(2);
             this.tabControlFunciones.Name = "tabControlFunciones";
             this.tabControlFunciones.SelectedIndex = 0;
             this.tabControlFunciones.Size = new System.Drawing.Size(586, 180);
@@ -81,9 +83,9 @@
             // tabPageRoles
             // 
             this.tabPageRoles.Location = new System.Drawing.Point(4, 22);
-            this.tabPageRoles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageRoles.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageRoles.Name = "tabPageRoles";
-            this.tabPageRoles.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageRoles.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageRoles.Size = new System.Drawing.Size(578, 154);
             this.tabPageRoles.TabIndex = 0;
             this.tabPageRoles.Text = "Roles";
@@ -97,9 +99,9 @@
             this.tabPageHoteles.Controls.Add(this.label1);
             this.tabPageHoteles.Controls.Add(this.buttonLaunchHotelManager);
             this.tabPageHoteles.Location = new System.Drawing.Point(4, 22);
-            this.tabPageHoteles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageHoteles.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageHoteles.Name = "tabPageHoteles";
-            this.tabPageHoteles.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageHoteles.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageHoteles.Size = new System.Drawing.Size(578, 154);
             this.tabPageHoteles.TabIndex = 1;
             this.tabPageHoteles.Text = "Hoteles";
@@ -118,7 +120,7 @@
             // buttonEdit
             // 
             this.buttonEdit.Location = new System.Drawing.Point(299, 118);
-            this.buttonEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEdit.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(76, 22);
             this.buttonEdit.TabIndex = 3;
@@ -150,7 +152,7 @@
             // buttonLaunchHotelManager
             // 
             this.buttonLaunchHotelManager.Location = new System.Drawing.Point(268, 74);
-            this.buttonLaunchHotelManager.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonLaunchHotelManager.Margin = new System.Windows.Forms.Padding(2);
             this.buttonLaunchHotelManager.Name = "buttonLaunchHotelManager";
             this.buttonLaunchHotelManager.Size = new System.Drawing.Size(76, 22);
             this.buttonLaunchHotelManager.TabIndex = 0;
@@ -161,7 +163,7 @@
             // tabPageUsuarios
             // 
             this.tabPageUsuarios.Location = new System.Drawing.Point(4, 22);
-            this.tabPageUsuarios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageUsuarios.Name = "tabPageUsuarios";
             this.tabPageUsuarios.Size = new System.Drawing.Size(578, 154);
             this.tabPageUsuarios.TabIndex = 2;
@@ -171,7 +173,7 @@
             // tabPageHuespedes
             // 
             this.tabPageHuespedes.Location = new System.Drawing.Point(4, 22);
-            this.tabPageHuespedes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageHuespedes.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageHuespedes.Name = "tabPageHuespedes";
             this.tabPageHuespedes.Size = new System.Drawing.Size(578, 154);
             this.tabPageHuespedes.TabIndex = 3;
@@ -180,13 +182,15 @@
             // 
             // tabPageReservas
             // 
+            this.tabPageReservas.Controls.Add(this.buttonCancelar);
+            this.tabPageReservas.Controls.Add(this.label6);
             this.tabPageReservas.Controls.Add(this.label7);
             this.tabPageReservas.Controls.Add(this.buttonModificar);
             this.tabPageReservas.Controls.Add(this.buttonGenerar);
             this.tabPageReservas.Controls.Add(this.label5);
             this.tabPageReservas.Controls.Add(this.label4);
             this.tabPageReservas.Location = new System.Drawing.Point(4, 22);
-            this.tabPageReservas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageReservas.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageReservas.Name = "tabPageReservas";
             this.tabPageReservas.Size = new System.Drawing.Size(578, 154);
             this.tabPageReservas.TabIndex = 4;
@@ -196,15 +200,15 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 118);
+            this.label7.Location = new System.Drawing.Point(8, 103);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(266, 13);
+            this.label7.Size = new System.Drawing.Size(213, 13);
             this.label7.TabIndex = 5;
-            this.label7.Text = "Para modificar o cancelar una reserva haga click aquí:";
+            this.label7.Text = "Para modificar una reserva haga click aquí:";
             // 
             // buttonModificar
             // 
-            this.buttonModificar.Location = new System.Drawing.Point(291, 113);
+            this.buttonModificar.Location = new System.Drawing.Point(291, 98);
             this.buttonModificar.Name = "buttonModificar";
             this.buttonModificar.Size = new System.Drawing.Size(75, 23);
             this.buttonModificar.TabIndex = 4;
@@ -247,7 +251,7 @@
             this.tabPageEstadias.Controls.Add(this.label9);
             this.tabPageEstadias.Controls.Add(this.label8);
             this.tabPageEstadias.Location = new System.Drawing.Point(4, 22);
-            this.tabPageEstadias.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageEstadias.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageEstadias.Name = "tabPageEstadias";
             this.tabPageEstadias.Size = new System.Drawing.Size(578, 154);
             this.tabPageEstadias.TabIndex = 5;
@@ -257,7 +261,7 @@
             // buttonCheckin
             // 
             this.buttonCheckin.Location = new System.Drawing.Point(188, 56);
-            this.buttonCheckin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonCheckin.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCheckin.Name = "buttonCheckin";
             this.buttonCheckin.Size = new System.Drawing.Size(76, 22);
             this.buttonCheckin.TabIndex = 4;
@@ -289,7 +293,7 @@
             // tabPageEstadistica
             // 
             this.tabPageEstadistica.Location = new System.Drawing.Point(4, 22);
-            this.tabPageEstadistica.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageEstadistica.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageEstadistica.Name = "tabPageEstadistica";
             this.tabPageEstadistica.Size = new System.Drawing.Size(578, 154);
             this.tabPageEstadistica.TabIndex = 6;
@@ -346,6 +350,25 @@
             this.cambiarHotelActualToolStripMenuItem.Text = "Cambiar Hotel Actual";
             this.cambiarHotelActualToolStripMenuItem.Click += new System.EventHandler(this.cambiarHotelActualToolStripMenuItem_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 132);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(215, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Para cancelar una reserva haga click aquí: ";
+            // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.Location = new System.Drawing.Point(291, 127);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelar.TabIndex = 7;
+            this.buttonCancelar.Text = "Administrar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,7 +378,7 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MenuPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -406,5 +429,7 @@
         private System.Windows.Forms.Button buttonCheckin;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonCancelar;
+        private System.Windows.Forms.Label label6;
     }
 }

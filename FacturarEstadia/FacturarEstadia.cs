@@ -28,10 +28,10 @@ namespace FrbaHotel.FacturarEstadia
                     nroHabitaciones[i] = nroHabitaciones[i].Trim();
                 }
 
-                try
+                /*try
                 {
 
-                }
+                }*/
             }
         }
 

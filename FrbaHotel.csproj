@@ -206,11 +206,11 @@
     <Compile Include="AbmUsuario\PobladorUsuarios.Designer.cs">
       <DependentUpon>PobladorUsuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="CancelarReserva\Form1.cs">
+    <Compile Include="CancelarReserva\Cancelar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CancelarReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CancelarReserva\Cancelar.Designer.cs">
+      <DependentUpon>Cancelar.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigManager.cs" />
     <Compile Include="DBHandler.cs" />
@@ -409,7 +409,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuario\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
-	</EmbeddedResource>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CancelarReserva\Cancelar.resx">
+      <DependentUpon>Cancelar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FacturarEstadia\Factura.resx">
       <DependentUpon>Factura.cs</DependentUpon>
     </EmbeddedResource>

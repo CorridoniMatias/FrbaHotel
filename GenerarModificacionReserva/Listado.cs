@@ -27,7 +27,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             comboBoxHotel.SelectedIndex = -1;
             FormHandler.listarRegimenes(comboBoxRegimen);
             comboBoxRegimen.SelectedIndex = -1;
-            poblador = new PobladorReservas(textBoxIdReserva, comboBoxHotel, comboBoxRegimen, dataGridView1, new List<string> { "Modificar", "Cancelar" });
+            poblador = new PobladorReservas(textBoxIdReserva, comboBoxHotel, comboBoxRegimen, dataGridView1, new List<string> { "Modificar"});
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -61,13 +61,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                             senderGrid.Rows[e.RowIndex].Cells[5].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[6].Value.ToString(),
                             habitaciones).ShowDialog();
-                }
-                else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Cancelar"))
-                {
-                    /*new Suspender(
-                        senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                        senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString()
-                    ).ShowDialog(this);*/
                 }
             }
         }
