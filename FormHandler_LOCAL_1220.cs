@@ -34,8 +34,7 @@ namespace FrbaHotel
                         CheckBox checkBox = (CheckBox)control;
                         if (checkBox.ThreeState)
                             checkBox.CheckState = CheckState.Indeterminate;
-                        else
-                            checkBox.Checked = false;
+                        checkBox.Checked = false;
                     }
                     if (control is ListBox)
                     {
@@ -134,7 +133,6 @@ namespace FrbaHotel
                 comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idRegimen,nombre FROM MATOTA.Regimen");
                 comboBox.DisplayMember = "nombre";
                 comboBox.ValueMember = "idRegimen";
-                comboBox.SelectedIndex = -1;
             }
             public static void listarHabitacionesReserva(DataGridView dataGridView, List<string> habitaciones)
             {
@@ -145,5 +143,6 @@ namespace FrbaHotel
                 var habitacionesParam = new SqlParameter("@habitaciones",SqlDbType.Structured).Value = dt;
                 dataGridView.DataSource = DBHandler.QueryForComboBox("MATOTA.GetHabitacionesReserva", new List<SqlParameter> { new SqlParameter("@habitaciones", habitacionesParam)});
             }
-            }   
+    }
+
 }

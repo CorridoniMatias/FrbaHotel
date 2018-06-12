@@ -40,7 +40,7 @@ namespace FrbaHotel.AbmRol
                 
             }
             if(estado.CheckState != CheckState.Indeterminate)
-            Filtro.AddEquals("estado", Convert.ToInt32(estado.Checked).ToString());
+                Filtro.AddEquals("estado", Convert.ToInt32(estado.Checked).ToString());
 
             try
             {

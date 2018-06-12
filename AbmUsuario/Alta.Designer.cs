@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBoxUser = new System.Windows.Forms.GroupBox();
+            this.comboBoxRol = new System.Windows.Forms.ComboBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.textBoxUsername = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxDireccion = new System.Windows.Forms.GroupBox();
@@ -59,10 +63,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxUsername = new System.Windows.Forms.TextBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.comboBoxRol = new System.Windows.Forms.ComboBox();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.groupBoxUser.SuspendLayout();
@@ -85,6 +85,49 @@
             this.groupBoxUser.TabIndex = 0;
             this.groupBoxUser.TabStop = false;
             this.groupBoxUser.Text = "Datos del Usuario";
+            // 
+            // comboBoxRol
+            // 
+            this.comboBoxRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRol.FormattingEnabled = true;
+            this.comboBoxRol.Location = new System.Drawing.Point(150, 90);
+            this.comboBoxRol.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxRol.Name = "comboBoxRol";
+            this.comboBoxRol.Size = new System.Drawing.Size(193, 21);
+            this.comboBoxRol.TabIndex = 18;
+            this.comboBoxRol.SelectedIndexChanged += new System.EventHandler(this.comboBoxRol_SelectedIndexChanged);
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Location = new System.Drawing.Point(150, 60);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxPassword.MaxLength = 20;
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(193, 20);
+            this.textBoxPassword.TabIndex = 18;
+            this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
+            // 
+            // textBoxUsername
+            // 
+            this.textBoxUsername.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxUsername.Location = new System.Drawing.Point(150, 30);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxUsername.MaxLength = 10;
+            this.textBoxUsername.Name = "textBoxUsername";
+            this.textBoxUsername.Size = new System.Drawing.Size(193, 20);
+            this.textBoxUsername.TabIndex = 18;
+            this.textBoxUsername.TextChanged += new System.EventHandler(this.textBoxUsername_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(7, 90);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Rol asignado";
             // 
             // label2
             // 
@@ -185,7 +228,7 @@
             // 
             this.textBoxDepto.Location = new System.Drawing.Point(150, 120);
             this.textBoxDepto.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxDepto.MaxLength = 50;
+            this.textBoxDepto.MaxLength = 3;
             this.textBoxDepto.Name = "textBoxDepto";
             this.textBoxDepto.Size = new System.Drawing.Size(193, 20);
             this.textBoxDepto.TabIndex = 8;
@@ -308,6 +351,7 @@
             this.comboBoxTipoDoc.Name = "comboBoxTipoDoc";
             this.comboBoxTipoDoc.Size = new System.Drawing.Size(193, 21);
             this.comboBoxTipoDoc.TabIndex = 13;
+            this.comboBoxTipoDoc.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoDoc_SelectedIndexChanged);
             // 
             // textBoxTelefono
             // 
@@ -424,47 +468,6 @@
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 0;
             this.label10.Text = "Nombre";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(7, 90);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Rol asignado";
-            // 
-            // textBoxUsername
-            // 
-            this.textBoxUsername.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxUsername.Location = new System.Drawing.Point(150, 30);
-            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxUsername.MaxLength = 10;
-            this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(193, 20);
-            this.textBoxUsername.TabIndex = 18;
-            this.textBoxUsername.TextChanged += new System.EventHandler(this.textBoxUsername_TextChanged);
-            // 
-            // textBoxPassword
-            // 
-            this.textBoxPassword.Location = new System.Drawing.Point(150, 60);
-            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxPassword.MaxLength = 20;
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(193, 20);
-            this.textBoxPassword.TabIndex = 18;
-            this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
-            // 
-            // comboBoxRol
-            // 
-            this.comboBoxRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxRol.FormattingEnabled = true;
-            this.comboBoxRol.Location = new System.Drawing.Point(150, 90);
-            this.comboBoxRol.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBoxRol.Name = "comboBoxRol";
-            this.comboBoxRol.Size = new System.Drawing.Size(193, 21);
-            this.comboBoxRol.TabIndex = 18;
             // 
             // buttonGuardar
             // 

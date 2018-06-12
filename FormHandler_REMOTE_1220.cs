@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -128,22 +127,9 @@ namespace FrbaHotel
                 comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.Rol WHERE NOMBRE <> 'Guest'");
                 comboBox.DisplayMember = "NOMBRE";
                 comboBox.ValueMember = "idRol";
-            }
-            public static void listarRegimenes(ComboBox comboBox)
-            {
-                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idRegimen,nombre FROM MATOTA.Regimen");
-                comboBox.DisplayMember = "nombre";
-                comboBox.ValueMember = "idRegimen";
                 comboBox.SelectedIndex = -1;
-            }
-            public static void listarHabitacionesReserva(DataGridView dataGridView, List<string> habitaciones)
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("nroHabitacion", typeof(int));
-                habitaciones.ForEach(hab => dt.Rows.Add(hab));
-                dataGridView.Rows.Clear();
-                var habitacionesParam = new SqlParameter("@habitaciones",SqlDbType.Structured).Value = dt;
-                dataGridView.DataSource = DBHandler.QueryForComboBox("MATOTA.GetHabitacionesReserva", new List<SqlParameter> { new SqlParameter("@habitaciones", habitacionesParam)});
-            }
+
             }   
+    }
+
 }

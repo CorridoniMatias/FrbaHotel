@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.AbmRol
+namespace FrbaHotel.AbmUsuario
 {
     public partial class Listado : Form
     {
-        private PobladorRoles poblador;
+        private PobladorUsuarios poblador;
 
         public Listado()
         {
@@ -21,21 +21,28 @@ namespace FrbaHotel.AbmRol
 
         private void Listado_Load(object sender, EventArgs e)
         {
-            poblador = new PobladorRoles(textBoxNombre, checkBoxEstado, dataGridViewRoles, new List<string> { "Modificar", "Eliminar" });
+            FormHandler.listarRoles(comboBoxRol);
+            FormHandler.listarTipoDoc(comboBoxTipoDoc);
+            comboBoxTipoDoc.SelectedIndex = -1;
+            poblador = new PobladorUsuarios(new List<TextBox> { textBoxUsername, textBoxNombre, textBoxApellido, textBoxMail, textBoxNumDoc }, new List<ComboBox> { comboBoxRol, comboBoxTipoDoc }, checkBoxHabilitado, dataGridViewUsuarios, new List<String> { "Modificar", "Eliminar" });
+
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
             FormHandler.limpiar(groupBoxFiltros);
+
+            dataGridViewUsuarios.Rows.Clear();
         }
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            dataGridViewRoles.Rows.Clear();
+            dataGridViewUsuarios.Rows.Clear();
+
             poblador.Poblar();
         }
 
-        private void dataGridViewRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
 
@@ -45,21 +52,16 @@ namespace FrbaHotel.AbmRol
 
                 if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Modificar"))
                 {
-                    new Alta(
-                            senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                            senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                            senderGrid.Rows[e.RowIndex].Cells[2].Value.ToString(),true).ShowDialog(this);
+                    new Modificacion(senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString()).ShowDialog(this);
                 }
                 else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Eliminar"))
                 {
-                    DBHandler.Query("UPDATE MATOTA.Rol SET estado=0 WHERE idRol =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    DBHandler.Query("UPDATE MATOTA.Usuario SET habilitado=0 WHERE idUsuario =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
 
                 }
-                dataGridViewRoles.Rows.Clear();
+                dataGridViewUsuarios.Rows.Clear();
                 poblador.Poblar();
             }
         }
-
-     
     }
 }
