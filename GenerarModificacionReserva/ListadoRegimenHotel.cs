@@ -45,6 +45,10 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             this.Close();
         }
+        private void buttonVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -52,10 +56,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                if (e.ColumnIndex == dataGridView1.Columns["Modificar"].Index)
-                {
-                    regimen.SelectedValue = row.Cells["Nombre"].Value.ToString();
-                }
+                regimen.Text = senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
             }
         }
 
