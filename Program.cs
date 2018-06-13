@@ -29,7 +29,7 @@ namespace FrbaHotel
             }
             //Application.Run(new RegistrarConsumible.SelectCantidad(new RegistrarConsumible.Consumible { descripcion = "1", precio = "2" }));
             Application.Run(new Form1());
-            Application.Run(new GenerarModificacionReserva.Listado());
+            //Application.Run(new GenerarModificacionReserva.Listado());
 
             //Application.Run(new RegistrarConsumible.Registrar("96946", "12"));
             //Application.Run(new AbmRol.Listado());

@@ -31,17 +31,19 @@
             this.buttonModificar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePickerFechaDesde = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerFechaHasta = new System.Windows.Forms.DateTimePicker();
-            this.comboBoxRegimen = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.textBoxCantPersonas = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxRegimen = new System.Windows.Forms.ComboBox();
+            this.dateTimePickerFechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFechaDesde = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonSeleccionar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxPrecioNoche = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -69,6 +71,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxPrecioNoche);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBoxCantPersonas);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
@@ -85,57 +89,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // dateTimePickerFechaDesde
+            // textBoxCantPersonas
             // 
-            this.dateTimePickerFechaDesde.Location = new System.Drawing.Point(112, 29);
-            this.dateTimePickerFechaDesde.Name = "dateTimePickerFechaDesde";
-            this.dateTimePickerFechaDesde.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerFechaDesde.TabIndex = 0;
-            // 
-            // dateTimePickerFechaHasta
-            // 
-            this.dateTimePickerFechaHasta.Location = new System.Drawing.Point(112, 66);
-            this.dateTimePickerFechaHasta.Name = "dateTimePickerFechaHasta";
-            this.dateTimePickerFechaHasta.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerFechaHasta.TabIndex = 1;
-            // 
-            // comboBoxRegimen
-            // 
-            this.comboBoxRegimen.FormattingEnabled = true;
-            this.comboBoxRegimen.Location = new System.Drawing.Point(112, 105);
-            this.comboBoxRegimen.Name = "comboBoxRegimen";
-            this.comboBoxRegimen.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxRegimen.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(9, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Fecha desde";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(9, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Fecha hasta";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(9, 105);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Regimen";
+            this.textBoxCantPersonas.Location = new System.Drawing.Point(112, 141);
+            this.textBoxCantPersonas.Name = "textBoxCantPersonas";
+            this.textBoxCantPersonas.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCantPersonas.TabIndex = 11;
+            this.textBoxCantPersonas.TextChanged += new System.EventHandler(this.textBoxCantPersonas_TextChanged);
             // 
             // label4
             // 
@@ -147,13 +107,57 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Cant. personas";
             // 
-            // textBoxCantPersonas
+            // label5
             // 
-            this.textBoxCantPersonas.Location = new System.Drawing.Point(112, 141);
-            this.textBoxCantPersonas.Name = "textBoxCantPersonas";
-            this.textBoxCantPersonas.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCantPersonas.TabIndex = 11;
-            this.textBoxCantPersonas.TextChanged += new System.EventHandler(this.textBoxCantPersonas_TextChanged);
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(9, 105);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Regimen";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(9, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Fecha hasta";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(9, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Fecha desde";
+            // 
+            // comboBoxRegimen
+            // 
+            this.comboBoxRegimen.FormattingEnabled = true;
+            this.comboBoxRegimen.Location = new System.Drawing.Point(112, 105);
+            this.comboBoxRegimen.Name = "comboBoxRegimen";
+            this.comboBoxRegimen.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxRegimen.TabIndex = 3;
+            // 
+            // dateTimePickerFechaHasta
+            // 
+            this.dateTimePickerFechaHasta.Location = new System.Drawing.Point(112, 66);
+            this.dateTimePickerFechaHasta.Name = "dateTimePickerFechaHasta";
+            this.dateTimePickerFechaHasta.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerFechaHasta.TabIndex = 1;
+            // 
+            // dateTimePickerFechaDesde
+            // 
+            this.dateTimePickerFechaDesde.Location = new System.Drawing.Point(112, 29);
+            this.dateTimePickerFechaDesde.Name = "dateTimePickerFechaDesde";
+            this.dateTimePickerFechaDesde.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerFechaDesde.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -167,14 +171,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Habitaciones";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 74);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(608, 132);
-            this.dataGridView1.TabIndex = 0;
-            // 
             // buttonSeleccionar
             // 
             this.buttonSeleccionar.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -185,6 +181,33 @@
             this.buttonSeleccionar.Text = "Seleccionar habitaciones";
             this.buttonSeleccionar.UseVisualStyleBackColor = true;
             this.buttonSeleccionar.Click += new System.EventHandler(this.buttonSeleccionar_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 74);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(608, 132);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(12, 175);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Precio por Noche";
+            // 
+            // textBoxPrecioNoche
+            // 
+            this.textBoxPrecioNoche.Location = new System.Drawing.Point(112, 172);
+            this.textBoxPrecioNoche.MaxLength = 18;
+            this.textBoxPrecioNoche.Name = "textBoxPrecioNoche";
+            this.textBoxPrecioNoche.ReadOnly = true;
+            this.textBoxPrecioNoche.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPrecioNoche.TabIndex = 13;
             // 
             // Modificacion
             // 
@@ -222,5 +245,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonSeleccionar;
+        private System.Windows.Forms.TextBox textBoxPrecioNoche;
+        private System.Windows.Forms.Label label3;
     }
 }

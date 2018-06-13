@@ -45,7 +45,7 @@ namespace FrbaHotel
                     if (control is DateTimePicker)
                     {
                         DateTimePicker dateTimePicker = (DateTimePicker)control;
-                        dateTimePicker.Value = DateTime.Now;
+                        dateTimePicker.Value = ConfigManager.FechaSistema;
 
                         if(control.Name.Equals("dateTimePickerFilter"))
                             dateTimePicker.Checked = false;
@@ -62,9 +62,17 @@ namespace FrbaHotel
             }
             public static void listarTipoDoc(ComboBox comboBox)
             {
-                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.TipoDocumento");
-                comboBox.DisplayMember = "nombre";
-                comboBox.ValueMember = "IdTipoDocumento";
+                try
+                {
+                    comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.TipoDocumento");
+                    comboBox.DisplayMember = "nombre";
+                    comboBox.ValueMember = "IdTipoDocumento";
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Error al listar los documentos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             public static void crearBotonesDataGridViewCliente(DataGridView dataGridView)
             {
@@ -90,23 +98,52 @@ namespace FrbaHotel
             }
             public static void listarTipoHabitacion(ComboBox comboBox)
             {
-                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idTipoHabitacion,descripcion FROM MATOTA.TipoHabitacion");
-                comboBox.DisplayMember = "descripcion";
-                comboBox.ValueMember = "idTipoHabitacion";
-                comboBox.SelectedIndex = -1;
+                try
+                {
+                    comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idTipoHabitacion,descripcion FROM MATOTA.TipoHabitacion");
+                    comboBox.DisplayMember = "descripcion";
+                    comboBox.ValueMember = "idTipoHabitacion";
+                    comboBox.SelectedIndex = -1;
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Error al listar los tipo de habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             public static void listarTipoUbicacion(ComboBox comboBox)
             {
-                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.UbicacionHabitacion");
-                comboBox.DisplayMember = "descripcion";
-                comboBox.ValueMember = "idUbicacion";
-                comboBox.SelectedIndex = -1;
+                try
+                {
+                    comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.UbicacionHabitacion");
+                    comboBox.DisplayMember = "descripcion";
+                    comboBox.ValueMember = "idUbicacion";
+                    comboBox.SelectedIndex = -1;
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Error al listar las ubicaciones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             public static void listarHoteles(ComboBox comboBox)
             {
                 comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idHotel,nombre FROM MATOTA.Hotel");
                 comboBox.DisplayMember = "nombre";
                 comboBox.ValueMember = "idHotel";
+            }
+            public static string getIdHotel(string nombre)
+            {
+                try
+                {
+                    var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("idHotel").Table("MATOTA.Hotel").AddLike("nombre", nombre).Build();
+                    return DBHandler.Query(query).First().Values.First().ToString();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error obtener el IdHotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return "1";
+                }
             }
             public static void crearBotonesParaHabitacionesReserva(DataGridView dataGridView)
             {
@@ -128,25 +165,46 @@ namespace FrbaHotel
 
             public static void listarRoles(ComboBox comboBox)
             {
-                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.Rol WHERE NOMBRE <> 'Guest'");
-                comboBox.DisplayMember = "NOMBRE";
-                comboBox.ValueMember = "idRol";
+                try
+                {
+                    comboBox.DataSource = DBHandler.QueryForComboBox("SELECT * FROM MATOTA.Rol WHERE NOMBRE <> 'Guest'");
+                    comboBox.DisplayMember = "NOMBRE";
+                    comboBox.ValueMember = "idRol";
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al listar los roles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             public static void listarRegimenes(ComboBox comboBox)
             {
-                comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idRegimen,nombre FROM MATOTA.Regimen");
-                comboBox.DisplayMember = "nombre";
-                comboBox.ValueMember = "idRegimen";
-                comboBox.SelectedIndex = -1;
+                try
+                {
+                    comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idRegimen,nombre FROM MATOTA.Regimen");
+                    comboBox.DisplayMember = "nombre";
+                    comboBox.ValueMember = "idRegimen";
+                    comboBox.SelectedIndex = -1;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al listar los regimenes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             public static void listarHabitacionesReserva(DataGridView dataGridView, List<string> habitaciones)
             {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("nroHabitacion", typeof(int));
-                habitaciones.ForEach(hab => dt.Rows.Add(hab));
-                dataGridView.Rows.Clear();
-                var habitacionesParam = new SqlParameter("@habitaciones",SqlDbType.Structured).Value = dt;
-                dataGridView.DataSource = DBHandler.QueryForComboBox("MATOTA.GetHabitacionesReserva", new List<SqlParameter> { new SqlParameter("@habitaciones", habitacionesParam)});
+                try
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("nroHabitacion", typeof(int));
+                    habitaciones.ForEach(hab => dt.Rows.Add(hab));
+                    dataGridView.Rows.Clear();
+                    var habitacionesParam = new SqlParameter("@habitaciones", SqlDbType.Structured).Value = dt;
+                    dataGridView.DataSource = DBHandler.QueryForComboBox("MATOTA.GetHabitacionesReserva", new List<SqlParameter> { new SqlParameter("@habitaciones", habitacionesParam) });
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al listar las habitaciones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            }   
+     }   
 }

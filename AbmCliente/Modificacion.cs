@@ -25,24 +25,31 @@ namespace FrbaHotel.AbmCliente
 
         private void Modificacion_Load(object sender, EventArgs e)
         {
-            FormHandler.listarTipoDoc(comboBoxTipoDoc);
-            idTipoDoc = FormHandler.getIdTipoDoc(tipoDoc);
-            var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Table("MATOTA.Cliente").AddEquals("idTipoDocumento",idTipoDoc).AddEquals("numeroDocumento",numDoc);
-            textBoxNombre.Text = DBHandler.Query(query.Fields("nombre").Build()).First().Values.First().ToString();
-            textBoxApellido.Text = DBHandler.Query(query.Fields("apellido").Build()).First().Values.First().ToString();
-            comboBoxTipoDoc.Text = tipoDoc;
-            textBoxNumDoc.Text = numDoc;
-            textBoxMail.Text = DBHandler.Query(query.Fields("mail").Build()).First().Values.First().ToString();
-            textBoxTelefono.Text = DBHandler.Query(query.Fields("telefono").Build()).First().Values.First().ToString();
-            textBoxNacionalidad.Text = DBHandler.Query(query.Fields("nacionalidad").Build()).First().Values.First().ToString();
-            dateTimePickerFechaNacimiento.Text = DBHandler.Query(query.Fields("fechaNacimiento").Build()).First().Values.First().ToString();
-            textBoxCalle.Text = DBHandler.Query(query.Fields("calle").Build()).First().Values.First().ToString();
-            textBoxNroCalle.Text = DBHandler.Query(query.Fields("nroCalle").Build()).First().Values.First().ToString();
-            textBoxPiso.Text = DBHandler.Query(query.Fields("piso").Build()).First().Values.First().ToString();
-            textBoxDepto.Text = DBHandler.Query(query.Fields("departamento").Build()).First().Values.First().ToString();
-            textBoxLocalidad.Text = DBHandler.Query(query.Fields("localidad").Build()).First().Values.First().ToString();
-            textBoxPais.Text = DBHandler.Query(query.Fields("pais").Build()).First().Values.First().ToString();
-            checkBoxHabilitado.Checked = (bool)DBHandler.Query(query.Fields("habilitado").Build()).First().Values.First();
+            try
+            {
+                FormHandler.listarTipoDoc(comboBoxTipoDoc);
+                idTipoDoc = FormHandler.getIdTipoDoc(tipoDoc);
+                var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Table("MATOTA.Cliente").AddEquals("idTipoDocumento", idTipoDoc).AddEquals("numeroDocumento", numDoc);
+                textBoxNombre.Text = DBHandler.Query(query.Fields("nombre").Build()).First().Values.First().ToString();
+                textBoxApellido.Text = DBHandler.Query(query.Fields("apellido").Build()).First().Values.First().ToString();
+                comboBoxTipoDoc.Text = tipoDoc;
+                textBoxNumDoc.Text = numDoc;
+                textBoxMail.Text = DBHandler.Query(query.Fields("mail").Build()).First().Values.First().ToString();
+                textBoxTelefono.Text = DBHandler.Query(query.Fields("telefono").Build()).First().Values.First().ToString();
+                textBoxNacionalidad.Text = DBHandler.Query(query.Fields("nacionalidad").Build()).First().Values.First().ToString();
+                dateTimePickerFechaNacimiento.Text = DBHandler.Query(query.Fields("fechaNacimiento").Build()).First().Values.First().ToString();
+                textBoxCalle.Text = DBHandler.Query(query.Fields("calle").Build()).First().Values.First().ToString();
+                textBoxNroCalle.Text = DBHandler.Query(query.Fields("nroCalle").Build()).First().Values.First().ToString();
+                textBoxPiso.Text = DBHandler.Query(query.Fields("piso").Build()).First().Values.First().ToString();
+                textBoxDepto.Text = DBHandler.Query(query.Fields("departamento").Build()).First().Values.First().ToString();
+                textBoxLocalidad.Text = DBHandler.Query(query.Fields("localidad").Build()).First().Values.First().ToString();
+                textBoxPais.Text = DBHandler.Query(query.Fields("pais").Build()).First().Values.First().ToString();
+                checkBoxHabilitado.Checked = (bool)DBHandler.Query(query.Fields("habilitado").Build()).First().Values.First();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al cargar al cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -60,8 +67,10 @@ namespace FrbaHotel.AbmCliente
                 MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var ret = DBHandler.SPWithValue("MATOTA.UpdateCliente",
-                 new List<SqlParameter> { 
+            try
+            {
+                var ret = DBHandler.SPWithValue("MATOTA.UpdateCliente",
+                     new List<SqlParameter> { 
                     new SqlParameter("@nombre", textBoxNombre.Text),
                     new SqlParameter("@apellido", textBoxApellido.Text),
                     new SqlParameter("@tipoDoc", comboBoxTipoDoc.SelectedValue),
@@ -80,18 +89,23 @@ namespace FrbaHotel.AbmCliente
                     new SqlParameter("@tipoDocOriginal", idTipoDoc),
                     new SqlParameter("@numDoc", numDoc),
                 }
-                 );
-            if (ret == -1)
-                MessageBox.Show("El numero de documento ingresado ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (ret == 0)
-            {
-                MessageBox.Show("El mail ingresado ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxMail.Text = string.Empty;
+                     );
+                if (ret == -1)
+                    MessageBox.Show("El numero de documento ingresado ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (ret == 0)
+                {
+                    MessageBox.Show("El mail ingresado ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBoxMail.Text = string.Empty;
+                }
+                else if (ret == 1)
+                {
+                    MessageBox.Show("Actualización realizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
-            else if (ret == 1)
+            catch (Exception)
             {
-                MessageBox.Show("Actualización realizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                MessageBox.Show("Error al modificar al cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

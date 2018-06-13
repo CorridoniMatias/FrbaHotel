@@ -36,9 +36,10 @@ namespace FrbaHotel.AbmCliente
                 MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            int ret = DBHandler.SPWithValue("MATOTA.altaCliente",
-                new List<SqlParameter> { 
+            try
+            {
+                int ret = DBHandler.SPWithValue("MATOTA.altaCliente",
+                    new List<SqlParameter> { 
                     new SqlParameter("@nombre", textBoxNombre.Text.Trim()),
                     new SqlParameter("@apellido", textBoxApellido.Text.Trim()),
                     new SqlParameter("@tipoDoc", comboBoxTipoDoc.SelectedValue),
@@ -54,21 +55,26 @@ namespace FrbaHotel.AbmCliente
                     new SqlParameter("@nacionalidad", textBoxNacionalidad.Text.Trim()),
                     new SqlParameter("@fechaNacimiento", dateTimePickerFechaNacimiento.Value),
                 }
-                );
+                    );
 
-            if (ret == -1)
-                MessageBox.Show("El cliente ingresado ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (ret == 0)
-            {
-                MessageBox.Show("El mail ingresado ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxMail.Text = string.Empty;
+                if (ret == -1)
+                    MessageBox.Show("El cliente ingresado ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (ret == 0)
+                {
+                    MessageBox.Show("El mail ingresado ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBoxMail.Text = string.Empty;
+                }
+                else if (ret >= 1)
+                {
+                    InsertedClient = new Cliente() { nombre = textBoxNombre.Text.Trim(), apellido = textBoxApellido.Text.Trim(), idCliente = ret.ToString() };
+                    MessageBox.Show("Cliente ingresado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    this.Close();
+                }
             }
-            else if (ret >= 1)
+            catch (Exception)
             {
-                InsertedClient = new Cliente() { nombre = textBoxNombre.Text.Trim(), apellido = textBoxApellido.Text.Trim(), idCliente = ret.ToString()};
-                MessageBox.Show("Cliente ingresado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
+                MessageBox.Show("Error al agregar al cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

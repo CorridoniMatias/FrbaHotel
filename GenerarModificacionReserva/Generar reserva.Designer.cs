@@ -140,7 +140,6 @@
             this.textBoxCantPersonas.Name = "textBoxCantPersonas";
             this.textBoxCantPersonas.Size = new System.Drawing.Size(55, 20);
             this.textBoxCantPersonas.TabIndex = 10;
-            this.textBoxCantPersonas.TextChanged += new System.EventHandler(this.textBoxCantPersonas_TextChanged);
             // 
             // textBoxPrecioPorNoche
             // 
