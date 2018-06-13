@@ -33,11 +33,11 @@
             this.ColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBoxHotel = new System.Windows.Forms.ComboBox();
+            this.comboBoxFormaDePago = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxTotal = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.buttonSearch = new System.Windows.Forms.Button();
+            this.buttonOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,14 +86,14 @@
             this.ColumnPrecio.Name = "ColumnPrecio";
             this.ColumnPrecio.ReadOnly = true;
             // 
-            // comboBoxHotel
+            // comboBoxFormaDePago
             // 
-            this.comboBoxHotel.FormattingEnabled = true;
-            this.comboBoxHotel.Location = new System.Drawing.Point(585, 19);
-            this.comboBoxHotel.Name = "comboBoxHotel";
-            this.comboBoxHotel.Size = new System.Drawing.Size(244, 28);
-            this.comboBoxHotel.TabIndex = 22;
-            this.comboBoxHotel.Tag = "idHotel";
+            this.comboBoxFormaDePago.FormattingEnabled = true;
+            this.comboBoxFormaDePago.Location = new System.Drawing.Point(585, 19);
+            this.comboBoxFormaDePago.Name = "comboBoxFormaDePago";
+            this.comboBoxFormaDePago.Size = new System.Drawing.Size(244, 28);
+            this.comboBoxFormaDePago.TabIndex = 22;
+            this.comboBoxFormaDePago.Tag = "idFormaDePago";
             // 
             // label1
             // 
@@ -129,25 +129,25 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "Forma de Pago";
             // 
-            // buttonSearch
+            // buttonOK
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(789, 443);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(64, 35);
-            this.buttonSearch.TabIndex = 25;
-            this.buttonSearch.Text = "OK";
-            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonOK.Location = new System.Drawing.Point(789, 443);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(64, 35);
+            this.buttonOK.TabIndex = 25;
+            this.buttonOK.Text = "OK";
+            this.buttonOK.UseVisualStyleBackColor = true;
             // 
             // GenerarFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 487);
-            this.Controls.Add(this.buttonSearch);
+            this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxTotal);
-            this.Controls.Add(this.comboBoxHotel);
+            this.Controls.Add(this.comboBoxFormaDePago);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "GenerarFactura";
@@ -166,10 +166,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPrecio;
-        private System.Windows.Forms.ComboBox comboBoxHotel;
+        private System.Windows.Forms.ComboBox comboBoxFormaDePago;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxTotal;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Button buttonOK;
     }
 }
