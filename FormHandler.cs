@@ -205,5 +205,22 @@ namespace FrbaHotel
                     MessageBox.Show("Error al listar los regimenes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            public static void setHotelesHabilitados(ComboBox comboBoxHotel)
+            {
+                try
+                {
+
+                    var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("h.idHotel,h.nombre").Table("MATOTA.Hotel h").
+                        AddJoin("LEFT OUTER JOIN MATOTA.InactividadHotel i ON (h.idHotel = i.idHotel)").Build();
+                    comboBoxHotel.DataSource = DBHandler.QueryForComboBox(query);
+                    comboBoxHotel.ValueMember = "idHotel";
+                    comboBoxHotel.DisplayMember = "nombre";
+                    comboBoxHotel.SelectedIndex = -1;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un error al listar los hoteles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
      }   
 }
