@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.ListadoEstadistico
 {
-    partial class Form1
+    partial class SeleccionarListado
     {
         /// <summary>
         /// Required designer variable.
@@ -34,8 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.buttonGuardar = new System.Windows.Forms.Button();
             this.groupBoxListado = new System.Windows.Forms.GroupBox();
             this.groupBoxListado.SuspendLayout();
             this.SuspendLayout();
@@ -109,23 +109,25 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Tipo de Listado";
             // 
-            // button1
+            // buttonLimpiar
             // 
-            this.button1.Location = new System.Drawing.Point(12, 149);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Limpiar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonLimpiar.Location = new System.Drawing.Point(12, 149);
+            this.buttonLimpiar.Name = "buttonLimpiar";
+            this.buttonLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.buttonLimpiar.TabIndex = 6;
+            this.buttonLimpiar.Text = "Limpiar";
+            this.buttonLimpiar.UseVisualStyleBackColor = true;
+            this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
-            // button2
+            // buttonGuardar
             // 
-            this.button2.Location = new System.Drawing.Point(362, 149);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Buscar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonGuardar.Location = new System.Drawing.Point(362, 149);
+            this.buttonGuardar.Name = "buttonGuardar";
+            this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
+            this.buttonGuardar.TabIndex = 7;
+            this.buttonGuardar.Text = "Buscar";
+            this.buttonGuardar.UseVisualStyleBackColor = true;
+            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
             // groupBoxListado
             // 
@@ -142,15 +144,15 @@
             this.groupBoxListado.TabStop = false;
             this.groupBoxListado.Text = "Filtros de Listado";
             // 
-            // Form1
+            // SeleccionarListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 182);
             this.Controls.Add(this.groupBoxListado);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Controls.Add(this.buttonGuardar);
+            this.Controls.Add(this.buttonLimpiar);
+            this.Name = "SeleccionarListado";
             this.Text = "Listado estadístico";
             this.groupBoxListado.ResumeLayout(false);
             this.groupBoxListado.PerformLayout();
@@ -166,8 +168,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonLimpiar;
+        private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.GroupBox groupBoxListado;
     }
 }

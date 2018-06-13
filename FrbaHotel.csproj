@@ -269,11 +269,23 @@
       <DependentUpon>PobladorReservas.cs</DependentUpon>
     </Compile>
     <Compile Include="GenerarModificacionReserva\Reserva.cs" />
-    <Compile Include="ListadoEstadistico\ListadoHotel.cs">
+    <Compile Include="ListadoEstadistico\ListadoEstadisticoCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListadoEstadistico\ListadoHotel.Designer.cs">
-      <DependentUpon>ListadoHotel.cs</DependentUpon>
+    <Compile Include="ListadoEstadistico\ListadoEstadisticoCliente.Designer.cs">
+      <DependentUpon>ListadoEstadisticoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoEstadisticoHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoEstadisticoHabitacion.Designer.cs">
+      <DependentUpon>ListadoEstadisticoHabitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoEstadisticoHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoEstadisticoHotel.Designer.cs">
+      <DependentUpon>ListadoEstadisticoHotel.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\SeleccionarListado.cs">
       <SubType>Form</SubType>
@@ -450,8 +462,14 @@
     <EmbeddedResource Include="GenerarModificacionReserva\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListadoEstadistico\ListadoHotel.resx">
-      <DependentUpon>ListadoHotel.cs</DependentUpon>
+    <EmbeddedResource Include="ListadoEstadistico\ListadoEstadisticoCliente.resx">
+      <DependentUpon>ListadoEstadisticoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\ListadoEstadisticoHabitacion.resx">
+      <DependentUpon>ListadoEstadisticoHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\ListadoEstadisticoHotel.resx">
+      <DependentUpon>ListadoEstadisticoHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\SeleccionarListado.resx">
       <DependentUpon>SeleccionarListado.cs</DependentUpon>

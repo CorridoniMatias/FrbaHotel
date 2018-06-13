@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.ListadoEstadistico
 {
-    partial class ListadoHotel
+    partial class ListadoEstadisticoHotel
     {
         /// <summary>
         /// Required designer variable.

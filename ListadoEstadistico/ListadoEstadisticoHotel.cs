@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.ListadoEstadistico
 {
-    public partial class ListadoHotel : Form
+    public partial class ListadoEstadisticoHotel : Form
     {
 
         int nroTrimestre;
         int year;
         int tipoListado;
 
-        public ListadoHotel(int nroTrimestre, int year, int tipoListado)
+        public ListadoEstadisticoHotel(int nroTrimestre, int year, int tipoListado)
         {
             this.nroTrimestre = nroTrimestre;
             this.year = year;
@@ -37,6 +37,7 @@ namespace FrbaHotel.ListadoEstadistico
                 switch (tipoListado)
                 {
                     case 0:
+                        DBHandler.SPWithValue("MATOTA.ActualizarReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
                         dataGridViewHoteles.Columns[5].Tag = "Reservas Canceladas";
                         dataGridViewHoteles.Columns[5].HeaderText = "Reservas canceladas";
                         storedprocedure = "MATOTA.HotelesReservasCanceladas";
@@ -55,15 +56,21 @@ namespace FrbaHotel.ListadoEstadistico
 
                 }
 
-                resultados = DBHandler.SPWithResultSet(storedprocedure, parametros).Select(row =>
-
-                    new List<String>() { row["nombre"].ToString(),
-                                     row["calle"].ToString(),
-                                     row["nroCalle"].ToString(),
-                                     row["ciudad"].ToString(),
-                                     row["pais"].ToString(),
-                                     row[dataGridViewHoteles.Columns[5].Tag.ToString()].ToString() }
-                ).ToList().Select(r => r.Select(c => c.Trim()).ToList()).ToList();
+                resultados = DBHandler.SPWithResultSet(storedprocedure, parametros)
+                    .Select(row =>
+                        new List<object>()
+                        {
+                            row["nombre"],
+                            row["calle"],
+                            row["nroCalle"],
+                            row["ciudad"],
+                            row["pais"],
+                            row[dataGridViewHoteles.Columns[5].Tag.ToString()] 
+                        }
+                        .Select(c => c.ToString().Trim())
+                        .ToList()
+                        )
+                    .ToList();
 
                 if (resultados.Count == 0)
                 {
