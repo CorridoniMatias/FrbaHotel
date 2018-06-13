@@ -33,12 +33,16 @@ namespace FrbaHotel.FacturarEstadia
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 idEstadias.Clear();
                 idReservaHabitaciones.Clear();
                 nroHabitacionValidas.Clear();
                 int temp = 0;
 
                 foreach (var nroHabitacion in nroHabitaciones)
+=======
+                /*try
+>>>>>>> acc5a7f0d1c955952533f8aa17d592415d0100ec
 =======
                 /*try
 >>>>>>> acc5a7f0d1c955952533f8aa17d592415d0100ec
@@ -81,6 +85,7 @@ namespace FrbaHotel.FacturarEstadia
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (verificarEstadia(idEstadias) != 0)
                 {
                     MessageBox.Show("Las habitaciones ingresadas no son de una única estadía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -94,6 +99,9 @@ namespace FrbaHotel.FacturarEstadia
                     }
                     new GenerarFactura(idEstadias[0], idReservaHabitaciones);
                 }
+=======
+                }*/
+>>>>>>> acc5a7f0d1c955952533f8aa17d592415d0100ec
 =======
                 }*/
 >>>>>>> acc5a7f0d1c955952533f8aa17d592415d0100ec
