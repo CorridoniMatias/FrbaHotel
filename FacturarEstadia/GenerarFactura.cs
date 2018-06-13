@@ -12,8 +12,9 @@ namespace FrbaHotel.FacturarEstadia
 {
     public partial class GenerarFactura : Form
     {
-        string idEstadia;
-        List<string> idReservaHabitaciones;
+        private PobladorFacturas poblador;
+        private string idEstadia;
+        private List<string> idReservaHabitaciones;
 
         public GenerarFactura(string idEstadia, List<string> idReservaHabitaciones)
         {
@@ -24,7 +25,10 @@ namespace FrbaHotel.FacturarEstadia
 
         private void GenerarFactura_Load(object sender, EventArgs e)
         {
-            
+            FormHandler.listarFormaDePago(comboBoxFormaDePago);
+            comboBoxFormaDePago.SelectedIndex = -1;
+            poblador = new PobladorFacturas(dataGridView1, idEstadia, idReservaHabitaciones);
+            poblador.Poblar();
         }
     }
 }

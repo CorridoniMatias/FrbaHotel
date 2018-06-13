@@ -83,6 +83,7 @@
       <DependentUpon>Alta.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHabitacion\Habitacion.cs" />
+    <Compile Include="AbmHabitacion\HabitacionReservada.cs" />
     <Compile Include="AbmHabitacion\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +232,12 @@
     </Compile>
     <Compile Include="FacturarEstadia\GenerarFactura.Designer.cs">
       <DependentUpon>GenerarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacturarEstadia\PobladorFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacturarEstadia\PobladorFacturas.Designer.cs">
+      <DependentUpon>PobladorFacturas.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -33,6 +33,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             this.habitaciones = habitaciones;
             habitacionesRemovidas = new List<string>();
             reserva = new Reserva(idHotel, habitaciones, idRegimen, cantPersonasReserva);
+            
         }
 
         private void Modificacion_Load(object sender, EventArgs e)
@@ -49,6 +50,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
            var form = new AbmHabitacion.Listado(idHotel, habitaciones);
            form.setHabitacionesRemovidas(habitacionesRemovidas);
+           form.dataGridReserva = dataGridView1;
            form.ShowDialog();
         }
         private void buttonModificar_Click(object sender, EventArgs e)
@@ -61,13 +63,14 @@ namespace FrbaHotel.GenerarModificacionReserva
             try
             {
                 cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
+                var precioPorNoche = reserva.precioPorNoche();
                 var ret = DBHandler.SPWithValue("Matota.UpdateReserva",
                     new List<SqlParameter>{new SqlParameter("@idReserva",idReserva),
                                        new SqlParameter("@fechaDesde",dateTimePickerFechaDesde.Value),
                                        new SqlParameter("@fechaHasta",dateTimePickerFechaHasta.Value),
                                        new SqlParameter("@cantNoches",cantNoches),
                                        new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue),
-                                       new SqlParameter("@precioBaseReserva",reserva.precioPorNoche()*cantNoches),
+                                       new SqlParameter("@precioBaseReserva",precioPorNoche*cantNoches),
                                        new SqlParameter("@cantidadPersonas",textBoxCantPersonas.Text),});
                 if (ret == 1)
                 {

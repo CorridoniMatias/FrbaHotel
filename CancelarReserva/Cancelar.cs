@@ -50,7 +50,6 @@ namespace FrbaHotel.CancelarReserva
                 }
                 else if (ret == 1)
                 {
-                    DBHandler.SPWithValue("MATOTA.HabilitarHabitacionReservaCancelada", new List<SqlParameter> { new SqlParameter("@idReserva", textBoxIdReserva.Text.Trim()), });
                     MessageBox.Show("Reserva cancelada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

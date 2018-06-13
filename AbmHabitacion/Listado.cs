@@ -15,8 +15,12 @@ namespace FrbaHotel.AbmHabitacion
         private string idHotel;
         private List<string> habitaciones;
         private List<string> habitacionesRemovidas;
+        public HabitacionReservada habitacionReservada { get; private set; }
+        public DataGridView dataGridReserva {get; set;}
+
         public Listado(string idHotel,List<string> habitaciones)
         {
+            
             this.idHotel = idHotel;
             this.habitaciones = habitaciones;
             InitializeComponent();
@@ -78,7 +82,13 @@ namespace FrbaHotel.AbmHabitacion
                     {
                         habitaciones.Add(nroHab);
                         MessageBox.Show("Habitacion " + nroHab.ToString() + " agregada", "Habitación agregada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //FormHandler.listarHabitacionesReserva(dataGridView1, habitaciones);
+                        habitacionReservada = new HabitacionReservada()
+                        {
+                            nroHabitacion = nroHab,
+                            tipoHabitacion = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                            ubicacion = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                        };
+                        dataGridReserva.Rows.Add(habitacionReservada.nroHabitacion, habitacionReservada.tipoHabitacion, habitacionReservada.ubicacion,habitacionReservada.precio);
                     }
                 }
                 else if (e.ColumnIndex == dataGridView1.Columns["Quitar"].Index)
@@ -86,9 +96,10 @@ namespace FrbaHotel.AbmHabitacion
                     if (habitaciones.Contains(nroHab))
                     {
                         habitaciones.Remove(nroHab);
-                        habitacionesRemovidas.Add(nroHab);
+                        if(!habitacionesRemovidas.Contains(nroHab))
+                            habitacionesRemovidas.Add(nroHab);
                         MessageBox.Show("Habitacion " + nroHab.ToString() + " quitada", "Habitación quitada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //FormHandler.listarHabitacionesReserva(dataGridView1, habitaciones);
+                        dataGridReserva.Rows.RemoveAt(e.RowIndex);
                     }
                     else
                     {

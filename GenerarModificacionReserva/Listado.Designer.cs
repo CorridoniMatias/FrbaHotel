@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBoxHotel = new System.Windows.Forms.ComboBox();
-            this.comboBoxRegimen = new System.Windows.Forms.ComboBox();
-            this.textBoxIdReserva = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonLimpiar = new System.Windows.Forms.Button();
-            this.buttonBuscar = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +38,16 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxHotel = new System.Windows.Forms.ComboBox();
+            this.comboBoxRegimen = new System.Windows.Forms.ComboBox();
+            this.textBoxIdReserva = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.buttonBuscar = new System.Windows.Forms.Button();
+            this.textBoxHotel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +71,51 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Id Reserva";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Hotel";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Regimen";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Fecha Desde";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Fecha Hasta";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Cant Personas";
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Precio";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Estado";
+            this.Column8.Name = "Column8";
+            // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "Modificar";
+            this.Modificar.Name = "Modificar";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.comboBoxHotel);
@@ -78,6 +124,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.textBoxHotel);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
@@ -160,50 +207,13 @@
             this.buttonBuscar.UseVisualStyleBackColor = true;
             this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
-            // Column1
+            // textBoxHotel
             // 
-            this.Column1.HeaderText = "Id Reserva";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Hotel";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Regimen";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Fecha Desde";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Fecha Hasta";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Cant Personas";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Precio";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Estado";
-            this.Column8.Name = "Column8";
-            // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "Modificar";
-            this.Modificar.Name = "Modificar";
+            this.textBoxHotel.Location = new System.Drawing.Point(746, 28);
+            this.textBoxHotel.Name = "textBoxHotel";
+            this.textBoxHotel.ReadOnly = true;
+            this.textBoxHotel.Size = new System.Drawing.Size(121, 20);
+            this.textBoxHotel.TabIndex = 6;
             // 
             // Listado
             // 
@@ -245,5 +255,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewButtonColumn Modificar;
+        private System.Windows.Forms.TextBox textBoxHotel;
     }
 }
