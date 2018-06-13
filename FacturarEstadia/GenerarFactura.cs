@@ -21,5 +21,10 @@ namespace FrbaHotel.FacturarEstadia
             this.idReservaHabitaciones = idReservaHabitaciones;
             InitializeComponent();
         }
+
+        private void GenerarFactura_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

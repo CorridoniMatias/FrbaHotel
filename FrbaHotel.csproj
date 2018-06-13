@@ -226,6 +226,12 @@
     <Compile Include="FacturarEstadia\FacturarEstadia.Designer.cs">
       <DependentUpon>FacturarEstadia.cs</DependentUpon>
     </Compile>
+    <Compile Include="FacturarEstadia\GenerarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacturarEstadia\GenerarFactura.Designer.cs">
+      <DependentUpon>GenerarFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -425,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FacturarEstadia\FacturarEstadia.resx">
       <DependentUpon>FacturarEstadia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacturarEstadia\GenerarFactura.resx">
+      <DependentUpon>GenerarFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
