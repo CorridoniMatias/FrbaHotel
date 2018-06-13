@@ -262,11 +262,17 @@
     <Compile Include="GenerarModificacionReserva\PobladorReservas.Designer.cs">
       <DependentUpon>PobladorReservas.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListadoEstadistico\Form1.cs">
+    <Compile Include="ListadoEstadistico\ListadoHotel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListadoEstadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ListadoEstadistico\ListadoHotel.Designer.cs">
+      <DependentUpon>ListadoHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEstadistico\SeleccionarListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\SeleccionarListado.Designer.cs">
+      <DependentUpon>SeleccionarListado.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
@@ -409,7 +415,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuario\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
-	</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="FacturarEstadia\Factura.resx">
       <DependentUpon>Factura.cs</DependentUpon>
     </EmbeddedResource>
@@ -430,6 +436,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\ListadoHotel.resx">
+      <DependentUpon>ListadoHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\SeleccionarListado.resx">
+      <DependentUpon>SeleccionarListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

@@ -45,7 +45,7 @@ namespace FrbaHotel
                     if (control is DateTimePicker)
                     {
                         DateTimePicker dateTimePicker = (DateTimePicker)control;
-                        dateTimePicker.Value = DateTime.Now;
+                        dateTimePicker.Value = ConfigManager.FechaSistema;
 
                         if(control.Name.Equals("dateTimePickerFilter"))
                             dateTimePicker.Checked = false;
