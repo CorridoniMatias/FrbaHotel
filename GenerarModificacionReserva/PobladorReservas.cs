@@ -26,9 +26,9 @@ namespace FrbaHotel.GenerarModificacionReserva
             this.regimen = regimen;
             this.grid = grid;
             Filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
-                .Fields("r.idReserva,h.nombre,reg.nombre,r.fechaDesde,r.fechaHasta,r.cantidadPersonas,r.precioBaseReserva,e.descripcion")
+                .Fields("r.idReserva,h.nombre nombreHotel,reg.nombre nombreRegimen,r.fechaDesde,r.fechaHasta,r.cantidadPersonas,r.precioBaseReserva,e.descripcion")
                 .Table("MATOTA.Reserva r").AddJoin("JOIN MATOTA.Hotel h ON (r.idHotel = h.idHotel)").
-                AddJoin("JOIN MATOTA.Regimen reg ON (r.idRegimen = reg.idRegimen").AddJoin("JOIN MATOTA.EstadoReserva e ON (e.idEstadoReserva = r.idEstadoReserva)");
+                AddJoin("JOIN MATOTA.Regimen reg ON (r.idRegimen = reg.idRegimen)").AddJoin("JOIN MATOTA.EstadoReserva e ON (e.idEstadoReserva = r.idEstadoReserva)");
             this.extraColumns = extraColumns;
         }
 
@@ -45,14 +45,14 @@ namespace FrbaHotel.GenerarModificacionReserva
             {
                 var newset = DBHandler.Query(Filtro.Build()).Select(row =>
                 {
-                    var orig = new List<string>() { row["r.idReserva"].ToString(), 
-                                                        row["h.nombre"].ToString(), 
-                                                        row["reg.nombre"].ToString(), 
-                                                        row["r.fechaDesde"].ToString(), 
-                                                        row["r.fechaHasta"].ToString(),
-                                                        row["r.cantidadPersonas"].ToString(),
-                                                        row["r.precioBaseReserva"].ToString(),
-                                                        row["e.descripcion"].ToString()};
+                    var orig = new List<string>() { row["idReserva"].ToString(), 
+                                                        row["nombreHotel"].ToString(), 
+                                                        row["nombreRegimen"].ToString(), 
+                                                        row["fechaDesde"].ToString(), 
+                                                        row["fechaHasta"].ToString(),
+                                                        row["cantidadPersonas"].ToString(),
+                                                        row["precioBaseReserva"].ToString(),
+                                                        row["descripcion"].ToString()};
                     orig.AddRange(extraColumns);
                     return orig;
                 }

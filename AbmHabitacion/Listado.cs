@@ -14,12 +14,11 @@ namespace FrbaHotel.AbmHabitacion
     {
         private string idHotel;
         private List<string> habitaciones;
-        //private List<string> habitacionesRemovidas;
+        private List<string> habitacionesRemovidas;
         public Listado(string idHotel,List<string> habitaciones)
         {
             this.idHotel = idHotel;
             this.habitaciones = habitaciones;
-            //this.habitacionesRemovidas = habitacionesRemovidas;
             InitializeComponent();
         }
 
@@ -84,12 +83,23 @@ namespace FrbaHotel.AbmHabitacion
                 }
                 else if (e.ColumnIndex == dataGridView1.Columns["Quitar"].Index)
                 {
-                    habitaciones.Remove(nroHab);
-                    //habitacionesRemovidas.Add(nroHab);
-                    MessageBox.Show("Habitacion " + nroHab.ToString() + " quitada", "Habitación quitada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //FormHandler.listarHabitacionesReserva(dataGridView1, habitaciones);
+                    if (habitaciones.Contains(nroHab))
+                    {
+                        habitaciones.Remove(nroHab);
+                        habitacionesRemovidas.Add(nroHab);
+                        MessageBox.Show("Habitacion " + nroHab.ToString() + " quitada", "Habitación quitada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //FormHandler.listarHabitacionesReserva(dataGridView1, habitaciones);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usted nunca agregó esta habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
         }
     }
+        public void setHabitacionesRemovidas(List<string> habitaciones)
+        {
+            habitacionesRemovidas = habitaciones;
+        }
 }
 }

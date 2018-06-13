@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,11 @@ namespace FrbaHotel.GenerarModificacionReserva
     public partial class Listado : Form
     {
         private PobladorReservas poblador;
+        private List<string> habitaciones;
         public Listado()
         {
             InitializeComponent();
+            habitaciones = new List<string>();
         }
 
         private void Listado_Load(object sender, EventArgs e)
@@ -24,7 +27,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             comboBoxHotel.SelectedIndex = -1;
             FormHandler.listarRegimenes(comboBoxRegimen);
             comboBoxRegimen.SelectedIndex = -1;
-            poblador = new PobladorReservas(textBoxIdReserva, comboBoxHotel, comboBoxRegimen, dataGridView1, new List<string> { "Modificar", "Cancelar" });
+            poblador = new PobladorReservas(textBoxIdReserva, comboBoxHotel, comboBoxRegimen, dataGridView1, new List<string> { "Modificar"});
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -42,34 +45,29 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             var senderGrid = (DataGridView)sender;
 
-            /*if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-
                 if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Modificar"))
                 {
-                    if (new Modificacion(
+                    this.obtenerListaHabitaciones();
+                    habitaciones.ForEach(hab => MessageBox.Show(hab.ToString()));
+                    new Modificacion(
                             senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                            senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                            senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                            FormHandler.getIdHotel(senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString()),
                             senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                            senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                            senderGrid.Rows[e.RowIndex].Cells[9].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[5].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[6].Value.ToString(),
-                            senderGrid.Rows[e.RowIndex].Cells[7].Value.ToString(),
-                            senderGrid.Rows[e.RowIndex].Cells[8].Value.ToString()
-                        ).ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-                        Reload();
+                            habitaciones).ShowDialog();
                 }
-                else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnSuspender"))
-                {
-                    new Suspender(
-                        senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                        senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString()
-                    ).ShowDialog(this);
-                }
-            }*/
+            }
+        }
+        private void obtenerListaHabitaciones()
+        {
+            DBHandler.SPWithResultSet("MATOTA.GetHabitacionesReserva ", new List<SqlParameter> { new SqlParameter("@idReserva", textBoxIdReserva.Text) })
+                                     .ForEach(hab => habitaciones.Add(hab["nroHabitacion"].ToString()));
         }
     }
 }

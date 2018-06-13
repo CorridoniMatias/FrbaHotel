@@ -19,31 +19,38 @@ namespace FrbaHotel.AbmCliente
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = this.dataSourceCliente();
+            this.dataSourceCliente(dataGridView1);
             if (!dataGridView1.Columns.Contains("Modificar")) 
             { 
                 FormHandler.crearBotonesDataGridViewCliente(dataGridView1);
             }
         }
 
-        private DataTable dataSourceCliente()
+        private void dataSourceCliente(DataGridView dataGridView)
         {
-            var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
-                Fields("c.nombre,c.apellido,td.nombre tipoDocumento,c.numeroDocumento,c.mail,c.telefono").Table("MATOTA.Cliente c").
-                AddJoin("JOIN MATOTA.TipoDocumento td ON (c.IdTipoDocumento = td.IdTipoDocumento)");
+            try
+            {
+                var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
+                    Fields("c.nombre,c.apellido,td.nombre tipoDocumento,c.numeroDocumento,c.mail,c.telefono").Table("MATOTA.Cliente c").
+                    AddJoin("JOIN MATOTA.TipoDocumento td ON (c.IdTipoDocumento = td.IdTipoDocumento)");
 
-            if (!string.IsNullOrWhiteSpace(textBoxNombre.Text))
-                filtro.AddEquals("c.nombre", textBoxNombre.Text);
-            if (!string.IsNullOrWhiteSpace(textBoxApellido.Text))
-                filtro.AddEquals("c.apellido", textBoxApellido.Text);
-            if (!string.IsNullOrWhiteSpace(textBoxNumDoc.Text))
-                filtro.AddEquals("c.numeroDocumento", textBoxNumDoc.Text);
-            if (!string.IsNullOrWhiteSpace(textBoxMail.Text))
-                filtro.AddEquals("c.mail", textBoxMail.Text);
-            if (comboBoxTipoDoc.SelectedIndex != -1)
-                filtro.AddEquals("c.IdTipoDocumento", comboBoxTipoDoc.SelectedValue.ToString());
+                if (!string.IsNullOrWhiteSpace(textBoxNombre.Text))
+                    filtro.AddEquals("c.nombre", textBoxNombre.Text);
+                if (!string.IsNullOrWhiteSpace(textBoxApellido.Text))
+                    filtro.AddEquals("c.apellido", textBoxApellido.Text);
+                if (!string.IsNullOrWhiteSpace(textBoxNumDoc.Text))
+                    filtro.AddEquals("c.numeroDocumento", textBoxNumDoc.Text);
+                if (!string.IsNullOrWhiteSpace(textBoxMail.Text))
+                    filtro.AddEquals("c.mail", textBoxMail.Text);
+                if (comboBoxTipoDoc.SelectedIndex != -1)
+                    filtro.AddEquals("c.IdTipoDocumento", comboBoxTipoDoc.SelectedValue.ToString());
 
-            return DBHandler.QueryForComboBox(filtro.Build());
+                dataGridView.DataSource = DBHandler.QueryForComboBox(filtro.Build());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al listar los clientes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Listado_Load(object sender, EventArgs e)
@@ -73,12 +80,19 @@ namespace FrbaHotel.AbmCliente
                 }
                 else if (e.ColumnIndex == dataGridView1.Columns["Inhabilitar"].Index)
                 {
-                    var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.Cliente").AddEquals("idTipoDocumento",idTipoDoc).AddEquals("numeroDocumento",nroDoc);
-                    var query = filtro.Fields("habilitado = 0").Build();
-                    DBHandler.Query(query);
-                    MessageBox.Show("Cliente inhabiliatdo");
+                    try
+                    {
+                        var filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.Cliente").AddEquals("idTipoDocumento", idTipoDoc).AddEquals("numeroDocumento", nroDoc);
+                        var query = filtro.Fields("habilitado = 0").Build();
+                        DBHandler.Query(query);
+                        MessageBox.Show("Cliente inhabiliatdo");
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error al inhabilitar al cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                dataGridView1.DataSource = this.dataSourceCliente();
+                this.dataSourceCliente(dataGridView1);
                 dataGridView1.Refresh();
             }
         }
