@@ -232,6 +232,12 @@
     <Compile Include="FacturarEstadia\GenerarFactura.Designer.cs">
       <DependentUpon>GenerarFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="FacturarEstadia\PobladorFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacturarEstadia\PobladorFacturas.Designer.cs">
+      <DependentUpon>PobladorFacturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
