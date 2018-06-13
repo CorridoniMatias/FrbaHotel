@@ -17,6 +17,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         public List<string> habitaciones { get; private set; }
         private int cantPersonasReserva;
         private float precioNoche;
+        private Reserva reserva;
         public GenerarReserva()
         {
             habitaciones = new List<string>();
@@ -98,10 +99,42 @@ namespace FrbaHotel.GenerarModificacionReserva
             FormHandler.limpiar(groupBox2);
             FormHandler.limpiar(groupBox1);
         }
-
+        private void buttonConsultar_Click(object sender, EventArgs e)
+        {
+            {
+                if (comboBoxRegimen.SelectedIndex == -1)
+                    new ListadoRegimenHotel(idHotel, comboBoxRegimen).ShowDialog();
+                if (habitaciones.Count == 0)
+                {
+                    MessageBox.Show("No ingresó ninguna habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    FormHandler.limpiar(groupBox2);
+                }
+                if (!string.IsNullOrEmpty(textBoxCantPersonas.Text))
+                    cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
+                reserva = new Reserva(idHotel, habitaciones, comboBoxRegimen.SelectedValue.ToString(), cantPersonasReserva);
+                var cantNoches = reserva.cantNoches(dateTimePickerFechaDesde, dateTimePickerFechaHasta);
+                if (cantNoches <= 0)
+                {
+                    MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
+                    precioNoche = reserva.precioPorNoche();
+                    textBoxPrecioPorNoche.Text = "U$S " + precioNoche.ToString();
+                    textBoxCantNoches.Text = cantNoches.ToString();
+                }
+            }
+        }
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
-            var cantNoches = FormHandler.cantNoches(dateTimePickerFechaDesde, dateTimePickerFechaHasta);
+            if (string.IsNullOrEmpty(textBoxCantNoches.Text))
+            {
+                MessageBox.Show("Consulte los datos de su reserva antes de generarla", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            else{
+            var cantNoches = reserva.cantNoches(dateTimePickerFechaDesde, dateTimePickerFechaHasta);
             if (cantNoches <= 0)
             {
                 MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -134,6 +167,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     MessageBox.Show("Ocurrió un error al realizar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            }
         }
         private void buttonSeleccionarHab_Click(object sender, EventArgs e)
         {
@@ -145,32 +179,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                 var form = new AbmHabitacion.Listado(idHotel, habitaciones);
                 form.setHabitacionesRemovidas(new List<string>());
                 form.ShowDialog();
-                if(!string.IsNullOrEmpty(textBoxCantPersonas.Text))
-                    cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
-            }
-        }
-        private void buttonConsultar_Click(object sender, EventArgs e)
-        {
-            {
-                if (comboBoxRegimen.SelectedIndex == -1)
-                    new ListadoRegimenHotel(idHotel, comboBoxRegimen).ShowDialog();
-                if (habitaciones.Count == 0)
-                {
-                    MessageBox.Show("No ingresó ninguna habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    FormHandler.limpiar(groupBox2);
-                }
-                var cantNoches = FormHandler.cantNoches(dateTimePickerFechaDesde, dateTimePickerFechaHasta);
-                if (cantNoches <= 0)
-                {
-                    MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
-                    precioNoche = FormHandler.precioPorNoche(habitaciones, idHotel, comboBoxRegimen,cantPersonasReserva);
-                    textBoxPrecioPorNoche.Text = "U$S " + precioNoche.ToString();
-                    textBoxCantNoches.Text = cantNoches.ToString();
-                }
             }
         }
         private string getIdCliente()
@@ -187,12 +195,5 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
 
         }
-        private void textBoxCantPersonas_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(textBoxCantPersonas.Text))
-                cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
-            FormHandler.limpiar(groupBox2);
-
-        } 
     }
 }

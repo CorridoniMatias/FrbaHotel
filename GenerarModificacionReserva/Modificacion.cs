@@ -18,6 +18,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private int cantPersonasReserva;
         public List<string> habitaciones;
         public List<string> habitacionesRemovidas;
+        private Reserva reserva;
         public Modificacion(string idReserva, string idHotel, string fechaDesde, string fechaHasta, string idRegimen, string cantPersonas,string precioNoche, List<string> habitaciones)
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             textBoxPrecioNoche.Text = precioNoche;
             this.habitaciones = habitaciones;
             habitacionesRemovidas = new List<string>();
+            reserva = new Reserva(idHotel, habitaciones, idRegimen, cantPersonasReserva);
         }
 
         private void Modificacion_Load(object sender, EventArgs e)
@@ -51,7 +53,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         }
         private void buttonModificar_Click(object sender, EventArgs e)
         {
-            var cantNoches = FormHandler.cantNoches(dateTimePickerFechaDesde,dateTimePickerFechaHasta);
+            var cantNoches = reserva.cantNoches(dateTimePickerFechaDesde,dateTimePickerFechaHasta);
             if (cantNoches <= 0)
             {
                 MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -65,7 +67,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                        new SqlParameter("@fechaHasta",dateTimePickerFechaHasta.Value),
                                        new SqlParameter("@cantNoches",cantNoches),
                                        new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue),
-                                       new SqlParameter("@precioBaseReserva",FormHandler.precioPorNoche(habitaciones,idHotel,comboBoxRegimen,cantPersonasReserva)*cantNoches),
+                                       new SqlParameter("@precioBaseReserva",reserva.precioPorNoche()*cantNoches),
                                        new SqlParameter("@cantidadPersonas",textBoxCantPersonas.Text),});
                 if (ret == 1)
                 {

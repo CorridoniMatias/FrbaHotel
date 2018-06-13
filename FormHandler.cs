@@ -206,40 +206,5 @@ namespace FrbaHotel
                     MessageBox.Show("Error al listar las habitaciones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        //MÉTODOS PARA EL PRECIO DE LA RESERVA
-            public static float precioPorNoche(List<string> habitaciones, string idHotel, ComboBox comboBoxRegimen,int cantPersonasReserva)
-            {
-                var precio = habitaciones.Sum(habitacion => DBHandler.SPWithValue("MATOTA.PrecioHabitacion",
-                    new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", habitacion), 
-                    new SqlParameter("@cantPersonas", cantidadPersonasHabitacion(habitacion,idHotel,cantPersonasReserva)), new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue)}));
-                return precio;
-            }
-            public static int cantidadPersonasHabitacion(string habitacion,string idHotel,int cantPersonasReserva)
-            {
-                var cantMaxPersonasHabitacion = getPersonasMaxHabitacion(habitacion,idHotel);
-                int aux;
-                if (cantPersonasReserva - cantMaxPersonasHabitacion > 0)
-                {
-                    cantPersonasReserva -= cantMaxPersonasHabitacion;
-                    return cantMaxPersonasHabitacion;
-                }
-                else
-                {
-                    aux = cantPersonasReserva;
-                    cantPersonasReserva = Math.Max(0, cantPersonasReserva - cantMaxPersonasHabitacion);
-                    return aux;
-                }
-            }
-            public static int cantNoches(DateTimePicker dateTimePickerFechaDesde, DateTimePicker dateTimePickerFechaHasta)
-            {
-                return DBHandler.SPWithValue("MATOTA.CantNoches",
-                    new List<SqlParameter> { new SqlParameter("@fechaInicio", dateTimePickerFechaDesde.Value), new SqlParameter("@fechaFin", dateTimePickerFechaHasta.Value) });
-            }
-            public static int getPersonasMaxHabitacion(string nroHab, string idHotel)
-            {
-                return DBHandler.SPWithValue("MATOTA.personasHabitacion", new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", nroHab) });
-
-            }
-
      }   
 }

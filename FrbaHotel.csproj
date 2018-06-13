@@ -262,6 +262,7 @@
     <Compile Include="GenerarModificacionReserva\PobladorReservas.Designer.cs">
       <DependentUpon>PobladorReservas.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarModificacionReserva\Reserva.cs" />
     <Compile Include="ListadoEstadistico\ListadoHotel.cs">
       <SubType>Form</SubType>
     </Compile>
