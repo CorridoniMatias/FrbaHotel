@@ -14,7 +14,6 @@ namespace FrbaHotel.GenerarModificacionReserva
         private List<string> habitaciones;
         private string idRegimen;
         private int cantPersonas;
-        private int cantPersonasReserva;
         public Reserva(string idHotel, List<string> habitaciones, string idRegimen, int cantPersonas)
         {
             this.idHotel = idHotel;
@@ -22,11 +21,13 @@ namespace FrbaHotel.GenerarModificacionReserva
             this.idRegimen = idRegimen;
             this.cantPersonas = cantPersonas;
         }
-        public float precioPorNoche()
+        public double precioPorNoche()
         {
-            return habitaciones.Sum(habitacion => DBHandler.SPWithValue("MATOTA.PrecioHabitacion",
-                new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", habitacion), 
-                    new SqlParameter("@cantPersonas", cantidadPersonasHabitacion(habitacion)), new SqlParameter("@idRegimen",idRegimen)}));
+            return habitaciones.Sum(habitacion => DBHandler.SpWithDouble("MATOTA.PrecioHabitacion",new List<SqlParameter> 
+                                                                                                 { new SqlParameter("@idHotel", idHotel), 
+                                                                                                   new SqlParameter("@nroHabitacion", habitacion), 
+                                                                                                   new SqlParameter("@cantPersonas", cantidadPersonasHabitacion(habitacion)), 
+                                                                                                   new SqlParameter("@idRegimen",idRegimen)}));
         }
         public int cantidadPersonasHabitacion(string habitacion)
         {
@@ -52,7 +53,10 @@ namespace FrbaHotel.GenerarModificacionReserva
         public int getPersonasMaxHabitacion(string nroHab)
         {
             return DBHandler.SPWithValue("MATOTA.personasHabitacion", new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", nroHab) });
-
+        }
+        public int cantPersonasQueEntran()
+        {
+            return habitaciones.Sum(hab=>DBHandler.SPWithValue("MATOTA.personasHabitacion",new List<SqlParameter> { new SqlParameter("@idHotel", idHotel), new SqlParameter("@nroHabitacion", hab) }));
         }
     }
 }

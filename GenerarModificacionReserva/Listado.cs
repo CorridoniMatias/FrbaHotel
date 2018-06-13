@@ -15,16 +15,35 @@ namespace FrbaHotel.GenerarModificacionReserva
     {
         private PobladorReservas poblador;
         private List<string> habitaciones;
+        private string idHotel;
         public Listado()
         {
             InitializeComponent();
             habitaciones = new List<string>();
+            if (Login.Login.LoggedUsedID == -1)
+            {
+                textBoxHotel.Hide();
+                FormHandler.listarHoteles(comboBoxHotel);
+                comboBoxHotel.SelectedIndex = -1; 
+            }
+            else
+            {
+                comboBoxHotel.Hide();
+                try
+                {
+                    var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
+                    Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
+                    textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un error al agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         private void Listado_Load(object sender, EventArgs e)
         {
-            FormHandler.listarHoteles(comboBoxHotel);
-            comboBoxHotel.SelectedIndex = -1;
             FormHandler.listarRegimenes(comboBoxRegimen);
             comboBoxRegimen.SelectedIndex = -1;
             poblador = new PobladorReservas(textBoxIdReserva, comboBoxHotel, comboBoxRegimen, dataGridView1, new List<string> { "Modificar"});
@@ -44,17 +63,24 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
-
+            //if (string.IsNullOrEmpty(textBoxHotel.Text) || comboBoxHotel.SelectedIndex == -1)
+              //  {
+                //    MessageBox.Show("No seleccionó ningún hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+            //else{
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
+                if (Login.Login.LoggedUsedID == -1)
+                    idHotel = "1";
+                else
+                    idHotel = Login.Login.LoggedUserSessionHotelID.ToString();
                 if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Modificar"))
                 {
                     this.obtenerListaHabitaciones();
-                    habitaciones.ForEach(hab => MessageBox.Show(hab.ToString()));
                     new Modificacion(
                             senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                            FormHandler.getIdHotel(senderGrid.Rows[e.RowIndex].Cells[1].Value.ToString()),
+                            idHotel,
                             senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString(),
                             senderGrid.Rows[e.RowIndex].Cells[2].Value.ToString(),
@@ -63,6 +89,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                             habitaciones).ShowDialog();
                 }
             }
+            //}
         }
         private void obtenerListaHabitaciones()
         {

@@ -51,6 +51,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -117,6 +120,7 @@
             this.dateTimePickerFechaDesde.Name = "dateTimePickerFechaDesde";
             this.dateTimePickerFechaDesde.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFechaDesde.TabIndex = 7;
+            this.dateTimePickerFechaDesde.ValueChanged += new System.EventHandler(this.dateTimePickerFechaDesde_ValueChanged);
             // 
             // dateTimePickerFechaHasta
             // 
@@ -124,6 +128,7 @@
             this.dateTimePickerFechaHasta.Name = "dateTimePickerFechaHasta";
             this.dateTimePickerFechaHasta.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFechaHasta.TabIndex = 8;
+            this.dateTimePickerFechaHasta.ValueChanged += new System.EventHandler(this.dateTimePickerFechaHasta_ValueChanged);
             // 
             // comboBoxHotel
             // 
@@ -140,6 +145,7 @@
             this.textBoxCantPersonas.Name = "textBoxCantPersonas";
             this.textBoxCantPersonas.Size = new System.Drawing.Size(55, 20);
             this.textBoxCantPersonas.TabIndex = 10;
+            this.textBoxCantPersonas.TextChanged += new System.EventHandler(this.textBoxCantPersonas_TextChanged);
             // 
             // textBoxPrecioPorNoche
             // 
@@ -183,6 +189,7 @@
             this.comboBoxRegimen.Name = "comboBoxRegimen";
             this.comboBoxRegimen.Size = new System.Drawing.Size(175, 21);
             this.comboBoxRegimen.TabIndex = 16;
+            this.comboBoxRegimen.SelectedIndexChanged += new System.EventHandler(this.comboBoxRegimen_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -197,7 +204,7 @@
             // buttonSeleccionarHab
             // 
             this.buttonSeleccionarHab.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonSeleccionarHab.Location = new System.Drawing.Point(126, 22);
+            this.buttonSeleccionarHab.Location = new System.Drawing.Point(94, 22);
             this.buttonSeleccionarHab.Name = "buttonSeleccionarHab";
             this.buttonSeleccionarHab.Size = new System.Drawing.Size(175, 23);
             this.buttonSeleccionarHab.TabIndex = 0;
@@ -253,10 +260,10 @@
             // 
             this.groupBox3.Controls.Add(this.dataGridView1);
             this.groupBox3.Controls.Add(this.buttonSeleccionarHab);
-            this.groupBox3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox3.Location = new System.Drawing.Point(351, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(411, 241);
+            this.groupBox3.Size = new System.Drawing.Size(367, 241);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Habitaciones";
@@ -264,16 +271,35 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 64);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(399, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(346, 150);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Nro. Habitación";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Tipo habitación";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Ubicación";
+            this.Column3.Name = "Column3";
             // 
             // GenerarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 475);
+            this.ClientSize = new System.Drawing.Size(729, 475);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.comboBoxRegimen);
@@ -327,5 +353,8 @@
         private System.Windows.Forms.Button buttonConsultar;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

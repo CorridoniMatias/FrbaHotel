@@ -244,6 +244,11 @@ namespace FrbaHotel
             return (bool)SPWithValueObject(procedure, param);
         }
 
+        public static double SpWithDouble(string procedure, List<SqlParameter> param = null)
+        {
+            return Convert.ToDouble(SPWithValueObject(procedure, param));
+        }
+
         public static List<Dictionary<string, object>> SPWithResultSet(string procedure, List<SqlParameter> param = null)
         {
             List<Dictionary<string, object>> ret = new List<Dictionary<string, object>>();

@@ -83,6 +83,7 @@
       <DependentUpon>Alta.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHabitacion\Habitacion.cs" />
+    <Compile Include="AbmHabitacion\HabitacionReservada.cs" />
     <Compile Include="AbmHabitacion\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
