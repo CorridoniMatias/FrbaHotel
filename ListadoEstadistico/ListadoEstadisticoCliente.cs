@@ -28,8 +28,8 @@ namespace FrbaHotel.ListadoEstadistico
             List<List<string>> resultados;
             List<SqlParameter> parametros = new List<SqlParameter> { new SqlParameter("@nroTrimestre", nroTrimestre), new SqlParameter("@year", year) };
 
-            //try
-            //{
+            try
+            {
                 resultados = DBHandler.SPWithResultSet("MATOTA.ClientesConMasPuntos", parametros)
                     .Select(row =>
                         new List<object>()    
@@ -52,13 +52,13 @@ namespace FrbaHotel.ListadoEstadistico
                 }
 
                 resultados.ForEach(row => dataGridViewClientes.Rows.Add(row.ToArray()));
-            //}
-            //catch (Exception)
-            //{
-            //    this.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            //    MessageBox.Show("Error al hacer el listado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    this.Close();
-            //}
+            }
+            catch (Exception)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                MessageBox.Show("Error al hacer el listado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
         }
     }
 }
