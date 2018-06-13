@@ -132,6 +132,21 @@ namespace FrbaHotel
                 comboBox.DisplayMember = "nombre";
                 comboBox.ValueMember = "idHotel";
             }
+            public static void listarFormaDePago(ComboBox comboBox)
+            {
+                try
+                {
+                    comboBox.DataSource = DBHandler.QueryForComboBox("SELECT idFormaDePago, nombre FROM MATOTA.FormaDePago");
+                    comboBox.DisplayMember = "nombre";
+                    comboBox.ValueMember = "idFormaDePago";
+                    comboBox.SelectedIndex = -1;
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Error al listar las formas de pago", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
             public static string getIdHotel(string nombre)
             {
                 try
