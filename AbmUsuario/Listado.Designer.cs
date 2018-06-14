@@ -105,13 +105,13 @@
             this.dataGridViewUsuarios.Name = "dataGridViewUsuarios";
             this.dataGridViewUsuarios.ReadOnly = true;
             this.dataGridViewUsuarios.RowTemplate.Height = 28;
-            this.dataGridViewUsuarios.Size = new System.Drawing.Size(1242, 304);
+            this.dataGridViewUsuarios.Size = new System.Drawing.Size(1297, 304);
             this.dataGridViewUsuarios.TabIndex = 31;
             this.dataGridViewUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsuarios_CellContentClick);
             // 
             // buttonBuscar
             // 
-            this.buttonBuscar.Location = new System.Drawing.Point(857, 127);
+            this.buttonBuscar.Location = new System.Drawing.Point(1252, 127);
             this.buttonBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(56, 32);
@@ -157,7 +157,7 @@
             this.groupBoxFiltros.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxFiltros.Name = "groupBoxFiltros";
             this.groupBoxFiltros.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxFiltros.Size = new System.Drawing.Size(1242, 103);
+            this.groupBoxFiltros.Size = new System.Drawing.Size(1297, 103);
             this.groupBoxFiltros.TabIndex = 28;
             this.groupBoxFiltros.TabStop = false;
             this.groupBoxFiltros.Text = "Filtros de búsqueda";
@@ -392,6 +392,7 @@
             this.idHotel.HeaderText = "idHotel";
             this.idHotel.Name = "idHotel";
             this.idHotel.ReadOnly = true;
+            this.idHotel.Visible = false;
             this.idHotel.Width = 65;
             // 
             // hotelUser
@@ -523,7 +524,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 511);
+            this.ClientSize = new System.Drawing.Size(1319, 511);
             this.Controls.Add(this.dataGridViewUsuarios);
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.buttonLimpiar);

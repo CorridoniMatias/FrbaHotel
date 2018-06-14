@@ -31,10 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxIdReserva = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBoxMotivo = new System.Windows.Forms.TextBox();
-            this.dateTimePickerFechaCancelacion = new System.Windows.Forms.DateTimePicker();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -68,23 +66,11 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Motivo cancelación";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(24, 234);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Fecha cancelación";
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dateTimePickerFechaCancelacion);
             this.groupBox1.Controls.Add(this.textBoxMotivo);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxIdReserva);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupBox1.Location = new System.Drawing.Point(13, 27);
@@ -102,13 +88,6 @@
             this.textBoxMotivo.Name = "textBoxMotivo";
             this.textBoxMotivo.Size = new System.Drawing.Size(228, 140);
             this.textBoxMotivo.TabIndex = 5;
-            // 
-            // dateTimePickerFechaCancelacion
-            // 
-            this.dateTimePickerFechaCancelacion.Location = new System.Drawing.Point(148, 228);
-            this.dateTimePickerFechaCancelacion.Name = "dateTimePickerFechaCancelacion";
-            this.dateTimePickerFechaCancelacion.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerFechaCancelacion.TabIndex = 6;
             // 
             // buttonLimpiar
             // 
@@ -152,9 +131,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxIdReserva;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePickerFechaCancelacion;
         private System.Windows.Forms.TextBox textBoxMotivo;
         private System.Windows.Forms.Button buttonLimpiar;
         private System.Windows.Forms.Button buttonCancelar;

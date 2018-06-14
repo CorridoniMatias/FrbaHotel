@@ -31,9 +31,11 @@ namespace FrbaHotel.AbmHotel
                  .AddJoin("INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel")
                  .AddEquals("hu.idUsuario", Login.Login.LoggedUsedID.ToString());
                 this.Text += " donde se encuentra trabajando";
+                poblador.Poblar(false);
             }
-            poblador.Poblar(false);
-         
+            else
+                poblador.Poblar();
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

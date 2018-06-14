@@ -134,11 +134,23 @@ namespace FrbaHotel
 
         private void buttonCrearHabitacion_Click(object sender, EventArgs e)
         {
-
+            new AbmHabitacion.Alta().ShowDialog(this);
         }
 
         private void buttonModificarHabitacion_Click(object sender, EventArgs e)
         {
+
+            new AbmHabitacion.ListadoSeleccion().ShowDialog(this);
+        }
+
+        private void buttonAltaCliente_Click(object sender, EventArgs e)
+        {
+            new AbmCliente.Alta().ShowDialog(this);
+        }
+
+        private void buttonModificarCliente_Click(object sender, EventArgs e)
+        {
+            new AbmCliente.Listado().ShowDialog(this);
 
         }
 

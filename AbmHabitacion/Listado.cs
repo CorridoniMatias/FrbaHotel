@@ -32,14 +32,9 @@ namespace FrbaHotel.AbmHabitacion
 
         private void Listado_Load(object sender, EventArgs e)
         {
-            FormHandler.listarTipoHabitacion(comboBoxTipoHab);
-            FormHandler.listarTipoUbicacion(comboBoxUbicacion);
+            this.setGridValuesHabitacion();
         }
 
-        private void buttonLimpiar_Click(object sender, EventArgs e)
-        {
-            FormHandler.limpiar(groupBox1);
-        }
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
@@ -51,24 +46,6 @@ namespace FrbaHotel.AbmHabitacion
         }
         private void setGridValuesHabitacion()
         {
-            //var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("h.nombre Hotel,ha.nroHabitacion Habitación,th.descripcion tipoHabitación,u.descripcion Ubicación").
-            //    Table("MATOTA.Hotel h").AddJoin("JOIN MATOTA.Habitacion ha ON (h.idHotel = ha.idHotel)").AddJoin("JOIN MATOTA.TipoHabitacion th on (ha.idTipoHabitacion = th.idTipoHabitacion)").
-            //    AddJoin("JOIN MATOTA.UbicacionHabitacion u on (ha.idUbicacion = u.idUbicacion)").AddEquals("h.idHotel", idHotel);
-            //if (comboBoxTipoHab.SelectedIndex != -1)
-            //    query.AddEquals("th.idTipoHabitacion", comboBoxTipoHab.SelectedValue.ToString());
-            //if (comboBoxUbicacion.SelectedIndex != -1)
-            //    query.AddEquals("u.idUbicacion", comboBoxUbicacion.SelectedValue.ToString());
-
-            //try
-            //{
-            //    dataGridView1.DataSource = DBHandler.QueryForComboBox(query.Build());
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Error al listar las habitaciones.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
-
             try
             {
                 var data = DBHandler.SPWithResultSet("MATOTA.HabitacionesNoReservadas",
@@ -85,6 +62,8 @@ namespace FrbaHotel.AbmHabitacion
                                                         row["Tipo"].ToString(), 
                                                         row["Ubicacion"].ToString() };
 
+                    orig.Add("Agregar");
+                    orig.Add("Quitar");
                     return orig;
                 }).ToList();
 
@@ -107,8 +86,8 @@ namespace FrbaHotel.AbmHabitacion
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                var nroHab = row.Cells["Habitación"].Value.ToString();
-                if (e.ColumnIndex == dataGridView1.Columns["Agregar"].Index)
+                var nroHab = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnAgregar"))
                 {
                     if (habitaciones.Contains(nroHab))
                         MessageBox.Show("Ya seleccionó esta habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -125,7 +104,7 @@ namespace FrbaHotel.AbmHabitacion
                         dataGridReserva.Rows.Add(habitacionReservada.nroHabitacion, habitacionReservada.tipoHabitacion, habitacionReservada.ubicacion);
                     }
                 }
-                else if (e.ColumnIndex == dataGridView1.Columns["Quitar"].Index)
+                else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnQuitar"))
                 {
                     if (habitaciones.Contains(nroHab))
                     {
