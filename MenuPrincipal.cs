@@ -54,6 +54,12 @@ namespace FrbaHotel
             if (!Login.Login.LoggedUserPermissions.Contains("Listado Estadístico"))
                 tabControlFunciones.TabPages.Remove(tabPageEstadistica);
 
+            if (!Login.Login.LoggedUserPermissions.Contains("ABM de Habitación"))
+                tabControlFunciones.TabPages.Remove(tabPageHabitaciones);
+
+            if (!Login.Login.LoggedUserPermissions.Contains("Registrar Estadía"))
+                tabControlFunciones.TabPages.Remove(tabPageEstadias);
+
         }
 
         private void buttonLaunchHotelManager_Click(object sender, EventArgs e)

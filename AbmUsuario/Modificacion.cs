@@ -36,8 +36,8 @@ namespace FrbaHotel.AbmUsuario
              .Fields("u.idUsuario, u.username, u.habilitado, ru.idRol, u.nombre, u.apellido, u.idTipoDocumento, u.numeroDocumento, u.mail, u.telefono, u.fechaNacimiento, u.calle, u.nroCalle, u.piso, u.departamento, u.localidad, u.pais")
              .Table("MATOTA.Usuario u").AddJoin("LEFT JOIN MATOTA.RolesUsuario ru ON u.idUsuario = ru.idUsuario").AddEquals("u.idUsuario", idUsuario);
 
-            //try
-            //{
+            try
+            {
                 Dictionary<string, object> datos = DBHandler.Query(query.Build())[0];
 
                 textBoxs.ForEach(tf => tf.Text = datos[tf.Tag.ToString()].ToString());
@@ -64,12 +64,12 @@ namespace FrbaHotel.AbmUsuario
                 List<Dictionary<string,object>> h = DBHandler.Query("SELECT h.nombre, h.idHotel FROM MATOTA.Hotel h INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel WHERE hu.idUsuario =" + idUsuario);
                 if(h.Count>0)
                     hotel = new AbmHotel.Hotel(){nombre=h[0]["nombre"].ToString(),idHotel=h[0]["idHotel"].ToString()};
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("No se pudo cargar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    hayError = true;
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo cargar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                hayError = true;
+            }
 
 
 

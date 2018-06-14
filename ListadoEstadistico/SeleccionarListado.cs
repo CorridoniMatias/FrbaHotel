@@ -26,11 +26,6 @@ namespace FrbaHotel.ListadoEstadistico
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            //if (comboBoxTipo.SelectedIndex >= 0 && comboBoxTipo.SelectedIndex <= 2)
-            //{
-            //    new ListadoEstadisticoHotel(comboBoxTrimestre.SelectedIndex + 1, dateTimePickerAño.Value.Year, comboBoxTipo.SelectedIndex).Show(this);
-            //}
-
             switch (comboBoxTipo.SelectedIndex)
             {
                 case 3:
