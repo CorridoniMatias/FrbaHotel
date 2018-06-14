@@ -74,11 +74,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(38, 20);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox1.Location = new System.Drawing.Point(23, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(1325, 217);
+            this.groupBox1.Size = new System.Drawing.Size(795, 128);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
@@ -87,30 +85,27 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(494, 141);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Location = new System.Drawing.Point(296, 83);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 24);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 6;
             this.label2.Text = "Nro. Calle";
             // 
             // textBoxCantEstrellas
             // 
-            this.textBoxCantEstrellas.Location = new System.Drawing.Point(597, 137);
-            this.textBoxCantEstrellas.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxCantEstrellas.Location = new System.Drawing.Point(358, 81);
             this.textBoxCantEstrellas.MaxLength = 18;
             this.textBoxCantEstrellas.Name = "textBoxCantEstrellas";
-            this.textBoxCantEstrellas.Size = new System.Drawing.Size(266, 28);
+            this.textBoxCantEstrellas.Size = new System.Drawing.Size(161, 20);
             this.textBoxCantEstrellas.TabIndex = 7;
             this.textBoxCantEstrellas.Tag = "nroCalle";
             // 
             // textBoxTelefono
             // 
-            this.textBoxTelefono.Location = new System.Drawing.Point(100, 133);
-            this.textBoxTelefono.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxTelefono.Location = new System.Drawing.Point(60, 79);
             this.textBoxTelefono.MaxLength = 255;
             this.textBoxTelefono.Name = "textBoxTelefono";
-            this.textBoxTelefono.Size = new System.Drawing.Size(312, 28);
+            this.textBoxTelefono.Size = new System.Drawing.Size(189, 20);
             this.textBoxTelefono.TabIndex = 11;
             this.textBoxTelefono.Tag = "telefono";
             // 
@@ -118,20 +113,18 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(17, 136);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label6.Location = new System.Drawing.Point(10, 80);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 24);
+            this.label6.Size = new System.Drawing.Size(25, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "Tel.";
             // 
             // textBoxMail
             // 
-            this.textBoxMail.Location = new System.Drawing.Point(579, 50);
-            this.textBoxMail.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxMail.Location = new System.Drawing.Point(347, 30);
             this.textBoxMail.MaxLength = 255;
             this.textBoxMail.Name = "textBoxMail";
-            this.textBoxMail.Size = new System.Drawing.Size(284, 28);
+            this.textBoxMail.Size = new System.Drawing.Size(172, 20);
             this.textBoxMail.TabIndex = 9;
             this.textBoxMail.Tag = "mail";
             // 
@@ -139,40 +132,36 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(494, 53);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label5.Location = new System.Drawing.Point(296, 31);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 24);
+            this.label5.Size = new System.Drawing.Size(26, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Mail";
             // 
             // textBoxPais
             // 
-            this.textBoxPais.Location = new System.Drawing.Point(1031, 134);
-            this.textBoxPais.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxPais.Location = new System.Drawing.Point(619, 79);
             this.textBoxPais.MaxLength = 60;
             this.textBoxPais.Name = "textBoxPais";
-            this.textBoxPais.Size = new System.Drawing.Size(282, 28);
+            this.textBoxPais.Size = new System.Drawing.Size(171, 20);
             this.textBoxPais.TabIndex = 7;
             this.textBoxPais.Tag = "calle";
             // 
             // textBoxCiudad
             // 
-            this.textBoxCiudad.Location = new System.Drawing.Point(1031, 50);
-            this.textBoxCiudad.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxCiudad.Location = new System.Drawing.Point(619, 30);
             this.textBoxCiudad.MaxLength = 255;
             this.textBoxCiudad.Name = "textBoxCiudad";
-            this.textBoxCiudad.Size = new System.Drawing.Size(284, 28);
+            this.textBoxCiudad.Size = new System.Drawing.Size(172, 20);
             this.textBoxCiudad.TabIndex = 6;
             this.textBoxCiudad.Tag = "ciudad";
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(100, 49);
-            this.textBoxNombre.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxNombre.Location = new System.Drawing.Point(60, 29);
             this.textBoxNombre.MaxLength = 82;
             this.textBoxNombre.Name = "textBoxNombre";
-            this.textBoxNombre.Size = new System.Drawing.Size(312, 28);
+            this.textBoxNombre.Size = new System.Drawing.Size(189, 20);
             this.textBoxNombre.TabIndex = 4;
             this.textBoxNombre.Tag = "nombre";
             // 
@@ -180,10 +169,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(946, 137);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Location = new System.Drawing.Point(568, 81);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 24);
+            this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Calle";
             // 
@@ -191,10 +179,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(946, 53);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Location = new System.Drawing.Point(568, 31);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 24);
+            this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Ciudad";
             // 
@@ -202,19 +189,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(17, 53);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Location = new System.Drawing.Point(10, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 24);
+            this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(38, 249);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
+            this.button1.Location = new System.Drawing.Point(23, 147);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 39);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Limpiar";
             this.button1.UseVisualStyleBackColor = true;
@@ -222,10 +207,9 @@
             // 
             // buttonBuscar
             // 
-            this.buttonBuscar.Location = new System.Drawing.Point(1238, 249);
-            this.buttonBuscar.Margin = new System.Windows.Forms.Padding(5);
+            this.buttonBuscar.Location = new System.Drawing.Point(743, 147);
             this.buttonBuscar.Name = "buttonBuscar";
-            this.buttonBuscar.Size = new System.Drawing.Size(125, 39);
+            this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
             this.buttonBuscar.TabIndex = 2;
             this.buttonBuscar.Text = "Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
@@ -248,11 +232,10 @@
             this.Column6,
             this.Column7,
             this.ColumnSelect});
-            this.dataGridView1.Location = new System.Drawing.Point(38, 340);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5);
+            this.dataGridView1.Location = new System.Drawing.Point(23, 201);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1325, 345);
+            this.dataGridView1.Size = new System.Drawing.Size(795, 204);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -337,18 +320,17 @@
             // 
             // Listado
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1402, 706);
+            this.ClientSize = new System.Drawing.Size(841, 417);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Listado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Seleccione el Hotel donde se encuentra trabajando";
+            this.Text = "Seleccione el Hotel";
             this.Load += new System.EventHandler(this.Listado_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

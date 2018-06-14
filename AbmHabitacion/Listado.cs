@@ -32,14 +32,9 @@ namespace FrbaHotel.AbmHabitacion
 
         private void Listado_Load(object sender, EventArgs e)
         {
-            FormHandler.listarTipoHabitacion(comboBoxTipoHab);
-            FormHandler.listarTipoUbicacion(comboBoxUbicacion);
+            this.setGridValuesHabitacion();
         }
 
-        private void buttonLimpiar_Click(object sender, EventArgs e)
-        {
-            FormHandler.limpiar(groupBox1);
-        }
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
@@ -91,7 +86,7 @@ namespace FrbaHotel.AbmHabitacion
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                var nroHab = row.Cells["nroHabitacion"].Value.ToString();
+                var nroHab = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnAgregar"))
                 {
                     if (habitaciones.Contains(nroHab))

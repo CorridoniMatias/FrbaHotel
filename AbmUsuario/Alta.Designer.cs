@@ -65,6 +65,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.textBoxHotel = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.buttonBuscar = new System.Windows.Forms.Button();
             this.groupBoxUser.SuspendLayout();
             this.groupBoxDireccion.SuspendLayout();
             this.groupBoxDatos.SuspendLayout();
@@ -72,8 +75,11 @@
             // 
             // groupBoxUser
             // 
+            this.groupBoxUser.Controls.Add(this.buttonBuscar);
+            this.groupBoxUser.Controls.Add(this.textBoxHotel);
             this.groupBoxUser.Controls.Add(this.comboBoxRol);
             this.groupBoxUser.Controls.Add(this.textBoxPassword);
+            this.groupBoxUser.Controls.Add(this.label17);
             this.groupBoxUser.Controls.Add(this.textBoxUsername);
             this.groupBoxUser.Controls.Add(this.label7);
             this.groupBoxUser.Controls.Add(this.label2);
@@ -81,7 +87,7 @@
             this.groupBoxUser.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBoxUser.Location = new System.Drawing.Point(13, 13);
             this.groupBoxUser.Name = "groupBoxUser";
-            this.groupBoxUser.Size = new System.Drawing.Size(358, 126);
+            this.groupBoxUser.Size = new System.Drawing.Size(358, 163);
             this.groupBoxUser.TabIndex = 0;
             this.groupBoxUser.TabStop = false;
             this.groupBoxUser.Text = "Datos del Usuario";
@@ -492,6 +498,39 @@
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
+            // textBoxHotel
+            // 
+            this.textBoxHotel.Enabled = false;
+            this.textBoxHotel.Location = new System.Drawing.Point(61, 127);
+            this.textBoxHotel.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxHotel.MaxLength = 20;
+            this.textBoxHotel.Name = "textBoxHotel";
+            this.textBoxHotel.ReadOnly = true;
+            this.textBoxHotel.Size = new System.Drawing.Size(193, 20);
+            this.textBoxHotel.TabIndex = 19;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label17.Location = new System.Drawing.Point(7, 130);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(32, 13);
+            this.label17.TabIndex = 18;
+            this.label17.Text = "Hotel";
+            // 
+            // buttonBuscar
+            // 
+            this.buttonBuscar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonBuscar.Location = new System.Drawing.Point(268, 125);
+            this.buttonBuscar.Name = "buttonBuscar";
+            this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuscar.TabIndex = 20;
+            this.buttonBuscar.Text = "Buscar";
+            this.buttonBuscar.UseVisualStyleBackColor = true;
+            this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
+            // 
             // Alta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,5 +593,8 @@
         private System.Windows.Forms.TextBox textBoxUsername;
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.Button buttonLimpiar;
+        private System.Windows.Forms.Button buttonBuscar;
+        private System.Windows.Forms.TextBox textBoxHotel;
+        private System.Windows.Forms.Label label17;
     }
 }
