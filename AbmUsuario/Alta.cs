@@ -14,6 +14,7 @@ namespace FrbaHotel.AbmUsuario
     public partial class Alta : Form
     {
         bool hayError = false;
+        private AbmHotel.Hotel hotel;
         public Alta()
         {
             InitializeComponent();
@@ -131,6 +132,12 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show("La fecha de nacimiento no puede ser posterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
             }
+            if (hotel == null)
+            {
+                MessageBox.Show("Debe seleccionar un hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                hayError = true;
+            }
+
             if (!string.IsNullOrEmpty(textBoxUsername.Text.Trim()))
             {
                 string queryValidar = "SELECT COUNT(*) FROM MATOTA.Usuario WHERE username = '" + textBoxUsername.Text + "'";
@@ -178,10 +185,19 @@ namespace FrbaHotel.AbmUsuario
             }
 
             string query = "INSERT INTO MATOTA.RolesUsuario VALUES (" + idUsuario.ToString() + "," + comboBoxRol.SelectedValue.ToString() + ")";
-
+           
             try
             {
                 DBHandler.Query(query);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+                DBHandler.Query("INSERT INTO MATOTA.HotelesUsuario VALUES (" + idUsuario.ToString() + "," + hotel.idHotel.ToString() + ")");
                 MessageBox.Show("Usuario agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
@@ -257,6 +273,19 @@ namespace FrbaHotel.AbmUsuario
         {
             comboBoxTipoDoc.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxTipoDoc.BackColor = Color.White;
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+
+            var selector = new AbmHotel.Listado(false);
+
+            if (selector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                hotel = selector.SelectedHotel;
+                textBoxHotel.Text = hotel.nombre;
+
+            }
         }
     }
 }

@@ -27,9 +27,10 @@ namespace FrbaHotel.AbmHotel
             this.picker = picker;
         }
 
-        public void Poblar()
+        public void Poblar(bool limpiar = true)
         {
-            Filtro.ClearFilters();
+            if(limpiar)
+                Filtro.ClearFilters();
             inputs
                 .FindAll(c => !string.IsNullOrEmpty(c.Text.Trim()))
                 .ForEach(c =>

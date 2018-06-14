@@ -16,11 +16,11 @@ namespace FrbaHotel.AbmUsuario
         bool modificando;
         bool hayError;
         string idUsuario;
+        private AbmHotel.Hotel hotel;
         List<TextBox> textBoxs;
 
-        public Modificacion(string idUsuario, bool modificando = false)
+        public Modificacion(string idUsuario)
         {
-            this.modificando = modificando;
             this.idUsuario = idUsuario;
             hayError = false;
 
@@ -36,28 +36,40 @@ namespace FrbaHotel.AbmUsuario
              .Fields("u.idUsuario, u.username, u.habilitado, ru.idRol, u.nombre, u.apellido, u.idTipoDocumento, u.numeroDocumento, u.mail, u.telefono, u.fechaNacimiento, u.calle, u.nroCalle, u.piso, u.departamento, u.localidad, u.pais")
              .Table("MATOTA.Usuario u").AddJoin("LEFT JOIN MATOTA.RolesUsuario ru ON u.idUsuario = ru.idUsuario").AddEquals("u.idUsuario", idUsuario);
 
-            Dictionary<string, object> datos = DBHandler.Query(query.Build())[0];
+            //try
+            //{
+                Dictionary<string, object> datos = DBHandler.Query(query.Build())[0];
 
-            textBoxs.ForEach(tf => tf.Text = datos[tf.Tag.ToString()].ToString());
-            checkBoxHabilitado.Checked = Boolean.Parse(datos["habilitado"].ToString());
-            dateTimePickerFechaNacimiento.Value = DateTime.Parse(datos["fechaNacimiento"].ToString());
-            for (int i = 0; i < comboBoxRol.Items.Count; i++)
-            {
-                if (((DataRowView)comboBoxRol.Items[i])["idRol"].ToString() == datos["idRol"].ToString())
+                textBoxs.ForEach(tf => tf.Text = datos[tf.Tag.ToString()].ToString());
+                checkBoxHabilitado.Checked = Boolean.Parse(datos["habilitado"].ToString());
+                dateTimePickerFechaNacimiento.Value = DateTime.Parse(datos["fechaNacimiento"].ToString());
+                for (int i = 0; i < comboBoxRol.Items.Count; i++)
                 {
-                    comboBoxRol.SelectedIndex = i;
-                    break;
+                    if (((DataRowView)comboBoxRol.Items[i])["idRol"].ToString() == datos["idRol"].ToString())
+                    {
+                        comboBoxRol.SelectedIndex = i;
+                        break;
+                    }
                 }
-            }
 
-            for (int i = 0; i < comboBoxTipoDoc.Items.Count; i++)
-            {
-                if (((DataRowView)comboBoxTipoDoc.Items[i])["idTipoDocumento"].ToString() == datos["idTipoDocumento"].ToString())
+                for (int i = 0; i < comboBoxTipoDoc.Items.Count; i++)
                 {
-                    comboBoxTipoDoc.SelectedIndex = i;
-                    break;
+                    if (((DataRowView)comboBoxTipoDoc.Items[i])["idTipoDocumento"].ToString() == datos["idTipoDocumento"].ToString())
+                    {
+                        comboBoxTipoDoc.SelectedIndex = i;
+                        break;
+                    }
                 }
-            }
+
+                List<Dictionary<string,object>> h = DBHandler.Query("SELECT h.nombre, h.idHotel FROM MATOTA.Hotel h INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel WHERE hu.idUsuario =" + idUsuario);
+                if(h.Count>0)
+                    hotel = new AbmHotel.Hotel(){nombre=h[0]["nombre"].ToString(),idHotel=h[0]["idHotel"].ToString()};
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("No se pudo cargar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    hayError = true;
+            //}
 
 
 
@@ -157,6 +169,11 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show("La fecha de nacimiento no puede ser posterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
             }
+            if (hotel == null)
+            {
+                MessageBox.Show("Debe seleccionar un hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                hayError = true;
+            }
 
             if (!string.IsNullOrEmpty(textBoxUsername.Text.Trim()))
             {
@@ -216,7 +233,7 @@ namespace FrbaHotel.AbmUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ocurrió un error al guardar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -225,17 +242,28 @@ namespace FrbaHotel.AbmUsuario
             try
             {
                 DBHandler.Query(query);
-
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ocurrió un error al guardar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            MessageBox.Show("Usuario guardado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            this.Close();
+            try
+            {
+            MessageBox.Show(hotel.idHotel.ToString());
+                if (DBHandler.Query("SELECT hu.idHotel FROM MATOTA.HotelesUsuario hu WHERE hu.idUsuario =" + idUsuario).Count == 0)
+                {
+                    DBHandler.Query("INSERT INTO MATOTA.HotelesUsuario VALUES (" + idUsuario.ToString() + "," + hotel.idHotel.ToString() + ")");
+                }
+                else DBHandler.Query("UPDATE MATOTA.HotelesUsuario SET idHotel = " + hotel.idHotel.ToString() + " WHERE idUsuario =" + idUsuario.ToString());
+                MessageBox.Show("Usuario guardado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al guardar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         private void textBoxUsername_TextChanged(object sender, EventArgs e)
@@ -303,6 +331,24 @@ namespace FrbaHotel.AbmUsuario
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Modificacion_Load(object sender, EventArgs e)
+        {
+            if(hayError)
+                this.Close();
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+            var selector = new AbmHotel.Listado(false);
+
+            if (selector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                hotel = selector.SelectedHotel;
+                textBoxHotel.Text = hotel.nombre;
+
+            }
         }
     }
 }

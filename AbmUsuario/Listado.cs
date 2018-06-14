@@ -13,9 +13,13 @@ namespace FrbaHotel.AbmUsuario
     public partial class Listado : Form
     {
         private PobladorUsuarios poblador;
+        private AbmHotel.Hotel hotel;
+        private int idHotelAdmin;
 
-        public Listado()
+        public Listado(int hotelAdmin, AbmHotel.Hotel hotel = null)
         {
+            this.idHotelAdmin = hotelAdmin;
+            this.hotel = hotel;
             InitializeComponent();
         }
 
@@ -32,6 +36,9 @@ namespace FrbaHotel.AbmUsuario
         {
             FormHandler.limpiar(groupBoxFiltros);
 
+            textBoxHotel.Text = "";
+            hotel = null;
+
             dataGridViewUsuarios.Rows.Clear();
         }
 
@@ -39,7 +46,7 @@ namespace FrbaHotel.AbmUsuario
         {
             dataGridViewUsuarios.Rows.Clear();
 
-            poblador.Poblar();
+            poblador.Poblar(hotel);
         }
 
         private void dataGridViewUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -52,23 +59,47 @@ namespace FrbaHotel.AbmUsuario
 
                 if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Modificar"))
                 {
-                    new Modificacion(senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString()).ShowDialog(this);
+                    if (idHotelAdmin.ToString() == senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString() || String.IsNullOrEmpty(senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString()))
+                        new Modificacion(senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString()).ShowDialog(this);
+                    else
+                    {
+                        MessageBox.Show("No podes modificar un usuario de un hotel en el que no estas loggeado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                 }
                 else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Eliminar"))
                 {
                     try
                     {
-                        DBHandler.Query("UPDATE MATOTA.Usuario SET habilitado=0 WHERE idUsuario =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                        if (idHotelAdmin.ToString() == senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString() || String.IsNullOrEmpty(senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString()))
+                            DBHandler.Query("UPDATE MATOTA.Usuario SET habilitado=0 WHERE idUsuario =" + senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                        else
+                        {
+                            MessageBox.Show("No podes eliminar un usuario de un hotel en el que no estas loggeado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
                     catch (Exception)
                     {
                         MessageBox.Show("Ocurrió un error al eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
-                    } 
+                    }
 
                 }
                 dataGridViewUsuarios.Rows.Clear();
                 poblador.Poblar();
+            }
+        }
+
+        private void buttonBuscarHotel_Click(object sender, EventArgs e)
+        {
+            var selector = new AbmHotel.Listado(false);
+
+            if (selector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                hotel = selector.SelectedHotel;
+                textBoxHotel.Text = hotel.idHotel;
+
             }
         }
     }

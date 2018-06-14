@@ -29,26 +29,12 @@
         private void InitializeComponent()
         {
             this.dataGridViewUsuarios = new System.Windows.Forms.DataGridView();
-            this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumeroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NroCalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pais = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.groupBoxFiltros = new System.Windows.Forms.GroupBox();
+            this.buttonBuscarHotel = new System.Windows.Forms.Button();
+            this.textBoxHotel = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.checkBoxHabilitado = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBoxRol = new System.Windows.Forms.ComboBox();
@@ -65,6 +51,25 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idHotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hotelUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumeroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NroCalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pais = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).BeginInit();
             this.groupBoxFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -73,12 +78,14 @@
             // 
             this.dataGridViewUsuarios.AllowUserToAddRows = false;
             this.dataGridViewUsuarios.AllowUserToDeleteRows = false;
-            this.dataGridViewUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idUsuario,
             this.Username,
             this.Rol,
+            this.idHotel,
+            this.hotelUser,
             this.Nombre,
             this.Apellido,
             this.TipoDocumento,
@@ -101,149 +108,6 @@
             this.dataGridViewUsuarios.Size = new System.Drawing.Size(1242, 304);
             this.dataGridViewUsuarios.TabIndex = 31;
             this.dataGridViewUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsuarios_CellContentClick);
-            // 
-            // idUsuario
-            // 
-            this.idUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.idUsuario.HeaderText = "idUsuario";
-            this.idUsuario.Name = "idUsuario";
-            this.idUsuario.ReadOnly = true;
-            this.idUsuario.Visible = false;
-            this.idUsuario.Width = 5;
-            // 
-            // Username
-            // 
-            this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Username.HeaderText = "Username";
-            this.Username.Name = "Username";
-            this.Username.ReadOnly = true;
-            this.Username.Width = 75;
-            // 
-            // Rol
-            // 
-            this.Rol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Rol.HeaderText = "Rol";
-            this.Rol.Name = "Rol";
-            this.Rol.ReadOnly = true;
-            this.Rol.Width = 48;
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 69;
-            // 
-            // Apellido
-            // 
-            this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Apellido.FillWeight = 200F;
-            this.Apellido.HeaderText = "Apellido";
-            this.Apellido.Name = "Apellido";
-            this.Apellido.ReadOnly = true;
-            this.Apellido.Width = 69;
-            // 
-            // TipoDocumento
-            // 
-            this.TipoDocumento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TipoDocumento.HeaderText = "Tipo de Documento";
-            this.TipoDocumento.Name = "TipoDocumento";
-            this.TipoDocumento.ReadOnly = true;
-            this.TipoDocumento.Width = 75;
-            // 
-            // NumeroDocumento
-            // 
-            this.NumeroDocumento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.NumeroDocumento.HeaderText = "Número de Documento";
-            this.NumeroDocumento.Name = "NumeroDocumento";
-            this.NumeroDocumento.ReadOnly = true;
-            this.NumeroDocumento.Width = 90;
-            // 
-            // Mail
-            // 
-            this.Mail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Mail.FillWeight = 200F;
-            this.Mail.HeaderText = "Mail";
-            this.Mail.Name = "Mail";
-            this.Mail.ReadOnly = true;
-            this.Mail.Width = 51;
-            // 
-            // Telefono
-            // 
-            this.Telefono.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Telefono.HeaderText = "Teléfono";
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            this.Telefono.Width = 74;
-            // 
-            // Calle
-            // 
-            this.Calle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Calle.HeaderText = "Calle";
-            this.Calle.Name = "Calle";
-            this.Calle.ReadOnly = true;
-            this.Calle.Width = 55;
-            // 
-            // NroCalle
-            // 
-            this.NroCalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.NroCalle.HeaderText = "Nro. de Calle";
-            this.NroCalle.Name = "NroCalle";
-            this.NroCalle.ReadOnly = true;
-            this.NroCalle.Width = 86;
-            // 
-            // Localidad
-            // 
-            this.Localidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Localidad.HeaderText = "Localidad";
-            this.Localidad.Name = "Localidad";
-            this.Localidad.ReadOnly = true;
-            this.Localidad.Width = 78;
-            // 
-            // Pais
-            // 
-            this.Pais.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Pais.HeaderText = "País";
-            this.Pais.Name = "Pais";
-            this.Pais.ReadOnly = true;
-            this.Pais.Width = 54;
-            // 
-            // FechaNacimiento
-            // 
-            this.FechaNacimiento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.FechaNacimiento.HeaderText = "Fecha de Nacimiento";
-            this.FechaNacimiento.Name = "FechaNacimiento";
-            this.FechaNacimiento.ReadOnly = true;
-            this.FechaNacimiento.Width = 110;
-            // 
-            // Habilitado
-            // 
-            this.Habilitado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Habilitado.HeaderText = "Habilitado";
-            this.Habilitado.Name = "Habilitado";
-            this.Habilitado.ReadOnly = true;
-            this.Habilitado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Habilitado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Habilitado.Width = 60;
-            // 
-            // Modificar
-            // 
-            this.Modificar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Modificar.HeaderText = "Modificar";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.ReadOnly = true;
-            this.Modificar.Text = "Modificar";
-            this.Modificar.Width = 56;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Text = "Eliminar";
-            this.Eliminar.Width = 49;
             // 
             // buttonBuscar
             // 
@@ -269,6 +133,9 @@
             // 
             // groupBoxFiltros
             // 
+            this.groupBoxFiltros.Controls.Add(this.buttonBuscarHotel);
+            this.groupBoxFiltros.Controls.Add(this.textBoxHotel);
+            this.groupBoxFiltros.Controls.Add(this.label17);
             this.groupBoxFiltros.Controls.Add(this.checkBoxHabilitado);
             this.groupBoxFiltros.Controls.Add(this.label8);
             this.groupBoxFiltros.Controls.Add(this.comboBoxRol);
@@ -290,10 +157,43 @@
             this.groupBoxFiltros.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxFiltros.Name = "groupBoxFiltros";
             this.groupBoxFiltros.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxFiltros.Size = new System.Drawing.Size(902, 103);
+            this.groupBoxFiltros.Size = new System.Drawing.Size(1242, 103);
             this.groupBoxFiltros.TabIndex = 28;
             this.groupBoxFiltros.TabStop = false;
             this.groupBoxFiltros.Text = "Filtros de búsqueda";
+            // 
+            // buttonBuscarHotel
+            // 
+            this.buttonBuscarHotel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonBuscarHotel.Location = new System.Drawing.Point(858, 64);
+            this.buttonBuscarHotel.Name = "buttonBuscarHotel";
+            this.buttonBuscarHotel.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuscarHotel.TabIndex = 26;
+            this.buttonBuscarHotel.Text = "Buscar";
+            this.buttonBuscarHotel.UseVisualStyleBackColor = true;
+            this.buttonBuscarHotel.Click += new System.EventHandler(this.buttonBuscarHotel_Click);
+            // 
+            // textBoxHotel
+            // 
+            this.textBoxHotel.Enabled = false;
+            this.textBoxHotel.Location = new System.Drawing.Point(651, 66);
+            this.textBoxHotel.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxHotel.MaxLength = 20;
+            this.textBoxHotel.Name = "textBoxHotel";
+            this.textBoxHotel.ReadOnly = true;
+            this.textBoxHotel.Size = new System.Drawing.Size(193, 20);
+            this.textBoxHotel.TabIndex = 25;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label17.Location = new System.Drawing.Point(597, 69);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(32, 13);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "Hotel";
             // 
             // checkBoxHabilitado
             // 
@@ -462,6 +362,163 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
+            // idUsuario
+            // 
+            this.idUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.idUsuario.HeaderText = "idUsuario";
+            this.idUsuario.Name = "idUsuario";
+            this.idUsuario.ReadOnly = true;
+            this.idUsuario.Visible = false;
+            this.idUsuario.Width = 5;
+            // 
+            // Username
+            // 
+            this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            this.Username.Width = 75;
+            // 
+            // Rol
+            // 
+            this.Rol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Rol.HeaderText = "Rol";
+            this.Rol.Name = "Rol";
+            this.Rol.ReadOnly = true;
+            this.Rol.Width = 48;
+            // 
+            // idHotel
+            // 
+            this.idHotel.HeaderText = "idHotel";
+            this.idHotel.Name = "idHotel";
+            this.idHotel.ReadOnly = true;
+            this.idHotel.Width = 65;
+            // 
+            // hotelUser
+            // 
+            this.hotelUser.HeaderText = "Hotel";
+            this.hotelUser.Name = "hotelUser";
+            this.hotelUser.ReadOnly = true;
+            this.hotelUser.Width = 57;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 69;
+            // 
+            // Apellido
+            // 
+            this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Apellido.FillWeight = 200F;
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.Name = "Apellido";
+            this.Apellido.ReadOnly = true;
+            this.Apellido.Width = 69;
+            // 
+            // TipoDocumento
+            // 
+            this.TipoDocumento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TipoDocumento.HeaderText = "Tipo de Documento";
+            this.TipoDocumento.Name = "TipoDocumento";
+            this.TipoDocumento.ReadOnly = true;
+            this.TipoDocumento.Width = 75;
+            // 
+            // NumeroDocumento
+            // 
+            this.NumeroDocumento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.NumeroDocumento.HeaderText = "Número de Documento";
+            this.NumeroDocumento.Name = "NumeroDocumento";
+            this.NumeroDocumento.ReadOnly = true;
+            this.NumeroDocumento.Width = 90;
+            // 
+            // Mail
+            // 
+            this.Mail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Mail.FillWeight = 200F;
+            this.Mail.HeaderText = "Mail";
+            this.Mail.Name = "Mail";
+            this.Mail.ReadOnly = true;
+            this.Mail.Width = 51;
+            // 
+            // Telefono
+            // 
+            this.Telefono.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Telefono.HeaderText = "Teléfono";
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
+            this.Telefono.Width = 74;
+            // 
+            // Calle
+            // 
+            this.Calle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Calle.HeaderText = "Calle";
+            this.Calle.Name = "Calle";
+            this.Calle.ReadOnly = true;
+            this.Calle.Width = 55;
+            // 
+            // NroCalle
+            // 
+            this.NroCalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NroCalle.HeaderText = "Nro. de Calle";
+            this.NroCalle.Name = "NroCalle";
+            this.NroCalle.ReadOnly = true;
+            this.NroCalle.Width = 86;
+            // 
+            // Localidad
+            // 
+            this.Localidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Localidad.HeaderText = "Localidad";
+            this.Localidad.Name = "Localidad";
+            this.Localidad.ReadOnly = true;
+            this.Localidad.Width = 78;
+            // 
+            // Pais
+            // 
+            this.Pais.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Pais.HeaderText = "País";
+            this.Pais.Name = "Pais";
+            this.Pais.ReadOnly = true;
+            this.Pais.Width = 54;
+            // 
+            // FechaNacimiento
+            // 
+            this.FechaNacimiento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.FechaNacimiento.HeaderText = "Fecha de Nacimiento";
+            this.FechaNacimiento.Name = "FechaNacimiento";
+            this.FechaNacimiento.ReadOnly = true;
+            this.FechaNacimiento.Width = 110;
+            // 
+            // Habilitado
+            // 
+            this.Habilitado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Habilitado.HeaderText = "Habilitado";
+            this.Habilitado.Name = "Habilitado";
+            this.Habilitado.ReadOnly = true;
+            this.Habilitado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Habilitado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Habilitado.Width = 60;
+            // 
+            // Modificar
+            // 
+            this.Modificar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Modificar.HeaderText = "Modificar";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Text = "Modificar";
+            this.Modificar.Width = 56;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Text = "Eliminar";
+            this.Eliminar.Width = 49;
+            // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,9 +558,16 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxUsername;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox checkBoxHabilitado;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonBuscarHotel;
+        private System.Windows.Forms.TextBox textBoxHotel;
+        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridViewTextBoxColumn idUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idHotel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hotelUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;
@@ -518,7 +582,5 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Habilitado;
         private System.Windows.Forms.DataGridViewButtonColumn Modificar;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
-        private System.Windows.Forms.CheckBox checkBoxHabilitado;
-        private System.Windows.Forms.Label label8;
     }
 }

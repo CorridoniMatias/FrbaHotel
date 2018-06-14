@@ -59,6 +59,9 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBoxUser = new System.Windows.Forms.GroupBox();
+            this.buttonBuscar = new System.Windows.Forms.Button();
+            this.textBoxHotel = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.checkBoxHabilitado = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxRol = new System.Windows.Forms.ComboBox();
@@ -73,7 +76,7 @@
             // buttonGuardar
             // 
             this.buttonGuardar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonGuardar.Location = new System.Drawing.Point(295, 615);
+            this.buttonGuardar.Location = new System.Drawing.Point(658, 482);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 27;
@@ -84,7 +87,7 @@
             // buttonCancelar
             // 
             this.buttonCancelar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonCancelar.Location = new System.Drawing.Point(13, 615);
+            this.buttonCancelar.Location = new System.Drawing.Point(13, 482);
             this.buttonCancelar.Margin = new System.Windows.Forms.Padding(5);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
@@ -110,7 +113,7 @@
             this.groupBoxDatos.Controls.Add(this.label9);
             this.groupBoxDatos.Controls.Add(this.label10);
             this.groupBoxDatos.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBoxDatos.Location = new System.Drawing.Point(12, 143);
+            this.groupBoxDatos.Location = new System.Drawing.Point(375, 12);
             this.groupBoxDatos.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxDatos.Name = "groupBoxDatos";
             this.groupBoxDatos.Padding = new System.Windows.Forms.Padding(2);
@@ -287,7 +290,7 @@
             this.groupBoxDireccion.Controls.Add(this.label15);
             this.groupBoxDireccion.Controls.Add(this.label16);
             this.groupBoxDireccion.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBoxDireccion.Location = new System.Drawing.Point(12, 393);
+            this.groupBoxDireccion.Location = new System.Drawing.Point(375, 262);
             this.groupBoxDireccion.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxDireccion.Name = "groupBoxDireccion";
             this.groupBoxDireccion.Padding = new System.Windows.Forms.Padding(2);
@@ -428,6 +431,9 @@
             // 
             // groupBoxUser
             // 
+            this.groupBoxUser.Controls.Add(this.buttonBuscar);
+            this.groupBoxUser.Controls.Add(this.textBoxHotel);
+            this.groupBoxUser.Controls.Add(this.label17);
             this.groupBoxUser.Controls.Add(this.checkBoxHabilitado);
             this.groupBoxUser.Controls.Add(this.label2);
             this.groupBoxUser.Controls.Add(this.comboBoxRol);
@@ -437,10 +443,43 @@
             this.groupBoxUser.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBoxUser.Location = new System.Drawing.Point(12, 12);
             this.groupBoxUser.Name = "groupBoxUser";
-            this.groupBoxUser.Size = new System.Drawing.Size(358, 126);
+            this.groupBoxUser.Size = new System.Drawing.Size(358, 151);
             this.groupBoxUser.TabIndex = 23;
             this.groupBoxUser.TabStop = false;
             this.groupBoxUser.Text = "Datos del Usuario";
+            // 
+            // buttonBuscar
+            // 
+            this.buttonBuscar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonBuscar.Location = new System.Drawing.Point(270, 111);
+            this.buttonBuscar.Name = "buttonBuscar";
+            this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuscar.TabIndex = 23;
+            this.buttonBuscar.Text = "Buscar";
+            this.buttonBuscar.UseVisualStyleBackColor = true;
+            this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
+            // 
+            // textBoxHotel
+            // 
+            this.textBoxHotel.Enabled = false;
+            this.textBoxHotel.Location = new System.Drawing.Point(63, 113);
+            this.textBoxHotel.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxHotel.MaxLength = 20;
+            this.textBoxHotel.Name = "textBoxHotel";
+            this.textBoxHotel.ReadOnly = true;
+            this.textBoxHotel.Size = new System.Drawing.Size(193, 20);
+            this.textBoxHotel.TabIndex = 22;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label17.Location = new System.Drawing.Point(9, 116);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(32, 13);
+            this.label17.TabIndex = 21;
+            this.label17.Text = "Hotel";
             // 
             // checkBoxHabilitado
             // 
@@ -509,7 +548,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 643);
+            this.ClientSize = new System.Drawing.Size(746, 529);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.groupBoxDatos);
@@ -517,6 +556,7 @@
             this.Controls.Add(this.groupBoxUser);
             this.Name = "Modificacion";
             this.Text = "Modificacion";
+            this.Load += new System.EventHandler(this.Modificacion_Load);
             this.groupBoxDatos.ResumeLayout(false);
             this.groupBoxDatos.PerformLayout();
             this.groupBoxDireccion.ResumeLayout(false);
@@ -566,5 +606,8 @@
         private System.Windows.Forms.TextBox textBoxUsername;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonBuscar;
+        private System.Windows.Forms.TextBox textBoxHotel;
+        private System.Windows.Forms.Label label17;
     }
 }

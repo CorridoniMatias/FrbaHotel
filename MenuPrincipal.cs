@@ -63,12 +63,12 @@ namespace FrbaHotel
 
         private void cambiarHotelActualToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           new AbmHotel.Listado().ShowDialog(this);
+            new AbmHotel.Listado().ShowDialog(this);
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            new AbmHotel.ListadoModificacionBaja().ShowDialog(this) ;
+            new AbmHotel.ListadoModificacionBaja().ShowDialog(this);
         }
 
 
@@ -109,7 +109,22 @@ namespace FrbaHotel
 
         private void buttonModificarUsuario_Click(object sender, EventArgs e)
         {
-            new AbmUsuario.Listado().ShowDialog(this);
+            if (Login.Login.LoggedUserSessionHotelID == -1)
+            {
+                var result = new AbmHotel.Listado().ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.Abort)
+                {// FALLO LA OBTENCION!
+                    MessageBox.Show("Fallo en la obtención de un Hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if (result == System.Windows.Forms.DialogResult.Cancel) // USUARIO CERRO LA VENTANA!
+                {
+                    MessageBox.Show("Se ha cerrado la ventana sin seleccionar un Hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            new AbmUsuario.Listado(Login.Login.LoggedUserSessionHotelID).ShowDialog(this);
         }
 
         private void buttonGenerarListado_Click(object sender, EventArgs e)
@@ -119,12 +134,12 @@ namespace FrbaHotel
 
         private void buttonCrearHabitacion_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void buttonModificarHabitacion_Click(object sender, EventArgs e)
         {
-          
+
         }
 
     }

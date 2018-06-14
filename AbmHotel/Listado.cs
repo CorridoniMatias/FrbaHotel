@@ -24,11 +24,16 @@ namespace FrbaHotel.AbmHotel
 
         private void Listado_Load(object sender, EventArgs e)
         {
-            poblador = new PobladorHoteles(new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais, textBoxMail, textBoxTelefono }, dataGridView1, new List<string> { "Seleccionar"});
-            poblador.Filtro
-            .AddJoin("INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel")
-            .AddEquals("hu.idUsuario", Login.Login.LoggedUsedID.ToString());
-            poblador.Poblar();
+            poblador = new PobladorHoteles(new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais, textBoxMail, textBoxTelefono }, dataGridView1, new List<string> { "Seleccionar" });
+            if (automaticallySelectForSessionHotel)
+            {
+                poblador.Filtro
+                 .AddJoin("INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel")
+                 .AddEquals("hu.idUsuario", Login.Login.LoggedUsedID.ToString());
+                this.Text += " donde se encuentra trabajando";
+            }
+            poblador.Poblar(false);
+         
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
