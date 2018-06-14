@@ -170,7 +170,7 @@
             this.ClientSize = new System.Drawing.Size(580, 727);
             this.Controls.Add(this.buttonCheckin);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "AltaEstadia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Check-In";

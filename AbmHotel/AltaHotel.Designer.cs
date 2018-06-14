@@ -224,7 +224,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "AltaHotel";
             this.Load += new System.EventHandler(this.AltaHotel_Load);
             this.groupBox1.ResumeLayout(false);

@@ -58,7 +58,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
             catch (Exception) 
             {
-                MessageBox.Show("Ocurrió un error al listar los régimenes del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                var i = 1;
             }
         }
 
@@ -168,7 +168,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     DBHandler.SPWithValue("MATOTA.ActualizarReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
                     DBHandler.SPWithValue("MATOTA.habilitarHabitacionesDeReservasVencidas");
-                    var form = new AbmHabitacion.Listado(idHotel, habitaciones);
+                    var form = new AbmHabitacion.Listado(idHotel, habitaciones,dateTimePickerFechaDesde.Value,dateTimePickerFechaHasta.Value);
                     form.setHabitacionesRemovidas(new List<string>());
                     form.dataGridReserva = dataGridView1;
                     form.ShowDialog();
@@ -197,6 +197,8 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void dateTimePickerFechaDesde_ValueChanged(object sender, EventArgs e)
         {
             FormHandler.limpiar(groupBox2);
+            habitaciones.Clear();
+
         }
 
         private void textBoxCantPersonas_TextChanged(object sender, EventArgs e)
@@ -208,6 +210,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             FormHandler.limpiar(groupBox2);
             dataGridView1.Rows.Clear();
+            habitaciones.Clear();
         }
 
         private void comboBoxRegimen_SelectedIndexChanged(object sender, EventArgs e)
