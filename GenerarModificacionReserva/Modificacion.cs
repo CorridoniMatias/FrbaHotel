@@ -82,7 +82,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     MessageBox.Show("Modificación realizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception) 
+            catch (Exception ex) 
             {
                 MessageBox.Show("Error en la modificación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
