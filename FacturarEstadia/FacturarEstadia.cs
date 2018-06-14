@@ -108,18 +108,15 @@ namespace FrbaHotel.FacturarEstadia
                     return;
                 }
             }
-            else
+            try
             {
-                try
-                {
-                    var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
-                    Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
-                    textBoxNombreHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Ocurrió un error al agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
+                Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
+                textBoxNombreHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

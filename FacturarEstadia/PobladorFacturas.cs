@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace FrbaHotel.FacturarEstadia
         private string query;
         private string idEstadia;
         private List<string> idReservaHabitaciones;
+        private double precioE {get; private set;}
         
         public PobladorFacturas(DataGridView grid, string idEstadia, List<string> idReservas)
         {
@@ -26,6 +28,7 @@ namespace FrbaHotel.FacturarEstadia
                 .Table("MATOTA.ConsumiblesEstadia ce").AddJoin("JOIN MATOTA.Consumible c ON (ce.codigoConsumible = c.codigoConsumible)");
             this.idEstadia = idEstadia;
             this.idReservaHabitaciones = idReservas;
+            precioE = 0;
         }
 
         public void Poblar()
@@ -54,6 +57,8 @@ namespace FrbaHotel.FacturarEstadia
                 newset.ForEach(row =>
                         grid.Rows.Add(row.ToArray())
                     );
+                grid.Rows.Add(llenarRegimen().ToArray());
+                recuentoEstadia();
             }
             catch (Exception e)
             {
@@ -76,6 +81,103 @@ namespace FrbaHotel.FacturarEstadia
                 }
             }
             return temp;
+        }
+
+        private List<string> llenarRegimen()
+        {
+            var stat = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
+                .Fields("r.idRegimen, r.nombre, r.preciobase")
+                .Table("MATOTA.Regimen r")
+                .AddJoin("JOIN MATOTA.Reserva re ON (r.idRegimen = re.idRegimen)")
+                .AddJoin("JOIN MATOTA.Estadia e ON (re.idReserva = e.idReserva)");
+            string query = stat.Build() + "WHERE e.idEstadia" + " = " + this.idEstadia;
+
+            var res = new List<string>();
+            try
+            {
+                var newset = DBHandler.Query(query).First();
+                var temp = new List<string>()
+                {
+                    newset["idRegimen"].ToString(),
+                    newset["nombre"].ToString(),
+                    "-",
+                    newset["precioBase"].ToString()
+                }.ToList();
+                return temp;
+            }
+            catch (Exception)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                MessageBox.Show("Error al buscar el regimen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+            return res;
+        }
+
+        private void recuentoEstadia()
+        {
+            var stat = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
+                .Fields("e.cantidadNoches, r.fechaHasta")
+                .Table("MATOTA.Estadia e")
+                .AddJoin("JOIN MATOTA.Reserva r ON (e.idReserva = r.idReserva)")
+                .AddEquals("e.idEstadia", this.idEstadia);
+
+            double cantNoches;
+            string fechaHasta = ConfigManager.FechaSistema.ToString("yyyy-MM-dd");
+            try
+            {
+                var result = DBHandler.Query(stat.Build()).First();
+                cantNoches = (double)result["cantidadNoches"];
+                fechaHasta = result["fechaHasta"].ToString();
+
+                var diferencia = DBHandler.SPWithValue("MATOTA.CantNoches",
+                new List<SqlParameter> { 
+                    new SqlParameter("@fechaInicio", ConfigManager.FechaSistema.ToString("yyyy-MM-dd")), 
+                    new SqlParameter("@fechaFin", fechaHasta)
+                });
+
+                double precioEstadia = 0;
+
+                for (int i = 0; i < grid.Rows.Count - 1; i++)
+                {
+                    precioEstadia += (double) grid.Rows[i].Cells[3].Value;
+                }
+                precioEstadia = precioEstadia * (double)cantNoches;
+                this.precioE = precioEstadia;
+
+                var dif = cantNoches - diferencia;
+                var rowEstadia = new List<string>()
+                {
+                    this.idEstadia,
+                    "Estadía",
+                    dif.ToString(),
+                    "-"
+                }.ToList();
+
+                grid.Rows.Add(rowEstadia.ToArray());
+                if (dif > 0)
+                {
+                    var faltantes = new List<string>()
+                    {
+                        "-",
+                        "Estadía no utilizada",
+                        diferencia.ToString(),
+                        "-"
+                    }.ToList();
+                    grid.Rows.Add(faltantes.ToArray());
+                }
+            }
+            catch (Exception)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                MessageBox.Show("Error al buscar los datos de la estadía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
+        public double getPrecioE()
+        {
+            return this.precioE;
         }
     }
 }

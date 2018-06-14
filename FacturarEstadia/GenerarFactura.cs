@@ -29,6 +29,16 @@ namespace FrbaHotel.FacturarEstadia
             comboBoxFormaDePago.SelectedIndex = -1;
             poblador = new PobladorFacturas(dataGridView1, idEstadia, idReservaHabitaciones);
             poblador.Poblar();
+            textBoxTotal.Text = poblador.getPrecioE().ToString();
+        }
+
+        private void buttonOK_Click(object sender, EventArgs e)
+        {
+            if (comboBoxFormaDePago.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
     }
 }
