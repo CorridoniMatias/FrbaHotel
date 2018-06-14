@@ -51,19 +51,49 @@ namespace FrbaHotel.AbmHabitacion
         }
         private void setGridValuesHabitacion()
         {
-            var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("h.nombre Hotel,ha.nroHabitacion Habitación,th.descripcion tipoHabitación,u.descripcion Ubicación").
-                Table("MATOTA.Hotel h").AddJoin("JOIN MATOTA.Habitacion ha ON (h.idHotel = ha.idHotel)").AddJoin("JOIN MATOTA.TipoHabitacion th on (ha.idTipoHabitacion = th.idTipoHabitacion)").
-                AddJoin("JOIN MATOTA.UbicacionHabitacion u on (ha.idUbicacion = u.idUbicacion)").AddEquals("h.idHotel", idHotel);
-            if (comboBoxTipoHab.SelectedIndex != -1)
-                query.AddEquals("th.idTipoHabitacion", comboBoxTipoHab.SelectedValue.ToString());
-            if (comboBoxUbicacion.SelectedIndex != -1)
-                query.AddEquals("u.idUbicacion", comboBoxUbicacion.SelectedValue.ToString());
+            //var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("h.nombre Hotel,ha.nroHabitacion Habitación,th.descripcion tipoHabitación,u.descripcion Ubicación").
+            //    Table("MATOTA.Hotel h").AddJoin("JOIN MATOTA.Habitacion ha ON (h.idHotel = ha.idHotel)").AddJoin("JOIN MATOTA.TipoHabitacion th on (ha.idTipoHabitacion = th.idTipoHabitacion)").
+            //    AddJoin("JOIN MATOTA.UbicacionHabitacion u on (ha.idUbicacion = u.idUbicacion)").AddEquals("h.idHotel", idHotel);
+            //if (comboBoxTipoHab.SelectedIndex != -1)
+            //    query.AddEquals("th.idTipoHabitacion", comboBoxTipoHab.SelectedValue.ToString());
+            //if (comboBoxUbicacion.SelectedIndex != -1)
+            //    query.AddEquals("u.idUbicacion", comboBoxUbicacion.SelectedValue.ToString());
+
+            //try
+            //{
+            //    dataGridView1.DataSource = DBHandler.QueryForComboBox(query.Build());
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Error al listar las habitaciones.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             try
             {
-                dataGridView1.DataSource = DBHandler.QueryForComboBox(query.Build());
+                var data = DBHandler.SPWithResultSet("MATOTA.HabitacionesNoReservadas",
+                    new List<SqlParameter> { 
+                        new SqlParameter("@idHotel", idHotel),
+                        new SqlParameter("@fechaDesde", fechaDesde),
+                        new SqlParameter("@fechaHasta", fechaHasta)
+                    }
+                    );
+
+                var newdata = data.Select(row =>
+                {
+                    var orig = new List<string>() { row["nroHabitacion"].ToString(), 
+                                                        row["Tipo"].ToString(), 
+                                                        row["Ubicacion"].ToString() };
+
+                    return orig;
+                }).ToList();
+
+                newdata.ForEach(row =>
+                        dataGridView1.Rows.Add(row.ToArray())
+                    );
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al listar las habitaciones.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
