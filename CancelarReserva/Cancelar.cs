@@ -48,7 +48,7 @@ namespace FrbaHotel.CancelarReserva
                     new List<SqlParameter>{
                         new SqlParameter("@idReserva",textBoxIdReserva.Text),
                         new SqlParameter("@motivo",textBoxMotivo.Text.Trim()),
-                        new SqlParameter("@fecha",dateTimePickerFechaCancelacion.Value),
+                        new SqlParameter("@fecha",ConfigManager.FechaSistema),
                         new SqlParameter("@idUsuario",Login.Login.LoggedUsedID), });
                 if (ret == 0)
                 {
@@ -58,6 +58,7 @@ namespace FrbaHotel.CancelarReserva
                 else if (ret == 1)
                 {
                     MessageBox.Show("Reserva cancelada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close()
                 }
             }
             catch (Exception)
