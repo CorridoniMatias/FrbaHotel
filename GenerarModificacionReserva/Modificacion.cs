@@ -68,6 +68,11 @@ namespace FrbaHotel.GenerarModificacionReserva
                 MessageBox.Show("Ya pasó la fecha límite para modificar esta reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if(string.IsNullOrEmpty(textBoxCantPersonas.Text) || comboBoxRegimen.SelectedIndex == -1 )
+            {
+                MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
