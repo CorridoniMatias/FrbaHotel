@@ -39,6 +39,8 @@
             this.tabPageUsuarios = new System.Windows.Forms.TabPage();
             this.tabPageHuespedes = new System.Windows.Forms.TabPage();
             this.tabPageReservas = new System.Windows.Forms.TabPage();
+            this.buttonCancelar = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.buttonModificar = new System.Windows.Forms.Button();
             this.buttonGenerar = new System.Windows.Forms.Button();
@@ -55,12 +57,26 @@
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarHotelActualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label6 = new System.Windows.Forms.Label();
-            this.buttonCancelar = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.buttonModificarRol = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.buttonCrearRol = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.buttonModificarUsuario = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.buttonCrearUsuario = new System.Windows.Forms.Button();
+            this.buttonGenerarListado = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabControlFunciones.SuspendLayout();
+            this.tabPageRoles.SuspendLayout();
             this.tabPageHoteles.SuspendLayout();
+            this.tabPageUsuarios.SuspendLayout();
             this.tabPageReservas.SuspendLayout();
             this.tabPageEstadias.SuspendLayout();
+            this.tabPageEstadistica.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,6 +98,11 @@
             // 
             // tabPageRoles
             // 
+            this.tabPageRoles.Controls.Add(this.label10);
+            this.tabPageRoles.Controls.Add(this.buttonModificarRol);
+            this.tabPageRoles.Controls.Add(this.label11);
+            this.tabPageRoles.Controls.Add(this.label12);
+            this.tabPageRoles.Controls.Add(this.buttonCrearRol);
             this.tabPageRoles.Location = new System.Drawing.Point(4, 22);
             this.tabPageRoles.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageRoles.Name = "tabPageRoles";
@@ -162,6 +183,11 @@
             // 
             // tabPageUsuarios
             // 
+            this.tabPageUsuarios.Controls.Add(this.label13);
+            this.tabPageUsuarios.Controls.Add(this.buttonModificarUsuario);
+            this.tabPageUsuarios.Controls.Add(this.label14);
+            this.tabPageUsuarios.Controls.Add(this.label15);
+            this.tabPageUsuarios.Controls.Add(this.buttonCrearUsuario);
             this.tabPageUsuarios.Location = new System.Drawing.Point(4, 22);
             this.tabPageUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageUsuarios.Name = "tabPageUsuarios";
@@ -196,6 +222,25 @@
             this.tabPageReservas.TabIndex = 4;
             this.tabPageReservas.Text = "Reservas";
             this.tabPageReservas.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.Location = new System.Drawing.Point(291, 127);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelar.TabIndex = 7;
+            this.buttonCancelar.Text = "Administrar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 132);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(215, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Para cancelar una reserva haga click aquí: ";
             // 
             // label7
             // 
@@ -292,6 +337,9 @@
             // 
             // tabPageEstadistica
             // 
+            this.tabPageEstadistica.Controls.Add(this.buttonGenerarListado);
+            this.tabPageEstadistica.Controls.Add(this.label16);
+            this.tabPageEstadistica.Controls.Add(this.label17);
             this.tabPageEstadistica.Location = new System.Drawing.Point(4, 22);
             this.tabPageEstadistica.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageEstadistica.Name = "tabPageEstadistica";
@@ -350,24 +398,143 @@
             this.cambiarHotelActualToolStripMenuItem.Text = "Cambiar Hotel Actual";
             this.cambiarHotelActualToolStripMenuItem.Click += new System.EventHandler(this.cambiarHotelActualToolStripMenuItem_Click);
             // 
-            // label6
+            // label10
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 132);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(215, 13);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Para cancelar una reserva haga click aquí: ";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(66, 125);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(200, 13);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Para modificar / eliminar roles haga click:";
             // 
-            // buttonCancelar
+            // buttonModificarRol
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(291, 127);
-            this.buttonCancelar.Name = "buttonCancelar";
-            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelar.TabIndex = 7;
-            this.buttonCancelar.Text = "Administrar";
-            this.buttonCancelar.UseVisualStyleBackColor = true;
-            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
+            this.buttonModificarRol.Location = new System.Drawing.Point(338, 120);
+            this.buttonModificarRol.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonModificarRol.Name = "buttonModificarRol";
+            this.buttonModificarRol.Size = new System.Drawing.Size(76, 22);
+            this.buttonModificarRol.TabIndex = 8;
+            this.buttonModificarRol.Text = "Administrar";
+            this.buttonModificarRol.UseVisualStyleBackColor = true;
+            this.buttonModificarRol.Click += new System.EventHandler(this.buttonModificarRol_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(66, 81);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(178, 13);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Para añadir un nuevo rol haga click:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(122, 11);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(292, 25);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "Añadir, modificar o eliminar roles";
+            // 
+            // buttonCrearRol
+            // 
+            this.buttonCrearRol.Location = new System.Drawing.Point(338, 76);
+            this.buttonCrearRol.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCrearRol.Name = "buttonCrearRol";
+            this.buttonCrearRol.Size = new System.Drawing.Size(76, 22);
+            this.buttonCrearRol.TabIndex = 5;
+            this.buttonCrearRol.Text = "Administrar";
+            this.buttonCrearRol.UseVisualStyleBackColor = true;
+            this.buttonCrearRol.Click += new System.EventHandler(this.buttonCrearRol_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(60, 125);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(217, 13);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Para modificar / eliminar usuarios haga click:";
+            // 
+            // buttonModificarUsuario
+            // 
+            this.buttonModificarUsuario.Location = new System.Drawing.Point(338, 120);
+            this.buttonModificarUsuario.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonModificarUsuario.Name = "buttonModificarUsuario";
+            this.buttonModificarUsuario.Size = new System.Drawing.Size(76, 22);
+            this.buttonModificarUsuario.TabIndex = 8;
+            this.buttonModificarUsuario.Text = "Administrar";
+            this.buttonModificarUsuario.UseVisualStyleBackColor = true;
+            this.buttonModificarUsuario.Click += new System.EventHandler(this.buttonModificarUsuario_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(60, 81);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(201, 13);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "Para añadir un nuevo usuario haga click:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(104, 13);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(324, 25);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "Añadir, modificar o eliminar usuarios";
+            // 
+            // buttonCrearUsuario
+            // 
+            this.buttonCrearUsuario.Location = new System.Drawing.Point(338, 76);
+            this.buttonCrearUsuario.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCrearUsuario.Name = "buttonCrearUsuario";
+            this.buttonCrearUsuario.Size = new System.Drawing.Size(76, 22);
+            this.buttonCrearUsuario.TabIndex = 5;
+            this.buttonCrearUsuario.Text = "Administrar";
+            this.buttonCrearUsuario.UseVisualStyleBackColor = true;
+            this.buttonCrearUsuario.Click += new System.EventHandler(this.buttonCrearUsuario_Click);
+            // 
+            // buttonGenerarListado
+            // 
+            this.buttonGenerarListado.Location = new System.Drawing.Point(343, 82);
+            this.buttonGenerarListado.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonGenerarListado.Name = "buttonGenerarListado";
+            this.buttonGenerarListado.Size = new System.Drawing.Size(76, 22);
+            this.buttonGenerarListado.TabIndex = 7;
+            this.buttonGenerarListado.Text = "Generar";
+            this.buttonGenerarListado.UseVisualStyleBackColor = true;
+            this.buttonGenerarListado.Click += new System.EventHandler(this.buttonGenerarListado_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(117, 87);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(226, 13);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Para generar un listado estadístico haga click:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(178, 22);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(241, 25);
+            this.label17.TabIndex = 5;
+            this.label17.Text = "Generar listado estadístico";
             // 
             // MenuPrincipal
             // 
@@ -385,12 +552,18 @@
             this.Text = "FRBA Hotel";
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             this.tabControlFunciones.ResumeLayout(false);
+            this.tabPageRoles.ResumeLayout(false);
+            this.tabPageRoles.PerformLayout();
             this.tabPageHoteles.ResumeLayout(false);
             this.tabPageHoteles.PerformLayout();
+            this.tabPageUsuarios.ResumeLayout(false);
+            this.tabPageUsuarios.PerformLayout();
             this.tabPageReservas.ResumeLayout(false);
             this.tabPageReservas.PerformLayout();
             this.tabPageEstadias.ResumeLayout(false);
             this.tabPageEstadias.PerformLayout();
+            this.tabPageEstadistica.ResumeLayout(false);
+            this.tabPageEstadistica.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -431,5 +604,18 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button buttonModificarRol;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button buttonCrearRol;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button buttonModificarUsuario;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button buttonCrearUsuario;
+        private System.Windows.Forms.Button buttonGenerarListado;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }

@@ -34,13 +34,13 @@ namespace FrbaHotel.ListadoEstadistico
             switch (comboBoxTipo.SelectedIndex)
             {
                 case 3:
-                    new ListadoEstadisticoHabitacion(comboBoxTrimestre.SelectedIndex + 1, dateTimePickerAño.Value.Year).Show(this);
+                    new ListadoEstadisticoHabitacion(comboBoxTrimestre.SelectedIndex + 1, dateTimePickerAño.Value.Year).ShowDialog(this);
                     break;
                 case 4:
-                    new ListadoEstadisticoCliente(comboBoxTrimestre.SelectedIndex + 1, dateTimePickerAño.Value.Year).Show(this);
+                    new ListadoEstadisticoCliente(comboBoxTrimestre.SelectedIndex + 1, dateTimePickerAño.Value.Year).ShowDialog(this);
                     break;
                 default:
-                    new ListadoEstadisticoHotel(comboBoxTrimestre.SelectedIndex + 1, dateTimePickerAño.Value.Year, comboBoxTipo.SelectedIndex).Show(this);
+                    new ListadoEstadisticoHotel(comboBoxTrimestre.SelectedIndex + 1, dateTimePickerAño.Value.Year, comboBoxTipo.SelectedIndex).ShowDialog(this);
                     break;
             }
             

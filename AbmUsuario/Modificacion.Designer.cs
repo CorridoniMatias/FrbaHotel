@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.buttonGuardar = new System.Windows.Forms.Button();
-            this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.buttonCancelar = new System.Windows.Forms.Button();
             this.groupBoxDatos = new System.Windows.Forms.GroupBox();
             this.dateTimePickerFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -81,17 +81,17 @@
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
-            // buttonLimpiar
+            // buttonCancelar
             // 
-            this.buttonLimpiar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonLimpiar.Location = new System.Drawing.Point(13, 615);
-            this.buttonLimpiar.Margin = new System.Windows.Forms.Padding(5);
-            this.buttonLimpiar.Name = "buttonLimpiar";
-            this.buttonLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.buttonLimpiar.TabIndex = 26;
-            this.buttonLimpiar.Text = "Limpiar";
-            this.buttonLimpiar.UseVisualStyleBackColor = true;
-            this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
+            this.buttonCancelar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.buttonCancelar.Location = new System.Drawing.Point(13, 615);
+            this.buttonCancelar.Margin = new System.Windows.Forms.Padding(5);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelar.TabIndex = 26;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
             // groupBoxDatos
             // 
@@ -511,7 +511,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 643);
             this.Controls.Add(this.buttonGuardar);
-            this.Controls.Add(this.buttonLimpiar);
+            this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.groupBoxDatos);
             this.Controls.Add(this.groupBoxDireccion);
             this.Controls.Add(this.groupBoxUser);
@@ -530,7 +530,7 @@
         #endregion
 
         private System.Windows.Forms.Button buttonGuardar;
-        private System.Windows.Forms.Button buttonLimpiar;
+        private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.GroupBox groupBoxDatos;
         private System.Windows.Forms.DateTimePicker dateTimePickerFechaNacimiento;
         private System.Windows.Forms.Label label8;

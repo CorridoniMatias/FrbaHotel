@@ -23,7 +23,9 @@ namespace FrbaHotel.AbmRol
             this.idRol = idRol;
             hayError = false;
             InitializeComponent();
-
+            buttonLimpiar.Text = "Limpiar";
+            if (modificando)
+                buttonLimpiar.Text = "Cancelar";
             var funcionalidades = DBHandler.Query("SELECT p.idPermiso, nombre, pr.idRol FROM MATOTA.Permiso p LEFT JOIN MATOTA.PermisosRol pr ON p.idPermiso = pr.idPermiso AND pr.IdRol =" + idRol)
                .Select(fun => new Funcionalidad(fun["idPermiso"].ToString(), fun["nombre"].ToString(), (string.IsNullOrEmpty(fun["idRol"].ToString())) ? false : true));
 
@@ -44,7 +46,9 @@ namespace FrbaHotel.AbmRol
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
-            FormHandler.limpiar(groupBoxRol);
+            if(modificando)
+                this.Close();
+            else FormHandler.limpiar(groupBoxRol);
         }
 
         private void Alta_Load(object sender, EventArgs e)

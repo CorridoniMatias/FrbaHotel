@@ -92,5 +92,30 @@ namespace FrbaHotel
             new CancelarReserva.Cancelar().ShowDialog(this);
         }
 
+        private void buttonCrearRol_Click(object sender, EventArgs e)
+        {
+            new AbmRol.Alta().ShowDialog(this);
+        }
+
+        private void buttonModificarRol_Click(object sender, EventArgs e)
+        {
+            new AbmRol.Listado().ShowDialog(this);
+        }
+
+        private void buttonCrearUsuario_Click(object sender, EventArgs e)
+        {
+            new AbmUsuario.Alta().ShowDialog(this);
+        }
+
+        private void buttonModificarUsuario_Click(object sender, EventArgs e)
+        {
+            new AbmUsuario.Listado().ShowDialog(this);
+        }
+
+        private void buttonGenerarListado_Click(object sender, EventArgs e)
+        {
+            new ListadoEstadistico.SeleccionarListado().ShowDialog(this);
+        }
+
     }
 }

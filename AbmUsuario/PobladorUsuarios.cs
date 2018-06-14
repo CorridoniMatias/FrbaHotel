@@ -29,7 +29,9 @@ namespace FrbaHotel.AbmUsuario
 
             Filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
              .Fields("u.idUsuario, u.username, r.NOMBRE nombreRol, u.nombre nombre, u.apellido, td.nombre nombreTipoDocumento, u.numeroDocumento, u.mail, u.telefono, u.calle, u.nroCalle, u.localidad, u.pais, u.fechaNacimiento, u.habilitado")
-             .Table("MATOTA.Usuario u").AddJoin("LEFT JOIN MATOTA.RolesUsuario ru ON u.idUsuario = ru.idUsuario").AddJoin("LEFT JOIN MATOTA.Rol r ON ru.idRol = r.idRol").AddJoin("INNER JOIN MATOTA.TipoDocumento td ON u.idTipoDocumento = td.idTipoDocumento");
+             .Table("MATOTA.Usuario u")
+             .AddJoin("INNER JOIN MATOTA.TipoDocumento td ON u.idTipoDocumento = td.idTipoDocumento")
+             .AddJoin("INNER JOIN MATOTA.RolesUsuario ru ON u.idUsuario = ru.idUsuario").AddJoin("INNER JOIN MATOTA.Rol r ON ru.idRol = r.idRol");
 
         }
 
@@ -48,10 +50,10 @@ namespace FrbaHotel.AbmUsuario
                 );
 
             inputsComboBox
-                .FindAll(c => c.SelectedIndex > 0 && !c.Tag.Equals("rol"))
+                .FindAll(c => c.SelectedIndex >= 0 && !c.Tag.Equals("idRol"))
                 .ForEach(c => Filtro.AddEquals("u." + c.Tag.ToString(), c.SelectedValue.ToString()));
             inputsComboBox
-                .FindAll(c => c.SelectedIndex > 0 && c.Tag.Equals("rol"))
+                .FindAll(c => c.SelectedIndex >= 0 && c.Tag.Equals("idRol"))
                 .ForEach(c => Filtro.AddEquals("ru." + c.Tag.ToString(), c.SelectedValue.ToString()));
 
             if (habilitado.CheckState != CheckState.Indeterminate)

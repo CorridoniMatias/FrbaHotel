@@ -53,7 +53,7 @@ namespace FrbaHotel.AbmUsuario
                 textBoxPais
             };
 
-            if (fields.Any(f => string.IsNullOrEmpty(f.Text.Trim())) || comboBoxRol.SelectedIndex<0 || comboBoxTipoDoc.SelectedIndex<0)
+            if (fields.Any(f => string.IsNullOrEmpty(f.Text.Trim())) || comboBoxRol.SelectedIndex < 0 || comboBoxTipoDoc.SelectedIndex < 0)
             {
                 fields.FindAll(f => string.IsNullOrEmpty(f.Text.Trim())).ForEach(f => f.BackColor = Color.Red);
                 if (comboBoxRol.SelectedIndex < 0)
@@ -69,6 +69,14 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show("Debe llenar todos los campos marcados en rojo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
             }
+
+            if (!String.IsNullOrEmpty(textBoxMail.Text.Trim()))
+                if (!FormHandler.verificarMail(textBoxMail))
+                {
+                    MessageBox.Show("El mail tiene un formato invalido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+
             if (!string.IsNullOrEmpty(textBoxNumDoc.Text.Trim()))
             {
                 try
@@ -118,7 +126,7 @@ namespace FrbaHotel.AbmUsuario
                     hayError = true;
                 }
             }
-            if (dateTimePickerFechaNacimiento.Value.CompareTo(ConfigManager.FechaSistema) > 0) 
+            if (dateTimePickerFechaNacimiento.Value.CompareTo(ConfigManager.FechaSistema) > 0)
             {
                 MessageBox.Show("La fecha de nacimiento no puede ser posterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
@@ -157,11 +165,11 @@ namespace FrbaHotel.AbmUsuario
                     new SqlParameter("@pais", textBoxPais.Text),
                     new SqlParameter("@fechaNacimiento", dateTimePickerFechaNacimiento.Value.ToString("yyyy-MM-dd"))
             };
-            if(!String.IsNullOrEmpty(textBoxPiso.Text))
-             parametros.Add(new SqlParameter("@piso", textBoxPiso.Text));
-            if(!String.IsNullOrEmpty(textBoxDepto.Text))
-             parametros.Add(new SqlParameter("@departamento", textBoxDepto.Text));
-            int idUsuario = DBHandler.SPWithValue("MATOTA.CrearUsuario",parametros);
+            if (!String.IsNullOrEmpty(textBoxPiso.Text))
+                parametros.Add(new SqlParameter("@piso", textBoxPiso.Text));
+            if (!String.IsNullOrEmpty(textBoxDepto.Text))
+                parametros.Add(new SqlParameter("@departamento", textBoxDepto.Text));
+            int idUsuario = DBHandler.SPWithValue("MATOTA.CrearUsuario", parametros);
 
             if (idUsuario < 1)
             {
@@ -169,7 +177,7 @@ namespace FrbaHotel.AbmUsuario
                 return;
             }
 
-            string query = "INSERT INTO MATOTA.RolesUsuario VALUES ("+idUsuario.ToString()+","+comboBoxRol.SelectedValue.ToString()+")";
+            string query = "INSERT INTO MATOTA.RolesUsuario VALUES (" + idUsuario.ToString() + "," + comboBoxRol.SelectedValue.ToString() + ")";
 
             try
             {
