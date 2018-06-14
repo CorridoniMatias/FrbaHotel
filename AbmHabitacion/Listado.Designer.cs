@@ -39,16 +39,17 @@
             this.ColumnNroHabitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnUbicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAgregar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnQuitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonBuscar
             // 
-            this.buttonBuscar.Location = new System.Drawing.Point(750, 149);
-            this.buttonBuscar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.buttonBuscar.Location = new System.Drawing.Point(450, 88);
             this.buttonBuscar.Name = "buttonBuscar";
-            this.buttonBuscar.Size = new System.Drawing.Size(125, 39);
+            this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
             this.buttonBuscar.TabIndex = 0;
             this.buttonBuscar.Text = "Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
@@ -56,10 +57,9 @@
             // 
             // buttonLimpiar
             // 
-            this.buttonLimpiar.Location = new System.Drawing.Point(35, 149);
-            this.buttonLimpiar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.buttonLimpiar.Location = new System.Drawing.Point(21, 88);
             this.buttonLimpiar.Name = "buttonLimpiar";
-            this.buttonLimpiar.Size = new System.Drawing.Size(125, 39);
+            this.buttonLimpiar.Size = new System.Drawing.Size(75, 23);
             this.buttonLimpiar.TabIndex = 1;
             this.buttonLimpiar.Text = "Limpiar";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
@@ -69,10 +69,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(8, 49);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Location = new System.Drawing.Point(5, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 24);
+            this.label1.Size = new System.Drawing.Size(95, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Tipo de habitación";
             // 
@@ -80,10 +79,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(475, 49);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Location = new System.Drawing.Point(285, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 24);
+            this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Ubicación";
             // 
@@ -94,11 +92,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox1.Location = new System.Drawing.Point(20, 22);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Location = new System.Drawing.Point(12, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox1.Size = new System.Drawing.Size(875, 107);
+            this.groupBox1.Size = new System.Drawing.Size(525, 63);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
@@ -106,19 +102,17 @@
             // comboBoxUbicacion
             // 
             this.comboBoxUbicacion.FormattingEnabled = true;
-            this.comboBoxUbicacion.Location = new System.Drawing.Point(572, 46);
-            this.comboBoxUbicacion.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comboBoxUbicacion.Location = new System.Drawing.Point(343, 27);
             this.comboBoxUbicacion.Name = "comboBoxUbicacion";
-            this.comboBoxUbicacion.Size = new System.Drawing.Size(271, 30);
+            this.comboBoxUbicacion.Size = new System.Drawing.Size(164, 21);
             this.comboBoxUbicacion.TabIndex = 4;
             // 
             // comboBoxTipoHab
             // 
             this.comboBoxTipoHab.FormattingEnabled = true;
-            this.comboBoxTipoHab.Location = new System.Drawing.Point(172, 46);
-            this.comboBoxTipoHab.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comboBoxTipoHab.Location = new System.Drawing.Point(103, 27);
             this.comboBoxTipoHab.Name = "comboBoxTipoHab";
-            this.comboBoxTipoHab.Size = new System.Drawing.Size(206, 30);
+            this.comboBoxTipoHab.Size = new System.Drawing.Size(125, 21);
             this.comboBoxTipoHab.TabIndex = 3;
             // 
             // dataGridView1
@@ -127,11 +121,12 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnNroHabitacion,
             this.ColumnTipo,
-            this.ColumnUbicacion});
-            this.dataGridView1.Location = new System.Drawing.Point(22, 228);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ColumnUbicacion,
+            this.ColumnAgregar,
+            this.ColumnQuitar});
+            this.dataGridView1.Location = new System.Drawing.Point(13, 135);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1107, 278);
+            this.dataGridView1.Size = new System.Drawing.Size(558, 164);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -153,16 +148,25 @@
             this.ColumnUbicacion.Name = "ColumnUbicacion";
             this.ColumnUbicacion.ReadOnly = true;
             // 
+            // ColumnAgregar
+            // 
+            this.ColumnAgregar.HeaderText = "Agregar";
+            this.ColumnAgregar.Name = "ColumnAgregar";
+            // 
+            // ColumnQuitar
+            // 
+            this.ColumnQuitar.HeaderText = "Quitar";
+            this.ColumnQuitar.Name = "ColumnQuitar";
+            // 
             // Listado
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 521);
+            this.ClientSize = new System.Drawing.Size(580, 308);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.buttonBuscar);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "Listado";
             this.Text = "Listado Habitaciones";
             this.Load += new System.EventHandler(this.Listado_Load);
@@ -186,5 +190,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNroHabitacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUbicacion;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnAgregar;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnQuitar;
     }
 }

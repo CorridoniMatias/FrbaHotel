@@ -114,6 +114,7 @@
     <Compile Include="AbmHotel\AltaHotel.Designer.cs">
       <DependentUpon>AltaHotel.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHotel\Hotel.cs" />
     <Compile Include="AbmHotel\Listado.cs">
       <SubType>Form</SubType>
     </Compile>

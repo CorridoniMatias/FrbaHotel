@@ -64,27 +64,33 @@
             this.buttonGenerarListado = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiarHotelActualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPageHabitaciones = new System.Windows.Forms.TabPage();
             this.label18 = new System.Windows.Forms.Label();
             this.buttonModificarHabitacion = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.buttonCrearHabitacion = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarHotelActualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.buttonAltaCliente = new System.Windows.Forms.Button();
+            this.buttonModificarCliente = new System.Windows.Forms.Button();
             this.tabControlFunciones.SuspendLayout();
             this.tabPageRoles.SuspendLayout();
             this.tabPageHoteles.SuspendLayout();
             this.tabPageUsuarios.SuspendLayout();
+            this.tabPageHuespedes.SuspendLayout();
             this.tabPageReservas.SuspendLayout();
             this.tabPageEstadias.SuspendLayout();
             this.tabPageEstadistica.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.tabPageHabitaciones.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlFunciones
@@ -312,6 +318,11 @@
             // 
             // tabPageHuespedes
             // 
+            this.tabPageHuespedes.Controls.Add(this.buttonModificarCliente);
+            this.tabPageHuespedes.Controls.Add(this.buttonAltaCliente);
+            this.tabPageHuespedes.Controls.Add(this.label23);
+            this.tabPageHuespedes.Controls.Add(this.label22);
+            this.tabPageHuespedes.Controls.Add(this.label21);
             this.tabPageHuespedes.Location = new System.Drawing.Point(4, 22);
             this.tabPageHuespedes.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageHuespedes.Name = "tabPageHuespedes";
@@ -494,56 +505,6 @@
             this.label17.TabIndex = 5;
             this.label17.Text = "Generar listado estadístico";
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem,
-            this.usuarioToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(586, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // archivoToolStripMenuItem
-            // 
-            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salirToolStripMenuItem});
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 22);
-            this.archivoToolStripMenuItem.Text = "Archivo";
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
-            // 
-            // usuarioToolStripMenuItem
-            // 
-            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cambiarContraseñaToolStripMenuItem,
-            this.cambiarHotelActualToolStripMenuItem});
-            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
-            this.usuarioToolStripMenuItem.Text = "Usuario";
-            // 
-            // cambiarContraseñaToolStripMenuItem
-            // 
-            this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
-            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar Contraseña";
-            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
-            // 
-            // cambiarHotelActualToolStripMenuItem
-            // 
-            this.cambiarHotelActualToolStripMenuItem.Name = "cambiarHotelActualToolStripMenuItem";
-            this.cambiarHotelActualToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.cambiarHotelActualToolStripMenuItem.Text = "Cambiar Hotel Actual";
-            this.cambiarHotelActualToolStripMenuItem.Click += new System.EventHandler(this.cambiarHotelActualToolStripMenuItem_Click);
-            // 
             // tabPageHabitaciones
             // 
             this.tabPageHabitaciones.Controls.Add(this.label18);
@@ -611,6 +572,105 @@
             this.buttonCrearHabitacion.UseVisualStyleBackColor = true;
             this.buttonCrearHabitacion.Click += new System.EventHandler(this.buttonCrearHabitacion_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archivoToolStripMenuItem,
+            this.usuarioToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.menuStrip1.Size = new System.Drawing.Size(586, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // archivoToolStripMenuItem
+            // 
+            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salirToolStripMenuItem});
+            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 22);
+            this.archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // usuarioToolStripMenuItem
+            // 
+            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cambiarContraseñaToolStripMenuItem,
+            this.cambiarHotelActualToolStripMenuItem});
+            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
+            this.usuarioToolStripMenuItem.Text = "Usuario";
+            // 
+            // cambiarContraseñaToolStripMenuItem
+            // 
+            this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
+            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar Contraseña";
+            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
+            // 
+            // cambiarHotelActualToolStripMenuItem
+            // 
+            this.cambiarHotelActualToolStripMenuItem.Name = "cambiarHotelActualToolStripMenuItem";
+            this.cambiarHotelActualToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.cambiarHotelActualToolStripMenuItem.Text = "Cambiar Hotel Actual";
+            this.cambiarHotelActualToolStripMenuItem.Click += new System.EventHandler(this.cambiarHotelActualToolStripMenuItem_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(32, 66);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(233, 13);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "Para dar de alta a un húesped haga click aquí: ";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(32, 109);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(271, 13);
+            this.label22.TabIndex = 1;
+            this.label22.Text = "Para modificar o inhabilitar a un cliente haga click aquí: ";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(96, 16);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(365, 25);
+            this.label23.TabIndex = 7;
+            this.label23.Text = "Añadir, modificar o inhabilitar Húespedes";
+            // 
+            // buttonAltaCliente
+            // 
+            this.buttonAltaCliente.Location = new System.Drawing.Point(338, 64);
+            this.buttonAltaCliente.Name = "buttonAltaCliente";
+            this.buttonAltaCliente.Size = new System.Drawing.Size(75, 23);
+            this.buttonAltaCliente.TabIndex = 8;
+            this.buttonAltaCliente.Text = "Administrar";
+            this.buttonAltaCliente.UseVisualStyleBackColor = true;
+            this.buttonAltaCliente.Click += new System.EventHandler(this.buttonAltaCliente_Click);
+            // 
+            // buttonModificarCliente
+            // 
+            this.buttonModificarCliente.Location = new System.Drawing.Point(338, 103);
+            this.buttonModificarCliente.Name = "buttonModificarCliente";
+            this.buttonModificarCliente.Size = new System.Drawing.Size(75, 23);
+            this.buttonModificarCliente.TabIndex = 9;
+            this.buttonModificarCliente.Text = "Administrar";
+            this.buttonModificarCliente.UseVisualStyleBackColor = true;
+            this.buttonModificarCliente.Click += new System.EventHandler(this.buttonModificarCliente_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -632,16 +692,18 @@
             this.tabPageHoteles.PerformLayout();
             this.tabPageUsuarios.ResumeLayout(false);
             this.tabPageUsuarios.PerformLayout();
+            this.tabPageHuespedes.ResumeLayout(false);
+            this.tabPageHuespedes.PerformLayout();
             this.tabPageReservas.ResumeLayout(false);
             this.tabPageReservas.PerformLayout();
             this.tabPageEstadias.ResumeLayout(false);
             this.tabPageEstadias.PerformLayout();
             this.tabPageEstadistica.ResumeLayout(false);
             this.tabPageEstadistica.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tabPageHabitaciones.ResumeLayout(false);
             this.tabPageHabitaciones.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -699,5 +761,10 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button buttonCrearHabitacion;
+        private System.Windows.Forms.Button buttonModificarCliente;
+        private System.Windows.Forms.Button buttonAltaCliente;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
     }
 }

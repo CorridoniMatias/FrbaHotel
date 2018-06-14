@@ -58,7 +58,7 @@ namespace FrbaHotel.CancelarReserva
                 else if (ret == 1)
                 {
                     MessageBox.Show("Reserva cancelada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close()
+                    this.Close();
                 }
             }
             catch (Exception)
