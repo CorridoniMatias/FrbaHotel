@@ -40,17 +40,15 @@ namespace FrbaHotel.AbmHabitacion
                     return;
                 }
             }
-            else
+                
+            try 
             {
-                try 
-                {
-                    var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
-                    Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
-                    textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
-                }
-                catch (Exception) {
-                    MessageBox.Show("Ocurrió un error al agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
+                Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
+                textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First()["nombre"].ToString();
+            }
+            catch (Exception) {
+                MessageBox.Show("Ocurrió un error al agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

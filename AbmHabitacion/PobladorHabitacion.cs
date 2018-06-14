@@ -24,8 +24,11 @@ namespace FrbaHotel.AbmHabitacion
             this.comboBoxInputs = comboBoxInputs;
             this.grid = grid;
             this.Filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
-                .Fields("hab.idHotel, h.nombre, hab.nroHabitacion, hab.piso, hab.idUbicacion, hab.idTipoHabitacion, hab.descripcion, hab.comodidades, hab.habilitado")
-                .Table("MATOTA.Habitacion hab").AddJoin("JOIN MATOTA.Hotel h ON (hab.idHotel = h.idHotel)");
+                .Fields("hab.idHotel, h.nombre, hab.nroHabitacion, hab.piso, hab.idUbicacion, uh.descripcion descripcionUbicacion, hab.idTipoHabitacion, th.descripcion descripcionTipoHabitacion, hab.descripcion, hab.comodidades, hab.habilitado")
+                .Table("MATOTA.Habitacion hab").AddJoin("JOIN MATOTA.Hotel h ON (hab.idHotel = h.idHotel)")
+                .AddJoin("JOIN MATOTA.UbicacionHabitacion uh ON (hab.idUbicacion = uh.idUbicacion)")
+                .AddJoin("JOIN MATOTA.TipoHabitacion th ON (hab.idTipoHabitacion = th.idTipoHabitacion)")
+                ;
             this.extraColumns = extraColumns;
         }
 
@@ -54,10 +57,12 @@ namespace FrbaHotel.AbmHabitacion
                 {
                     var orig = new List<string>() { row["idHotel"].ToString(), 
                                                         row["nombre"].ToString(), 
-                                                        row["nroHabitacion"].ToString(), 
+                                                        row["nroHabitacion"].ToString(),
                                                         row["piso"].ToString(), 
                                                         row["idUbicacion"].ToString(),
+                                                        row["descripcionUbicacion"].ToString(),
                                                         row["idTipoHabitacion"].ToString(),
+                                                        row["descripcionTipoHabitacion"].ToString(),
                                                         row["descripcion"].ToString(),
                                                         row["comodidades"].ToString(),
                                                         row["habilitado"].ToString()};

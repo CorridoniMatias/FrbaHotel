@@ -14,11 +14,13 @@ namespace FrbaHotel.AbmHabitacion
     public partial class Modificacion : Form
     {
         private string idHotel;
-        private string idTipoHabitacion;
+        private string idTipoHabitacion;        
 
         public Modificacion(string idHotel, string numHabitacion, string piso,
             string ubicacion, string tipoHabitacion, string descripcion, string comodidades, bool habilitado)
         {
+            InitializeComponent();
+            
             FormHandler.listarTipoUbicacion(comboBoxUbicacion);
             
             this.idHotel = idHotel;
@@ -27,26 +29,34 @@ namespace FrbaHotel.AbmHabitacion
 
             try
             {
-                this.textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
+                this.textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First()["nombre"].ToString();
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocurrió al intentar agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ocurrió un error al intentar agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             this.textBoxNumHabitacion.Text = numHabitacion;
             this.textBoxPiso.Text = piso;
-            this.comboBoxUbicacion.Text = ubicacion;
-            
+            this.comboBoxUbicacion.SelectedValue = ubicacion;
+
             this.idTipoHabitacion = tipoHabitacion;
             var nombreTipoUbicacion = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
                 Fields("descripcion").Table("MATOTA.TipoHabitacion").AddEquals("idTipoHabitacion", this.idTipoHabitacion);
-            this.textBoxTipoHabitacion.Text = DBHandler.Query(nombreTipoUbicacion.Build()).ToString();
+
+            try
+            {
+                this.textBoxTipoHabitacion.Text = DBHandler.Query(nombreTipoUbicacion.Build()).First()["descripcion"].ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al intentar agregar la ubicación de la habitación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             
             this.textBoxDescripcion.Text = descripcion;
             this.textBoxComodidades.Text = comodidades;
             this.checkBoxHabilitado.Checked = habilitado;
-            InitializeComponent();
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)

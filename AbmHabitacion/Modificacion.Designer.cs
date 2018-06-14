@@ -219,9 +219,9 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(471, 377);
+            this.buttonGuardar.Location = new System.Drawing.Point(471, 378);
             this.buttonGuardar.Name = "buttonGuardar";
-            this.buttonGuardar.Size = new System.Drawing.Size(84, 28);
+            this.buttonGuardar.Size = new System.Drawing.Size(84, 38);
             this.buttonGuardar.TabIndex = 28;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
@@ -229,9 +229,9 @@
             // 
             // buttonLimpiar
             // 
-            this.buttonLimpiar.Location = new System.Drawing.Point(23, 377);
+            this.buttonLimpiar.Location = new System.Drawing.Point(23, 378);
             this.buttonLimpiar.Name = "buttonLimpiar";
-            this.buttonLimpiar.Size = new System.Drawing.Size(83, 28);
+            this.buttonLimpiar.Size = new System.Drawing.Size(83, 38);
             this.buttonLimpiar.TabIndex = 27;
             this.buttonLimpiar.Text = "Limpiar";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
@@ -241,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(578, 424);
+            this.ClientSize = new System.Drawing.Size(578, 434);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.checkBoxHabilitado);

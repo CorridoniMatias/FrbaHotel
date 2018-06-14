@@ -28,19 +28,29 @@ namespace FrbaHotel.AbmHabitacion
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-
                 this.SelectedHab = new Habitacion()
                 {
                     idHotel = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
                     nroHabitacion = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
                     piso = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
                     idUbicacion = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString(),
-                    idTipoHabitacion = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString(),
-                    descripcion = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString(),
-                    comodidades = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString(),
-                    habilitado = Boolean.Parse(dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString())
+                    idTipoHabitacion = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString(),
+                    descripcion = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString(),
+                    comodidades = dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString(),
+                    habilitado = Boolean.Parse(dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString())
                 };
 
+                var modificar = new AbmHabitacion.Modificacion(
+                                                                SelectedHab.idHotel,
+                                                                SelectedHab.nroHabitacion,
+                                                                SelectedHab.piso,
+                                                                SelectedHab.idUbicacion,
+                                                                SelectedHab.idTipoHabitacion,
+                                                                SelectedHab.descripcion,
+                                                                SelectedHab.comodidades,
+                                                                SelectedHab.habilitado
+                    );
+                modificar.ShowDialog();
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
             }
