@@ -12,7 +12,7 @@ namespace FrbaHotel.AbmUsuario
 {
     public partial class Modificacion : Form
     {
-        
+
         bool modificando;
         bool hayError;
         string idUsuario;
@@ -34,7 +34,7 @@ namespace FrbaHotel.AbmUsuario
 
             QueryBuilder query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
              .Fields("u.idUsuario, u.username, u.habilitado, ru.idRol, u.nombre, u.apellido, u.idTipoDocumento, u.numeroDocumento, u.mail, u.telefono, u.fechaNacimiento, u.calle, u.nroCalle, u.piso, u.departamento, u.localidad, u.pais")
-             .Table("MATOTA.Usuario u").AddJoin("LEFT JOIN MATOTA.RolesUsuario ru ON u.idUsuario = ru.idUsuario").AddEquals("u.idUsuario",idUsuario);
+             .Table("MATOTA.Usuario u").AddJoin("LEFT JOIN MATOTA.RolesUsuario ru ON u.idUsuario = ru.idUsuario").AddEquals("u.idUsuario", idUsuario);
 
             Dictionary<string, object> datos = DBHandler.Query(query.Build())[0];
 
@@ -97,6 +97,12 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show("Debe llenar todos los campos marcados en rojo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
             }
+            if (!String.IsNullOrEmpty(textBoxMail.Text.Trim()))
+                if (!FormHandler.verificarMail(textBoxMail))
+                {
+                    MessageBox.Show("El mail tiene un formato invalido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
             if (!string.IsNullOrEmpty(textBoxNumDoc.Text.Trim()))
             {
                 try
@@ -154,7 +160,7 @@ namespace FrbaHotel.AbmUsuario
 
             if (!string.IsNullOrEmpty(textBoxUsername.Text.Trim()))
             {
-                string queryValidar = "SELECT COUNT(*) FROM MATOTA.Usuario WHERE username = '" + textBoxUsername.Text + "' AND idUsuario <>"+idUsuario;
+                string queryValidar = "SELECT COUNT(*) FROM MATOTA.Usuario WHERE username = '" + textBoxUsername.Text + "' AND idUsuario <>" + idUsuario;
 
 
                 try
@@ -173,7 +179,7 @@ namespace FrbaHotel.AbmUsuario
                     MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                
+
             }
 
             if (hayError)
@@ -183,7 +189,7 @@ namespace FrbaHotel.AbmUsuario
             }
 
             string query = "UPDATE MATOTA.Usuario SET ";
-            query += String.Join(",", fields.Select(f => f.Tag.ToString() + "='" + f.Text.ToString()+"'").ToArray());
+            query += String.Join(",", fields.Select(f => f.Tag.ToString() + "='" + f.Text.ToString() + "'").ToArray());
 
             if (!String.IsNullOrEmpty(textBoxPiso.Text.Trim()))
                 query += ", piso ='" + textBoxPiso.Text.ToString() + "'";
@@ -191,7 +197,7 @@ namespace FrbaHotel.AbmUsuario
                 DBHandler.Query("UPDATE MATOTA.Usuario SET piso = NULL WHERE idUsuario = " + idUsuario);
 
             if (!String.IsNullOrEmpty(textBoxDepto.Text.Trim()))
-                query+= ", departamento ='" + textBoxDepto.Text.ToString() + "'";
+                query += ", departamento ='" + textBoxDepto.Text.ToString() + "'";
             else if (DBHandler.Query("SELECT departamento FROM MATOTA.Usuario WHERE idUsuario=" + idUsuario).Count > 0)
                 DBHandler.Query("UPDATE MATOTA.Usuario SET departamento = NULL WHERE idUsuario = " + idUsuario);
 
@@ -199,7 +205,7 @@ namespace FrbaHotel.AbmUsuario
 
             query += ", idTipoDocumento =" + comboBoxTipoDoc.SelectedValue.ToString();
 
-            query += ", fechaNacimiento = '" + dateTimePickerFechaNacimiento.Value.ToString("yyyy-MM-dd")+"'";
+            query += ", fechaNacimiento = '" + dateTimePickerFechaNacimiento.Value.ToString("yyyy-MM-dd") + "'";
 
             query += " WHERE idUsuario=" + idUsuario;
 
@@ -214,7 +220,7 @@ namespace FrbaHotel.AbmUsuario
                 return;
             }
 
-            query = "UPDATE MATOTA.RolesUsuario SET idRol="  + comboBoxRol.SelectedValue.ToString() + "WHERE idUsuario ="+idUsuario;
+            query = "UPDATE MATOTA.RolesUsuario SET idRol=" + comboBoxRol.SelectedValue.ToString() + "WHERE idUsuario =" + idUsuario;
 
             try
             {
@@ -296,9 +302,7 @@ namespace FrbaHotel.AbmUsuario
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
-            FormHandler.limpiar(groupBoxUser);
-            FormHandler.limpiar(groupBoxDatos);
-            FormHandler.limpiar(groupBoxDireccion);
+            this.Close();
         }
     }
 }

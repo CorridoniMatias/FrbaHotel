@@ -49,6 +49,8 @@
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.groupBoxFiltros = new System.Windows.Forms.GroupBox();
+            this.checkBoxHabilitado = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.comboBoxRol = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxUsername = new System.Windows.Forms.TextBox();
@@ -63,8 +65,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkBoxHabilitado = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).BeginInit();
             this.groupBoxFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -295,14 +295,37 @@
             this.groupBoxFiltros.TabStop = false;
             this.groupBoxFiltros.Text = "Filtros de búsqueda";
             // 
+            // checkBoxHabilitado
+            // 
+            this.checkBoxHabilitado.AutoSize = true;
+            this.checkBoxHabilitado.Checked = true;
+            this.checkBoxHabilitado.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.checkBoxHabilitado.Location = new System.Drawing.Point(85, 72);
+            this.checkBoxHabilitado.Name = "checkBoxHabilitado";
+            this.checkBoxHabilitado.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxHabilitado.TabIndex = 22;
+            this.checkBoxHabilitado.ThreeState = true;
+            this.checkBoxHabilitado.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(13, 72);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Habilitado";
+            // 
             // comboBoxRol
             // 
+            this.comboBoxRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRol.FormattingEnabled = true;
             this.comboBoxRol.Location = new System.Drawing.Point(85, 45);
             this.comboBoxRol.Name = "comboBoxRol";
             this.comboBoxRol.Size = new System.Drawing.Size(146, 21);
             this.comboBoxRol.TabIndex = 14;
-            this.comboBoxRol.Tag = "rol";
+            this.comboBoxRol.Tag = "idRol";
             // 
             // label6
             // 
@@ -338,6 +361,7 @@
             // 
             // comboBoxTipoDoc
             // 
+            this.comboBoxTipoDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoDoc.FormattingEnabled = true;
             this.comboBoxTipoDoc.Location = new System.Drawing.Point(714, 11);
             this.comboBoxTipoDoc.Name = "comboBoxTipoDoc";
@@ -437,28 +461,6 @@
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
-            // 
-            // checkBoxHabilitado
-            // 
-            this.checkBoxHabilitado.AutoSize = true;
-            this.checkBoxHabilitado.Checked = true;
-            this.checkBoxHabilitado.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.checkBoxHabilitado.Location = new System.Drawing.Point(85, 72);
-            this.checkBoxHabilitado.Name = "checkBoxHabilitado";
-            this.checkBoxHabilitado.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxHabilitado.TabIndex = 22;
-            this.checkBoxHabilitado.ThreeState = true;
-            this.checkBoxHabilitado.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(13, 72);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 13);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Habilitado";
             // 
             // Listado
             // 
