@@ -119,12 +119,12 @@ namespace FrbaHotel
 
         private void buttonCrearHabitacion_Click(object sender, EventArgs e)
         {
-            
+            new AbmHabitacion.Alta().ShowDialog(this);
         }
 
         private void buttonModificarHabitacion_Click(object sender, EventArgs e)
         {
-          
+            new AbmHabitacion.ListadoSeleccion().ShowDialog(this);
         }
 
     }
