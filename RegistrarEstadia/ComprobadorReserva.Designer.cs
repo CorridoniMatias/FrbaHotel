@@ -69,7 +69,7 @@
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.textBoxReserva);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ComprobadorReserva";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Check-In";

@@ -69,7 +69,7 @@
             this.Controls.Add(this.buttonSelect);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxRol);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "SelectRol";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Seleccione el Rol para operar";

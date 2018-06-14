@@ -68,7 +68,7 @@
             this.Column7,
             this.ColumnSelect});
             this.dataGridView1.Location = new System.Drawing.Point(15, 335);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(1325, 345);
@@ -128,7 +128,7 @@
             // buttonBuscar
             // 
             this.buttonBuscar.Location = new System.Drawing.Point(1215, 244);
-            this.buttonBuscar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.buttonBuscar.Margin = new System.Windows.Forms.Padding(5);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(125, 39);
             this.buttonBuscar.TabIndex = 6;
@@ -139,7 +139,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(15, 244);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 39);
             this.button1.TabIndex = 5;
@@ -161,9 +161,9 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBox1.Location = new System.Drawing.Point(15, 14);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
             this.groupBox1.Size = new System.Drawing.Size(1325, 217);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
@@ -173,7 +173,7 @@
             // 
             this.comboBoxTipoDoc.FormattingEnabled = true;
             this.comboBoxTipoDoc.Location = new System.Drawing.Point(648, 46);
-            this.comboBoxTipoDoc.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comboBoxTipoDoc.Margin = new System.Windows.Forms.Padding(5);
             this.comboBoxTipoDoc.Name = "comboBoxTipoDoc";
             this.comboBoxTipoDoc.Size = new System.Drawing.Size(249, 30);
             this.comboBoxTipoDoc.TabIndex = 15;
@@ -211,7 +211,7 @@
             // textBoxApellido
             // 
             this.textBoxApellido.Location = new System.Drawing.Point(100, 134);
-            this.textBoxApellido.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxApellido.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxApellido.MaxLength = 255;
             this.textBoxApellido.Name = "textBoxApellido";
             this.textBoxApellido.Size = new System.Drawing.Size(312, 28);
@@ -232,7 +232,7 @@
             // textBoxMail
             // 
             this.textBoxMail.Location = new System.Drawing.Point(1032, 49);
-            this.textBoxMail.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxMail.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxMail.MaxLength = 255;
             this.textBoxMail.Name = "textBoxMail";
             this.textBoxMail.Size = new System.Drawing.Size(284, 28);
@@ -253,7 +253,7 @@
             // textBoxNombre
             // 
             this.textBoxNombre.Location = new System.Drawing.Point(100, 49);
-            this.textBoxNombre.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxNombre.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxNombre.MaxLength = 82;
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(312, 28);
@@ -274,7 +274,7 @@
             // buttonAgregarCliente
             // 
             this.buttonAgregarCliente.Location = new System.Drawing.Point(570, 244);
-            this.buttonAgregarCliente.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.buttonAgregarCliente.Margin = new System.Windows.Forms.Padding(5);
             this.buttonAgregarCliente.Name = "buttonAgregarCliente";
             this.buttonAgregarCliente.Size = new System.Drawing.Size(213, 39);
             this.buttonAgregarCliente.TabIndex = 8;
@@ -292,7 +292,7 @@
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ListadoSeleccion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Seleccionar cliente";

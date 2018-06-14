@@ -59,10 +59,11 @@
             this.ColumnCantidad,
             this.ColumnModificar,
             this.ColumnRemove});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 24);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 41);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(511, 225);
+            this.dataGridView1.Size = new System.Drawing.Size(852, 381);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -102,7 +103,7 @@
             this.ColumnModificar.ReadOnly = true;
             this.ColumnModificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnModificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ColumnModificar.Width = 75;
+            this.ColumnModificar.Width = 111;
             // 
             // ColumnRemove
             // 
@@ -111,13 +112,14 @@
             this.ColumnRemove.Name = "ColumnRemove";
             this.ColumnRemove.ReadOnly = true;
             this.ColumnRemove.Text = "Remover";
-            this.ColumnRemove.Width = 56;
+            this.ColumnRemove.Width = 93;
             // 
             // buttonRegister
             // 
-            this.buttonRegister.Location = new System.Drawing.Point(398, 392);
+            this.buttonRegister.Location = new System.Drawing.Point(663, 663);
+            this.buttonRegister.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.buttonRegister.Name = "buttonRegister";
-            this.buttonRegister.Size = new System.Drawing.Size(133, 23);
+            this.buttonRegister.Size = new System.Drawing.Size(222, 39);
             this.buttonRegister.TabIndex = 10;
             this.buttonRegister.Text = "Registrar consumibles";
             this.buttonRegister.UseVisualStyleBackColor = true;
@@ -125,9 +127,10 @@
             // 
             // buttonContinue
             // 
-            this.buttonContinue.Location = new System.Drawing.Point(8, 392);
+            this.buttonContinue.Location = new System.Drawing.Point(13, 663);
+            this.buttonContinue.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.buttonContinue.Name = "buttonContinue";
-            this.buttonContinue.Size = new System.Drawing.Size(151, 23);
+            this.buttonContinue.Size = new System.Drawing.Size(252, 39);
             this.buttonContinue.TabIndex = 9;
             this.buttonContinue.Text = "Continuar sin consumibles";
             this.buttonContinue.UseVisualStyleBackColor = true;
@@ -138,9 +141,11 @@
             this.groupBox1.Controls.Add(this.textBoxNroHabitacion);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(8, 8);
+            this.groupBox1.Location = new System.Drawing.Point(13, 14);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(523, 69);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Size = new System.Drawing.Size(872, 117);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Estadia";
@@ -148,11 +153,12 @@
             // textBoxNroHabitacion
             // 
             this.textBoxNroHabitacion.Enabled = false;
-            this.textBoxNroHabitacion.Location = new System.Drawing.Point(136, 29);
+            this.textBoxNroHabitacion.Location = new System.Drawing.Point(227, 49);
+            this.textBoxNroHabitacion.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxNroHabitacion.MaxLength = 82;
             this.textBoxNroHabitacion.Name = "textBoxNroHabitacion";
             this.textBoxNroHabitacion.ReadOnly = true;
-            this.textBoxNroHabitacion.Size = new System.Drawing.Size(189, 20);
+            this.textBoxNroHabitacion.Size = new System.Drawing.Size(312, 28);
             this.textBoxNroHabitacion.TabIndex = 4;
             this.textBoxNroHabitacion.Tag = "";
             // 
@@ -160,9 +166,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(10, 31);
+            this.label1.Location = new System.Drawing.Point(17, 52);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 13);
+            this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Número de Habitación";
             // 
@@ -171,9 +178,11 @@
             this.groupBox2.Controls.Add(this.buttonAdd);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox2.Location = new System.Drawing.Point(8, 89);
+            this.groupBox2.Location = new System.Drawing.Point(13, 151);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(523, 298);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox2.Size = new System.Drawing.Size(872, 504);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Consumibles";
@@ -181,9 +190,10 @@
             // buttonAdd
             // 
             this.buttonAdd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonAdd.Location = new System.Drawing.Point(404, 262);
+            this.buttonAdd.Location = new System.Drawing.Point(673, 443);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(112, 23);
+            this.buttonAdd.Size = new System.Drawing.Size(187, 39);
             this.buttonAdd.TabIndex = 11;
             this.buttonAdd.Text = "Añadir consumible";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -191,15 +201,14 @@
             // 
             // Registrar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 427);
+            this.ClientSize = new System.Drawing.Size(902, 723);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.buttonRegister);
             this.Controls.Add(this.buttonContinue);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "Registrar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar Consumibles";

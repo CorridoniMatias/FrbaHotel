@@ -70,7 +70,7 @@
             // 
             this.comboBoxTipoDoc.FormattingEnabled = true;
             this.comboBoxTipoDoc.Location = new System.Drawing.Point(657, 34);
-            this.comboBoxTipoDoc.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comboBoxTipoDoc.Margin = new System.Windows.Forms.Padding(5);
             this.comboBoxTipoDoc.Name = "comboBoxTipoDoc";
             this.comboBoxTipoDoc.Size = new System.Drawing.Size(249, 30);
             this.comboBoxTipoDoc.TabIndex = 10;
@@ -89,7 +89,7 @@
             // textBoxApellido
             // 
             this.textBoxApellido.Location = new System.Drawing.Point(152, 80);
-            this.textBoxApellido.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBoxApellido.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxApellido.MaxLength = 255;
             this.textBoxApellido.Name = "textBoxApellido";
             this.textBoxApellido.Size = new System.Drawing.Size(246, 28);
@@ -201,7 +201,7 @@
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.groupBox2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "Listado";
             this.Text = "Clientes";
             this.Load += new System.EventHandler(this.Listado_Load);

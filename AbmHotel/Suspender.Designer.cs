@@ -153,7 +153,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.groupBoxInactividad);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "Suspender";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Suspender Hotel";
