@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,16 @@ namespace FrbaHotel.AbmHabitacion
         private List<string> habitaciones;
         private List<string> habitacionesRemovidas;
         public HabitacionReservada habitacionReservada { get; private set; }
+        private HabitacionReservada habitacionesDisp { get; set; }
         public DataGridView dataGridReserva {get; set;}
-
-        public Listado(string idHotel,List<string> habitaciones)
+        private DateTime fechaDesde;
+        private DateTime fechaHasta;
+        public Listado(string idHotel,List<string> habitaciones,DateTime fechaDesde,DateTime fechaHasta)
         {
-            
             this.idHotel = idHotel;
             this.habitaciones = habitaciones;
+            this.fechaHasta = fechaHasta;
+            this.fechaDesde = fechaDesde;
             InitializeComponent();
         }
 
@@ -88,7 +92,7 @@ namespace FrbaHotel.AbmHabitacion
                             tipoHabitacion = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
                             ubicacion = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
                         };
-                        dataGridReserva.Rows.Add(habitacionReservada.nroHabitacion, habitacionReservada.tipoHabitacion, habitacionReservada.ubicacion,habitacionReservada.precio);
+                        dataGridReserva.Rows.Add(habitacionReservada.nroHabitacion, habitacionReservada.tipoHabitacion, habitacionReservada.ubicacion);
                     }
                 }
                 else if (e.ColumnIndex == dataGridView1.Columns["Quitar"].Index)

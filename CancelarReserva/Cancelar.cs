@@ -31,11 +31,18 @@ namespace FrbaHotel.CancelarReserva
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             List<TextBox> textBoxes = new List<TextBox> { textBoxIdReserva, textBoxMotivo };
-            if(textBoxes.Any(tb=>string.IsNullOrEmpty(tb.Text)))
-                MessageBox.Show("Debe completar todos los campos","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            else
+            if (textBoxes.Any(tb => string.IsNullOrEmpty(tb.Text)))
             {
-                try
+                MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!DBHandler.SPWithBool("MATOTA.FechaCorrectaParaModificarReserva", new List<SqlParameter>{new SqlParameter("@idReserva",textBoxIdReserva.Text),
+                                                                                                      new SqlParameter("@fechaSistema",ConfigManager.FechaSistema)}))
+            {
+                MessageBox.Show("Ya pasó la fecha límite para cancelar esta reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
             {
                 var ret = DBHandler.SPWithValue("MATOTA.CancelarReserva",
                     new List<SqlParameter>{
@@ -45,7 +52,7 @@ namespace FrbaHotel.CancelarReserva
                         new SqlParameter("@idUsuario",Login.Login.LoggedUsedID), });
                 if (ret == 0)
                 {
-                    MessageBox.Show("La reserva " + textBoxIdReserva.Text +" ya se encuentra cancelada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La reserva " + textBoxIdReserva.Text + " ya se encuentra cancelada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     textBoxIdReserva.Text = string.Empty;
                 }
                 else if (ret == 1)
@@ -57,7 +64,6 @@ namespace FrbaHotel.CancelarReserva
             {
                 MessageBox.Show("Error al intentar cancelar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
             }
         }
     }
