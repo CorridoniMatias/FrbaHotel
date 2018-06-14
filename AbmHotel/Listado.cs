@@ -13,9 +13,13 @@ namespace FrbaHotel.AbmHotel
     public partial class Listado : Form
     {
         private PobladorHoteles poblador;
-        public Listado()
+        private bool automaticallySelectForSessionHotel;
+        public Hotel SelectedHotel { get; private set; }
+
+        public Listado(bool automaticallySelectForSessionHotel = true)
         {
             InitializeComponent();
+            this.automaticallySelectForSessionHotel = automaticallySelectForSessionHotel;
         }
 
         private void Listado_Load(object sender, EventArgs e)
@@ -34,17 +38,25 @@ namespace FrbaHotel.AbmHotel
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                
-                try
+                if (automaticallySelectForSessionHotel)
                 {
-                    Login.Login.LoggedUserSessionHotelID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                    try
+                    {
+                        Login.Login.LoggedUserSessionHotelID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                    }
+                    catch (Exception)
+                    {
+                        this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                        MessageBox.Show("Error al seleccionar hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.Close();
+                    }
                 }
-                catch (Exception)
-                {
-                    this.DialogResult = System.Windows.Forms.DialogResult.Abort;
-                    MessageBox.Show("Error al seleccionar hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
-                }
+                else
+                    this.SelectedHotel = new Hotel
+                    {
+                        idHotel = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                        nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()
+                    };
 
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
