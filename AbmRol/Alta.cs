@@ -46,7 +46,7 @@ namespace FrbaHotel.AbmRol
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
-            if(modificando)
+            if (modificando)
                 this.Close();
             else FormHandler.limpiar(groupBoxRol);
         }
@@ -63,8 +63,14 @@ namespace FrbaHotel.AbmRol
 
             List<int> funcionalidades = new List<int>();
             foreach (var item in checkedListBoxFuncionalidades.CheckedItems)
+            {
+                if (((Funcionalidad)item).nombre.Equals("ABM Usuarios"))
+                {
+                    MessageBox.Show("La funcionalidad de ABM de Usuarios solo puede ser asignada a los administradores.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
                 funcionalidades.Add(Int32.Parse(((Funcionalidad)item).idFuncionalidad));
-
+            }
             if (string.IsNullOrEmpty(field.Text.Trim()) || funcionalidades.Count == 0)
             {
                 MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -106,11 +112,18 @@ namespace FrbaHotel.AbmRol
 
                 query += ";SELECT scope_identity()";
 
+                int idRolInsertado;
 
-
-                int idRolInsertado = DBHandler.QueryScalar(query);
-
-                if (idRolInsertado < 1)
+                try
+                {
+                    idRolInsertado = DBHandler.QueryScalar(query);
+                    if (idRolInsertado < 1)
+                    {
+                        MessageBox.Show("Error al agregar Rol", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show("Error al agregar Rol", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -140,7 +153,7 @@ namespace FrbaHotel.AbmRol
                     MessageBox.Show("Ocurrió un error al agregar el rol.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                
+
             }
 
             else

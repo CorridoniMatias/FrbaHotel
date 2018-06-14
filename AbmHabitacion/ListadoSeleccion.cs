@@ -38,7 +38,7 @@ namespace FrbaHotel.AbmHabitacion
                     idTipoHabitacion = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString(),
                     descripcion = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString(),
                     comodidades = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString(),
-                    habilitado = (bool)dataGridView1.Rows[e.RowIndex].Cells[8].Value
+                    habilitado = Boolean.Parse(dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString())
                 };
 
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -52,6 +52,11 @@ namespace FrbaHotel.AbmHabitacion
             poblador.Poblar();
         }
 
+        private void buttonLimpiar_Click(object sender, EventArgs e)
+        {
+            FormHandler.limpiar(groupBox1);
+        }
+
         private void ListadoSeleccion_Load(object sender, EventArgs e)
         {
             FormHandler.listarHoteles(comboBoxHotel);
@@ -62,11 +67,6 @@ namespace FrbaHotel.AbmHabitacion
             comboBoxHabitacion.SelectedIndex = -1;
             poblador = new PobladorHabitacion(new List<TextBox>() { textBoxNroHabitacion, textBoxPiso, textBoxcomodidades, textBoxDescripcion },
                 new List<ComboBox>() { comboBoxHotel, comboBoxUbicacion, comboBoxHabitacion }, dataGridView1, new List<string> { "Seleccionar" });
-        }
-
-        private void buttonLimpiar_Click(object sender, EventArgs e)
-        {
-            FormHandler.limpiar(groupBox1);
         }
     }
 }

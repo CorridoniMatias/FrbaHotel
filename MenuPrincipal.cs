@@ -117,5 +117,15 @@ namespace FrbaHotel
             new ListadoEstadistico.SeleccionarListado().ShowDialog(this);
         }
 
+        private void buttonCrearHabitacion_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buttonModificarHabitacion_Click(object sender, EventArgs e)
+        {
+          
+        }
+
     }
 }

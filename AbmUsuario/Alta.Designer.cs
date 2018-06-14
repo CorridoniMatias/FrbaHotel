@@ -164,7 +164,7 @@
             this.groupBoxDireccion.Controls.Add(this.label15);
             this.groupBoxDireccion.Controls.Add(this.label16);
             this.groupBoxDireccion.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBoxDireccion.Location = new System.Drawing.Point(13, 394);
+            this.groupBoxDireccion.Location = new System.Drawing.Point(376, 263);
             this.groupBoxDireccion.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxDireccion.Name = "groupBoxDireccion";
             this.groupBoxDireccion.Padding = new System.Windows.Forms.Padding(2);
@@ -314,7 +314,7 @@
             this.groupBoxDatos.Controls.Add(this.label9);
             this.groupBoxDatos.Controls.Add(this.label10);
             this.groupBoxDatos.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBoxDatos.Location = new System.Drawing.Point(13, 144);
+            this.groupBoxDatos.Location = new System.Drawing.Point(376, 13);
             this.groupBoxDatos.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxDatos.Name = "groupBoxDatos";
             this.groupBoxDatos.Padding = new System.Windows.Forms.Padding(2);
@@ -472,7 +472,7 @@
             // buttonGuardar
             // 
             this.buttonGuardar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonGuardar.Location = new System.Drawing.Point(296, 616);
+            this.buttonGuardar.Location = new System.Drawing.Point(659, 483);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 22;
@@ -483,7 +483,7 @@
             // buttonLimpiar
             // 
             this.buttonLimpiar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonLimpiar.Location = new System.Drawing.Point(14, 616);
+            this.buttonLimpiar.Location = new System.Drawing.Point(23, 483);
             this.buttonLimpiar.Margin = new System.Windows.Forms.Padding(5);
             this.buttonLimpiar.Name = "buttonLimpiar";
             this.buttonLimpiar.Size = new System.Drawing.Size(75, 23);
@@ -496,7 +496,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 649);
+            this.ClientSize = new System.Drawing.Size(746, 519);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.groupBoxDatos);
