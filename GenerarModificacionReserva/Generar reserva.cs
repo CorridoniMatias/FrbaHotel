@@ -18,6 +18,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private int cantPersonasReserva;
         private double precioNoche;
         private Reserva reserva;
+        private string idCliente;
         public GenerarReserva()
         {
             habitaciones = new List<string>();
@@ -99,13 +100,13 @@ namespace FrbaHotel.GenerarModificacionReserva
                 cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
                 reserva = new Reserva(idHotel, habitaciones, comboBoxRegimen.SelectedValue.ToString(), cantPersonasReserva);
                 var cantNoches = reserva.cantNoches(dateTimePickerFechaDesde, dateTimePickerFechaHasta);
-                if (cantNoches <= 0)
-                {
-                    MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
                 if (cantPersonasReserva > reserva.cantPersonasQueEntran())
                 {
                     MessageBox.Show("La cantidad de personas ingresada no entran en las habitaciones seleccionadas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                if (cantNoches <= 0)
+                {
+                    MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -113,6 +114,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     precioNoche = reserva.precioPorNoche();
                     textBoxPrecioPorNoche.Text = "U$S " + precioNoche.ToString();
                     textBoxCantNoches.Text = cantNoches.ToString();
+                    textBoxPrecioTotal.Text = "U$S " + (cantNoches * precioNoche).ToString();
                 }
             }
         }
@@ -128,13 +130,17 @@ namespace FrbaHotel.GenerarModificacionReserva
             if (cantNoches <= 0)
             {
                 MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (idCliente == null)
+            {
+                MessageBox.Show("Ingrese el cliente para ponerlo a nombre de la reserva actual", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             else
             {
                 try
                 {
-                    MessageBox.Show("El precio total de la reserva es de U$S " + precioNoche * cantNoches, "Precio Total", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    var idCliente = this.getIdCliente();
                     var idReserva = DBHandler.SPWithValue("MATOTA.AltaReserva",
                         new List<SqlParameter>{ new SqlParameter("@idHotel",idHotel),
                                         new SqlParameter("@fechaReserva",ConfigManager.FechaSistema),
@@ -182,12 +188,14 @@ namespace FrbaHotel.GenerarModificacionReserva
         private string getIdCliente()
         {
             var seleccion = new AbmCliente.ListadoSeleccion();
+            seleccion.dataGridViewCliente = dataGridViewCliente;
             seleccion.ShowDialog();
             if (seleccion.existeCliente)
                 return seleccion.SelectedClient.idCliente;
             else
             {
                 var alta = new AbmCliente.Alta();
+                alta.dataGridViewCliente = dataGridViewCliente;
                 alta.ShowDialog();
                 return alta.InsertedClient.idCliente;
             }
@@ -197,6 +205,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void dateTimePickerFechaDesde_ValueChanged(object sender, EventArgs e)
         {
             FormHandler.limpiar(groupBox2);
+            dataGridView1.Rows.Clear();
             habitaciones.Clear();
 
         }
@@ -217,6 +226,11 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             FormHandler.limpiar(groupBox2);
             dataGridView1.Rows.Clear();
+        }
+
+        private void buttonSeleccionCliente_Click(object sender, EventArgs e)
+        {
+            idCliente = this.getIdCliente();
         }
     }
 }

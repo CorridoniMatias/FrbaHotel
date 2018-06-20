@@ -47,6 +47,8 @@
             this.buttonSeleccionarHab = new System.Windows.Forms.Button();
             this.textBoxCantNoches = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxPrecioTotal = new System.Windows.Forms.TextBox();
             this.buttonConsultar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -54,9 +56,17 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.buttonSeleccionCliente = new System.Windows.Forms.Button();
+            this.dataGridViewCliente = new System.Windows.Forms.DataGridView();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -142,6 +152,7 @@
             // textBoxCantPersonas
             // 
             this.textBoxCantPersonas.Location = new System.Drawing.Point(140, 150);
+            this.textBoxCantPersonas.MaxLength = 1000;
             this.textBoxCantPersonas.Name = "textBoxCantPersonas";
             this.textBoxCantPersonas.Size = new System.Drawing.Size(55, 20);
             this.textBoxCantPersonas.TabIndex = 10;
@@ -157,7 +168,7 @@
             // 
             // buttonLimpiar
             // 
-            this.buttonLimpiar.Location = new System.Drawing.Point(15, 440);
+            this.buttonLimpiar.Location = new System.Drawing.Point(359, 491);
             this.buttonLimpiar.Name = "buttonLimpiar";
             this.buttonLimpiar.Size = new System.Drawing.Size(75, 23);
             this.buttonLimpiar.TabIndex = 13;
@@ -167,7 +178,7 @@
             // 
             // buttonGenerar
             // 
-            this.buttonGenerar.Location = new System.Drawing.Point(261, 440);
+            this.buttonGenerar.Location = new System.Drawing.Point(642, 491);
             this.buttonGenerar.Name = "buttonGenerar";
             this.buttonGenerar.Size = new System.Drawing.Size(75, 23);
             this.buttonGenerar.TabIndex = 14;
@@ -222,18 +233,38 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.textBoxPrecioTotal);
             this.groupBox2.Controls.Add(this.buttonConsultar);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.textBoxCantNoches);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.textBoxPrecioPorNoche);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox2.Location = new System.Drawing.Point(15, 259);
+            this.groupBox2.Location = new System.Drawing.Point(351, 270);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(321, 160);
+            this.groupBox2.Size = new System.Drawing.Size(366, 204);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de su reserva";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(17, 162);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Precio total";
+            // 
+            // textBoxPrecioTotal
+            // 
+            this.textBoxPrecioTotal.Location = new System.Drawing.Point(125, 159);
+            this.textBoxPrecioTotal.Name = "textBoxPrecioTotal";
+            this.textBoxPrecioTotal.ReadOnly = true;
+            this.textBoxPrecioTotal.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPrecioTotal.TabIndex = 22;
             // 
             // buttonConsultar
             // 
@@ -250,7 +281,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(20, 121);
+            this.label8.Location = new System.Drawing.Point(17, 118);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(87, 13);
             this.label8.TabIndex = 20;
@@ -295,11 +326,60 @@
             this.Column3.HeaderText = "Ubicación";
             this.Column3.Name = "Column3";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.buttonSeleccionCliente);
+            this.groupBox5.Controls.Add(this.dataGridViewCliente);
+            this.groupBox5.Location = new System.Drawing.Point(15, 270);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(321, 244);
+            this.groupBox5.TabIndex = 23;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Cliente";
+            // 
+            // buttonSeleccionCliente
+            // 
+            this.buttonSeleccionCliente.Location = new System.Drawing.Point(104, 33);
+            this.buttonSeleccionCliente.Name = "buttonSeleccionCliente";
+            this.buttonSeleccionCliente.Size = new System.Drawing.Size(121, 23);
+            this.buttonSeleccionCliente.TabIndex = 1;
+            this.buttonSeleccionCliente.Text = "Seleccionar Cliente";
+            this.buttonSeleccionCliente.UseVisualStyleBackColor = true;
+            this.buttonSeleccionCliente.Click += new System.EventHandler(this.buttonSeleccionCliente_Click);
+            // 
+            // dataGridViewCliente
+            // 
+            this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column4,
+            this.Column5,
+            this.Column6});
+            this.dataGridViewCliente.Location = new System.Drawing.Point(7, 75);
+            this.dataGridViewCliente.Name = "dataGridViewCliente";
+            this.dataGridViewCliente.Size = new System.Drawing.Size(308, 150);
+            this.dataGridViewCliente.TabIndex = 0;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Tipo. Documento";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Nro. Documento";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Nombre";
+            this.Column6.Name = "Column6";
+            // 
             // GenerarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 475);
+            this.ClientSize = new System.Drawing.Size(729, 526);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.comboBoxRegimen);
@@ -323,6 +403,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,5 +438,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxPrecioTotal;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.DataGridView dataGridViewCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Button buttonSeleccionCliente;
     }
 }

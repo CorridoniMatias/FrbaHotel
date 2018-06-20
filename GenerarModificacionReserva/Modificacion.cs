@@ -19,12 +19,20 @@ namespace FrbaHotel.GenerarModificacionReserva
         public List<string> habitaciones;
         public List<string> habitacionesRemovidas;
         private Reserva reserva{get; set;}
+        private double precioNoche;
         public AbmHabitacion.HabitacionReservada habReservada { get; set; }
         public Modificacion(string idReserva,string fechaDesde, string fechaHasta, string idRegimen, string cantPersonas,string precioNoche, List<string> habitaciones,string regimen)
         {
             InitializeComponent();
             this.idReserva = idReserva;
-            this.idHotel = DBHandler.Query("SELECT idHotel FROM MATOTA.RESERVA WHERE idReserva =" + idReserva).First().Values.First().ToString();
+            try
+            {
+                this.idHotel = DBHandler.Query("SELECT idHotel FROM MATOTA.RESERVA WHERE idReserva =" + idReserva).First().Values.First().ToString();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error al obtener el hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             dateTimePickerFechaDesde.Value = DateTime.Parse(fechaDesde);
             dateTimePickerFechaHasta.Value = DateTime.Parse(fechaHasta);
             FormHandler.listarRegimenes(comboBoxRegimen);
@@ -43,8 +51,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
-            FormHandler.limpiar(groupBox1);
-            FormHandler.limpiar(groupBox2);
+            this.Close();
         }
 
         private void buttonSeleccionar_Click(object sender, EventArgs e)
@@ -73,17 +80,21 @@ namespace FrbaHotel.GenerarModificacionReserva
                 MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (string.IsNullOrEmpty(textBoxCantNoches.Text))
+            {
+                MessageBox.Show("Consulte los datos de su reserva antes de generarla", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             try
             {
                 cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
-                var precioPorNoche = reserva.precioPorNoche();
                 var ret = DBHandler.SPWithValue("Matota.UpdateReserva",
                     new List<SqlParameter>{new SqlParameter("@idReserva",idReserva),
                                        new SqlParameter("@fechaDesde",dateTimePickerFechaDesde.Value),
                                        new SqlParameter("@fechaHasta",dateTimePickerFechaHasta.Value),
                                        new SqlParameter("@cantNoches",cantNoches),
                                        new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue),
-                                       new SqlParameter("@precioBaseReserva",precioPorNoche*cantNoches),
+                                       new SqlParameter("@precioBaseReserva",precioNoche*cantNoches),
                                        new SqlParameter("@cantidadPersonas",textBoxCantPersonas.Text),});
                 if (ret == 1)
                 {
@@ -107,6 +118,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             if (!string.IsNullOrEmpty(textBoxCantPersonas.Text))
                 cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
             FormHandler.limpiar(groupBox2);
+            FormHandler.limpiar(groupBox3);
         }
         private void crearHabitacionReservada(string nroHab)
         {
@@ -129,6 +141,56 @@ namespace FrbaHotel.GenerarModificacionReserva
                 MessageBox.Show("Error al cargar las habitaciones ya reservadas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void buttonConsultar_Click(object sender, EventArgs e)
+        {
+            {
+                if (comboBoxRegimen.SelectedIndex == -1)
+                    new ListadoRegimenHotel(idHotel, comboBoxRegimen).ShowDialog();
+                if (habitaciones.Count == 0)
+                {
+                    MessageBox.Show("No ingresó ninguna habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    FormHandler.limpiar(groupBox2);
+                }
+                if (string.IsNullOrEmpty(textBoxCantPersonas.Text) || comboBoxRegimen.SelectedIndex == -1)
+                    MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
+                reserva = new Reserva(idHotel, habitaciones, comboBoxRegimen.SelectedValue.ToString(), cantPersonasReserva);
+                var cantNoches = reserva.cantNoches(dateTimePickerFechaDesde, dateTimePickerFechaHasta);
+                if (cantPersonasReserva > reserva.cantPersonasQueEntran())
+                {
+                    MessageBox.Show("La cantidad de personas ingresada no entran en las habitaciones seleccionadas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                if (cantNoches <= 0)
+                {
+                    MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
+                    precioNoche = reserva.precioPorNoche();
+                    textBoxPrecioPorNoche.Text = "U$S " + precioNoche.ToString();
+                    textBoxCantNoches.Text = cantNoches.ToString();
+                    textBoxPrecioTotal.Text = "U$S " + (cantNoches * precioNoche).ToString();
+                }
+            }
+        }
+
+        private void comboBoxRegimen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FormHandler.limpiar(groupBox3);
+        }
+
+        private void dateTimePickerFechaDesde_ValueChanged(object sender, EventArgs e)
+        {
+            FormHandler.limpiar(groupBox3);
+        }
+
+        private void dateTimePickerFechaHasta_ValueChanged(object sender, EventArgs e)
+        {
+            FormHandler.limpiar(groupBox3);
         }
     }
 }

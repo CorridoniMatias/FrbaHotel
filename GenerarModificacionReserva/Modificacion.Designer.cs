@@ -47,14 +47,23 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxPrecioTotal = new System.Windows.Forms.TextBox();
+            this.buttonConsultar = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxCantNoches = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxPrecioPorNoche = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonModificar
             // 
-            this.buttonModificar.Location = new System.Drawing.Point(705, 269);
+            this.buttonModificar.Location = new System.Drawing.Point(317, 464);
             this.buttonModificar.Name = "buttonModificar";
             this.buttonModificar.Size = new System.Drawing.Size(75, 23);
             this.buttonModificar.TabIndex = 0;
@@ -64,11 +73,11 @@
             // 
             // buttonLimpiar
             // 
-            this.buttonLimpiar.Location = new System.Drawing.Point(49, 269);
+            this.buttonLimpiar.Location = new System.Drawing.Point(22, 464);
             this.buttonLimpiar.Name = "buttonLimpiar";
-            this.buttonLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.buttonLimpiar.Size = new System.Drawing.Size(138, 23);
             this.buttonLimpiar.TabIndex = 1;
-            this.buttonLimpiar.Text = "Limpiar";
+            this.buttonLimpiar.Text = "Cancelar modificación";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
@@ -90,11 +99,11 @@
             this.groupBox1.Size = new System.Drawing.Size(370, 209);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Datos de su reserva";
             // 
             // textBoxPrecioNoche
             // 
-            this.textBoxPrecioNoche.Location = new System.Drawing.Point(112, 172);
+            this.textBoxPrecioNoche.Location = new System.Drawing.Point(147, 172);
             this.textBoxPrecioNoche.MaxLength = 18;
             this.textBoxPrecioNoche.Name = "textBoxPrecioNoche";
             this.textBoxPrecioNoche.ReadOnly = true;
@@ -105,11 +114,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(12, 175);
+            this.label3.Location = new System.Drawing.Point(9, 175);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 13);
+            this.label3.Size = new System.Drawing.Size(129, 13);
             this.label3.TabIndex = 12;
-            this.label3.Text = "Precio por Noche";
+            this.label3.Text = "Precio por Noche Anterior";
             // 
             // textBoxCantPersonas
             // 
@@ -166,6 +175,7 @@
             this.comboBoxRegimen.Name = "comboBoxRegimen";
             this.comboBoxRegimen.Size = new System.Drawing.Size(121, 21);
             this.comboBoxRegimen.TabIndex = 3;
+            this.comboBoxRegimen.SelectedIndexChanged += new System.EventHandler(this.comboBoxRegimen_SelectedIndexChanged);
             // 
             // dateTimePickerFechaHasta
             // 
@@ -173,6 +183,7 @@
             this.dateTimePickerFechaHasta.Name = "dateTimePickerFechaHasta";
             this.dateTimePickerFechaHasta.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFechaHasta.TabIndex = 1;
+            this.dateTimePickerFechaHasta.ValueChanged += new System.EventHandler(this.dateTimePickerFechaHasta_ValueChanged);
             // 
             // dateTimePickerFechaDesde
             // 
@@ -180,6 +191,7 @@
             this.dateTimePickerFechaDesde.Name = "dateTimePickerFechaDesde";
             this.dateTimePickerFechaDesde.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFechaDesde.TabIndex = 0;
+            this.dateTimePickerFechaDesde.ValueChanged += new System.EventHandler(this.dateTimePickerFechaDesde_ValueChanged);
             // 
             // groupBox2
             // 
@@ -213,7 +225,7 @@
             this.Column3});
             this.dataGridView1.Location = new System.Drawing.Point(12, 74);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(358, 132);
+            this.dataGridView1.Size = new System.Drawing.Size(358, 129);
             this.dataGridView1.TabIndex = 0;
             // 
             // Column1
@@ -231,11 +243,94 @@
             this.Column3.HeaderText = "Ubicación";
             this.Column3.Name = "Column3";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.textBoxPrecioTotal);
+            this.groupBox3.Controls.Add(this.buttonConsultar);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.textBoxCantNoches);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.textBoxPrecioPorNoche);
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox3.Location = new System.Drawing.Point(26, 237);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(366, 204);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Datos nuevos de su reserva";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(17, 162);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Precio total";
+            // 
+            // textBoxPrecioTotal
+            // 
+            this.textBoxPrecioTotal.Location = new System.Drawing.Point(125, 159);
+            this.textBoxPrecioTotal.Name = "textBoxPrecioTotal";
+            this.textBoxPrecioTotal.ReadOnly = true;
+            this.textBoxPrecioTotal.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPrecioTotal.TabIndex = 22;
+            // 
+            // buttonConsultar
+            // 
+            this.buttonConsultar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonConsultar.Location = new System.Drawing.Point(73, 30);
+            this.buttonConsultar.Name = "buttonConsultar";
+            this.buttonConsultar.Size = new System.Drawing.Size(139, 23);
+            this.buttonConsultar.TabIndex = 21;
+            this.buttonConsultar.Text = "Consultar";
+            this.buttonConsultar.UseVisualStyleBackColor = true;
+            this.buttonConsultar.Click += new System.EventHandler(this.buttonConsultar_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(17, 118);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(87, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Cantidad noches";
+            // 
+            // textBoxCantNoches
+            // 
+            this.textBoxCantNoches.Location = new System.Drawing.Point(125, 115);
+            this.textBoxCantNoches.Name = "textBoxCantNoches";
+            this.textBoxCantNoches.ReadOnly = true;
+            this.textBoxCantNoches.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCantNoches.TabIndex = 19;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(17, 78);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(88, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Precio por noche";
+            // 
+            // textBoxPrecioPorNoche
+            // 
+            this.textBoxPrecioPorNoche.Location = new System.Drawing.Point(125, 75);
+            this.textBoxPrecioPorNoche.Name = "textBoxPrecioPorNoche";
+            this.textBoxPrecioPorNoche.ReadOnly = true;
+            this.textBoxPrecioPorNoche.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPrecioPorNoche.TabIndex = 12;
+            // 
             // Modificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 304);
+            this.ClientSize = new System.Drawing.Size(821, 505);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonLimpiar);
@@ -247,6 +342,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -272,5 +369,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxPrecioTotal;
+        private System.Windows.Forms.Button buttonConsultar;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxCantNoches;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxPrecioPorNoche;
     }
 }

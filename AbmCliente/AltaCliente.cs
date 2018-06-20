@@ -14,6 +14,7 @@ namespace FrbaHotel.AbmCliente
     public partial class Alta : Form
     {
         public Cliente InsertedClient { get; private set; }
+        public DataGridView dataGridViewCliente { get; set; }
         public Alta()
         {
             InsertedClient = null;
@@ -67,6 +68,11 @@ namespace FrbaHotel.AbmCliente
                 else if (ret >= 1)
                 {
                     InsertedClient = new Cliente() { nombre = textBoxNombre.Text.Trim(), apellido = textBoxApellido.Text.Trim(), idCliente = ret.ToString() };
+                    if (!(dataGridViewCliente == null))
+                    {
+                        dataGridViewCliente.Rows.Clear();
+                        dataGridViewCliente.Rows.Add(comboBoxTipoDoc.Text, textBoxNumDoc.Text, textBoxNombre.Text);
+                    }
                     MessageBox.Show("Cliente ingresado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                     this.Close();

@@ -54,8 +54,7 @@ namespace FrbaHotel.AbmCliente
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
-            FormHandler.limpiar(groupBox1);
-            FormHandler.limpiar(groupBox2);
+            this.Close();
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)

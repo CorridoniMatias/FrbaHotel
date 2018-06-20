@@ -24,7 +24,7 @@ namespace FrbaHotel.AbmCliente
             this.inputs = inputs;
             this.grid = grid;
             Filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
-                        .Fields("c.idCliente,c.nombre,c.apellido,td.nombre tipoDocumento,c.numeroDocumento,c.mail").Table("MATOTA.Cliente c")
+                        .Fields("c.idCliente,c.nombre,c.apellido,td.nombre tipoDocumento,c.numeroDocumento,c.mail,c.habilitado").Table("MATOTA.Cliente c")
                         .AddJoin("JOIN MATOTA.TipoDocumento td ON (c.IdTipoDocumento = td.IdTipoDocumento)");
 
             this.extraColumns = extraColumns;
@@ -61,6 +61,7 @@ namespace FrbaHotel.AbmCliente
                                                         row["tipoDocumento"].ToString(), 
                                                         row["numeroDocumento"].ToString(),
                                                         row["mail"].ToString(),
+                                                        row["habilitado"].ToString(),
                                                          };
                         orig.AddRange(extraColumns);
                         return orig;

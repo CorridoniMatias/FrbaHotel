@@ -15,6 +15,7 @@ namespace FrbaHotel.AbmCliente
 
         public Cliente SelectedClient { get; private set; }
         public bool existeCliente { get; private set; }
+        public DataGridView dataGridViewCliente { get; set; }
         public ListadoSeleccion()
         {
             InitializeComponent();
@@ -29,16 +30,23 @@ namespace FrbaHotel.AbmCliente
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-
-                this.SelectedClient = new Cliente()
+                if (!Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[6].Value))
                 {
-                    idCliente = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                    nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    apellido = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                }; 
-
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
+                    MessageBox.Show("El cliente seleccionado no se encuentra habilitado, para habilitarlo comuníquese con un recepcionista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    this.SelectedClient = new Cliente()
+                    {
+                        idCliente = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                        nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                        apellido = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                    };
+                    dataGridViewCliente.Rows.Clear();
+                    dataGridViewCliente.Rows.Add(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString(), SelectedClient.nombre);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    this.Close();
+                }
             }
         }
 

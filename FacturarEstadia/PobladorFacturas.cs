@@ -18,7 +18,7 @@ namespace FrbaHotel.FacturarEstadia
         private string query;
         private string idEstadia;
         private List<string> idReservaHabitaciones;
-        private double precioE {get; private set;}
+        private double precioE {get;  set;}
         
         public PobladorFacturas(DataGridView grid, string idEstadia, List<string> idReservas)
         {
