@@ -44,6 +44,7 @@ namespace FrbaHotel.RegistrarConsumible
                     if (cantidadSelector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                     {
                         senderGrid.Rows[e.RowIndex].Cells[3].Value = cantidadSelector.CantidadElegida;
+                        senderGrid.Rows[e.RowIndex].Cells[4].Value = Convert.ToDecimal(senderGrid.Rows[e.RowIndex].Cells[2].Value) * cantidadSelector.CantidadElegida;
                     } 
                 }
                 else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnRemove"))
@@ -66,7 +67,7 @@ namespace FrbaHotel.RegistrarConsumible
 
                 if (cantidadSelector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.dataGridView1.Rows.Add(consumible.codigoConsumible, consumible.descripcion, consumible.precio, cantidadSelector.CantidadElegida, "Modificar", "Remover");
+                    this.dataGridView1.Rows.Add(consumible.codigoConsumible, consumible.descripcion, consumible.precio, cantidadSelector.CantidadElegida, Convert.ToDecimal(consumible.precio) * cantidadSelector.CantidadElegida , "Modificar", "Remover");
                 }
             }
         }

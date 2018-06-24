@@ -13,9 +13,9 @@ namespace FrbaHotel.FacturarEstadia
 {
     public partial class FacturarEstadia : Form
     {
-        List<string> idEstadias;
-        List<string> idReservaHabitaciones;
-        List<string> nroHabitacionValidas;
+        List<string> idEstadias = new List<string>();
+        List<string> idReservaHabitaciones = new List<string>();
+        List<string> nroHabitacionValidas = new List<string>();
 
         public FacturarEstadia()
         {
@@ -69,9 +69,9 @@ namespace FrbaHotel.FacturarEstadia
                     }
                     else
                     {
-                        idEstadias[temp] = idEstadia.ToString();
-                        idReservaHabitaciones[temp] = idReservaHabitacion.ToString();
-                        nroHabitacionValidas[temp] = nroHabitacion;
+                        idEstadias.Add(idEstadia.ToString());
+                        idReservaHabitaciones.Add(idReservaHabitacion.ToString());
+                        nroHabitacionValidas.Add(nroHabitacion);
                         temp++;
                     }
                 }
