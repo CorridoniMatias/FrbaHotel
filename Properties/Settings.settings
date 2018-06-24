@@ -14,5 +14,8 @@
     <Setting Name="SQLPassword" Type="System.String" Scope="Application">
       <Value Profile="(Default)">gd2018</Value>
     </Setting>
+    <Setting Name="SQLDatabase" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GD1C2018</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

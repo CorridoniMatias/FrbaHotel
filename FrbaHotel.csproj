@@ -215,6 +215,12 @@
       <DependentUpon>Cancelar.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigManager.cs" />
+    <Compile Include="Configurador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configurador.Designer.cs">
+      <DependentUpon>Configurador.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBHandler.cs" />
     <Compile Include="FacturarEstadia\Factura.cs">
       <SubType>Form</SubType>
@@ -446,6 +452,9 @@
     <EmbeddedResource Include="CancelarReserva\Cancelar.resx">
       <DependentUpon>Cancelar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Configurador.resx">
+      <DependentUpon>Configurador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FacturarEstadia\Factura.resx">
       <DependentUpon>Factura.cs</DependentUpon>
     </EmbeddedResource>
@@ -522,7 +531,7 @@
       <DependentUpon>ComprobadorReserva.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">

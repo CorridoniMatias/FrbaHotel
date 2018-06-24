@@ -46,5 +46,23 @@ namespace FrbaHotel
             menu.ShowDialog(this);
             this.Close();
         }
+
+        private void buttonConfig_Click(object sender, EventArgs e)
+        {
+            new Configurador().ShowDialog();
+            UpdateStatus();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            UpdateStatus();
+        }
+
+        private void UpdateStatus()
+        {
+            button1.Enabled = ConfigManager.ConfigCargada;
+            button2.Enabled = ConfigManager.ConfigCargada;
+            labelConfig.Visible = !ConfigManager.ConfigCargada;
+        }
     }
 }
