@@ -27,15 +27,23 @@ namespace FrbaHotel.RegistrarEstadia
                 return;
             }
 
-            bool ret = false;
+            int ret = 0;
+            var fechaInicioReserva = new SqlParameter("@fechaInicio", SqlDbType.Date) { Direction = ParameterDirection.Output };
+                var hotelDeLaReserva = new SqlParameter("@hotelReserva", SqlDbType.VarChar, 255) { Direction = ParameterDirection.Output };
+                var inhabilitadoHasta = new SqlParameter("@inhabilitadoHasta", SqlDbType.Date) { Direction = ParameterDirection.Output };
             try
             {
-                ret = DBHandler.SPWithBool("MATOTA.ReservaEsValida",
-                new List<SqlParameter> { 
-                    new SqlParameter("@idReserva", textBoxReserva.Text.Trim()),
-                    new SqlParameter("@idHotel", Login.Login.LoggedUserSessionHotelID),
-                    new SqlParameter("@fechaSistema", ConfigManager.FechaSistema.ToString("yyyy-MM-dd")) //ConfigManager.FechaSistema.ToString("yyyy-MM-dd")
-                }
+                
+
+                ret = DBHandler.SPWithValue("MATOTA.ReservaEsValidaCheckIn",
+                                    new List<SqlParameter> { 
+                                            new SqlParameter("@idReserva", textBoxReserva.Text.Trim()),
+                                            new SqlParameter("@idHotel", Login.Login.LoggedUserSessionHotelID),
+                                            new SqlParameter("@fechaSistema", ConfigManager.FechaSistema.ToString("yyyy-MM-dd")),
+                                            fechaInicioReserva,
+                                            hotelDeLaReserva,
+                                            inhabilitadoHasta
+                                        }
                 );
             }
             catch (Exception)
@@ -44,16 +52,35 @@ namespace FrbaHotel.RegistrarEstadia
                 return;
             }
 
-            if (!ret)
+            switch (ret)
             {
-                MessageBox.Show("La reserva ingresada no es valida para hacer check-in en este momento.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxReserva.Text = string.Empty;
-                return;
+                case 1:
+                    this.Hide();
+                    new AltaEstadia(textBoxReserva.Text.Trim()).ShowDialog(this);
+                    this.Close();
+                break;
+                case -1:
+                    MostrarError("El hotel en el cual se encuentra radicada la reserva está inhabilitado hasta " + inhabilitadoHasta.Value);
+                    return;
+                case -2:
+                    MostrarError("La reserva ingresada no fue encontrada en el sistema.");
+                    return;
+                case -3:
+                    MostrarError("La reserva tiene fecha de inicio " + fechaInicioReserva.Value + " y la fecha del sistema es " + ConfigManager.FechaSistema + "\n\nSolo se puece hacer check-in el dia de inicio de la reserva.");
+                    return;
+                case -4:
+                    MostrarError("La reserva ingresada esta radicada en el hotel " + hotelDeLaReserva.Value + ", que no es el mismo en el cual usted se encuentra trabajando.");
+                    return;
+                default:
+                    MostrarError("Ocurrio un error inesperado al hacer el check-in.");
+                    return;
             }
+        }
 
-            this.Hide();
-            new AltaEstadia(textBoxReserva.Text.Trim()).ShowDialog(this);
-            this.Close();
+        private void MostrarError(string msg)
+        {
+            MessageBox.Show("No se puede hacer check-in en este momento.\n\n"+msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            textBoxReserva.Text = string.Empty;
         }
 
         private void ComprobadorReserva_Load(object sender, EventArgs e)

@@ -22,7 +22,7 @@ namespace FrbaHotel.RegistrarEstadia
             InitializeComponent();
             this.idReserva = idReserva;
             this.textBoxReserva.Text = idReserva;
-
+            try{
 
             var cantPersonasP = new SqlParameter("@cantidadPersonas", SqlDbType.Int) { Direction = ParameterDirection.Output };
             var idClienteP = new SqlParameter("@idCliente", SqlDbType.Int) { Direction = ParameterDirection.Output };
@@ -54,6 +54,11 @@ namespace FrbaHotel.RegistrarEstadia
 
             if (idCliente > 0 && !string.IsNullOrEmpty(nombreClienteP.Value.ToString()) && !string.IsNullOrEmpty(nombreClienteP.Value.ToString()))
                 huespedes.Add(new AbmCliente.Cliente { nombre = nombreClienteP.Value.ToString().Trim(), apellido = apellidoClienteP.Value.ToString().Trim(), idCliente = idCliente.ToString() });
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error al obtener datos para el check-in!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void AltaEstadia_Load(object sender, EventArgs e)
