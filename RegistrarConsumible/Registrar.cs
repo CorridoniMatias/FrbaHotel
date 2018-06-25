@@ -14,12 +14,18 @@ namespace FrbaHotel.RegistrarConsumible
     {
 
         private string idReservaHabitacion;
+        private bool allInclusive = false;
 
         public Registrar(string idReservaHabitacion, string nroHabitacion)
         {
             InitializeComponent();
             this.textBoxNroHabitacion.Text = nroHabitacion;
             this.idReservaHabitacion = idReservaHabitacion;
+        }
+
+        public Registrar(string idReservaHabitacion, string nroHabitacion, bool allInclusive) : this(idReservaHabitacion, nroHabitacion)
+        {
+            this.allInclusive = allInclusive;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -44,7 +50,8 @@ namespace FrbaHotel.RegistrarConsumible
                     if (cantidadSelector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                     {
                         senderGrid.Rows[e.RowIndex].Cells[3].Value = cantidadSelector.CantidadElegida;
-                        senderGrid.Rows[e.RowIndex].Cells[4].Value = Convert.ToDecimal(senderGrid.Rows[e.RowIndex].Cells[2].Value) * cantidadSelector.CantidadElegida;
+                        senderGrid.Rows[e.RowIndex].Cells[4].Value = CalcSubTotal(senderGrid.Rows[e.RowIndex].Cells[2].Value.ToString(), cantidadSelector.CantidadElegida).ToString();
+                        dataGridView1_RowsAltered(null, null);
                     } 
                 }
                 else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("ColumnRemove"))
@@ -53,6 +60,13 @@ namespace FrbaHotel.RegistrarConsumible
                 }
             }
         }
+
+        private decimal CalcSubTotal(string precio, int cantidad)
+        {
+            return Convert.ToDecimal(precio) * cantidad;
+        }
+
+       
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -67,7 +81,7 @@ namespace FrbaHotel.RegistrarConsumible
 
                 if (cantidadSelector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.dataGridView1.Rows.Add(consumible.codigoConsumible, consumible.descripcion, consumible.precio, cantidadSelector.CantidadElegida, Convert.ToDecimal(consumible.precio) * cantidadSelector.CantidadElegida , "Modificar", "Remover");
+                    this.dataGridView1.Rows.Add(consumible.codigoConsumible, consumible.descripcion, consumible.precio, cantidadSelector.CantidadElegida, CalcSubTotal(consumible.precio, cantidadSelector.CantidadElegida) , "Modificar", "Remover");
                 }
             }
         }
@@ -130,5 +144,33 @@ namespace FrbaHotel.RegistrarConsumible
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
+
+        private void dataGridView1_RowsAltered(object sender, EventArgs e)
+        {
+            if (!allInclusive)
+                return;
+
+            if (dataGridView1.Rows.Count == 0)
+            {
+                labelDescuento.Visible = false;
+                return;
+            }
+
+            labelDescuento.Visible = true;
+
+            labelDescuento.Text = "Bonificación por régimen All Inclusive: -$" + CalcTotal();
+        }
+
+        private decimal CalcTotal()
+        {
+            decimal total = 0;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                total += Convert.ToDecimal(row.Cells[4].Value);
+            }
+
+            return total;
+        }
+
     }
 }

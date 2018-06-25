@@ -28,7 +28,7 @@ namespace FrbaHotel
             }
 
             Application.Run(new Form1());
-            //Application.Run(new RegistrarConsumible.Registrar("99403", "2"));
+            //Application.Run(new RegistrarConsumible.Registrar("99403", "2", true));
 
         }
     }

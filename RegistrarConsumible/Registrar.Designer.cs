@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonRegister = new System.Windows.Forms.Button();
-            this.buttonContinue = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxNroHabitacion = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonAdd = new System.Windows.Forms.Button();
             this.idConsumible = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +36,14 @@
             this.ColumnSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnModificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ColumnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.buttonRegister = new System.Windows.Forms.Button();
+            this.buttonContinue = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxNroHabitacion = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.labelDescuento = new System.Windows.Forms.Label();
+            this.buttonAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -68,6 +69,62 @@
             this.dataGridView1.Size = new System.Drawing.Size(852, 381);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAltered);
+            this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsAltered);
+            // 
+            // idConsumible
+            // 
+            this.idConsumible.HeaderText = "idConsumible";
+            this.idConsumible.Name = "idConsumible";
+            this.idConsumible.ReadOnly = true;
+            this.idConsumible.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "Descripcion";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "Precio";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // ColumnCantidad
+            // 
+            this.ColumnCantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnCantidad.HeaderText = "Cantidad";
+            this.ColumnCantidad.Name = "ColumnCantidad";
+            this.ColumnCantidad.ReadOnly = true;
+            // 
+            // ColumnSubTotal
+            // 
+            this.ColumnSubTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnSubTotal.HeaderText = "Subtotal";
+            this.ColumnSubTotal.Name = "ColumnSubTotal";
+            this.ColumnSubTotal.ReadOnly = true;
+            // 
+            // ColumnModificar
+            // 
+            this.ColumnModificar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnModificar.HeaderText = "Modificar";
+            this.ColumnModificar.Name = "ColumnModificar";
+            this.ColumnModificar.ReadOnly = true;
+            this.ColumnModificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnModificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnModificar.Width = 111;
+            // 
+            // ColumnRemove
+            // 
+            this.ColumnRemove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnRemove.HeaderText = "Remover";
+            this.ColumnRemove.Name = "ColumnRemove";
+            this.ColumnRemove.ReadOnly = true;
+            this.ColumnRemove.Text = "Remover";
+            this.ColumnRemove.Width = 93;
             // 
             // buttonRegister
             // 
@@ -130,6 +187,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.labelDescuento);
             this.groupBox2.Controls.Add(this.buttonAdd);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
@@ -142,6 +200,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Consumibles";
             // 
+            // labelDescuento
+            // 
+            this.labelDescuento.AutoSize = true;
+            this.labelDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.950921F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescuento.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelDescuento.Location = new System.Drawing.Point(17, 443);
+            this.labelDescuento.Name = "labelDescuento";
+            this.labelDescuento.Size = new System.Drawing.Size(374, 24);
+            this.labelDescuento.TabIndex = 12;
+            this.labelDescuento.Text = "Bonificación por régimen All Inclusive: ";
+            this.labelDescuento.Visible = false;
+            // 
             // buttonAdd
             // 
             this.buttonAdd.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -153,60 +223,6 @@
             this.buttonAdd.Text = "Añadir consumible";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
-            // 
-            // idConsumible
-            // 
-            this.idConsumible.HeaderText = "idConsumible";
-            this.idConsumible.Name = "idConsumible";
-            this.idConsumible.ReadOnly = true;
-            this.idConsumible.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "Descripcion";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Precio";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // ColumnCantidad
-            // 
-            this.ColumnCantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnCantidad.HeaderText = "Cantidad";
-            this.ColumnCantidad.Name = "ColumnCantidad";
-            this.ColumnCantidad.ReadOnly = true;
-            // 
-            // ColumnSubTotal
-            // 
-            this.ColumnSubTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnSubTotal.HeaderText = "Subtotal";
-            this.ColumnSubTotal.Name = "ColumnSubTotal";
-            this.ColumnSubTotal.ReadOnly = true;
-            // 
-            // ColumnModificar
-            // 
-            this.ColumnModificar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColumnModificar.HeaderText = "Modificar";
-            this.ColumnModificar.Name = "ColumnModificar";
-            this.ColumnModificar.ReadOnly = true;
-            this.ColumnModificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnModificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ColumnModificar.Width = 111;
-            // 
-            // ColumnRemove
-            // 
-            this.ColumnRemove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColumnRemove.HeaderText = "Remover";
-            this.ColumnRemove.Name = "ColumnRemove";
-            this.ColumnRemove.ReadOnly = true;
-            this.ColumnRemove.Text = "Remover";
-            this.ColumnRemove.Width = 93;
             // 
             // Registrar
             // 
@@ -225,6 +241,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -246,5 +263,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSubTotal;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnModificar;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnRemove;
+        private System.Windows.Forms.Label labelDescuento;
     }
 }
