@@ -13,9 +13,9 @@ namespace FrbaHotel.FacturarEstadia
 {
     public partial class FacturarEstadia : Form
     {
-        List<string> idEstadias = new List<string>();
-        List<string> idReservaHabitaciones = new List<string>();
-        List<string> nroHabitacionValidas = new List<string>();
+        private List<string> idEstadias = new List<string>();
+        private List<string> idReservaHabitaciones = new List<string>();
+        private List<string> nroHabitacionValidas = new List<string>();
 
         public FacturarEstadia()
         {
@@ -24,9 +24,9 @@ namespace FrbaHotel.FacturarEstadia
 
         private void buttonCargar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBoxHabitaciones.ToString().Trim()))
+            if (!string.IsNullOrEmpty(textBoxHabitaciones.Text.Trim()))
             {
-                string[] nroHabitaciones = textBoxHabitaciones.ToString().Split(';');
+                string[] nroHabitaciones = textBoxHabitaciones.Text.Split(';');
                 for (int i = 0; i < nroHabitaciones.Length; i++)
                 {
                     nroHabitaciones[i] = nroHabitaciones[i].Trim();
@@ -83,11 +83,36 @@ namespace FrbaHotel.FacturarEstadia
                 }
                 else
                 {
-                    for (int i = 0; i < idEstadias.Count; i++)
+                    var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
+                    .Fields("reg.nombre")
+                    .Table("MATOTA.Regimen reg")
+                    .AddJoin("JOIN MATOTA.Reserva r ON (reg.idRegimen = r.idRegimen)")
+                    .AddJoin("JOIN MATOTA.Estadia e ON (r.idReserva = e.idReserva)")
+                    .AddEquals("e.idEstadia", this.idEstadias[0]);
+
+                    try
                     {
-                        new RegistrarConsumible.Registrar(idReservaHabitaciones[i], nroHabitacionValidas[i]);
+                        bool estadia = false;
+                        var nombreRegimen = DBHandler.Query(query.Build()).First()["nombre"].ToString();
+                        if (nombreRegimen.Trim().Equals("allInclusive"))
+                        {
+                            estadia = true;
+                        }
+                        else
+                        {
+                            estadia = false;
+                        }
+                        for (int i = 0; i < idEstadias.Count; i++)
+                        {
+                            new RegistrarConsumible.Registrar(idReservaHabitaciones[i], nroHabitacionValidas[i], estadia);
+                        }
+                        new GenerarFactura(idEstadias[0], idReservaHabitaciones);
                     }
-                    new GenerarFactura(idEstadias[0], idReservaHabitaciones);
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un error al intentar obtener el régimen de la estadía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
         }

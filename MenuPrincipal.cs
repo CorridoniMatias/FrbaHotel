@@ -160,5 +160,10 @@ namespace FrbaHotel
 
         }
 
+        private void buttonCheckOut_Click(object sender, EventArgs e)
+        {
+            new FacturarEstadia.FacturarEstadia().ShowDialog(this);
+        }
+
     }
 }
