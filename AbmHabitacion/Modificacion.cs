@@ -14,7 +14,8 @@ namespace FrbaHotel.AbmHabitacion
     public partial class Modificacion : Form
     {
         private string idHotel;
-        private string idTipoHabitacion;        
+        private string idTipoHabitacion;
+        private string numHabitacionAnterior;
 
         public Modificacion(string idHotel, string numHabitacion, string piso,
             string ubicacion, string tipoHabitacion, string descripcion, string comodidades, bool habilitado)
@@ -36,6 +37,7 @@ namespace FrbaHotel.AbmHabitacion
                 MessageBox.Show("Ocurrió un error al intentar agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            this.numHabitacionAnterior = numHabitacion;
             this.textBoxNumHabitacion.Text = numHabitacion;
             this.textBoxPiso.Text = piso;
             this.comboBoxUbicacion.SelectedValue = ubicacion;
@@ -78,6 +80,7 @@ namespace FrbaHotel.AbmHabitacion
                 var result = DBHandler.SPWithValue("MATOTA.UpdateHabitacion",
                      new List<SqlParameter> { 
                         new SqlParameter("@idHotel", this.idHotel),
+                        new SqlParameter("@nroHabitacionAnterior", this.numHabitacionAnterior.Trim()),
                         new SqlParameter("@nroHabitacion", textBoxNumHabitacion.Text.Trim()),
                         new SqlParameter("@piso", textBoxPiso.Text.Trim()),
                         new SqlParameter("@idUbicacion", comboBoxUbicacion.SelectedValue),
@@ -89,6 +92,10 @@ namespace FrbaHotel.AbmHabitacion
                      );
                 if (result == 0)
                     MessageBox.Show("El número de habitación ingresado en este Hotel ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (result == -1)
+                {
+                    MessageBox.Show("Error al intentar cambiar el número de habitación, está reservada!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 else if (result == 1)
                 {
                     MessageBox.Show("Actualización realizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
