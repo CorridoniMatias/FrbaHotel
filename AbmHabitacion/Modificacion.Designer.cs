@@ -45,7 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxHabilitado = new System.Windows.Forms.CheckBox();
             this.buttonGuardar = new System.Windows.Forms.Button();
-            this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.buttonCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -227,15 +227,15 @@
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
-            // buttonLimpiar
+            // buttonCancelar
             // 
-            this.buttonLimpiar.Location = new System.Drawing.Point(23, 378);
-            this.buttonLimpiar.Name = "buttonLimpiar";
-            this.buttonLimpiar.Size = new System.Drawing.Size(83, 38);
-            this.buttonLimpiar.TabIndex = 27;
-            this.buttonLimpiar.Text = "Limpiar";
-            this.buttonLimpiar.UseVisualStyleBackColor = true;
-            this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
+            this.buttonCancelar.Location = new System.Drawing.Point(23, 378);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(189, 38);
+            this.buttonCancelar.TabIndex = 27;
+            this.buttonCancelar.Text = "Cancelar Modificación";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
             // Modificacion
             // 
@@ -243,7 +243,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 434);
             this.Controls.Add(this.buttonGuardar);
-            this.Controls.Add(this.buttonLimpiar);
+            this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.checkBoxHabilitado);
             this.Controls.Add(this.groupBox1);
             this.Name = "Modificacion";
@@ -274,6 +274,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox checkBoxHabilitado;
         private System.Windows.Forms.Button buttonGuardar;
-        private System.Windows.Forms.Button buttonLimpiar;
+        private System.Windows.Forms.Button buttonCancelar;
     }
 }
