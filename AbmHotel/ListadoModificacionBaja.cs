@@ -22,9 +22,9 @@ namespace FrbaHotel.AbmHotel
         private void ListadoModificacionBaja_Load(object sender, EventArgs e)
         {
             poblador = new PobladorHoteles(new List<TextBox>() { textBoxCantEstrellas, textBoxCiudad, textBoxNombre, textBoxPais, textBoxMail, textBoxTelefono, textBoxCalle, textBoxNroCalle }, dataGridView1, new List<string> { "Modificar", "Suspender" }, dateTimePickerFilter);
-            poblador.Filtro
-            .AddJoin("INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel")
-            .AddEquals("hu.idUsuario", Login.Login.LoggedUsedID.ToString());
+            //poblador.Filtro
+            //.AddJoin("INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel")
+            //.AddEquals("hu.idUsuario", Login.Login.LoggedUsedID.ToString());
             poblador.Poblar();
         }
 

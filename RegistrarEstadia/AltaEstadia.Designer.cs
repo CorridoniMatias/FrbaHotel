@@ -38,11 +38,13 @@
             this.textBoxReserva = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCheckin = new System.Windows.Forms.Button();
+            this.labelCuposFull = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelCuposFull);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.textBoxHuespuedes);
@@ -163,6 +165,18 @@
             this.buttonCheckin.UseVisualStyleBackColor = true;
             this.buttonCheckin.Click += new System.EventHandler(this.buttonCheckin_Click);
             // 
+            // labelCuposFull
+            // 
+            this.labelCuposFull.AutoSize = true;
+            this.labelCuposFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.950921F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCuposFull.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.labelCuposFull.Location = new System.Drawing.Point(12, 571);
+            this.labelCuposFull.Name = "labelCuposFull";
+            this.labelCuposFull.Size = new System.Drawing.Size(178, 24);
+            this.labelCuposFull.TabIndex = 12;
+            this.labelCuposFull.Text = "Cupos completos!";
+            this.labelCuposFull.Visible = false;
+            // 
             // AltaEstadia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -193,5 +207,6 @@
         private System.Windows.Forms.Button buttonCheckin;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label labelCuposFull;
     }
 }

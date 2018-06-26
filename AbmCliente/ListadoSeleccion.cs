@@ -42,8 +42,11 @@ namespace FrbaHotel.AbmCliente
                         nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
                         apellido = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
                     };
-                    dataGridViewCliente.Rows.Clear();
-                    dataGridViewCliente.Rows.Add(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString(), SelectedClient.nombre);
+                    if (dataGridViewCliente != null)
+                    {
+                        dataGridViewCliente.Rows.Clear();
+                        dataGridViewCliente.Rows.Add(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString(), SelectedClient.nombre);
+                    }
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                     this.Close();
                 }

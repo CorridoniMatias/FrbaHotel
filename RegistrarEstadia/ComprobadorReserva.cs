@@ -66,10 +66,13 @@ namespace FrbaHotel.RegistrarEstadia
                     MostrarError("La reserva ingresada no fue encontrada en el sistema.");
                     return;
                 case -3:
-                    MostrarError("La reserva tiene fecha de inicio " + fechaInicioReserva.Value + " y la fecha del sistema es " + ConfigManager.FechaSistema + "\n\nSolo se puece hacer check-in el dia de inicio de la reserva.");
+                    MostrarError("La reserva tiene fecha de inicio " + fechaInicioReserva.Value.ToString().Split(' ')[0] + " y la fecha del sistema es " + ConfigManager.FechaSistema.ToString().Split(' ')[0] + "\n\nSolo se puece hacer check-in el dia de inicio de la reserva.");
                     return;
                 case -4:
                     MostrarError("La reserva ingresada esta radicada en el hotel " + hotelDeLaReserva.Value + ", que no es el mismo en el cual usted se encuentra trabajando.");
+                    return;
+                case -5:
+                    MostrarError("La reserva que intenta efectivizar ya fue efectivizada.");
                     return;
                 default:
                     MostrarError("Ocurrio un error inesperado al hacer el check-in.");

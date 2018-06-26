@@ -66,6 +66,7 @@ namespace FrbaHotel.RegistrarEstadia
             this.listBoxHuespedes.DataSource = huespedes;
             this.listBoxHuespedes.DisplayMember = "NombreCompleto";
             this.listBoxHuespedes.ValueMember = "idCliente";
+            CheckAmt();
         }
 
         private void AddHuesped(AbmCliente.Cliente cliente)
@@ -77,6 +78,8 @@ namespace FrbaHotel.RegistrarEstadia
             }
 
             this.huespedes.Add(cliente);
+            CheckAmt();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,6 +100,18 @@ namespace FrbaHotel.RegistrarEstadia
             }
         }
 
+        private void CheckAmt()
+        {
+            if (cantTotal == 0)
+                return;
+
+            if (listBoxHuespedes.Items.Count == cantTotal)
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+                labelCuposFull.Visible = true;
+            }
+        }
 
         private void RollBack(int idEstadia)
         {
