@@ -36,6 +36,8 @@ namespace FrbaHotel.AbmHotel
             else
                 poblador.Poblar();
 
+            WarnNoHotels();
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -74,11 +76,20 @@ namespace FrbaHotel.AbmHotel
         {
             dataGridView1.Rows.Clear();
             poblador.Poblar();
+            WarnNoHotels();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             FormHandler.limpiar(this.groupBox1);
+        }
+
+        private void WarnNoHotels()
+        {
+            if (!automaticallySelectForSessionHotel)
+                return;
+
+            this.labelNoHotels.Visible = dataGridView1.Rows.Count == 0;
         }
     }
 }
