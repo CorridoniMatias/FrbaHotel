@@ -55,6 +55,7 @@
             this.textBoxCantNoches = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxPrecioPorNoche = new System.Windows.Forms.TextBox();
+            this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -200,7 +201,7 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox2.Location = new System.Drawing.Point(410, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(379, 209);
+            this.groupBox2.Size = new System.Drawing.Size(467, 209);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Habitaciones";
@@ -222,11 +223,13 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.Column3});
+            this.Column3,
+            this.Column4});
             this.dataGridView1.Location = new System.Drawing.Point(12, 74);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(358, 129);
+            this.dataGridView1.Size = new System.Drawing.Size(444, 129);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Column1
             // 
@@ -325,11 +328,16 @@
             this.textBoxPrecioPorNoche.Size = new System.Drawing.Size(100, 20);
             this.textBoxPrecioPorNoche.TabIndex = 12;
             // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Quitar";
+            this.Column4.Name = "Column4";
+            // 
             // Modificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 505);
+            this.ClientSize = new System.Drawing.Size(884, 505);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -377,5 +385,6 @@
         private System.Windows.Forms.TextBox textBoxCantNoches;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxPrecioPorNoche;
+        private System.Windows.Forms.DataGridViewButtonColumn Column4;
     }
 }

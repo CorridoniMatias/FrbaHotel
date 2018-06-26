@@ -46,10 +46,16 @@ namespace FrbaHotel.GenerarModificacionReserva
                     var result = new AbmHotel.Listado().ShowDialog();
                     idHotel = Login.Login.LoggedUserSessionHotelID.ToString();
                     this.setRegimenes();
-                    if (result == System.Windows.Forms.DialogResult.Cancel) // USUARIO CERRO LA VENTANA!
+                    if (result == System.Windows.Forms.DialogResult.Cancel) 
                     {
                         MessageBox.Show("Se ha cerrado la ventana sin seleccionar un Hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Load += cerrarFormEnConstructor;
+                    }
+                    else
+                    {
+                        var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
+                        Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
+                        textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First().Values.First().ToString();
                     }
                 }
             }

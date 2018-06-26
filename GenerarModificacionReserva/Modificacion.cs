@@ -35,14 +35,14 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
             dateTimePickerFechaDesde.Value = DateTime.Parse(fechaDesde);
             dateTimePickerFechaHasta.Value = DateTime.Parse(fechaHasta);
-            FormHandler.listarRegimenes(comboBoxRegimen);
+            this.setRegimenes();
             comboBoxRegimen.Text = regimen;
             textBoxCantPersonas.Text = cantPersonas;
             textBoxPrecioNoche.Text = precioNoche;
             this.habitaciones = habitaciones;
             habitacionesRemovidas = new List<string>();
             reserva = new Reserva(idHotel, habitaciones, idRegimen, cantPersonasReserva);
-            habitaciones.ForEach(hab => { crearHabitacionReservada(hab); dataGridView1.Rows.Add(habReservada.nroHabitacion, habReservada.tipoHabitacion, habReservada.ubicacion); });
+            habitaciones.ForEach(hab => { crearHabitacionReservada(hab); dataGridView1.Rows.Add(habReservada.nroHabitacion, habReservada.tipoHabitacion, habReservada.ubicacion,"Quitar"); });
         }
 
         private void Modificacion_Load(object sender, EventArgs e)
@@ -177,7 +177,22 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
             }
         }
-
+        private void setRegimenes()
+        {
+            try
+            {
+                var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("r.idRegimen,r.nombre").Table("MATOTA.Regimen r").
+                    AddJoin("JOIN MATOTA.RegimenHotel rh ON (rh.idRegimen = r.idRegimen AND rh.idHotel =" + idHotel + ")").Build();
+                comboBoxRegimen.DataSource = DBHandler.QueryForComboBox(query);
+                comboBoxRegimen.DisplayMember = "nombre";
+                comboBoxRegimen.ValueMember = "idRegimen";
+                comboBoxRegimen.SelectedIndex = -1;
+            }
+            catch (Exception)
+            {
+                var i = 1;
+            }
+        }
         private void comboBoxRegimen_SelectedIndexChanged(object sender, EventArgs e)
         {
             FormHandler.limpiar(groupBox3);
@@ -191,6 +206,29 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void dateTimePickerFechaHasta_ValueChanged(object sender, EventArgs e)
         {
             FormHandler.limpiar(groupBox3);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                var nroHab = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (habitaciones.Contains(nroHab))
+                {
+                    habitaciones.Remove(nroHab);
+                    if (!habitacionesRemovidas.Contains(nroHab))
+                        habitacionesRemovidas.Add(nroHab);
+                    MessageBox.Show("Habitacion " + nroHab.ToString() + " quitada", "Habitación quitada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataGridView1.Rows.RemoveAt(e.RowIndex);
+                }
+                else
+                {
+                    MessageBox.Show("Usted nunca agregó esta habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                }
         }
     }
 }

@@ -19,7 +19,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         public QueryBuilder Filtro { get; private set; }
         private List<string> extraColumns;
 
-        public PobladorReservas(TextBox idReserva, ComboBox hotel, ComboBox regimen, DataGridView grid, List<string> extraColumns)
+        public PobladorReservas(TextBox idReserva, ComboBox hotel, ComboBox regimen,DataGridView grid, List<string> extraColumns)
         {
             this.idReserva = idReserva;
             this.hotel = hotel;
@@ -39,6 +39,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                 Filtro.AddEquals("r.idReserva", idReserva.Text.Trim());
             if (hotel.SelectedIndex != -1)
                 Filtro.AddEquals("r.idHotel", hotel.SelectedValue.ToString());
+            if (Login.Login.LoggedUserRoleID != 3)
+                Filtro.AddEquals("r.idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
             if (regimen.SelectedIndex != -1)
                 Filtro.AddEquals("r.idRegimen", regimen.SelectedValue.ToString());
             try

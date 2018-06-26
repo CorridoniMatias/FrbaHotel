@@ -33,11 +33,24 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
                     Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
-                    textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
+                    textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First().Values.First().ToString();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Ocurrió un error al agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Seleccione un hotel en el que quiera realizar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    var result = new AbmHotel.Listado().ShowDialog();
+                    idHotel = Login.Login.LoggedUserSessionHotelID.ToString();
+                    if (result == System.Windows.Forms.DialogResult.Cancel)
+                    {
+                        MessageBox.Show("Se ha cerrado la ventana sin seleccionar un Hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.Load += cerrarFormEnConstructor;
+                    }
+                    else 
+                    {
+                        var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
+                        Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
+                        textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First().Values.First().ToString();
+                    }
                 }
             }
         }
@@ -67,10 +80,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                 if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                     e.RowIndex >= 0)
                 {
-                    if (Login.Login.LoggedUsedID == -1)
-                        idHotel = "1";
-                    else
-                        idHotel = Login.Login.LoggedUserSessionHotelID.ToString();
                     if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Modificar"))
                     {
                         this.obtenerListaHabitaciones();
@@ -93,6 +102,10 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             DBHandler.SPWithResultSet("MATOTA.GetHabitacionesReserva ", new List<SqlParameter> { new SqlParameter("@idReserva", textBoxIdReserva.Text) })
                                      .ForEach(hab => habitaciones.Add(hab["nroHabitacion"].ToString()));
+        }
+        private void cerrarFormEnConstructor(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
