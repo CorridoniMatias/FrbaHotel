@@ -38,6 +38,7 @@ namespace FrbaHotel.AbmHabitacion
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
+            this.dataGridView1.Rows.Clear();
             this.setGridValuesHabitacion();
             if (!dataGridView1.Columns.Contains("Agregar"))
             {

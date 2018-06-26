@@ -56,7 +56,14 @@ namespace FrbaHotel.AbmCliente
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
-            poblador.Poblar();
+            if ((comboBoxTipoDoc.SelectedIndex != -1 && string.IsNullOrEmpty(textBoxNumDoc.Text)) || (comboBoxTipoDoc.SelectedIndex == -1 && !string.IsNullOrEmpty(textBoxNumDoc.Text)))
+            {
+                MessageBox.Show("Si quiere buscar por documento debera completar los campos tipo documento y nro documento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                poblador.Poblar();
+            }
         }
 
         private void ListadoSeleccion_Load(object sender, EventArgs e)
