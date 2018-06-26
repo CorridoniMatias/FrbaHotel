@@ -125,19 +125,19 @@ namespace FrbaHotel.FacturarEstadia
                 if (result == System.Windows.Forms.DialogResult.Abort)
                 {// FALLO LA OBTENCION!
                     MessageBox.Show("Fallo en la obtención de un Hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    this.Close();
                 }
                 else if (result == System.Windows.Forms.DialogResult.Cancel) // USUARIO CERRO LA VENTANA!
                 {
                     MessageBox.Show("Se ha cerrado la ventana sin seleccionar un Hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    this.Close();
                 }
             }
             try
             {
                 var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
                 Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
-                textBoxNombreHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
+                textBoxNombreHotel.Text = DBHandler.Query(nombreHotel.Build()).First()["nombre"].ToString();
             }
             catch (Exception)
             {
