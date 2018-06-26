@@ -185,19 +185,27 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
             }
         }
-        private string getIdCliente()
+        private void setIdCliente()
         {
             var seleccion = new AbmCliente.ListadoSeleccion();
             seleccion.dataGridViewCliente = dataGridViewCliente;
             seleccion.ShowDialog();
             if (seleccion.existeCliente)
-                return seleccion.SelectedClient.idCliente;
+                if (seleccion.SelectedClient != null)
+                {
+                    idCliente = seleccion.SelectedClient.idCliente;
+                }
+                else
+                {
+                    MessageBox.Show("Si no se encuentra registrado, vuelva a elegir la opcion seleccionar cliente y toque el botón 'agregar cliente' para poder registrarse", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             else
             {
                 var alta = new AbmCliente.Alta();
                 alta.dataGridViewCliente = dataGridViewCliente;
                 alta.ShowDialog();
-                return alta.InsertedClient.idCliente;
+                if(alta.InsertedClient != null)
+                    idCliente = alta.InsertedClient.idCliente;
             }
 
         }
@@ -230,7 +238,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void buttonSeleccionCliente_Click(object sender, EventArgs e)
         {
-            idCliente = this.getIdCliente();
+            this.setIdCliente();
         }
     }
 }
