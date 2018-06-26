@@ -36,11 +36,12 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
                     Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
-                    textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).ToString();
+                    textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First().Values.First().ToString();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Ocurrió un error al agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Seleccione un hotel en el que quiera realizar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    new AbmHotel.Listado().ShowDialog();
                 }
             }
         }
