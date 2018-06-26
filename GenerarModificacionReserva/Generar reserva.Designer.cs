@@ -190,6 +190,7 @@
             // 
             this.textBoxHotel.Location = new System.Drawing.Point(119, 31);
             this.textBoxHotel.Name = "textBoxHotel";
+            this.textBoxHotel.ReadOnly = true;
             this.textBoxHotel.Size = new System.Drawing.Size(121, 20);
             this.textBoxHotel.TabIndex = 15;
             // 

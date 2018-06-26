@@ -13,7 +13,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 {
     public partial class GenerarReserva : Form
     {
-        private string idHotel;
+        private string idHotel = string.Empty;
         public List<string> habitaciones { get; private set; }
         private int cantPersonasReserva;
         private double precioNoche;
@@ -37,11 +37,20 @@ namespace FrbaHotel.GenerarModificacionReserva
                     var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
                     Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
                     textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First().Values.First().ToString();
+                    idHotel = Login.Login.LoggedUserSessionHotelID.ToString();
+                    this.setRegimenes();
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Seleccione un hotel en el que quiera realizar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    new AbmHotel.Listado().ShowDialog();
+                    var result = new AbmHotel.Listado().ShowDialog();
+                    idHotel = Login.Login.LoggedUserSessionHotelID.ToString();
+                    this.setRegimenes();
+                    if (result == System.Windows.Forms.DialogResult.Cancel) // USUARIO CERRO LA VENTANA!
+                    {
+                        MessageBox.Show("Se ha cerrado la ventana sin seleccionar un Hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.Load += cerrarFormEnConstructor;
+                    }
                 }
             }
         }
@@ -138,6 +147,12 @@ namespace FrbaHotel.GenerarModificacionReserva
                 MessageBox.Show("Ingrese el cliente para ponerlo a nombre de la reserva actual", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (DBHandler.SPWithBool("MATOTA.HotelHabilitadoParaFechasReserva", new List<SqlParameter> { new SqlParameter("@idHotel",idHotel),
+                                                                                                       new SqlParameter("@fechaInicioReserva",dateTimePickerFechaDesde.Value),
+                                                                                                       new SqlParameter("@fechaFinReserva",dateTimePickerFechaHasta.Value)}))
+            {
+                MessageBox.Show("El hotel seleccionado se encuentra inhabilitado durante las fechas de su reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
             {
                 try
@@ -166,8 +181,16 @@ namespace FrbaHotel.GenerarModificacionReserva
         }
         private void buttonSeleccionarHab_Click(object sender, EventArgs e)
         {
-            if (comboBoxHotel.SelectedIndex == -1)
+            if ( (Login.Login.LoggedUsedID == -1 && comboBoxHotel.SelectedIndex == -1) )
+            {
                 MessageBox.Show("Seleccione un hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(idHotel))
+            {
+                MessageBox.Show("Seleccione un hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             else
             {
                 FormHandler.limpiar(groupBox2);
@@ -175,7 +198,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     DBHandler.SPWithValue("MATOTA.ActualizarReservasVencidas", new List<SqlParameter> { new SqlParameter("@fechaSistema", ConfigManager.FechaSistema) });
                     DBHandler.SPWithValue("MATOTA.habilitarHabitacionesDeReservasVencidas");
-                    var form = new AbmHabitacion.Listado(idHotel, habitaciones,dateTimePickerFechaDesde.Value,dateTimePickerFechaHasta.Value);
+                    var form = new AbmHabitacion.Listado(idHotel, habitaciones, dateTimePickerFechaDesde.Value, dateTimePickerFechaHasta.Value);
                     form.setHabitacionesRemovidas(new List<string>());
                     form.dataGridReserva = dataGridView1;
                     form.ShowDialog();
@@ -183,6 +206,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 catch (Exception)
                 {
                     MessageBox.Show("Ocurrió un error al actualizar y listar las habitaciones.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
             }
         }
@@ -240,6 +264,11 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void buttonSeleccionCliente_Click(object sender, EventArgs e)
         {
             this.setIdCliente();
+        }
+
+        private void cerrarFormEnConstructor(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
