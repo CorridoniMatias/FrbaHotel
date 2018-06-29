@@ -24,21 +24,30 @@ namespace FrbaHotel.FacturarEstadia
 
         private void buttonCargar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBoxHabitaciones.Text.Trim()))
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("No se han agregado habitaciones.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
+            /*if (!string.IsNullOrEmpty(textBoxHabitaciones.Text.Trim()))
             {
                 string[] nroHabitaciones = textBoxHabitaciones.Text.Split(';');
                 for (int i = 0; i < nroHabitaciones.Length; i++)
                 {
                     nroHabitaciones[i] = nroHabitaciones[i].Trim();
-                }
+                }*/
 
                 idEstadias.Clear();
                 idReservaHabitaciones.Clear();
                 nroHabitacionValidas.Clear();
                 int temp = 0;
 
-                foreach (var nroHabitacion in nroHabitaciones)
+                //foreach (var nroHabitacion in nroHabitaciones)
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
+                    string nroHabitacion = dataGridView1.Rows[i].Cells[0].Value.ToString();
+
                     var idEstadia = new SqlParameter("@idEstadia", SqlDbType.Int) { Direction = ParameterDirection.Output };
                     var idReservaHabitacion = new SqlParameter("@idReservaHabitacion", SqlDbType.Int) { Direction = ParameterDirection.Output };
                     int result = 0;
@@ -115,7 +124,6 @@ namespace FrbaHotel.FacturarEstadia
                         return;
                     }
                 }
-            }
         }
 
         private void FacturarEstadia_Load(object sender, EventArgs e)
@@ -159,6 +167,29 @@ namespace FrbaHotel.FacturarEstadia
                 }
             }
             return 0;
+        }
+
+        private void elegir_Click(object sender, EventArgs e)
+        {
+            var selector = new listarHabitacionesFactura();
+
+            if (selector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                string hab = selector.getHabitacionSeleccionada();
+
+                this.dataGridView1.Rows.Add(hab, "Remover");
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                dataGridView1.Rows.RemoveAt(e.RowIndex);
+            }
         }
     }
 }

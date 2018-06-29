@@ -240,11 +240,23 @@
     <Compile Include="FacturarEstadia\GenerarFactura.Designer.cs">
       <DependentUpon>GenerarFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="FacturarEstadia\listarHabitacionesFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacturarEstadia\listarHabitacionesFactura.Designer.cs">
+      <DependentUpon>listarHabitacionesFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="FacturarEstadia\PobladorFacturas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FacturarEstadia\PobladorFacturas.Designer.cs">
       <DependentUpon>PobladorFacturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacturarEstadia\pobladorHabitacionFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacturarEstadia\pobladorHabitacionFactura.Designer.cs">
+      <DependentUpon>pobladorHabitacionFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -463,6 +475,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FacturarEstadia\GenerarFactura.resx">
       <DependentUpon>GenerarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacturarEstadia\listarHabitacionesFactura.resx">
+      <DependentUpon>listarHabitacionesFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

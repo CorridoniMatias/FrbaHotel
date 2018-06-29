@@ -30,9 +30,12 @@
         {
             this.textBoxNombreHotel = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxHabitaciones = new System.Windows.Forms.TextBox();
             this.buttonCargar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColumnHabitación = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.elegir = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxNombreHotel
@@ -58,30 +61,9 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Hotel";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(26, 87);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(521, 40);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "Ingresar el número de habitación o habitaciones que fueron utilizadas en\r\nla esta" +
-    "día (separar cada número de habitación con un \";\"):";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // textBoxHabitaciones
-            // 
-            this.textBoxHabitaciones.Location = new System.Drawing.Point(30, 148);
-            this.textBoxHabitaciones.MaxLength = 255;
-            this.textBoxHabitaciones.Name = "textBoxHabitaciones";
-            this.textBoxHabitaciones.Size = new System.Drawing.Size(517, 26);
-            this.textBoxHabitaciones.TabIndex = 24;
-            // 
             // buttonCargar
             // 
-            this.buttonCargar.Location = new System.Drawing.Point(245, 200);
+            this.buttonCargar.Location = new System.Drawing.Point(463, 450);
             this.buttonCargar.Name = "buttonCargar";
             this.buttonCargar.Size = new System.Drawing.Size(84, 32);
             this.buttonCargar.TabIndex = 29;
@@ -89,19 +71,62 @@
             this.buttonCargar.UseVisualStyleBackColor = true;
             this.buttonCargar.Click += new System.EventHandler(this.buttonCargar_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnHabitación,
+            this.ColumnRemove});
+            this.dataGridView1.Location = new System.Drawing.Point(13, 90);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(552, 346);
+            this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // ColumnHabitación
+            // 
+            this.ColumnHabitación.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnHabitación.HeaderText = "Nro. Habitación";
+            this.ColumnHabitación.Name = "ColumnHabitación";
+            this.ColumnHabitación.ReadOnly = true;
+            // 
+            // ColumnRemove
+            // 
+            this.ColumnRemove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnRemove.HeaderText = "Remover";
+            this.ColumnRemove.Name = "ColumnRemove";
+            this.ColumnRemove.ReadOnly = true;
+            this.ColumnRemove.Text = "Remover";
+            this.ColumnRemove.Width = 79;
+            // 
+            // elegir
+            // 
+            this.elegir.Location = new System.Drawing.Point(37, 450);
+            this.elegir.Name = "elegir";
+            this.elegir.Size = new System.Drawing.Size(165, 32);
+            this.elegir.TabIndex = 31;
+            this.elegir.Text = "Elegir Habitación";
+            this.elegir.UseVisualStyleBackColor = true;
+            this.elegir.Click += new System.EventHandler(this.elegir_Click);
+            // 
             // FacturarEstadia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(578, 244);
+            this.ClientSize = new System.Drawing.Size(578, 494);
+            this.Controls.Add(this.elegir);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonCargar);
-            this.Controls.Add(this.textBoxHabitaciones);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxNombreHotel);
             this.Controls.Add(this.label1);
             this.Name = "FacturarEstadia";
             this.Text = "FacturarEstadia";
             this.Load += new System.EventHandler(this.FacturarEstadia_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,9 +136,11 @@
 
         private System.Windows.Forms.TextBox textBoxNombreHotel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxHabitaciones;
         private System.Windows.Forms.Button buttonCargar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHabitación;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnRemove;
+        private System.Windows.Forms.Button elegir;
 
     }
 }
