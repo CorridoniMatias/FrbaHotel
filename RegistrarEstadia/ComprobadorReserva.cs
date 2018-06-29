@@ -74,6 +74,9 @@ namespace FrbaHotel.RegistrarEstadia
                 case -5:
                     MostrarError("La reserva que intenta efectivizar ya fue efectivizada.");
                     return;
+                case -6:
+                    MostrarError("La reserva que intenta efectivizar fue cancelada.");
+                    return;
                 default:
                     MostrarError("Ocurrio un error inesperado al hacer el check-in.");
                     return;
