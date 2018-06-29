@@ -19,16 +19,18 @@ namespace FrbaHotel.FacturarEstadia
         private string idEstadia;
         private List<string> idReservaHabitaciones;
         private double precioE {get;  set;}
+        private List<int> idConsumibleEstadias { get; set; }
         
         public PobladorFacturas(DataGridView grid, string idEstadia, List<string> idReservas)
         {
             this.grid = grid;
             condiciones = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
-                .Fields("c.codigoConsumible, c.descripcion, ce.cantidad, ce.precioAlMomento")
+                .Fields("c.codigoConsumible, c.descripcion, ce.cantidad, ce.precioAlMomento, ce.idConsumibleEstadia")
                 .Table("MATOTA.ConsumiblesEstadia ce").AddJoin("JOIN MATOTA.Consumible c ON (ce.codigoConsumible = c.codigoConsumible)");
             this.idEstadia = idEstadia;
             this.idReservaHabitaciones = idReservas;
             precioE = 0;
+            idConsumibleEstadias = new List<int>();
         }
 
         public void Poblar()
@@ -39,10 +41,11 @@ namespace FrbaHotel.FacturarEstadia
             {
                 var newset = DBHandler.Query(query).Select(row =>
                     {
-                        var orig = new List<string>() { row["codigoConsumible"].ToString(), 
-                                                        row["descripcion"].ToString(), 
-                                                        row["cantidad"].ToString(), 
-                                                        row["precioAlMomento"].ToString()
+                        var orig = new List<string>() { row["idConsumibleEstadia"].ToString(),
+                                                        row["codigoConsumible"].ToString(), 
+                                                        row["descripcion"].ToString(),  
+                                                        row["precioAlMomento"].ToString(),
+                                                        row["cantidad"].ToString(),
                                                         };
                         return orig;
                     }
@@ -86,7 +89,7 @@ namespace FrbaHotel.FacturarEstadia
         private List<string> llenarRegimen()
         {
             var stat = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
-                .Fields("r.idRegimen, r.nombre, r.preciobase")
+                .Fields("r.idRegimen, r.nombre, r.precioBase")
                 .Table("MATOTA.Regimen r")
                 .AddJoin("JOIN MATOTA.Reserva re ON (r.idRegimen = re.idRegimen)")
                 .AddJoin("JOIN MATOTA.Estadia e ON (re.idReserva = e.idReserva)");
@@ -98,6 +101,7 @@ namespace FrbaHotel.FacturarEstadia
                 var newset = DBHandler.Query(query).First();
                 var temp = new List<string>()
                 {
+                    "-",
                     newset["idRegimen"].ToString(),
                     newset["nombre"].ToString(),
                     "-",
@@ -122,32 +126,38 @@ namespace FrbaHotel.FacturarEstadia
                 .AddJoin("JOIN MATOTA.Reserva r ON (e.idReserva = r.idReserva)")
                 .AddEquals("e.idEstadia", this.idEstadia);
 
-            double cantNoches;
+            int cantNoches;
             string fechaHasta = ConfigManager.FechaSistema.ToString("yyyy-MM-dd");
             try
             {
                 var result = DBHandler.Query(stat.Build()).First();
-                cantNoches = (double)result["cantidadNoches"];
+                cantNoches = Convert.ToInt32(result["cantidadNoches"]);
                 fechaHasta = result["fechaHasta"].ToString();
 
                 var diferencia = DBHandler.SPWithValue("MATOTA.CantNoches",
-                new List<SqlParameter> { 
+                new List<SqlParameter> {
                     new SqlParameter("@fechaInicio", ConfigManager.FechaSistema.ToString("yyyy-MM-dd")), 
                     new SqlParameter("@fechaFin", fechaHasta)
                 });
+
+                if (diferencia < 0)
+                {
+                    diferencia = 0;
+                }
 
                 double precioEstadia = 0;
 
                 for (int i = 0; i < grid.Rows.Count - 1; i++)
                 {
-                    precioEstadia += (double) grid.Rows[i].Cells[3].Value;
+                    precioEstadia += Convert.ToDouble(grid.Rows[i].Cells[4].Value);
                 }
-                precioEstadia = precioEstadia * (double)cantNoches;
+                precioEstadia = precioEstadia * (int)cantNoches;
                 this.precioE = precioEstadia;
 
                 var dif = cantNoches - diferencia;
                 var rowEstadia = new List<string>()
                 {
+                    "-",
                     this.idEstadia,
                     "Estadía",
                     dif.ToString(),
@@ -155,10 +165,11 @@ namespace FrbaHotel.FacturarEstadia
                 }.ToList();
 
                 grid.Rows.Add(rowEstadia.ToArray());
-                if (dif > 0)
+                if (diferencia > 0)
                 {
                     var faltantes = new List<string>()
                     {
+                        "-",
                         "-",
                         "Estadía no utilizada",
                         diferencia.ToString(),

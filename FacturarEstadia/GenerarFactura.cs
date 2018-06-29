@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,60 @@ namespace FrbaHotel.FacturarEstadia
             {
                 MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+            else
+            {
+                try
+                {
+                    var ret = DBHandler.SPWithValue("MATOTA.altaFactura",
+                        new List<SqlParameter>{
+                        new SqlParameter("@idEstadia",idEstadia),
+                        new SqlParameter("@fecha",ConfigManager.FechaSistema.ToString("yyyy-MM-dd")),
+                        new SqlParameter("@idFormaDePago",comboBoxFormaDePago.SelectedValue),
+                        new SqlParameter("@total",poblador.getPrecioE()),
+                    });
+                    if (ret == -1)
+                    {
+                        MessageBox.Show("Ya existe una factura para la estadía " + idEstadia + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        this.Close();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Factura número " + ret + " creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        if (dataGridView1.Rows[i].Cells[0].Value.Equals("-"))
+                        {
+                            dataGridView1.Rows[i].Cells[0].Value = null;
+                        }
+                        if (dataGridView1.Rows[i].Cells[3].Value.Equals("-"))
+                        {
+                            dataGridView1.Rows[i].Cells[3].Value = 0;
+                        }
+                        if (dataGridView1.Rows[i].Cells[4].Value.Equals("-"))
+                        {
+                            dataGridView1.Rows[i].Cells[4].Value = 0;
+                        }
+
+                        var ret2 = DBHandler.SPWithValue("MATOTA.altaItemFactura",
+                        new List<SqlParameter>{
+                        new SqlParameter("@idFactura",ret),
+                        new SqlParameter("@idConsumibleEstadia", dataGridView1.Rows[i].Cells[0].Value),
+                        new SqlParameter("@descripcion",dataGridView1.Rows[i].Cells[2].Value),
+                        new SqlParameter("@cantidad",dataGridView1.Rows[i].Cells[3].Value),
+                        new SqlParameter("@monto",dataGridView1.Rows[i].Cells[4].Value),
+                    });
+                    }
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al intentar crear la factura para la estadía " + idEstadia + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
         }
     }

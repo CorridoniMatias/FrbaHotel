@@ -69,8 +69,8 @@ namespace FrbaHotel.FacturarEstadia
                     }
                     else
                     {
-                        idEstadias.Add(idEstadia.ToString());
-                        idReservaHabitaciones.Add(idReservaHabitacion.ToString());
+                        idEstadias.Add(idEstadia.Value.ToString());
+                        idReservaHabitaciones.Add(idReservaHabitacion.Value.ToString());
                         nroHabitacionValidas.Add(nroHabitacion);
                         temp++;
                     }
@@ -88,7 +88,7 @@ namespace FrbaHotel.FacturarEstadia
                     .Table("MATOTA.Regimen reg")
                     .AddJoin("JOIN MATOTA.Reserva r ON (reg.idRegimen = r.idRegimen)")
                     .AddJoin("JOIN MATOTA.Estadia e ON (r.idReserva = e.idReserva)")
-                    .AddEquals("e.idEstadia", this.idEstadias[0]);
+                    .AddEquals("e.idEstadia", idEstadias[0]);
 
                     try
                     {
@@ -104,9 +104,10 @@ namespace FrbaHotel.FacturarEstadia
                         }
                         for (int i = 0; i < idEstadias.Count; i++)
                         {
-                            new RegistrarConsumible.Registrar(idReservaHabitaciones[i], nroHabitacionValidas[i], estadia);
+                            new RegistrarConsumible.Registrar(idReservaHabitaciones[i], nroHabitacionValidas[i], estadia).ShowDialog(this);
                         }
-                        new GenerarFactura(idEstadias[0], idReservaHabitaciones);
+                        new GenerarFactura(idEstadias[0], idReservaHabitaciones).ShowDialog(this);
+                        this.Close();
                     }
                     catch (Exception)
                     {
@@ -126,11 +127,13 @@ namespace FrbaHotel.FacturarEstadia
                 {// FALLO LA OBTENCION!
                     MessageBox.Show("Fallo en la obtención de un Hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.Close();
+                    return;
                 }
                 else if (result == System.Windows.Forms.DialogResult.Cancel) // USUARIO CERRO LA VENTANA!
                 {
                     MessageBox.Show("Se ha cerrado la ventana sin seleccionar un Hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.Close();
+                    return;
                 }
             }
             try

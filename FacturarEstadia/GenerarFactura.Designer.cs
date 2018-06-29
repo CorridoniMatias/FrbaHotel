@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColumnCodigoConsumible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxFormaDePago = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxTotal = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
+            this.ColumnIdConsumibleEstadia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCodigoConsumible = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,6 +48,7 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnIdConsumibleEstadia,
             this.ColumnCodigoConsumible,
             this.ColumnDescripcion,
             this.ColumnCantidad,
@@ -57,34 +59,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(852, 313);
             this.dataGridView1.TabIndex = 14;
-            // 
-            // ColumnCodigoConsumible
-            // 
-            this.ColumnCodigoConsumible.HeaderText = "Codigo";
-            this.ColumnCodigoConsumible.Name = "ColumnCodigoConsumible";
-            this.ColumnCodigoConsumible.ReadOnly = true;
-            this.ColumnCodigoConsumible.Visible = false;
-            // 
-            // ColumnDescripcion
-            // 
-            this.ColumnDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnDescripcion.HeaderText = "Descripción";
-            this.ColumnDescripcion.Name = "ColumnDescripcion";
-            this.ColumnDescripcion.ReadOnly = true;
-            // 
-            // ColumnCantidad
-            // 
-            this.ColumnCantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnCantidad.HeaderText = "Cantidad";
-            this.ColumnCantidad.Name = "ColumnCantidad";
-            this.ColumnCantidad.ReadOnly = true;
-            // 
-            // ColumnPrecio
-            // 
-            this.ColumnPrecio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnPrecio.HeaderText = "Precio";
-            this.ColumnPrecio.Name = "ColumnPrecio";
-            this.ColumnPrecio.ReadOnly = true;
             // 
             // comboBoxFormaDePago
             // 
@@ -140,6 +114,41 @@
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
+            // ColumnIdConsumibleEstadia
+            // 
+            this.ColumnIdConsumibleEstadia.HeaderText = "idConsumibleEstadia";
+            this.ColumnIdConsumibleEstadia.Name = "ColumnIdConsumibleEstadia";
+            this.ColumnIdConsumibleEstadia.ReadOnly = true;
+            this.ColumnIdConsumibleEstadia.Visible = false;
+            // 
+            // ColumnCodigoConsumible
+            // 
+            this.ColumnCodigoConsumible.HeaderText = "Codigo";
+            this.ColumnCodigoConsumible.Name = "ColumnCodigoConsumible";
+            this.ColumnCodigoConsumible.ReadOnly = true;
+            this.ColumnCodigoConsumible.Visible = false;
+            // 
+            // ColumnDescripcion
+            // 
+            this.ColumnDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnDescripcion.HeaderText = "Descripción";
+            this.ColumnDescripcion.Name = "ColumnDescripcion";
+            this.ColumnDescripcion.ReadOnly = true;
+            // 
+            // ColumnCantidad
+            // 
+            this.ColumnCantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnCantidad.HeaderText = "Cantidad";
+            this.ColumnCantidad.Name = "ColumnCantidad";
+            this.ColumnCantidad.ReadOnly = true;
+            // 
+            // ColumnPrecio
+            // 
+            this.ColumnPrecio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnPrecio.HeaderText = "Precio";
+            this.ColumnPrecio.Name = "ColumnPrecio";
+            this.ColumnPrecio.ReadOnly = true;
+            // 
             // GenerarFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -163,14 +172,15 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCodigoConsumible;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPrecio;
         private System.Windows.Forms.ComboBox comboBoxFormaDePago;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxTotal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonOK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnIdConsumibleEstadia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCodigoConsumible;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPrecio;
     }
 }
