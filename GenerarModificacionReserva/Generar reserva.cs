@@ -109,9 +109,13 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     MessageBox.Show("No ingresó ninguna habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     FormHandler.limpiar(groupBox2);
+                    return;
                 }
                 if (string.IsNullOrEmpty(textBoxCantPersonas.Text) || comboBoxRegimen.SelectedIndex == -1)
+                {
                     MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
                 reserva = new Reserva(idHotel, habitaciones, comboBoxRegimen.SelectedValue.ToString(), cantPersonasReserva);
@@ -119,10 +123,12 @@ namespace FrbaHotel.GenerarModificacionReserva
                 if (cantPersonasReserva > reserva.cantPersonasQueEntran())
                 {
                     MessageBox.Show("La cantidad de personas ingresada no entran en las habitaciones seleccionadas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 if (cantNoches <= 0)
                 {
                     MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 else
                 {

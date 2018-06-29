@@ -13,6 +13,7 @@ namespace FrbaHotel.CancelarReserva
 {
     public partial class Cancelar : Form
     {
+        private Boolean puedeCancelar;
         public Cancelar()
         {
             InitializeComponent();
@@ -36,8 +37,16 @@ namespace FrbaHotel.CancelarReserva
                 MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!DBHandler.SPWithBool("MATOTA.FechaCorrectaParaModificarReserva", new List<SqlParameter>{new SqlParameter("@idReserva",textBoxIdReserva.Text),
-                                                                                                      new SqlParameter("@fechaSistema",ConfigManager.FechaSistema)}))
+            try
+            {
+                puedeCancelar = DBHandler.SPWithBool("MATOTA.FechaCorrectaParaModificarReserva", new List<SqlParameter>{new SqlParameter("@idReserva",textBoxIdReserva.Text),
+                                                                                                      new SqlParameter("@fechaSistema",ConfigManager.FechaSistema)});
+            }
+            catch (Exception excep)
+            {
+                MessageBox.Show("Error al chequear si puede modificar la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (!puedeCancelar)
             {
                 MessageBox.Show("Ya pasó la fecha límite para cancelar esta reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

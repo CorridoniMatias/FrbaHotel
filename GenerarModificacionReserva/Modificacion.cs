@@ -20,6 +20,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         public List<string> habitacionesRemovidas;
         private Reserva reserva{get; set;}
         private double precioNoche;
+        private Boolean puedeModificar;
         public AbmHabitacion.HabitacionReservada habReservada { get; set; }
         public Modificacion(string idReserva,string fechaDesde, string fechaHasta, string idRegimen, string cantPersonas,string precioNoche, List<string> habitaciones,string regimen)
         {
@@ -69,8 +70,16 @@ namespace FrbaHotel.GenerarModificacionReserva
                 MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!DBHandler.SPWithBool("MATOTA.FechaCorrectaParaModificarReserva", new List<SqlParameter>{new SqlParameter("@idReserva",idReserva),
-                                                                                                      new SqlParameter("@fechaSistema",ConfigManager.FechaSistema)}))
+            try
+            {
+                puedeModificar = DBHandler.SPWithBool("MATOTA.FechaCorrectaParaModificarReserva", new List<SqlParameter>{new SqlParameter("@idReserva",idReserva),
+                                                                                                      new SqlParameter("@fechaSistema",ConfigManager.FechaSistema)});
+            }
+            catch(Exception excep)
+            {
+                MessageBox.Show("Error al chequear si puede modificar la reserva","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            if (!puedeModificar)
             {
                 MessageBox.Show("Ya pasó la fecha límite para modificar esta reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
