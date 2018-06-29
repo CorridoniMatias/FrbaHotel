@@ -15,7 +15,6 @@ namespace FrbaHotel.GenerarModificacionReserva
     {
         private string idHotel = string.Empty;
         public List<string> habitaciones { get; private set; }
-        private int cantPersonasReserva;
         private double precioNoche;
         private Reserva reserva;
         private string idCliente;
@@ -111,16 +110,21 @@ namespace FrbaHotel.GenerarModificacionReserva
                     FormHandler.limpiar(groupBox2);
                     return;
                 }
-                if (string.IsNullOrEmpty(textBoxCantPersonas.Text) || comboBoxRegimen.SelectedIndex == -1)
+                if (comboBoxRegimen.SelectedIndex == -1)
                 {
                     MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
-                reserva = new Reserva(idHotel, habitaciones, comboBoxRegimen.SelectedValue.ToString(), cantPersonasReserva);
+                if (numericUpDownCantPersonas.Value == 0)
+                {
+                    MessageBox.Show("Seleccione la cantidad de huespedes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                reserva = new Reserva(idHotel, habitaciones, comboBoxRegimen.SelectedValue.ToString(), (int) numericUpDownCantPersonas.Value);
                 var cantNoches = reserva.cantNoches(dateTimePickerFechaDesde, dateTimePickerFechaHasta);
-                if (cantPersonasReserva > reserva.cantPersonasQueEntran())
+                if (numericUpDownCantPersonas.Value > reserva.cantPersonasQueEntran())
                 {
                     MessageBox.Show("La cantidad de personas ingresada no entran en las habitaciones seleccionadas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -132,7 +136,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
-                    cantPersonasReserva = Convert.ToInt32(textBoxCantPersonas.Text);
                     precioNoche = reserva.precioPorNoche();
                     textBoxPrecioPorNoche.Text = "U$S " + precioNoche.ToString();
                     textBoxCantNoches.Text = cantNoches.ToString();
@@ -152,6 +155,11 @@ namespace FrbaHotel.GenerarModificacionReserva
             if (cantNoches <= 0)
             {
                 MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (numericUpDownCantPersonas.Value == 0)
+            {
+                MessageBox.Show("Seleccione la cantidad de huespedes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (idCliente == null)
@@ -178,7 +186,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                         new SqlParameter("@idRegimen",comboBoxRegimen.SelectedValue),
                                         new SqlParameter("@idCliente",idCliente),
                                         new SqlParameter("@precioBase",precioNoche * cantNoches),
-                                        new SqlParameter("@cantidadPersonas",textBoxCantPersonas.Text),});
+                                        new SqlParameter("@cantidadPersonas",numericUpDownCantPersonas.Value.ToString()),});
                     habitaciones.ForEach(hab => DBHandler.SPWithValue("MATOTA.agregarHabitacionesReservadas",
                         new List<SqlParameter> { new SqlParameter("@nroHabitacion", hab), new SqlParameter("@idReserva", idReserva), new SqlParameter("@idHotel", idHotel) }));
                     MessageBox.Show("Reserva realizada con éxito, el código de su reserva es: " + idReserva, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -49,7 +49,15 @@ namespace FrbaHotel.GenerarModificacionReserva
                     {
                         var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
                         Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
-                        textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First().Values.First().ToString();
+                        try
+                        {
+                            textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First().Values.First().ToString();
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Error al obtener nombre de hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
                 }
             }
@@ -69,6 +77,12 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
+            if (Login.Login.LoggedUsedID == -1 && string.IsNullOrEmpty(textBoxIdReserva.Text.Trim()))
+            {
+                MessageBox.Show("Debe proveer por lo menos su numero de reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             dataGridView1.Rows.Clear();
             poblador.Poblar();
         }
