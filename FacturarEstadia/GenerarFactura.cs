@@ -37,7 +37,7 @@ namespace FrbaHotel.FacturarEstadia
         {
             if (comboBoxFormaDePago.SelectedIndex == -1)
             {
-                MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Seleccione el medio de pago.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
@@ -67,7 +67,7 @@ namespace FrbaHotel.FacturarEstadia
                     {
                         if (dataGridView1.Rows[i].Cells[0].Value.Equals("-"))
                         {
-                            dataGridView1.Rows[i].Cells[0].Value = null;
+                            dataGridView1.Rows[i].Cells[0].Value = -1;
                         }
                         if (dataGridView1.Rows[i].Cells[3].Value.Equals("-"))
                         {
@@ -89,7 +89,7 @@ namespace FrbaHotel.FacturarEstadia
                     }
 
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
                     MessageBox.Show("Error al intentar crear la factura para la estadía " + idEstadia + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
