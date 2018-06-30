@@ -20,7 +20,7 @@ namespace FrbaHotel.FacturarEstadia
         private List<string> idReservaHabitaciones;
         private double precioE {get;  set;}
         private List<int> idConsumibleEstadias { get; set; }
-        private string precioBase;
+        private double precioBase;
         private string nombreRegimen;
         
         public PobladorFacturas(DataGridView grid, string idEstadia, List<string> idReservas)
@@ -33,7 +33,7 @@ namespace FrbaHotel.FacturarEstadia
             this.idReservaHabitaciones = idReservas;
             precioE = 0;
             idConsumibleEstadias = new List<int>();
-            precioBase = null;
+            precioBase = 0;
             nombreRegimen = null;
         }
 
@@ -102,7 +102,7 @@ namespace FrbaHotel.FacturarEstadia
             try
             {
                 var newset = DBHandler.Query(query).First();
-                precioBase = newset["precioBase"].ToString();
+                precioBase = Convert.ToDouble(newset["precioBase"]);
 
                 nombreRegimen = newset["nombre"].ToString().Trim();
                 //if(newset["nombre"].ToString().Trim().Equals("Allinclusive"))
@@ -111,7 +111,7 @@ namespace FrbaHotel.FacturarEstadia
                     double valorDescuento = 0;
                     for (int i = 0; i < grid.Rows.Count; i++)
                     {
-                        valorDescuento += Convert.ToDouble(grid.Rows[i].Cells[4].Value) * Convert.ToDouble(grid.Rows[i].Cells[3].Value);
+                        valorDescuento -= Convert.ToDouble(grid.Rows[i].Cells[4].Value) * Convert.ToDouble(grid.Rows[i].Cells[3].Value);
                     }
 
                     var temp = new List<string>()
@@ -136,7 +136,7 @@ namespace FrbaHotel.FacturarEstadia
         private void recuentoEstadia()
         {
             var stat = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
-                .Fields("e.cantidadNoches, r.fechaHasta")
+                .Fields("r.cantidadNoches, r.fechaHasta")
                 .Table("MATOTA.Estadia e")
                 .AddJoin("JOIN MATOTA.Reserva r ON (e.idReserva = r.idReserva)")
                 .AddEquals("e.idEstadia", this.idEstadia);
@@ -168,7 +168,7 @@ namespace FrbaHotel.FacturarEstadia
                     {
                         precioEstadia += Convert.ToDouble(grid.Rows[i].Cells[4].Value) * Convert.ToDouble(grid.Rows[i].Cells[3].Value);
                     }
-                    precioEstadia -= Convert.ToDouble(grid.Rows[grid.Rows.Count - 1].Cells[4].Value);
+                    precioEstadia += Convert.ToDouble(grid.Rows[grid.Rows.Count - 1].Cells[4].Value);
                 }
                 else
                 {
@@ -179,7 +179,7 @@ namespace FrbaHotel.FacturarEstadia
                 }
                 
                 //precioEstadia = precioEstadia * (int)cantNoches;
-                precioEstadia = precioEstadia + ((int)cantNoches * Convert.ToDouble(this.precioBase));
+                precioEstadia = precioEstadia + (cantNoches * Convert.ToDouble(this.precioBase));
                 this.precioE = precioEstadia;
 
                 var dif = cantNoches - diferencia;
@@ -189,7 +189,7 @@ namespace FrbaHotel.FacturarEstadia
                     this.idEstadia,
                     "Estadía",
                     dif.ToString(),
-                    precioBase
+                    precioBase.ToString()
                 }.ToList();
 
                 grid.Rows.Add(rowEstadia.ToArray());
@@ -201,7 +201,7 @@ namespace FrbaHotel.FacturarEstadia
                         "-",
                         "Estadía no utilizada",
                         diferencia.ToString(),
-                        precioBase
+                        precioBase.ToString()
                     }.ToList();
                     grid.Rows.Add(faltantes.ToArray());
                 }
