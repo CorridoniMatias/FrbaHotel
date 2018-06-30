@@ -29,6 +29,7 @@ namespace FrbaHotel
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
+            labelFecha.Text += ConfigManager.FechaSistema.ToString("yyyy-MM-dd");
             verificarPestañas();
         }
 
