@@ -144,16 +144,16 @@ namespace FrbaHotel.FacturarEstadia
                 .AddEquals("e.idEstadia", this.idEstadia);
 
             int cantNoches;
-            string fechaHasta = ConfigManager.FechaSistema.ToString("yyyy-MM-dd");
+            DateTime fechaHasta = ConfigManager.FechaSistema;
             try
             {
                 var result = DBHandler.Query(stat.Build()).First();
                 cantNoches = Convert.ToInt32(result["cantidadNoches"]);
-                fechaHasta = result["fechaHasta"].ToString();
+                fechaHasta = Convert.ToDateTime(result["fechaHasta"]);
 
                 var diferencia = DBHandler.SPWithValue("MATOTA.CantNoches",
                 new List<SqlParameter> {
-                    new SqlParameter("@fechaInicio", ConfigManager.FechaSistema.ToString("yyyy-MM-dd")), 
+                    new SqlParameter("@fechaInicio", ConfigManager.FechaSistema), 
                     new SqlParameter("@fechaFin", fechaHasta)
                 });
 
