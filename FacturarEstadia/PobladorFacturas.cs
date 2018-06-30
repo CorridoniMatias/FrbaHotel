@@ -21,6 +21,7 @@ namespace FrbaHotel.FacturarEstadia
         private double precioE {get;  set;}
         private List<int> idConsumibleEstadias { get; set; }
         private string precioBase;
+        private string nombreRegimen;
         
         public PobladorFacturas(DataGridView grid, string idEstadia, List<string> idReservas)
         {
@@ -33,6 +34,7 @@ namespace FrbaHotel.FacturarEstadia
             precioE = 0;
             idConsumibleEstadias = new List<int>();
             precioBase = null;
+            nombreRegimen = null;
         }
 
         public void Poblar()
@@ -102,12 +104,14 @@ namespace FrbaHotel.FacturarEstadia
                 var newset = DBHandler.Query(query).First();
                 precioBase = newset["precioBase"].ToString();
 
-                if(newset["nombre"].ToString().Trim().Equals("allInclusive"))
+                nombreRegimen = newset["nombre"].ToString().Trim();
+                //if(newset["nombre"].ToString().Trim().Equals("Allinclusive"))
+                if(nombreRegimen == "All inclusive")
                 {
                     double valorDescuento = 0;
                     for (int i = 0; i < grid.Rows.Count; i++)
                     {
-                        valorDescuento -= Convert.ToDouble(grid.Rows[i].Cells[4].Value);
+                        valorDescuento += Convert.ToDouble(grid.Rows[i].Cells[4].Value) * Convert.ToDouble(grid.Rows[i].Cells[3].Value);
                     }
 
                     var temp = new List<string>()
@@ -158,10 +162,22 @@ namespace FrbaHotel.FacturarEstadia
 
                 double precioEstadia = 0;
 
-                for (int i = 0; i < grid.Rows.Count; i++)
+                if (nombreRegimen == "All inclusive")
                 {
-                    precioEstadia += Convert.ToDouble(grid.Rows[i].Cells[4].Value);
+                    for (int i = 0; i < grid.Rows.Count - 1; i++)
+                    {
+                        precioEstadia += Convert.ToDouble(grid.Rows[i].Cells[4].Value) * Convert.ToDouble(grid.Rows[i].Cells[3].Value);
+                    }
+                    precioEstadia -= Convert.ToDouble(grid.Rows[grid.Rows.Count - 1].Cells[4].Value);
                 }
+                else
+                {
+                    for (int i = 0; i < grid.Rows.Count; i++)
+                    {
+                        precioEstadia += Convert.ToDouble(grid.Rows[i].Cells[4].Value) * Convert.ToDouble(grid.Rows[i].Cells[3].Value);
+                    }
+                }
+                
                 //precioEstadia = precioEstadia * (int)cantNoches;
                 precioEstadia = precioEstadia + ((int)cantNoches * Convert.ToDouble(this.precioBase));
                 this.precioE = precioEstadia;
