@@ -58,12 +58,14 @@ namespace FrbaHotel.FacturarEstadia
                 if (newset.Count() == 0)
                 {
                     MessageBox.Show("No hay ningún consumible para la estadía " + idEstadia + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
                 }
-
-                newset.ForEach(row =>
+                else
+                {
+                    newset.ForEach(row =>
                         grid.Rows.Add(row.ToArray())
                     );
+                }
+                
                 llenarRegimen();
                 recuentoEstadia();
             }
