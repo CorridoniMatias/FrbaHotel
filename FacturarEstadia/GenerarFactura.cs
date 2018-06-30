@@ -60,6 +60,7 @@ namespace FrbaHotel.FacturarEstadia
                     else
                     {
                         MessageBox.Show("Factura número " + ret + " creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.cerrarEstadia();
                     }
 
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
@@ -94,6 +95,26 @@ namespace FrbaHotel.FacturarEstadia
                     return;
                 }
             }
+        }
+
+        private void cerrarEstadia()
+        {
+            var stat = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE)
+            .Table("MATOTA.Estadia")
+            .Fields("fechaSalida = " + ConfigManager.FechaSistema.ToString("yyyy-MM-dd"))
+            .AddEquals("idEstadia", this.idEstadia);
+
+            int rows = 0;
+            try
+            {
+                rows = DBHandler.QueryRowCount(stat.Build());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al actualizar la fecha de salida de la Estadia!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if (rows == 0)
+                MessageBox.Show("Error al actualizar la fecha de salida de la Estadia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

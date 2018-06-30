@@ -103,7 +103,7 @@ namespace FrbaHotel.FacturarEstadia
                     {
                         bool estadia = false;
                         var nombreRegimen = DBHandler.Query(query.Build()).First()["nombre"].ToString();
-                        if (nombreRegimen.Trim().Equals("allInclusive"))
+                        if (nombreRegimen == "All inclusive")
                         {
                             estadia = true;
                         }
