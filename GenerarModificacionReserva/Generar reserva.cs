@@ -129,6 +129,11 @@ namespace FrbaHotel.GenerarModificacionReserva
                     MessageBox.Show("La cantidad de personas ingresada no entran en las habitaciones seleccionadas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (dateTimePickerFechaDesde.Value < ConfigManager.FechaSistema)
+                {
+                        MessageBox.Show("La fecha de inicio de la reserva no puede ser anterior a la fecha actual.\n\nLa fecha de hoy es: "+ConfigManager.FechaSistema.ToString("yyyy-MM-dd"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                }
                 if (cantNoches <= 0)
                 {
                     MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

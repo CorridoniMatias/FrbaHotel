@@ -74,6 +74,11 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void buttonModificar_Click(object sender, EventArgs e)
         {
             var cantNoches = reserva.cantNoches(dateTimePickerFechaDesde,dateTimePickerFechaHasta);
+            if (dateTimePickerFechaDesde.Value < ConfigManager.FechaSistema)
+            {
+                MessageBox.Show("La fecha de inicio de la reserva no puede ser anterior a la fecha actual.\n\nLa fecha de hoy es: " + ConfigManager.FechaSistema.ToString("yyyy-MM-dd"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (cantNoches <= 0)
             {
                 MessageBox.Show("Ingrese fechas válidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
