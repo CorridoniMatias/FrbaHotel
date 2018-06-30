@@ -101,7 +101,7 @@ namespace FrbaHotel.FacturarEstadia
         {
             var stat = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE)
             .Table("MATOTA.Estadia")
-            .Fields("fechaSalida = " + ConfigManager.FechaSistema.ToString("yyyy-MM-dd"))
+            .Fields("fechaSalida = '" + ConfigManager.FechaSistema.ToString("yyyy-MM-dd") + "'")
             .AddEquals("idEstadia", this.idEstadia);
 
             int rows = 0;
