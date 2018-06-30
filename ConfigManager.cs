@@ -26,7 +26,7 @@ namespace FrbaHotel
         {
             FechaSistema = DateTime.Now;
             ConfigCargada = false;
-            ConfigFile = System.IO.Directory.GetParent(Application.StartupPath).Parent.Parent.FullName + "/FrbaHotel.exe.config";
+            ConfigFile = System.IO.Directory.GetParent(Application.StartupPath).Parent.Parent.FullName + "\\FrbaHotel.exe.config";
         }
 
         public static void ReadConfig()

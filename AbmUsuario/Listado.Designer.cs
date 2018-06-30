@@ -54,8 +54,6 @@
             this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idHotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hotelUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,8 +82,6 @@
             this.idUsuario,
             this.Username,
             this.Rol,
-            this.idHotel,
-            this.hotelUser,
             this.Nombre,
             this.Apellido,
             this.TipoDocumento,
@@ -387,21 +383,6 @@
             this.Rol.ReadOnly = true;
             this.Rol.Width = 48;
             // 
-            // idHotel
-            // 
-            this.idHotel.HeaderText = "idHotel";
-            this.idHotel.Name = "idHotel";
-            this.idHotel.ReadOnly = true;
-            this.idHotel.Visible = false;
-            this.idHotel.Width = 65;
-            // 
-            // hotelUser
-            // 
-            this.hotelUser.HeaderText = "Hotel";
-            this.hotelUser.Name = "hotelUser";
-            this.hotelUser.ReadOnly = true;
-            this.hotelUser.Width = 57;
-            // 
             // Nombre
             // 
             this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -567,8 +548,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idHotel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hotelUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;

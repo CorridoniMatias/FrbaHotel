@@ -29,7 +29,11 @@ namespace FrbaHotel
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
+            verificarPestañas();
+        }
 
+        private void verificarPestañas()
+        {
             if (Login.Login.LoggedUsedID == -1)
                 usuarioToolStripMenuItem.Visible = false;
 
@@ -130,7 +134,10 @@ namespace FrbaHotel
                     return;
                 }
             }
+
             new AbmUsuario.Listado(Login.Login.LoggedUserSessionHotelID).ShowDialog(this);
+
+            verificarPestañas();
         }
 
         private void buttonGenerarListado_Click(object sender, EventArgs e)

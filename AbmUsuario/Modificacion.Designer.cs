@@ -59,8 +59,11 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBoxUser = new System.Windows.Forms.GroupBox();
-            this.buttonBuscar = new System.Windows.Forms.Button();
-            this.textBoxHotel = new System.Windows.Forms.TextBox();
+            this.buttonAgregarHotel = new System.Windows.Forms.Button();
+            this.dataGridViewHoteles = new System.Windows.Forms.DataGridView();
+            this.idHotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remover = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label17 = new System.Windows.Forms.Label();
             this.checkBoxHabilitado = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -71,6 +74,7 @@
             this.groupBoxDatos.SuspendLayout();
             this.groupBoxDireccion.SuspendLayout();
             this.groupBoxUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHoteles)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonGuardar
@@ -431,8 +435,8 @@
             // 
             // groupBoxUser
             // 
-            this.groupBoxUser.Controls.Add(this.buttonBuscar);
-            this.groupBoxUser.Controls.Add(this.textBoxHotel);
+            this.groupBoxUser.Controls.Add(this.buttonAgregarHotel);
+            this.groupBoxUser.Controls.Add(this.dataGridViewHoteles);
             this.groupBoxUser.Controls.Add(this.label17);
             this.groupBoxUser.Controls.Add(this.checkBoxHabilitado);
             this.groupBoxUser.Controls.Add(this.label2);
@@ -443,43 +447,68 @@
             this.groupBoxUser.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBoxUser.Location = new System.Drawing.Point(12, 12);
             this.groupBoxUser.Name = "groupBoxUser";
-            this.groupBoxUser.Size = new System.Drawing.Size(358, 151);
+            this.groupBoxUser.Size = new System.Drawing.Size(358, 465);
             this.groupBoxUser.TabIndex = 23;
             this.groupBoxUser.TabStop = false;
             this.groupBoxUser.Text = "Datos del Usuario";
             // 
-            // buttonBuscar
+            // buttonAgregarHotel
             // 
-            this.buttonBuscar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonBuscar.Location = new System.Drawing.Point(270, 111);
-            this.buttonBuscar.Name = "buttonBuscar";
-            this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
-            this.buttonBuscar.TabIndex = 23;
-            this.buttonBuscar.Text = "Buscar";
-            this.buttonBuscar.UseVisualStyleBackColor = true;
-            this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
+            this.buttonAgregarHotel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonAgregarHotel.Location = new System.Drawing.Point(262, 121);
+            this.buttonAgregarHotel.Name = "buttonAgregarHotel";
+            this.buttonAgregarHotel.Size = new System.Drawing.Size(81, 23);
+            this.buttonAgregarHotel.TabIndex = 25;
+            this.buttonAgregarHotel.Text = "Agregar Hotel";
+            this.buttonAgregarHotel.UseVisualStyleBackColor = true;
+            this.buttonAgregarHotel.Click += new System.EventHandler(this.buttonAgregarHotel_Click);
             // 
-            // textBoxHotel
+            // dataGridViewHoteles
             // 
-            this.textBoxHotel.Enabled = false;
-            this.textBoxHotel.Location = new System.Drawing.Point(63, 113);
-            this.textBoxHotel.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxHotel.MaxLength = 20;
-            this.textBoxHotel.Name = "textBoxHotel";
-            this.textBoxHotel.ReadOnly = true;
-            this.textBoxHotel.Size = new System.Drawing.Size(193, 20);
-            this.textBoxHotel.TabIndex = 22;
+            this.dataGridViewHoteles.AllowUserToAddRows = false;
+            this.dataGridViewHoteles.AllowUserToDeleteRows = false;
+            this.dataGridViewHoteles.AllowUserToOrderColumns = true;
+            this.dataGridViewHoteles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHoteles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idHotel,
+            this.Nombre,
+            this.Remover});
+            this.dataGridViewHoteles.Location = new System.Drawing.Point(10, 154);
+            this.dataGridViewHoteles.Name = "dataGridViewHoteles";
+            this.dataGridViewHoteles.ReadOnly = true;
+            this.dataGridViewHoteles.Size = new System.Drawing.Size(333, 289);
+            this.dataGridViewHoteles.TabIndex = 24;
+            this.dataGridViewHoteles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewHoteles_CellContentClick);
+            // 
+            // idHotel
+            // 
+            this.idHotel.HeaderText = "idHotel";
+            this.idHotel.Name = "idHotel";
+            this.idHotel.ReadOnly = true;
+            this.idHotel.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Remover
+            // 
+            this.Remover.HeaderText = "Remover";
+            this.Remover.Name = "Remover";
+            this.Remover.ReadOnly = true;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label17.Location = new System.Drawing.Point(9, 116);
+            this.label17.Location = new System.Drawing.Point(7, 126);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(32, 13);
-            this.label17.TabIndex = 21;
-            this.label17.Text = "Hotel";
+            this.label17.Size = new System.Drawing.Size(43, 13);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "Hoteles";
             // 
             // checkBoxHabilitado
             // 
@@ -563,6 +592,7 @@
             this.groupBoxDireccion.PerformLayout();
             this.groupBoxUser.ResumeLayout(false);
             this.groupBoxUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHoteles)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -606,8 +636,11 @@
         private System.Windows.Forms.TextBox textBoxUsername;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonBuscar;
-        private System.Windows.Forms.TextBox textBoxHotel;
+        private System.Windows.Forms.Button buttonAgregarHotel;
+        private System.Windows.Forms.DataGridView dataGridViewHoteles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idHotel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewButtonColumn Remover;
         private System.Windows.Forms.Label label17;
     }
 }

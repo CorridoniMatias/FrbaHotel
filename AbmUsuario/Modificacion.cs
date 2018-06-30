@@ -13,10 +13,9 @@ namespace FrbaHotel.AbmUsuario
     public partial class Modificacion : Form
     {
 
-        bool modificando;
         bool hayError;
         string idUsuario;
-        private AbmHotel.Hotel hotel;
+        private List<AbmHotel.Hotel> hoteles;
         List<TextBox> textBoxs;
 
         public Modificacion(string idUsuario)
@@ -61,17 +60,22 @@ namespace FrbaHotel.AbmUsuario
                     }
                 }
 
-                List<Dictionary<string,object>> h = DBHandler.Query("SELECT h.nombre, h.idHotel FROM MATOTA.Hotel h INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel WHERE hu.idUsuario =" + idUsuario);
-                if(h.Count>0)
-                    hotel = new AbmHotel.Hotel(){nombre=h[0]["nombre"].ToString(),idHotel=h[0]["idHotel"].ToString()};
+                List<Dictionary<string, object>> h = DBHandler.Query("SELECT h.nombre, h.idHotel FROM MATOTA.Hotel h INNER JOIN MATOTA.HotelesUsuario hu ON h.idHotel = hu.idHotel WHERE hu.idUsuario =" + idUsuario);
+                if (h.Count > 0)
+                    hoteles = h.Select(row =>
+                        new AbmHotel.Hotel()
+                        {
+                            idHotel = row["idHotel"].ToString(),
+                            nombre = row["nombre"].ToString()
+                        })
+                        .ToList();
+                hoteles.ForEach(hotel => dataGridViewHoteles.Rows.Add(hotel.idHotel, hotel.nombre, "Remover"));
             }
             catch
             {
                 MessageBox.Show("No se pudo cargar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
             }
-
-
 
         }
 
@@ -169,7 +173,7 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show("La fecha de nacimiento no puede ser posterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
             }
-            if (hotel == null)
+            if (dataGridViewHoteles.RowCount == 0)
             {
                 MessageBox.Show("Debe seleccionar un hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
@@ -189,7 +193,6 @@ namespace FrbaHotel.AbmUsuario
                         MessageBox.Show("Ya existe un usuario con ese nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         hayError = true;
                     }
-
                 }
                 catch (Exception)
                 {
@@ -229,7 +232,6 @@ namespace FrbaHotel.AbmUsuario
             try
             {
                 DBHandler.Query(query);
-
             }
             catch (Exception)
             {
@@ -248,22 +250,77 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show("Ocurrió un error al guardar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            try
+
+            var altas = new List<String>();
+            var bajas = new List<AbmHotel.Hotel>();
+
+            for (int i = 0; i < dataGridViewHoteles.Rows.Count; i++)
             {
-            MessageBox.Show(hotel.idHotel.ToString());
-                if (DBHandler.Query("SELECT hu.idHotel FROM MATOTA.HotelesUsuario hu WHERE hu.idUsuario =" + idUsuario).Count == 0)
+                var registro = dataGridViewHoteles.Rows[i];
+                var idHotel =registro.Cells[0].Value.ToString();
+                if (!hoteles.Select(hotel=>hotel.idHotel).Contains(idHotel))
                 {
-                    DBHandler.Query("INSERT INTO MATOTA.HotelesUsuario VALUES (" + idUsuario.ToString() + "," + hotel.idHotel.ToString() + ")");
+                    altas.Add(idHotel);
                 }
-                else DBHandler.Query("UPDATE MATOTA.HotelesUsuario SET idHotel = " + hotel.idHotel.ToString() + " WHERE idUsuario =" + idUsuario.ToString());
-                MessageBox.Show("Usuario guardado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
             }
-            catch (Exception)
+
+            foreach (AbmHotel.Hotel hotel in hoteles)
             {
-                MessageBox.Show("Ocurrió un error al guardar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (!estaSeleccionadoHotel(hotel))
+                    bajas.Add(hotel);
             }
+
+            if(altas.Count>0)
+            {
+                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.INSERT).Table("MATOTA.HotelesUsuario")
+                                                                                    .Fields("idUsuario,idHotel");
+
+                altas.ForEach(alta => builder.AddValues(idUsuario, alta));
+                
+                int rows = 0;
+
+                try
+                {
+                    rows = DBHandler.QueryRowCount(builder.Build());
+                    if (rows != altas.Count)
+                        MessageBox.Show("Error al agregar los hoteles seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al agregar los hoteles seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+            }
+
+            if (bajas.Count > 0)
+            {
+                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.HotelesUsuario");
+                int borradas = 0;
+                bajas.ForEach(baja=>{
+                        builder.AddAndFilter("idHotel="+baja.idHotel,"idUsuario="+idUsuario);
+                        borradas++;
+                });
+
+                int count = 0;
+                try
+                {
+                     count = DBHandler.QueryRowCount(builder.Build());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error inesperado al intentar remover los hoteles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (count != borradas)
+                {
+                    MessageBox.Show("Error al desvincular alguno de los hoteles borrados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+                MessageBox.Show("Usuario guardado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
         }
 
         private void textBoxUsername_TextChanged(object sender, EventArgs e)
@@ -335,20 +392,54 @@ namespace FrbaHotel.AbmUsuario
 
         private void Modificacion_Load(object sender, EventArgs e)
         {
-            if(hayError)
+            if (hayError)
                 this.Close();
         }
 
-        private void buttonBuscar_Click(object sender, EventArgs e)
+        private void dataGridViewHoteles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+
+                if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Remover"))
+                {
+                    dataGridViewHoteles.Rows.RemoveAt(e.RowIndex);
+                }
+            }
+        }
+
+        private void buttonAgregarHotel_Click(object sender, EventArgs e)
         {
             var selector = new AbmHotel.Listado(false);
 
             if (selector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                hotel = selector.SelectedHotel;
-                textBoxHotel.Text = hotel.nombre;
+                AbmHotel.Hotel hotel = selector.SelectedHotel;
+
+                if (!estaSeleccionadoHotel(hotel))
+                {
+                    this.dataGridViewHoteles.Rows.Add(hotel.idHotel.ToString(), hotel.nombre.ToString(), "Remover");
+                }
+                else
+                    MessageBox.Show("Ya elegiste ese hotel.\n\nElija un hotel distinto por favor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
+
+        }
+
+        private bool estaSeleccionadoHotel(AbmHotel.Hotel hotel)
+        {
+            foreach (DataGridViewRow row in dataGridViewHoteles.Rows)
+            {
+                if (row.Cells[0].Value.ToString().Equals(hotel.idHotel.ToString()))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

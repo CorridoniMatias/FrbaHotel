@@ -47,6 +47,41 @@ namespace FrbaHotel.Login
             InitializeComponent();
         }
 
+        public static void updateLoggedUserRoleID()
+        {
+            try
+            {
+
+                var roles = DBHandler.Query("SELECT r.idRol, r.nombre FROM MATOTA.Rol r INNER JOIN MATOTA.RolesUsuario ru ON ru.idRol = r.idRol WHERE r.estado = 1 AND ru.idUsuario = " + LoggedUsedID);
+
+                switch (roles.Count)
+                {
+                    case 0:
+                        MessageBox.Show("Usted no dispone de roles. No puede operar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 1:
+                        LoggedUserRoleID = (int)roles.First()["idRol"];
+                        //Entrar directamente al sistema.
+                        break;
+                    default:
+                        SelectRol rolselector = new SelectRol(roles);
+                        DialogResult re = rolselector.ShowDialog();
+                        if (re == System.Windows.Forms.DialogResult.OK)
+                            LoggedUserRoleID = rolselector.SelectedRole;
+                        else
+                        {
+                            return;
+                        }
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al intentar obtener sus roles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        
+        }
         private void buttonLogin_Click(object sender, EventArgs e)
         {
 

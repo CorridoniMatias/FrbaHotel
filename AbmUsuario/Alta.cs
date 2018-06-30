@@ -14,7 +14,6 @@ namespace FrbaHotel.AbmUsuario
     public partial class Alta : Form
     {
         bool hayError = false;
-        private AbmHotel.Hotel hotel;
         public Alta()
         {
             InitializeComponent();
@@ -75,6 +74,7 @@ namespace FrbaHotel.AbmUsuario
                 if (!FormHandler.verificarMail(textBoxMail))
                 {
                     MessageBox.Show("El mail tiene un formato invalido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    textBoxMail.BackColor = Color.Red;
                     hayError = true;
                 }
 
@@ -132,9 +132,9 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show("La fecha de nacimiento no puede ser posterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
             }
-            if (hotel == null)
+            if (dataGridViewHoteles.Rows.Count == 0)
             {
-                MessageBox.Show("Debe seleccionar un hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar por lo menos un hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 hayError = true;
             }
 
@@ -185,7 +185,7 @@ namespace FrbaHotel.AbmUsuario
             }
 
             string query = "INSERT INTO MATOTA.RolesUsuario VALUES (" + idUsuario.ToString() + "," + comboBoxRol.SelectedValue.ToString() + ")";
-           
+
             try
             {
                 DBHandler.Query(query);
@@ -195,13 +195,30 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.INSERT)
+             .Table("MATOTA.HotelesUsuario")
+             .Fields("idUsuario,idHotel");
+
+            for (int i = 0; i < dataGridViewHoteles.Rows.Count; i++)
+            {
+                builder.AddValues(
+                        idUsuario.ToString(),
+                        dataGridViewHoteles.Rows[i].Cells[0].Value.ToString()
+                    );
+            }
             try
             {
-                DBHandler.Query("INSERT INTO MATOTA.HotelesUsuario VALUES (" + idUsuario.ToString() + "," + hotel.idHotel.ToString() + ")");
+                var count = DBHandler.QueryRowCount(builder.Build());
+
+                if (count != dataGridViewHoteles.Rows.Count)
+                    throw new Exception("count != rowcount");
+
                 MessageBox.Show("Usuario agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error al agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -275,16 +292,51 @@ namespace FrbaHotel.AbmUsuario
             comboBoxTipoDoc.BackColor = Color.White;
         }
 
-        private void buttonBuscar_Click(object sender, EventArgs e)
+        private void buttonAgregarHotel_Click(object sender, EventArgs e)
         {
 
             var selector = new AbmHotel.Listado(false);
 
             if (selector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                hotel = selector.SelectedHotel;
-                textBoxHotel.Text = hotel.nombre;
+                AbmHotel.Hotel hotel = selector.SelectedHotel;
 
+                if (!estaSeleccionadoHotel(hotel))
+                {
+                    this.dataGridViewHoteles.Rows.Add(hotel.idHotel.ToString(), hotel.nombre.ToString(), "Remover");
+                }
+                else
+                    MessageBox.Show("Ya elegiste ese hotel.\n\nElija un hotel distinto por favor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
+        }
+
+        private bool estaSeleccionadoHotel(AbmHotel.Hotel hotel)
+        {
+            foreach (DataGridViewRow row in dataGridViewHoteles.Rows)
+            {
+                if (row.Cells[0].Value.ToString().Equals(hotel.idHotel.ToString()))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void dataGridViewHoteles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+
+                if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Remover"))
+                {
+                    dataGridViewHoteles.Rows.RemoveAt(e.RowIndex);
+                }
             }
         }
     }

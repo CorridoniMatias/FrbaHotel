@@ -59,11 +59,30 @@ namespace FrbaHotel.AbmUsuario
 
                 if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Modificar"))
                 {
-                    if (idHotelAdmin.ToString() == senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString() || String.IsNullOrEmpty(senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString()))
-                        new Modificacion(senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString()).ShowDialog(this);
-                    else
+                    try
                     {
-                        MessageBox.Show("No podes modificar un usuario de un hotel en el que no estas loggeado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
+                        .Fields("h.idHotel")
+                        .Table("MATOTA.Hotel h")
+                        .AddJoin("INNER JOIN MATOTA.HotelesUsuario hu ON hu.idHotel = h.idHotel")
+                        .AddEquals("hu.idUsuario", senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                        var hoteles = DBHandler.Query(query.Build()).Select(row => row["idHotel"].ToString()).ToList();
+                        var idUsuarioModificado = senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        if (hoteles.Contains(idHotelAdmin.ToString()))
+                            new Modificacion(idUsuarioModificado).ShowDialog(this);
+                            if(idUsuarioModificado == Login.Login.LoggedUsedID.ToString())
+                            {
+                                Login.Login.updateLoggedUserRoleID();
+                            }
+                        else
+                        {
+                            MessageBox.Show("No podes modificar un usuario de un hotel en el que no estas loggeado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocurrió un error al tratar de verificar si se puede modificar a ese usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }

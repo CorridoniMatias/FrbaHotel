@@ -28,12 +28,11 @@ namespace FrbaHotel.AbmUsuario
             this.extraColumns = extraColumns;
 
             Filtro = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT)
-             .Fields("u.idUsuario, u.username, r.NOMBRE nombreRol, hu.idHotel, h.nombre nombreHotel, u.nombre nombre, u.apellido, td.nombre nombreTipoDocumento, u.numeroDocumento, u.mail, u.telefono, u.calle, u.nroCalle, u.localidad, u.pais, u.fechaNacimiento, u.habilitado")
+             .Fields("Distinct u.idUsuario, u.username, r.NOMBRE nombreRol, u.nombre nombre, u.apellido, td.nombre nombreTipoDocumento, u.numeroDocumento, u.mail, u.telefono, u.calle, u.nroCalle, u.localidad, u.pais, u.fechaNacimiento, u.habilitado")
              .Table("MATOTA.Usuario u")
              .AddJoin("INNER JOIN MATOTA.TipoDocumento td ON u.idTipoDocumento = td.idTipoDocumento")
              .AddJoin("INNER JOIN MATOTA.RolesUsuario ru ON u.idUsuario = ru.idUsuario").AddJoin("INNER JOIN MATOTA.Rol r ON ru.idRol = r.idRol")
-             .AddJoin("LEFT JOIN MATOTA.HotelesUsuario hu ON hu.idUsuario = u.idUsuario")
-             .AddJoin("LEFT JOIN MATOTA.Hotel h ON hu.idHotel = h.idHotel");
+             .AddJoin("LEFT JOIN MATOTA.HotelesUsuario hu ON hu.idUsuario = u.idUsuario");
 
         }
 
@@ -71,8 +70,6 @@ namespace FrbaHotel.AbmUsuario
                         var orig = new List<string>() { row["idUsuario"].ToString(), 
                                                         row["username"].ToString(), 
                                                         row["nombreRol"].ToString(),
-                                                        row["idHotel"].ToString(),
-                                                        row["nombreHotel"].ToString(),
                                                         row["nombre"].ToString(),
                                                         row["apellido"].ToString(), 
                                                         row["nombreTipoDocumento"].ToString(), 
@@ -95,10 +92,9 @@ namespace FrbaHotel.AbmUsuario
                     MessageBox.Show("No se encontró ningún usuario. Intente cambiar el criterio de búsqueda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-
-                newset.ForEach(row =>
-                        grid.Rows.Add(row.ToArray())
-                    );
+                    newset.ForEach(row =>
+                            grid.Rows.Add(row.ToArray())
+                        );
             }
             catch (Exception e)
             {
