@@ -80,6 +80,8 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void GenerarReserva_Load(object sender, EventArgs e)
         {
+            dateTimePickerFechaDesde.Value = ConfigManager.FechaSistema;
+            dateTimePickerFechaHasta.Value = ConfigManager.FechaSistema;
         }
 
         private void comboBoxHotel_SelectedIndexChanged(object sender, EventArgs e)
