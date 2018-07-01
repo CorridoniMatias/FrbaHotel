@@ -27,8 +27,10 @@ namespace FrbaHotel.AbmHotel
             this.textBoxNroCalle.Text = nrocalle;
             this.textBoxPais.Text = pais;
             this.textBoxTelefono.Text = tel;
-            if(!string.IsNullOrEmpty(fechaCreacion))
+            if (!string.IsNullOrEmpty(fechaCreacion))
                 this.dateTimePickerCreado.Value = DateTime.Parse(fechaCreacion);
+            else
+                this.dateTimePickerCreado.Value = ConfigManager.FechaSistema;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
