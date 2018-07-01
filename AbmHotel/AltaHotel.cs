@@ -138,17 +138,19 @@ namespace FrbaHotel.AbmHotel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al agregar los regímenes seleccionados, sin embargo, el hotel fue registrado con éxito\n Intente agregar los regímenes a través de la interfaz de modificación del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                try
+                {
+                    var queryDelete = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.Hotel").AddEquals("idHotel", idhotel.ToString());
+                    DBHandler.QueryScalar(queryDelete.Build());
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show("Ocurrió un error al agregar los regímenes seleccionados, el hotel no fue registrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-            if (count != checkedListBoxRegimenes.Items.Count)
-            {
-                MessageBox.Show("Ocurrió un error al agregar los regímenes seleccionados, sin embargo, el hotel fue registrado con éxito\n Intente agregar los regímenes a través de la interfaz de modificación del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                MessageBox.Show("Ocurrió un error al agregar los regímenes seleccionados, el hotel no fue registrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else
-            {
                 MessageBox.Show("Hotel agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
 
             try
             {

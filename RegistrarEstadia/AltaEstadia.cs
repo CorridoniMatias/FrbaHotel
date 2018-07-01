@@ -85,6 +85,7 @@ namespace FrbaHotel.RegistrarEstadia
         private void button1_Click(object sender, EventArgs e)
         {
             var dialog = new AbmCliente.ListadoSeleccion();
+            dialog.MostrarSoloHabilitados();
             if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 AddHuesped(dialog.SelectedClient);

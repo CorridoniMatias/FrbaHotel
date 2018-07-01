@@ -59,7 +59,6 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.checkedListBoxRegimenes);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.dateTimePickerFechaCreacion);
@@ -73,13 +72,14 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
             // checkedListBoxRegimenes
             // 
-            resources.ApplyResources(this.checkedListBoxRegimenes, "checkedListBoxRegimenes");
             this.checkedListBoxRegimenes.FormattingEnabled = true;
+            resources.ApplyResources(this.checkedListBoxRegimenes, "checkedListBoxRegimenes");
             this.checkedListBoxRegimenes.Name = "checkedListBoxRegimenes";
             // 
             // label6
@@ -147,7 +147,6 @@
             // 
             // groupBox2
             // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.textBoxPais);
             this.groupBox2.Controls.Add(this.textBoxCiudad);
@@ -157,6 +156,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -261,8 +261,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.CheckedListBox checkedListBoxRegimenes;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonSave;
     }
 }
