@@ -241,6 +241,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             var seleccion = new AbmCliente.ListadoSeleccion();
             seleccion.dataGridViewCliente = dataGridViewCliente;
+            seleccion.MostrarSoloHabilitados();
             seleccion.ShowDialog();
             if (seleccion.existeCliente)
                 if (seleccion.SelectedClient != null)

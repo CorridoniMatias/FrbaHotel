@@ -31,7 +31,7 @@ namespace FrbaHotel.AbmCliente
             this.tipoDoc = tipoDoc;
         }
 
-        public void Poblar()
+        public void Poblar(bool soloHabilitados = false)
         {
             Filtro.ClearFilters();
             inputs
@@ -49,6 +49,8 @@ namespace FrbaHotel.AbmCliente
                        }
                 );
 
+            if(soloHabilitados)
+                Filtro.AddEquals("c.habilitado", "1");
 
             
             try
