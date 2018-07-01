@@ -13,6 +13,7 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class Modificacion : Form
     {
+        bool hayError = false;
         private string idHotel;
         private string idTipoHabitacion;
         private string numHabitacionAnterior;
@@ -68,10 +69,41 @@ namespace FrbaHotel.AbmHabitacion
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
+            hayError = false;
             List<TextBox> textBoxes = new List<TextBox> { textBoxNumHabitacion, textBoxPiso, textBoxDescripcion, textBoxComodidades };
             if (textBoxes.Any(tbox => string.IsNullOrEmpty(tbox.Text) || comboBoxUbicacion.SelectedIndex == -1))
             {
                 MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(textBoxNumHabitacion.Text.Trim()))
+            {
+                try
+                {
+                    Int32.Parse(textBoxNumHabitacion.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El número de habitación debe ser un número.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+            }
+            if (!string.IsNullOrEmpty(textBoxPiso.Text.Trim()))
+            {
+                try
+                {
+                    Int32.Parse(textBoxPiso.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El piso debe ser un número.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+            }
+            if (hayError)
+            {
+                hayError = false;
                 return;
             }
 

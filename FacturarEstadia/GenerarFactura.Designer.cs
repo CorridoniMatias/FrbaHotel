@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBoxFormaDePago = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxTotal = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonOK = new System.Windows.Forms.Button();
             this.ColumnIdConsumibleEstadia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCodigoConsumible = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxFormaDePago = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxTotal = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,66 +53,11 @@
             this.ColumnDescripcion,
             this.ColumnCantidad,
             this.ColumnPrecio});
-            this.dataGridView1.Location = new System.Drawing.Point(13, 104);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 68);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(852, 313);
+            this.dataGridView1.Size = new System.Drawing.Size(568, 203);
             this.dataGridView1.TabIndex = 14;
-            // 
-            // comboBoxFormaDePago
-            // 
-            this.comboBoxFormaDePago.FormattingEnabled = true;
-            this.comboBoxFormaDePago.Location = new System.Drawing.Point(585, 19);
-            this.comboBoxFormaDePago.Name = "comboBoxFormaDePago";
-            this.comboBoxFormaDePago.Size = new System.Drawing.Size(244, 28);
-            this.comboBoxFormaDePago.TabIndex = 22;
-            this.comboBoxFormaDePago.Tag = "idFormaDePago";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(20, 24);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 20);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Total";
-            // 
-            // textBoxTotal
-            // 
-            this.textBoxTotal.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxTotal.Enabled = false;
-            this.textBoxTotal.Location = new System.Drawing.Point(72, 21);
-            this.textBoxTotal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxTotal.MaxLength = 20;
-            this.textBoxTotal.Name = "textBoxTotal";
-            this.textBoxTotal.Size = new System.Drawing.Size(254, 26);
-            this.textBoxTotal.TabIndex = 23;
-            this.textBoxTotal.Tag = "total";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(460, 24);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(118, 20);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "Forma de Pago";
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.Location = new System.Drawing.Point(789, 443);
-            this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(64, 35);
-            this.buttonOK.TabIndex = 25;
-            this.buttonOK.Text = "OK";
-            this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // ColumnIdConsumibleEstadia
             // 
@@ -149,17 +94,70 @@
             this.ColumnPrecio.Name = "ColumnPrecio";
             this.ColumnPrecio.ReadOnly = true;
             // 
+            // comboBoxFormaDePago
+            // 
+            this.comboBoxFormaDePago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxFormaDePago.FormattingEnabled = true;
+            this.comboBoxFormaDePago.Location = new System.Drawing.Point(390, 12);
+            this.comboBoxFormaDePago.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxFormaDePago.Name = "comboBoxFormaDePago";
+            this.comboBoxFormaDePago.Size = new System.Drawing.Size(164, 21);
+            this.comboBoxFormaDePago.TabIndex = 22;
+            this.comboBoxFormaDePago.Tag = "idFormaDePago";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(13, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Total";
+            // 
+            // textBoxTotal
+            // 
+            this.textBoxTotal.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxTotal.Enabled = false;
+            this.textBoxTotal.Location = new System.Drawing.Point(48, 14);
+            this.textBoxTotal.MaxLength = 20;
+            this.textBoxTotal.Name = "textBoxTotal";
+            this.textBoxTotal.Size = new System.Drawing.Size(171, 20);
+            this.textBoxTotal.TabIndex = 23;
+            this.textBoxTotal.Tag = "total";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(307, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Forma de Pago";
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.Location = new System.Drawing.Point(526, 288);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(43, 23);
+            this.buttonOK.TabIndex = 25;
+            this.buttonOK.Text = "OK";
+            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            // 
             // GenerarFactura
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 487);
+            this.ClientSize = new System.Drawing.Size(585, 317);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxTotal);
             this.Controls.Add(this.comboBoxFormaDePago);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "GenerarFactura";
             this.Text = "GenerarFactura";
             this.Load += new System.EventHandler(this.GenerarFactura_Load);

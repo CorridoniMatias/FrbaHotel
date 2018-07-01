@@ -13,6 +13,7 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class Alta : Form
     {
+        bool hayError = false;
         public Alta()
         {
             InitializeComponent();
@@ -40,14 +41,15 @@ namespace FrbaHotel.AbmHabitacion
                     this.Close();
                 }
             }
-                
+
             try
             {
                 var nombreHotel = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).
                 Fields("nombre").Table("MATOTA.Hotel").AddEquals("idHotel", Login.Login.LoggedUserSessionHotelID.ToString());
                 textBoxHotel.Text = DBHandler.Query(nombreHotel.Build()).First()["nombre"].ToString();
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 MessageBox.Show("Ocurrió un error al agregar el nombre del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -59,6 +61,7 @@ namespace FrbaHotel.AbmHabitacion
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
+            hayError = false;
             //textBoxHotel no se ve aqui ya que es solo para que vean el nombre del hotel, sin embargo
             //el id del hotel no se modifica y se encuentra en el Login.Login.LoggedUserSessionHotelID,
             //que es el que realmente se tiene que guardar
@@ -68,6 +71,36 @@ namespace FrbaHotel.AbmHabitacion
             if (textBoxes.Any(tb => string.IsNullOrEmpty(tb.Text)) || comboBoxes.Any(cb => cb.SelectedIndex == -1))
             {
                 MessageBox.Show("Debe completar todos los campos para dar de alta la habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(textBoxNumHabitacion.Text.Trim()))
+            {
+                try
+                {
+                    Int32.Parse(textBoxNumHabitacion.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El número de habitación debe ser un número.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+            }
+            if (!string.IsNullOrEmpty(textBoxPiso.Text.Trim()))
+            {
+                try
+                {
+                    Int32.Parse(textBoxPiso.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El piso debe ser un número.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+            }
+            if (hayError)
+            {
+                hayError = false;
                 return;
             }
 
@@ -89,7 +122,10 @@ namespace FrbaHotel.AbmHabitacion
                     textBoxNumHabitacion.Text = string.Empty;
                 }
                 else if (ret == 1)
+                {
                     MessageBox.Show("Habitación ingresada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
             catch (Exception)
             {

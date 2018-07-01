@@ -16,6 +16,7 @@ namespace FrbaHotel.AbmCliente
         private string tipoDoc;
         private string numDoc;
         private string idTipoDoc;
+        bool hayError = false;
         public Modificacion(string tipoDoc, string numDoc)
         {
             this.tipoDoc = tipoDoc;
@@ -59,11 +60,78 @@ namespace FrbaHotel.AbmCliente
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
+            hayError = false;
             List<TextBox> textBoxes = new List<TextBox> {textBoxApellido,textBoxCalle,textBoxDepto,textBoxLocalidad,textBoxMail,
                                                         textBoxNacionalidad,textBoxNombre,textBoxNroCalle,textBoxNumDoc,textBoxPais,textBoxPiso,textBoxTelefono};
             if (textBoxes.Any(tb => string.IsNullOrEmpty(tb.Text) || comboBoxTipoDoc.SelectedIndex == -1))
             {
                 MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!String.IsNullOrEmpty(textBoxMail.Text.Trim()))
+                if (!FormHandler.verificarMail(textBoxMail))
+                {
+                    MessageBox.Show("El mail tiene un formato invalido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+
+            if (!string.IsNullOrEmpty(textBoxNumDoc.Text.Trim()))
+            {
+                try
+                {
+                    Int32.Parse(textBoxNumDoc.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El número de documento debe ser un número." + Environment.NewLine + "Ingrese su documento sin guiones.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+            }
+            if (!string.IsNullOrEmpty(textBoxTelefono.Text.Trim()))
+            {
+                try
+                {
+                    Int32.Parse(textBoxTelefono.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El teléfono debe ser un número." + Environment.NewLine + " Ingrese su teléfono sin los guiones ni el más.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(textBoxNroCalle.Text.Trim()))
+            {
+                try
+                {
+                    Int32.Parse(textBoxNroCalle.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El número de calle debe ser un número.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+            }
+            if (!string.IsNullOrEmpty(textBoxPiso.Text.Trim()))
+            {
+                try
+                {
+                    Int32.Parse(textBoxPiso.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El piso debe ser un número.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    hayError = true;
+                }
+            }
+            if (dateTimePickerFechaNacimiento.Value.CompareTo(ConfigManager.FechaSistema) > 0)
+            {
+                MessageBox.Show("La fecha de nacimiento no puede ser posterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                hayError = true;
+            }
+            if (hayError)
+            {
+                hayError = false;
                 return;
             }
             try

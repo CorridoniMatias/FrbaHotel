@@ -37,6 +37,18 @@ namespace FrbaHotel.CancelarReserva
                 MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (!string.IsNullOrEmpty(textBoxIdReserva.Text.Trim()))
+            {
+                try
+                {
+                    Int32.Parse(textBoxIdReserva.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El número de reserva debe ser un número.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
             try
             {
                 puedeCancelar = DBHandler.SPWithBool("MATOTA.FechaCorrectaParaModificarReserva", new List<SqlParameter>{new SqlParameter("@idReserva",textBoxIdReserva.Text),

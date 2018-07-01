@@ -57,12 +57,6 @@ namespace FrbaHotel.FacturarEstadia
                         this.Close();
                         return;
                     }
-                    else
-                    {
-                        MessageBox.Show("Factura número " + ret + " creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.cerrarEstadia();
-                    }
-
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         if (dataGridView1.Rows[i].Cells[0].Value.Equals("-"))
@@ -84,9 +78,13 @@ namespace FrbaHotel.FacturarEstadia
                         new SqlParameter("@idConsumibleEstadia", dataGridView1.Rows[i].Cells[0].Value),
                         new SqlParameter("@descripcion",dataGridView1.Rows[i].Cells[2].Value),
                         new SqlParameter("@cantidad",dataGridView1.Rows[i].Cells[3].Value),
-                        new SqlParameter("@monto",dataGridView1.Rows[i].Cells[4].Value),
+                        new SqlParameter("@monto",dataGridView1.Rows[i].Cells[4].Value.ToString().Replace(',','.')),
                     });
                     }
+
+                    MessageBox.Show("Factura número " + ret + " creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.cerrarEstadia();
+                    this.Close();
 
                 }
                 catch (Exception exc)

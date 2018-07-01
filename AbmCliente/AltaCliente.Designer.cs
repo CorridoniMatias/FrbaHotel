@@ -133,6 +133,7 @@
             // 
             // comboBoxTipoDoc
             // 
+            this.comboBoxTipoDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoDoc.FormattingEnabled = true;
             this.comboBoxTipoDoc.Location = new System.Drawing.Point(107, 64);
             this.comboBoxTipoDoc.Margin = new System.Windows.Forms.Padding(2);

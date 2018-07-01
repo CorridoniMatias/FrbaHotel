@@ -56,7 +56,11 @@ namespace FrbaHotel.AbmHabitacion
                         new SqlParameter("@fechaHasta", fechaHasta)
                     }
                     );
-
+                if (data.Count == 0)
+                {
+                    MessageBox.Show("No hay habitaciones libres en el hotel en el período seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.Close();
+                }
                 var newdata = data.Select(row =>
                 {
                     var orig = new List<string>() { row["nroHabitacion"].ToString(), 
@@ -76,7 +80,7 @@ namespace FrbaHotel.AbmHabitacion
             catch (Exception ex)
             {
                 MessageBox.Show("Error al listar las habitaciones.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                this.Close();
             }
         }
 
@@ -117,7 +121,7 @@ namespace FrbaHotel.AbmHabitacion
                     }
                     else
                     {
-                        MessageBox.Show("Usted nunca agregó esta habitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Usted nunca agregó esta habitación a la lista de habitaciones de la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
         }
