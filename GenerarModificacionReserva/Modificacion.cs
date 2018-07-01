@@ -211,7 +211,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             try
             {
                 var query = new QueryBuilder(QueryBuilder.QueryBuilderType.SELECT).Fields("r.idRegimen,r.nombre").Table("MATOTA.Regimen r").
-                    AddJoin("JOIN MATOTA.RegimenHotel rh ON (rh.idRegimen = r.idRegimen AND rh.idHotel =" + idHotel + ")").Build();
+                    AddJoin("JOIN MATOTA.RegimenHotel rh ON (rh.idRegimen = r.idRegimen AND rh.idHotel =" + idHotel + ")").AddEquals("habilitado","1").Build();
                 comboBoxRegimen.DataSource = DBHandler.QueryForComboBox(query);
                 comboBoxRegimen.DisplayMember = "nombre";
                 comboBoxRegimen.ValueMember = "idRegimen";

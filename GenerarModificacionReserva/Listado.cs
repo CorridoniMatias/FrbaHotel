@@ -68,6 +68,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             FormHandler.listarRegimenes(comboBoxRegimen);
             comboBoxRegimen.SelectedIndex = -1;
             poblador = new PobladorReservas(textBoxIdReserva, comboBoxHotel, comboBoxRegimen, dataGridView1, new List<string> { "Modificar"});
+            dataGridView1.Rows.Clear();
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -96,11 +97,42 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     if (senderGrid.Columns[e.ColumnIndex].Name.Equals("Modificar"))
                     {
-                        this.obtenerListaHabitaciones();
+                        
+                        var idReserva = senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        var fechaDesde = senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        var fechaHasta = senderGrid.Rows[e.RowIndex].Cells[5].Value.ToString();
+                        var cantNoches = senderGrid.Rows[e.RowIndex].Cells[6].Value.ToString();
+                        var puedeModificar = true;
+                        try
+                        {
+                        this.obtenerListaHabitaciones(idReserva);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ocurrio un error al obtener las habitaciones de la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        try
+                        {
+                            puedeModificar = DBHandler.SPWithBool("MATOTA.FechaCorrectaParaModificarReserva",
+                                new List<SqlParameter>{
+                                    new SqlParameter("@idReserva",Int32.Parse(idReserva)),
+                                    new SqlParameter("@fechaSistema",ConfigManager.FechaSistema)
+                                });
+                        }
+                        catch (Exception excep)
+                        {
+                            MessageBox.Show("Error al chequear si puede modificar la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        if (!puedeModificar)
+                        {
+                            MessageBox.Show("Ya pasó la fecha límite para modificar esta reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
                         new Modificacion(
                                 senderGrid.Rows[e.RowIndex].Cells[0].Value.ToString(),
                                 senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString(),
-                                senderGrid.Rows[e.RowIndex].Cells[5].Value.ToString(),
+                                (!String.IsNullOrEmpty(fechaHasta) ? fechaHasta : DateTime.Parse(fechaDesde).AddDays(Double.Parse(cantNoches)).ToString()),
                                 senderGrid.Rows[e.RowIndex].Cells[2].Value.ToString(),
                                 senderGrid.Rows[e.RowIndex].Cells[6].Value.ToString(),
                                 senderGrid.Rows[e.RowIndex].Cells[7].Value.ToString(),
@@ -109,12 +141,11 @@ namespace FrbaHotel.GenerarModificacionReserva
                     }
                     this.Close();
                 }
-                //}
             }
         }
-        private void obtenerListaHabitaciones()
+        private void obtenerListaHabitaciones(string idReserva)
         {
-            DBHandler.SPWithResultSet("MATOTA.GetHabitacionesReserva ", new List<SqlParameter> { new SqlParameter("@idReserva", textBoxIdReserva.Text) })
+            DBHandler.SPWithResultSet("MATOTA.GetHabitacionesReserva ", new List<SqlParameter> { new SqlParameter("@idReserva", Int32.Parse(idReserva)) })
                                      .ForEach(hab => habitaciones.Add(hab["nroHabitacion"].ToString()));
         }
         private void cerrarFormEnConstructor(object sender, EventArgs e)
