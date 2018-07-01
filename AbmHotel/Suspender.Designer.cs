@@ -157,6 +157,7 @@
             this.Name = "Suspender";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Suspender Hotel";
+            this.Load += new System.EventHandler(this.Suspender_Load);
             this.groupBoxInactividad.ResumeLayout(false);
             this.groupBoxInactividad.PerformLayout();
             this.ResumeLayout(false);

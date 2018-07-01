@@ -19,6 +19,8 @@ namespace FrbaHotel.AbmHotel
 
         private void AltaHotel_Load(object sender, EventArgs e)
         {
+            dateTimePickerFechaCreacion.Value = ConfigManager.FechaSistema;
+
             var regimenes = DBHandler.Query("SELECT idRegimen, nombre FROM MATOTA.Regimen")
                             .Select(reg => new KeyValuePair<int, string>(Int32.Parse(reg["idRegimen"].ToString()), reg["nombre"].ToString()) )
                             .ToDictionary(pair => pair.Key, pair => pair.Value);
@@ -30,6 +32,13 @@ namespace FrbaHotel.AbmHotel
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (!String.IsNullOrEmpty(textBoxMail.Text.Trim()))
+                if (!FormHandler.verificarMail(textBoxMail))
+                {
+                    MessageBox.Show("El mail tiene un formato invalido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
             List<TextBox> fields = new List<TextBox>()
                 {
                     textBoxNombre,
@@ -42,13 +51,10 @@ namespace FrbaHotel.AbmHotel
                     textBoxCantEstrellas
                 };
 
-            List<int> rgs = new List<int>();
-            foreach(var item in checkedListBoxRegimenes.CheckedItems)
-                rgs.Add( ((KeyValuePair<int, string>)item).Key );
 
-            if (fields.Any(f => string.IsNullOrEmpty(f.Text.Trim())) || rgs.Count == 0)
+            if (fields.Any(f => string.IsNullOrEmpty(f.Text.Trim())) || checkedListBoxRegimenes.CheckedItems.Count == 0)
             {
-                MessageBox.Show("Debe llenar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe llenar todos los campos y seleccionar al menos un regimen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -111,8 +117,18 @@ namespace FrbaHotel.AbmHotel
                 return;
             }
 
+            var adds = new List<string>();
             query = "INSERT INTO MATOTA.RegimenHotel VALUES ";
-            query += String.Join(",", rgs.Select(r => "(" + idhotel + ", " + r + ")").ToArray());
+
+            for (int i = 0; i < checkedListBoxRegimenes.Items.Count; i++)
+            {
+                var item = (KeyValuePair<int, string>)checkedListBoxRegimenes.Items[i];
+                int enabled = ((checkedListBoxRegimenes.CheckedIndices.Contains(i)) ? 1 : 0);
+
+                adds.Add("(" + idhotel + ", " + item.Key + ", " + enabled + ")");
+            }
+
+            query += String.Join(",", adds);
 
             int count = -1;
 
@@ -125,13 +141,28 @@ namespace FrbaHotel.AbmHotel
                 MessageBox.Show("Ocurrió un error al agregar los regímenes seleccionados, sin embargo, el hotel fue registrado con éxito\n Intente agregar los regímenes a través de la interfaz de modificación del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            if (count != rgs.Count)
+            if (count != checkedListBoxRegimenes.Items.Count)
             {
                 MessageBox.Show("Ocurrió un error al agregar los regímenes seleccionados, sin embargo, el hotel fue registrado con éxito\n Intente agregar los regímenes a través de la interfaz de modificación del hotel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 MessageBox.Show("Hotel agregado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            try
+            {
+                builder = new QueryBuilder(QueryBuilder.QueryBuilderType.INSERT)
+                                    .Table("MATOTA.HotelesUsuario")
+                                    .Fields("idUsuario, idHotel")
+                                    .AddValues(Login.Login.LoggedUsedID.ToString(), idhotel.ToString());
+
+                DBHandler.QueryScalar(builder.Build());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al vincularlo con el hotel recientemente creado. Para poder administrar dicho hotel por favor adjudiqueselo manualmente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
 
             this.Close();
@@ -141,6 +172,56 @@ namespace FrbaHotel.AbmHotel
         {
             FormHandler.limpiar(this.groupBox1);
             FormHandler.limpiar(this.groupBox2);
+        }
+
+        private void textBoxTel_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxTel.Text))
+                return;
+
+            try
+            {
+                Convert.ToInt32(textBoxTel.Text);
+            }catch(Exception)
+            {
+                MessageBox.Show("El numero de telefono debe ser un numero!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                textBoxTel.Text = textBoxTel.Text.Substring(0, textBoxTel.Text.Length - 1);
+            }
+        }
+
+        private void textBoxNroCalle_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxNroCalle.Text))
+                return;
+
+            try
+            {
+                Convert.ToInt32(textBoxNroCalle.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("El numero de calle debe ser un numero!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                textBoxNroCalle.Text = textBoxNroCalle.Text.Substring(0, textBoxNroCalle.Text.Length - 1);
+            }
+        }
+
+        private void textBoxCantEstrellas_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxCantEstrellas.Text))
+                return;
+
+            try
+            {
+                Convert.ToInt32(textBoxCantEstrellas.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("La cantidad de estrellas debe ser un numero!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                textBoxCantEstrellas.Text = textBoxCantEstrellas.Text.Substring(0, textBoxCantEstrellas.Text.Length - 1);
+            }
         }
     }
 }

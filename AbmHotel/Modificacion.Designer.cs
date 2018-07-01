@@ -140,6 +140,7 @@
             this.textBoxNroCalle.Size = new System.Drawing.Size(388, 28);
             this.textBoxNroCalle.TabIndex = 4;
             this.textBoxNroCalle.Tag = "nroCalle";
+            this.textBoxNroCalle.TextChanged += new System.EventHandler(this.textBoxNroCalle_TextChanged);
             // 
             // textBoxCalle
             // 
@@ -224,6 +225,7 @@
             this.textBoxCantEstrellas.Size = new System.Drawing.Size(388, 28);
             this.textBoxCantEstrellas.TabIndex = 9;
             this.textBoxCantEstrellas.Tag = "cantidadEstrellas";
+            this.textBoxCantEstrellas.TextChanged += new System.EventHandler(this.textBoxCantEstrellas_TextChanged);
             // 
             // textBoxTelefono
             // 
@@ -234,6 +236,7 @@
             this.textBoxTelefono.Size = new System.Drawing.Size(388, 28);
             this.textBoxTelefono.TabIndex = 8;
             this.textBoxTelefono.Tag = "telefono";
+            this.textBoxTelefono.TextChanged += new System.EventHandler(this.textBoxTelefono_TextChanged);
             // 
             // textBoxMail
             // 

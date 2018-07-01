@@ -121,6 +121,12 @@ namespace FrbaHotel.AbmHotel
             FormHandler.limpiar(this.groupBoxInactividad);
         }
 
+        private void Suspender_Load(object sender, EventArgs e)
+        {
+            dateTimePickerDesde.Value = ConfigManager.FechaSistema;
+            dateTimePickerHasta.Value = ConfigManager.FechaSistema;
+        }
+
 
     }
 }

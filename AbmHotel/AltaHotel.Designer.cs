@@ -97,11 +97,13 @@
             // 
             resources.ApplyResources(this.textBoxCantEstrellas, "textBoxCantEstrellas");
             this.textBoxCantEstrellas.Name = "textBoxCantEstrellas";
+            this.textBoxCantEstrellas.TextChanged += new System.EventHandler(this.textBoxCantEstrellas_TextChanged);
             // 
             // textBoxTel
             // 
             resources.ApplyResources(this.textBoxTel, "textBoxTel");
             this.textBoxTel.Name = "textBoxTel";
+            this.textBoxTel.TextChanged += new System.EventHandler(this.textBoxTel_TextChanged);
             // 
             // textBoxMail
             // 
@@ -178,6 +180,7 @@
             // 
             resources.ApplyResources(this.textBoxNroCalle, "textBoxNroCalle");
             this.textBoxNroCalle.Name = "textBoxNroCalle";
+            this.textBoxNroCalle.TextChanged += new System.EventHandler(this.textBoxNroCalle_TextChanged);
             // 
             // textBoxCalle
             // 

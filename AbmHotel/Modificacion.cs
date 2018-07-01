@@ -33,7 +33,12 @@ namespace FrbaHotel.AbmHotel
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-
+            if (!String.IsNullOrEmpty(textBoxMail.Text.Trim()))
+                if (!FormHandler.verificarMail(textBoxMail))
+                {
+                    MessageBox.Show("El mail tiene un formato invalido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             ActualizarRegimenes();
 
             var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.Hotel");
@@ -84,10 +89,9 @@ namespace FrbaHotel.AbmHotel
 
             if (altas.Count > 0)
             {
-                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.INSERT).Table("MATOTA.RegimenHotel")
-                                                                                    .Fields("idHotel, idRegimen");
+                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.RegimenHotel").SetORConnector().Fields("habilitado=1");
 
-                altas.ForEach(alta => builder.AddValues(idHotel, alta.idRegimen));
+                altas.ForEach(alta => builder.AddAndFilter("idHotel=" + idHotel, "idRegimen=" + alta.idRegimen));
 
                 int rows = 0;
 
@@ -107,7 +111,7 @@ namespace FrbaHotel.AbmHotel
 
             if (bajas.Count > 0)
             {
-                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.DELETE).Table("MATOTA.RegimenHotel");
+                var builder = new QueryBuilder(QueryBuilder.QueryBuilderType.UPDATE).Table("MATOTA.RegimenHotel").SetORConnector().Fields("habilitado=0");
                 int borradas = 0;
 
                 foreach(var regimen in bajas)
@@ -149,21 +153,22 @@ namespace FrbaHotel.AbmHotel
                     builder.AddAndFilter("idHotel=" + idHotel, "idRegimen=" + regimen.idRegimen);
                     borradas++;
                 }
-
-                int count = 0;
-                try
+                if (borradas != 0)
                 {
-                     count = DBHandler.QueryRowCount(builder.Build());
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Ocurrió un error inesperado al intentar remover los regímenes seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    int count = 0;
+                    try
+                    {
+                        count = DBHandler.QueryRowCount(builder.Build());
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show("Ocurrió un error inesperado al intentar remover los regímenes seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-                if (count != borradas)
-                    MessageBox.Show("Error al desvincular alguno de los regimenes deseleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+                    if (count != borradas)
+                        MessageBox.Show("Error al desvincular alguno de los regimenes deseleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -171,10 +176,10 @@ namespace FrbaHotel.AbmHotel
         {
             try
             {
-                var regimenes = DBHandler.Query("SELECT r.idRegimen, nombre, rh.idHotel FROM MATOTA.Regimen r LEFT JOIN MATOTA.RegimenHotel rh ON rh.idRegimen = r.idRegimen AND rh.idHotel=" + idHotel)
+                var regimenes = DBHandler.Query("SELECT r.idRegimen, nombre, rh.habilitado FROM MATOTA.Regimen r LEFT JOIN MATOTA.RegimenHotel rh ON rh.idRegimen = r.idRegimen AND rh.idHotel=" + idHotel)
                                 .Select(reg =>
 
-                                    new RegimenesHoteles(reg["idRegimen"].ToString(), reg["nombre"].ToString(), ((string.IsNullOrEmpty(reg["idHotel"].ToString())) ? false : true))
+                                    new RegimenesHoteles(reg["idRegimen"].ToString(), reg["nombre"].ToString(), ((reg["habilitado"].ToString().Equals("False")) ? false : true))
 
 
                                  ).ToList();
@@ -216,6 +221,57 @@ namespace FrbaHotel.AbmHotel
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Close();
+        }
+
+        private void textBoxTelefono_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxTelefono.Text))
+                return;
+
+            try
+            {
+                Convert.ToInt32(textBoxTelefono.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("El numero de telefono debe ser un numero!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                textBoxTelefono.Text = textBoxTelefono.Text.Substring(0, textBoxTelefono.Text.Length - 1);
+            }
+        }
+
+        private void textBoxCantEstrellas_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxCantEstrellas.Text))
+                return;
+
+            try
+            {
+                Convert.ToInt32(textBoxCantEstrellas.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("La cantidad de estrellas debe ser un numero!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                textBoxCantEstrellas.Text = textBoxCantEstrellas.Text.Substring(0, textBoxCantEstrellas.Text.Length - 1);
+            }
+        }
+
+        private void textBoxNroCalle_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxNroCalle.Text))
+                return;
+
+            try
+            {
+                Convert.ToInt32(textBoxNroCalle.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("El numero de calle debe ser un numero!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                textBoxNroCalle.Text = textBoxNroCalle.Text.Substring(0, textBoxNroCalle.Text.Length - 1);
+            }
         }
     }
 }

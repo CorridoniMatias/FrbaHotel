@@ -49,6 +49,12 @@ namespace FrbaHotel
             }
         }
 
+        public QueryBuilder SetORConnector()
+        {
+            filterConnector = " OR ";
+            return this;
+        }
+
         /// <summary>
         /// Ejemplo builder.AddAndFilter("idHotel=" + idHotel, "idRegimen=" + regimen.idRegimen); => (idHotel=? AND idRegimen=?)
         /// </summary>
