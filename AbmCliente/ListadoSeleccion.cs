@@ -19,9 +19,15 @@ namespace FrbaHotel.AbmCliente
         public ListadoSeleccion()
         {
             InitializeComponent();
+
+            FormHandler.listarTipoDoc(comboBoxTipoDoc);
+            comboBoxTipoDoc.SelectedIndex = -1;
+            existeCliente = true;
+            poblador = new PobladorCliente(new List<TextBox>() { textBoxNombre, textBoxMail, textBoxApellido, textBoxNumDoc }, comboBoxTipoDoc, dataGridView1, new List<string> { "Seleccionar" });
         }
 
         private PobladorCliente poblador;
+        private bool soloHabilido = false;
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -62,16 +68,18 @@ namespace FrbaHotel.AbmCliente
             }
             else
             {
-                poblador.Poblar();
+                poblador.Poblar(soloHabilido);
             }
         }
 
         private void ListadoSeleccion_Load(object sender, EventArgs e)
         {
-            FormHandler.listarTipoDoc(comboBoxTipoDoc);
-            comboBoxTipoDoc.SelectedIndex = -1;
-            existeCliente = true;
-            poblador = new PobladorCliente(new List<TextBox>() { textBoxNombre, textBoxMail, textBoxApellido, textBoxNumDoc }, comboBoxTipoDoc,dataGridView1, new List<string> { "Seleccionar" });
+            
+        }
+
+        public void MostrarSoloHabilitados()
+        {
+            this.soloHabilido = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
