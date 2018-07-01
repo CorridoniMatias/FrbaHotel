@@ -107,7 +107,7 @@ namespace FrbaHotel.RegistrarConsumible
             {
                 builder.AddValues(
                         dataGridView1.Rows[i].Cells[0].Value.ToString(),
-                        dataGridView1.Rows[i].Cells[2].Value.ToString(),
+                        dataGridView1.Rows[i].Cells[2].Value.ToString().Replace(",","."),
                         dataGridView1.Rows[i].Cells[3].Value.ToString(),
                         idReservaHabitacion
                     );

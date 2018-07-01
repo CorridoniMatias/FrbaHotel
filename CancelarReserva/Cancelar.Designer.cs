@@ -50,7 +50,7 @@
             // 
             // textBoxIdReserva
             // 
-            this.textBoxIdReserva.Location = new System.Drawing.Point(114, 25);
+            this.textBoxIdReserva.Location = new System.Drawing.Point(130, 25);
             this.textBoxIdReserva.MaxLength = 18;
             this.textBoxIdReserva.Name = "textBoxIdReserva";
             this.textBoxIdReserva.Size = new System.Drawing.Size(100, 20);
@@ -60,7 +60,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(24, 72);
+            this.label2.Location = new System.Drawing.Point(21, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 13);
             this.label2.TabIndex = 2;
@@ -78,7 +78,7 @@
             this.groupBox1.Size = new System.Drawing.Size(373, 267);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Cancelar Reserva";
             // 
             // textBoxMotivo
             // 

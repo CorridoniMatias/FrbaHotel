@@ -66,7 +66,7 @@ namespace FrbaHotel.FacturarEstadia
 
                         if (result == -1)
                         {
-                            MessageBox.Show("La estadia con fecha de ingreso mas reciente a la fecha del sistema sin fecha de salida definida para las habitaciones seleccionadas ya tiene una factura generada.\n\nEs decir, no hay estadia activa sin cerrar para las habitaciones seleccionadas.\n\nIntente modificar la fecha del sistema a una fecha mas tardia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("La estadia (id: "+idEstadia.Value.ToString()+") con fecha de ingreso mas reciente a la fecha del sistema sin fecha de salida definida para las habitaciones seleccionadas ya tiene una factura generada.\n\nEs decir, no hay estadia activa sin cerrar para las habitaciones seleccionadas.\n\nIntente modificar la fecha del sistema a una fecha mas tardia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }

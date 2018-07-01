@@ -35,27 +35,31 @@
             // 
             // comboBoxRol
             // 
+            this.comboBoxRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRol.FormattingEnabled = true;
-            this.comboBoxRol.Location = new System.Drawing.Point(370, 19);
+            this.comboBoxRol.Location = new System.Drawing.Point(222, 11);
+            this.comboBoxRol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxRol.Name = "comboBoxRol";
-            this.comboBoxRol.Size = new System.Drawing.Size(350, 30);
+            this.comboBoxRol.Size = new System.Drawing.Size(212, 21);
             this.comboBoxRol.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 22);
+            this.label1.Location = new System.Drawing.Point(7, 13);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(352, 24);
+            this.label1.Size = new System.Drawing.Size(200, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Seleccione el rol con el cual va a operar:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // buttonSelect
             // 
-            this.buttonSelect.Location = new System.Drawing.Point(736, 15);
+            this.buttonSelect.Location = new System.Drawing.Point(442, 9);
+            this.buttonSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSelect.Name = "buttonSelect";
-            this.buttonSelect.Size = new System.Drawing.Size(127, 37);
+            this.buttonSelect.Size = new System.Drawing.Size(76, 22);
             this.buttonSelect.TabIndex = 2;
             this.buttonSelect.Text = "Seleccionar";
             this.buttonSelect.UseVisualStyleBackColor = true;
@@ -63,13 +67,14 @@
             // 
             // SelectRol
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 68);
+            this.ClientSize = new System.Drawing.Size(527, 40);
             this.Controls.Add(this.buttonSelect);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxRol);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SelectRol";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Seleccione el Rol para operar";
